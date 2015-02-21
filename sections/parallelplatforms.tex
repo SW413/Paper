@@ -1,0 +1,36 @@
+\section{Platforms for parallel computations}
+To utilize the advantages of parallel computations on GPU cores a framework is needed.
+Historically GPU's have been utilized in games through frameworks like DirectX and OpenGl.
+These frameworks are build to compute graphics in games, and this is reflected in the design of these frameworks, they are not suited for general computation om GPU's.
+Therefore graphic cards manufacturers and industry consortiums have developed frameworks for general parallel computation in recent years.
+
+In this this chapter we will mainly look at two of these frameworks.
+CUDA, a framework by NVIDIA and OpenCL a framework designed by Khronos, a industry wide consortium.\citep{CUDA, OpenCL}
+There exits other similair platforms, like openHHMP, which is a standard for implementing heterogeneous computation in programming languages, but initial research showed very low adaption of these tools and therefore we have chosen the focus on the two solutions which seems to be the competing standards. 
+
+\subsection{CUDA}
+CUDA is a parallel computing platform developed by NVIDIA to utilize the the GPU cores for intensive computations which allows parallelization.
+The platform works with all of the following operations systems; Windows, OSX and Linux.
+The only hardware CUDA supports is NVIDIA graphic cards. 
+This solutions gives NVIDIA control over the whole platform, which allows them to the control all aspect of the CUDA platform.
+But this choice also limit the  portability of the code, since you must have hardware that is supported by this platform. \citep{CUDAfaq}
+
+\subsection{OpenCL}
+OpenCL is an alternative to CUDA, this standard is developed by a consortium called Khronos, which consist of a large variety of both GPU and CPU manufacturers.
+OpenCL is specifications for how to access both GPU and CPU through programming.
+These specifications can be implemented in any given programming language.
+Khronos itself has developed some C-libraries which allows developers to write programs which can both utilize the CPU and GPU's.
+This is called OpenCL C and is the most popular implementation of the OpenCL specifications.
+OpenCL support piratically all platforms both in software and hardware. 
+
+\subsection{Comparison}
+Both platforms support heavy computation in heterogeneous systems and analysis show that CUDA is faster than OpenCL\citep{DBLP:journals/corr/abs-1005-2581}. 
+Although speed is a goal for this project, we evaluate that the relative small decrease in speed is outperformed by the value of being able to target a much larger market of hardware by implementing our language through OpenCL.
+
+
+
+%The manufacturers of graphic cards provide several different options.
+%In addition to these frameworks provided by the manufacturers, other actors in the computing industry also provide different tools to utilize the GPU.
+%These tools all seems to be based on
+
+%OpenCL, Cuda, Parallel Computing Toolbox, Compute Shader, C++ AMP and Mantle

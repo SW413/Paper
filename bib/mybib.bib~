@@ -25,11 +25,11 @@
   year = {N/A},
   howpublished = {\url{http://www.nvidia.com/object/cuda-in-action.html}}
 }
-@MISC{CUDAfaq,
+@MISC{CUDA,
   author = {NVIDIA},
-  title = {CUDA Faq},
+  title = {CUDA Parallel Computing Platform},
   year = {N/A},
-  howpublished = {\url{https://developer.nvidia.com/cuda-faq}}
+  howpublished = {\url{http://www.nvidia.com/object/cuda-in-action.html}}
 }
 @article{DBLP:journals/corr/abs-1005-2581,
   author    = {Kamran Karimi and
@@ -45,9 +45,3 @@
   bibsource = {dblp computer science bibliography, http://dblp.org}
 }
 
-@MISC{OpenCL,
-  author = {Khronos},
-  title = {The open standard for parallel programming of heterogeneous systems},
-  year = {N/A},
-  howpublished = {\url{https://www.khronos.org/opencl/}}
-}
