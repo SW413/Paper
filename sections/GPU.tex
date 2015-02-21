@@ -1,0 +1,95 @@
+%METADATA about GPU, purpose and general difference from CPU
+\section{Graphics Processing Units}
+Graphic Processing Units (GPUs) were initially used to accelerate memory-intensive work for rendering graphics.
+They consist of a higher amount of cores, these cores while less effecient than the cores used in a CPU, are so plentiful, that with enough work, more \textbf{Instructions Per Core(IPC)} can be performed.
+These cores sacrifice the architectural components that enable helps the CPU run single instruction streams in exchange for more computing power, specifically to increase the number of \textbf{Arithmetic Logic Units(ALUs)}. %http://pdsgroup.hpclab.ceid.upatras.gr/files/CUDA-Parallel-Computing-on-GPUs.pdf
+%Includegraphics GPU CPU image
+This concept of using many cores to process a high number of threads giving GPUs a high throughput, is the heart of this very architecture.
+In recent years GPUs have been used for more than just graphical purposes, such as GPU-accelerated computing, the use of both GPU and CPU to accelerate scientific, analytics and likewise applications.
+Applications which benefit from the highly parallel processing power of the GPU, while still using the CPU for sequential problem solving.
+%http://www.nvidia.com/object/what-is-gpu-computing.html
+
+%GPU Architecture
+\subsection{GPU architecture}
+For the purpose of this section it is worth noting that depending on the GPU manufactorer and the series of the GPU, the exact architecture may vary.
+This section will therefore describe the architecture in a conceptual manor, and not go into specifics. 
+Also note that the main difference between earlier and later models of the same manufactorer, is primarily size, not the architectural concepts themselves.
+The GPU architecture chosen as the basis for the following section, is Nvidia as they are the market share leader, discounting integrated graphics solutions. 
+	%Kernels
+	%SingleInstructionMultipleData(SIMD)
+The compute device(The GPU) consists of Compute units(\textbf{Streaming Multiprocessors(SMs)}) which each consists of processing elements(\textbf{Streaming Processors(SPs)}), registers, execution cores for integer and floating point operations aswell as several caches; shared memory, texture memory and constant memory cache.
+%http://www.cudahandbook.com/uploads/Chapter_8._Streaming_Multiprocessors.pdf
+For GPU-accelerated computing the GPU acts as a co-processor, the execution of the application using the GPU originates from the CPU, once compute intensive functions that are not sequential is met.
+The CPU calls the GPU driver and starts a data transfer with the GPU or a \textbf{kernel} launch on the GPU.
+A kernel is a function executed on the GPU, this is furtherly explained on \myref{OpenCL}.
+A kernel specifies the number of threads and data it requires.
+This architecture is the \textbf{Single Instruction Multiple Data(SIMD)} which is part of the GPU's parallelism.
+%http://www.cs.virginia.edu/~skadron/Papers/thesis_prateeksha.pdf
+%GPU Memory Hierachy
+\subsection{Memory Hierachy}
+	%Register(per-SM, allocated to threads as specified - fastest and most plentiful)	
+	%Local memory(SM holds local variables  that cannot be computed at compile time) texture cache
+	%Global(GPU) Visible to all threads of a kernel, resides in DRAM 
+	%Constant memory(GPU) Each SM contains a small latency optimized cache for purpose of reading this memory DRAM
+	%Shared memory(per-SM, shared amongst threads of a block) Seperate adress space
+	%Host memory(CPU)
+
+%http://www.cudahandbook.com/uploads/Chapter_8._Streaming_Multiprocessors.pdf
+The GPU memory is comprised of the following different memory components, how it is communicates is shown on \myref{OpenCLGPUMemoryModel}. %Includegraphics GPUMemory
+Memory managment of the GPU is also explicit, this means that the data must first be moved from the host, to global memory, then to local memory where the SMs can start to use it. 
+Once they are done it must be sent back the same way.
+The memory architecture is designed with regard to increased performence by reducing memory traffic.
+Although the hierachy and its components were originally designed to improve performance for graphical applications, it can also be used efficiently in some GPU computing applications, how the memory is used is further explained in \myref{OpenCL}. %http://cuda-programming.blogspot.dk/2013/02/texture-memory-in-cuda-what-is-texture.html
+
+\textbf{Registers:}
+
+For any given SM, thousends of registers are contained, this is the most plentiful type of memory used in the SM. 
+Once a kernel is launched, registers are allocated to threads as per the kernels requirements.
+This also means that the registers shared across the SM, but only to the allocated threads for each register.
+The registers can contain both integers and floating-points.
+
+\textbf{Local Memory:}
+
+Local memory is used for spilling registers aswell as holding lcoal variables.
+Each SM has its own allocated local memory available which is available to the entire SM, unlike registers it is not controlled by the kernel being executed.
+
+\textbf{Global and Constant Memory:}
+
+The SMs can read and write to global memory, this is however significantly slower than using local memory( atleast five times). %http://www.it.uu.se/edu/course/homepage/avdark/ht10/slides/09-GPU-and-OpenCL-4.pdf
+Constant memory is read only for SM however each SM contains a small optimized chache for the purpose of reading from this memory such that less reading is required. Both of these memory types are located on the DRAM and not in the SM.
+
+\textbf{Shared Memory:}
+
+Shared memory, as mentioned earlier, is part of the SM.
+It is a very fast on-chip memory that threads can use for data interchange withing thread blocks.
+Although it is fast, it being an on-chip per-SM resource, using it can affect the number of blocks and threads can use for computations.
+
+\textbf{Texture Memory:}
+
+Texture memory is shared amongst a number of SMs, like constant memory this is read-only and is cached in its own texture chache on the SM
+
+%Streaming Multiprocessors
+\subsection{Streaming Multiprocessors}
+On the GPU the work is divided by the hardware.
+When a kernel is launched, the hardware dynamically assign work groups to SMs, doing so while balancing the load across the GPU.
+For each work group, a number of work items exists, these are the threads that execute the kernel.
+Work items running on a SM can communicate through local memory, all the different work groups can communicate through global memory. %https://www.khronos.org/assets/uploads/developers/library/2009-hotchips/NVIDIA_OpenCL-for-NVIDIA-GPUs.pdf
+A collection of a given number of SMs are refered to as a \textbf{Thread Processing Cluster(TPC)}, this TPC shares a controller, aswell as a texture cache.
+All SMs consist of a number of ALUs, \textbf{multiply-add(MAD)} and special function units for doing computations, multithreaded instruction fetch and issue unit, instruction cache, read-only constant cache and a shared memory cache \myref{image:SM} shows an example of this, note that the ALUs and MAD corresponds to the SPs. %Includegraphics SM
+The SM schedules and executes threads in groups called warps.
+A warp waits untill all its threads have finished execution, before the next instruction is fetched. 
+%http://www.cs.virginia.edu/~skadron/Papers/thesis_prateeksha.pdf
+\subsection{Conclusion}
+The result of this architecture is increased parallel computing power through the sacrifice of sequential computing power.
+The GPU sacrifices the cache memory of the CPU, in exchange for more computing power.
+This results in a very high throughput, work done in an amount of time, given that there is enough work.
+It also results in higher latency, the time from which an instruction is initiated untill the effects have taken place.
+Is is the direct opposite of a CPU.
+In a CPU low latency is preferred, the latency is hidden through its ability to do work concurrently the low latency is achieved by the caches, something which the GPU sacrificed.
+Although with low latency, also follows low throughput, which is why the GPU is more optimized for heavy computational work that can be done in parallel.
+The structure of SMs, and the work distribution of the GPU, is what enables it to do use the SIMD model.
+The SM follows only one set of instructions but on multiple threads of data, the threads are managed and scheduled by the hardware itself.
+In conlusion, the GPU architecture allows us to efficiently compute any workload which can be done using parallel computing, and can tolerate the higher latency.
+
+%GPU Results Parallel work/Multiprocessor programming
+	%Latency/Throuhput optimizations and the result
