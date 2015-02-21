@@ -5,7 +5,7 @@ They consist of a higher amount of cores, these cores while less effecient than 
 These cores sacrifice the architectural components that enables the CPU run single instruction streams in exchange for more computing power, such as increasing the number of \textbf{Arithmetic Logic Units(ALUs)} \myref{image:GPUCPUimage} shows a basic idea of the differnce between the GPU and CPU. %http://pdsgroup.hpclab.ceid.upatras.gr/files/CUDA-Parallel-Computing-on-GPUs.pdf
 \begin{figure}[h!]
 \centering
- \includegraphics[width=1\textwidth]{figures/GPUCPUimage.PNG} % trim=4.85cm 15cm 0.85cm 1cm
+ \includegraphics[trim=1.4cm 6.1cm 6.5cm 1.8cm, clip, width=1\textwidth]{figures/GPUCPUimage.PNG} % trim=4.85cm 15cm 0.85cm 1cm
 \caption{A basic representation of the Transistor allocation on the GPU compared to the CPU}\label{image:GPUCPUimage} %ftp://download.nvidia.com/developer/cuda/seminar/TDCI_Arch.pdf
 \end{figure}
 
@@ -45,7 +45,7 @@ This concept is brought to life through exploiting SMs computing power, aswell a
 %http://www.cudahandbook.com/uploads/Chapter_8._Streaming_Multiprocessors.pdf
 \begin{figure}[h!]
 \centering
- \includegraphics[width=1\textwidth]{figures/GPUMemory.PNG} % trim=4.85cm 15cm 0.85cm 1cm
+ \includegraphics[trim=1.4cm 6.1cm 6.5cm 1.8cm, clip, width=1\textwidth]{figures/GPUCPUimage.PNG} % trim=4.85cm 15cm 0.85cm 1cm
 \caption{A basic representation of GPU memory hierachy, note a block corresponds to a SM, and a thread to a SP.}\label{image:GPUMemory} 
 \end{figure}
 The GPU memory is comprised of the following different memory components, how it is communicates is shown on \myref{OpenCLGPUMemoryModel}. 
@@ -93,7 +93,7 @@ The SM schedules and executes threads in groups called warps.
 A warp waits untill all its threads have finished execution, before the next instruction is fetched. 
 \begin{figure}[h!]
 \centering
- \includegraphics[width=1\textwidth]{figures/SM.PNG} % trim=4.85cm 15cm 0.85cm 1cm
+ \includegraphics[trim=1.4cm 6.1cm 6.5cm 1.8cm, clip, width=1\textwidth]{figures/SM.PNG} % trim=4.85cm 15cm 0.85cm 1cm
 \caption{A basic representation of a SM.}\label{image:SM} 
 \end{figure}
 %http://www.cs.virginia.edu/~skadron/Papers/thesis_prateeksha.pdf
