@@ -1,31 +1,25 @@
 \chapter{Introduction}\label{ch:introduction}
-Here is the introduction. The next chapter is chapter~\ref{ch:ch2label}.
 
+%This paper is written by a group of Software Engineering students at Aalborg University.
+%Troels: Dette hører til Preface og/eller titlepage
 
-a new paragraph
+%Large Numerical computations has become possible to calculate faster on modern CPUs due to their enormous development of speed. 
+New central processing units (``CPUs'') are able to calculate at ever greater speeds.
+%However, a trend is starting to show, Moore's law will not continue as it has been doing for the past decades.
+Moore's law predicts an exponential growth in transister count, thus faster computation, however experts tredict that this trend may end as soon as 2020 or 2022. \citep{Moore2013}
+%By 2022 it might stop being possible to make the transistor densities smaller, and by this time they should be around 7-5nms.
+%Troels: Størrelsen 
 
+%So if our processors are reaching their maximum potential, is it possible to use other kind of computational devices for these kind of tasks?
+%``these kind of tasks'' ? What ``these'' is refered to?
+This begs the question, if our processors are reaching their maximum potential what other computational devices can be used?
 
-\section{Examples}
-You can also have examples in your document such as in example~\ref{ex:simple_example}.
-\begin{example}{An Example of an Example}
-  \label{ex:simple_example}
-  Here is an example with some math
-  \begin{equation}
-    0 = \exp(i\pi)+1\ .
-  \end{equation}
-  You can adjust the colour and the line width in the {\tt macros.tex} file.
-\end{example}
+Graphics processing units (``GPUs'') are extremely fast at calculating in parallel due to their internal architecture. (More on this in chapter\todo{Marks kapitel})
+GPUs are starting to be used around the world for calculating very large numerical computations, since it is possible to parallelize tasks some computations.
+Most compilers, like GCC, targets only the CPU, and it can be difficult to transfer these computations to the GPU instead using languages like C, or C++.
+To use the GPU for general purpose computation (General-purpose computing on graphics processing units ``GPGPU''), there exists the frameworks OpenCL and CUDA.
+CUDA is a virtual instruction set created by NVIDIA, and is therefore only usable by CUDA enabled NVIDIA GPUs.
+OpenCL is an ópen stardard and supported by more GPUs, most noticible Intel, AMD and NVIDIA GPUs. (More on OpenCl and CUDA in chapter \todo{Mortens kapitel})
 
-\section{How Does Sections, Subsections, and Subsections Look?}
-Well, like this
-\subsection{This is a Subsection}
-and this
-\subsubsection{This is a Subsubsection}
-and this.
-
-\paragraph{A Paragraph}
-You can also use paragraph titles which look like this.
-
-\subparagraph{A Subparagraph} Moreover, you can also use subparagraph titles which look like this\todo{Is it possible to add a subsubparagraph?}. They have a small indentation as opposed to the paragraph titles.
-
-\todo[inline,color=green]{I think that a summary of this exciting chapter should be added.}
+Therefore this project paper will research the possibilities of creating a programming language and a compiler, which can perform numerical computations on the GPU seamlessly to the programmer. 
+% There is no reason for us to do it seamlessly ? Maybe we should add something like: Programming for GPUs with CUDA or OpenCL requires a lot of code, which can make it difficult for developers and scientists. ?
