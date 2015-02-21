@@ -1,18 +1,25 @@
 \chapter{Introduction}\label{ch:introduction}
 
-This paper is written by a group of Software Engineering students at Aalborg University.
+%This paper is written by a group of Software Engineering students at Aalborg University.
+%Troels: Dette hører til Preface og/eller titlepage
 
-Large Numerical computations has become possible to calculate faster on modern CPUs due to their enormous development of speed. 
-However, a trend is starting to show, Moore's law will not continue as it has been doing for the past decades.
-By 2022 it might stop being possible to make the transistor densities smaller, and by this time they should be around 7-5nms.\citep{Moore2013}
+%Large Numerical computations has become possible to calculate faster on modern CPUs due to their enormous development of speed. 
+New central processing units (``CPUs'') are able to calculate at ever greater speeds.
+%However, a trend is starting to show, Moore's law will not continue as it has been doing for the past decades.
+Moore's law predicts an exponential growth in transister count, thus faster computation, however experts tredict that this trend may end as soon as 2020 or 2022. \citep{Moore2013}
+%By 2022 it might stop being possible to make the transistor densities smaller, and by this time they should be around 7-5nms.
+%Troels: Størrelsen 
 
+%So if our processors are reaching their maximum potential, is it possible to use other kind of computational devices for these kind of tasks?
+%``these kind of tasks'' ? What ``these'' is refered to?
+This begs the question, if our processors are reaching their maximum potential what other computational devices can be used?
 
-So if our processors are reaching their maximum potential, is it possible to use other kind of computational devices for these kind of tasks?
+Graphics processing units (``GPUs'') are extremely fast at calculating in parallel due to their internal architecture. (More on this in chapter\todo{Marks kapitel})
+GPUs are starting to be used around the world for calculating very large numerical computations, since it is possible to parallelize tasks some computations.
+Most compilers, like GCC, targets only the CPU, and it can be difficult to transfer these computations to the GPU instead using languages like C, or C++.
+To use the GPU for general purpose computation (General-purpose computing on graphics processing units ``GPGPU''), there exists the frameworks OpenCL and CUDA.
+CUDA is a virtual instruction set created by NVIDIA, and is therefore only usable by CUDA enabled NVIDIA GPUs.
+OpenCL is an ópen stardard and supported by more GPUs, most noticible Intel, AMD and NVIDIA GPUs. (More on OpenCl and CUDA in chapter \todo{Mortens kapitel})
 
-GPUs are extremely fast at calculating lots of data due to their internal architecture(More on this in chapter\todo{Marks kapitel}).
-They are starting to be used around the world for calculating very large numerical computations, since it is possible to parallelize tasks on the GPUs much more than is possible on a CPU.
-Most compilers like GCC, compiles for computations on the CPU, and it can be difficult to transfer these computations to the gpu instead using languages like C, or C++.
-To do this, you can use CUDA or OpenCL.
-CUDA is a programming model created by Nvidia, and is therefore only usable by CUDA enabled Nvidia GPUs.
-OpenCL though is usable for more GPUs, like AMD, but Nvidia has stopped support for the newer versions of OpenCL(More on OpenCl and CUDA in chapter \todo{Mortens kapitel})
-Therefore this project paper will research the possibilities of creating a programming language, and a compiler, which can perform numerical computations on the GPU seamlessly to the programmer. 
+Therefore this project paper will research the possibilities of creating a programming language and a compiler, which can perform numerical computations on the GPU seamlessly to the programmer. 
+% There is no reason for us to do it seamlessly ? Maybe we should add something like: Programming for GPUs with CUDA or OpenCL requires a lot of code, which can make it difficult for developers and scientists. ?
