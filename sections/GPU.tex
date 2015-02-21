@@ -97,7 +97,7 @@ A warp waits untill all its threads have finished execution, before the next ins
 \caption{A basic representation of a SM.}\label{image:SM} 
 \end{figure}
 %http://www.cs.virginia.edu/~skadron/Papers/thesis_prateeksha.pdf
-\subsection{Conclusion}
+\subsection{Conclusion} %This needs serious rework - but not now!
 The result of this architecture is increased parallel computing power through the sacrifice of sequential computing power.
 The GPU sacrifices the cache memory of the CPU, in exchange for more computing power.
 This results in a very high throughput, work done in an amount of time, given that there is enough work.
@@ -105,7 +105,7 @@ It also results in higher latency, the time from which an instruction is initiat
 Is is the direct opposite of a CPU.
 In a CPU low latency is preferred, the latency is hidden through its ability to do work concurrently the low latency is achieved by the caches, something which the GPU sacrificed.
 Although with low latency, also follows low throughput, which is why the GPU is more optimized for heavy computational work that can be done in parallel.
-The structure of SMs, and the work distribution of the GPU, is what enables it to do use the SIMD model.
+The structure of SMs, and the work distribution of the GPU, is what enables it to use the SIMD model.
 The SM follows only one set of instructions but on multiple threads of data, the threads are managed and scheduled by the hardware itself.
 In conlusion, the GPU architecture allows us to efficiently compute any workload which can be done using parallel computing, and can tolerate the higher latency.
 
