@@ -1,31 +1,16 @@
 \chapter{Introduction}\label{ch:introduction}
-Here is the introduction. The next chapter is chapter~\ref{ch:ch2label}.
 
+New central processing units (``CPUs'') are able to calculate at ever greater speeds.
+Moore's law predicts an exponential growth in transistor count, thus faster computation, however experts predict that this trend may end as soon as 2020 or 2022. \citep{Moore2013}
 
-a new paragraph
+This begs the question, if our processors are reaching their maximum potential, what other computational devices can be used?
 
+Graphics processing units (``GPUs'') are extremely fast at calculating in parallel due to their internal architecture. (More on this in chapter\todo{Marcs kapitel})
+GPUs are starting to be used around the world for calculating very large numerical computations, since it is possible to parallelize some computations.
+Most compilers, like GCC, targets only the CPU, and it can be difficult using common programming languages like C or C++, to transfer computations to the GPU.
+To use the GPU for general purpose computation (General-purpose computing on graphics processing units ``GPGPU''), there exists frameworks such as OpenCL and CUDA.
+CUDA is a virtual instruction set created by NVIDIA, and is therefore only usable by CUDA enabled NVIDIA GPUs.
+OpenCL is an open standard and supported by more GPUs, most noticeable Intel, AMD and NVIDIA GPUs. (More on OpenCl and CUDA in chapter \todo{Mortens kapitel})
 
-\section{Examples}
-You can also have examples in your document such as in example~\ref{ex:simple_example}.
-\begin{example}{An Example of an Example}
-  \label{ex:simple_example}
-  Here is an example with some math
-  \begin{equation}
-    0 = \exp(i\pi)+1\ .
-  \end{equation}
-  You can adjust the colour and the line width in the {\tt macros.tex} file.
-\end{example}
-
-\section{How Does Sections, Subsections, and Subsections Look?}
-Well, like this
-\subsection{This is a Subsection}
-and this
-\subsubsection{This is a Subsubsection}
-and this.
-
-\paragraph{A Paragraph}
-You can also use paragraph titles which look like this.
-
-\subparagraph{A Subparagraph} Moreover, you can also use subparagraph titles which look like this\todo{Is it possible to add a subsubparagraph?}. They have a small indentation as opposed to the paragraph titles.
-
-\todo[inline,color=green]{I think that a summary of this exciting chapter should be added.}
+Programming for GPUs with CUDA or OpenCL requires a lot of code, which can make it difficult for developers and scientists.
+Therefore this paper will research the possibilities of creating a programming language and a compiler, which can perform numerical computations on the GPU seamlessly to the programmer. 

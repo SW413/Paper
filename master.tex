@@ -1,3 +1,5 @@
+% In your .tex file
+% !TEX program = latex
 %  A simple AAU report template.
 %  2014-09-13 v. 1.1.0
 %  Copyright 2010-2014 by Jesper Kjær Nielsen <jkn@es.aau.dk>
@@ -27,17 +29,17 @@
 \input{sections/titlepages.tex}
 \cleardoublepage
 \pdfbookmark[0]{Contents}{label:contents}
-\pagestyle{fancy} %enable headers and footers again
-\tableofcontents
+\pagestyle{empty} %enable headers and footers again
+\tableofcontents*
 \listoftodos
 \input{sections/preface.tex}
 \cleardoublepage
 %mainmatter
-\pagenumbering{arabic} %use arabic page numbering in the mainmatter
+\pagenumbering{arabic}
 \input{sections/introduction.tex}
 \input{sections/parallelplatforms.tex}
-\input{sections/ch2name.tex}
 \input{sections/conclusion.tex}
+\input{sections/GPU.tex}
 \bibliography{bib/mybib}
 \label{bib:mybiblio}
 \appendix
