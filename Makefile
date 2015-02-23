@@ -14,6 +14,7 @@ pdflatex: master.tex
 	bibtex master
 	pdflatex --synctex=1 master.tex
 	pdflatex --synctex=1 master.tex
+	pdflatex --synctex=1 master.tex
 clean:
 	git clean -x -f -e master.pdf
 
@@ -22,4 +23,6 @@ fast: master.tex
 	bibtex master
 	pdflatex --synctex=1 -interaction batchmode master.tex
 	pdflatex --synctex=1 -interaction batchmode master.tex
+	pdflatex --synctex=1 -interaction batchmode master.tex
+	
 	
