@@ -6,7 +6,7 @@ Therefore graphic cards manufacturers and industry consortiums have developed fr
 
 In this this chapter we will mainly look at two of these frameworks.
 Compute Unified Device Architecture (``CUDA''), a framework by NVIDIA and OpenCL a framework designed by Khronos, a industry wide consortium.\citep{CUDA, OpenCL}
-There exits other similair platforms, like Hybrid Multicore Parallel Programming (``OpenHMPP''), which is a standard for implementing heterogeneous (both on the CPU and the GPU) computation in programming languages. 
+There exits other similair platforms, like Hybrid Multicore Parallel Programming (``OpenHMPP''), which is a standard for implementing heterogeneous (systems that can use more than one type of processor) computation in programming languages. 
 Our initial research showed very low adaption of these tools and therefore we have chosen the focus on the two solutions, OpenCL and CUDA, which seems to be the competing standards. 
 
 \subsection{CUDA}\label{sec:opencl}
@@ -23,7 +23,7 @@ These specifications can be implemented in any given programming language.
 A implementation of the OpenCL runtime is made by the hardware architecture manufacturer, such as NVIDIA, Intel or AMD. 
 Khronos have developed some C-libraries which allows developers to write programs which can utilize both the CPU and GPUs.
 This is called OpenCL C and is the most popular implementation of the OpenCL specification.
-OpenCL practically supports all platforms both in software and hardware. 
+OpenCL practically supports all platforms both in software and hardware. \todo{Lav en mere teknisk gennemgang af OpenCL}
 
 \subsection{Comparison}
 Both platforms support heavy computation in heterogeneous systems and analysis show that CUDA is faster than OpenCL\citep{DBLP:journals/corr/abs-1005-2581}. 
