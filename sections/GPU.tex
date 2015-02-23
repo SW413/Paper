@@ -82,6 +82,14 @@ Although it is fast, it being an on-chip per-SM ressource, using it can affect t
 Texture memory is shared amongst a number of SMs, like constant memory this is read-only and is cached in its own texture chache on the SM
 
 %Streaming Multiprocessors
+\begin{wrapfigure}{r}{0.25\textwidth}
+  \vspace{-50pt}
+  \begin{center}
+    \includegraphics[width=0.23\textwidth]{figures/SM.PNG}
+  \end{center}
+  \caption{A basic representation of a SM.}\label{image:SM} 
+  \vspace{-35pt}
+\end{wrapfigure}
 \subsection{Streaming Multiprocessors}
 On the GPU the work is divided by the hardware.
 When a kernel is launched, the hardware dynamically assign work groups to SMs, doing so while balancing the load across the GPU.
@@ -91,11 +99,7 @@ A collection of a given number of SMs are refered to as a \textbf{Thread Process
 All SMs consist of a number of ALUs, \textbf{multiply-add(MAD)} and special function units for doing computations, multithreaded instruction fetch and issue unit, instruction cache, read-only constant cache and a shared memory cache, \myref{image:SM} shows an example of this, note that the ALUs and MAD corresponds to the SPs.
 The SM schedules and executes threads in groups called warps.
 A warp waits untill all its threads have finished execution, before the next instruction is fetched. 
-\begin{figure}[h!]
-\centering
- \includegraphics[width=1\textwidth]{figures/SM.PNG} % trim=4.85cm 15cm 0.85cm 1cm
-\caption{A basic representation of a SM.}\label{image:SM} 
-\end{figure}
+
 %http://www.cs.virginia.edu/~skadron/Papers/thesis_prateeksha.pdf
 \subsection{Conclusion} %This needs serious rework - but not now!
 The architectural difference of the GPU from the CPU, are intented to maximize the throughput for problems that can handle a higher latency.
