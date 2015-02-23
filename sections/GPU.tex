@@ -46,20 +46,21 @@ A kernel specifies the number of threads and data it requires.
 \begin{figure}[h!]
 \centering
  \includegraphics[width=1\textwidth]{figures/GPUMemoryClear.png} % trim=4.85cm 15cm 0.85cm 1cm
-\caption{A basic representation of GPU memory hierarchy, note a block corresponds to a SM, and a thread to a SP.}\label{image:GPUMemory} 
+\caption{A basic representation of GPU memory hierarchy}\label{image:GPUMemory} 
 \end{figure}
-The GPU memory is comprised of the following different memory components, how it is communicates is shown on \todo{OpenCLGPUMemoryModel}. 
-Memory managment of the GPU is also explicit, this means that the data must first be moved from the host, to global memory, then to local memory where the SMs can start to use it. 
-Once they are done it must be sent back the same way.
-The memory architecture is designed with regard to increased performence by reducing memory traffic.
-Although the hierachy and its components were originally designed to improve performance for graphical applications, it can also be used efficiently in some GPU computing applications, how the memory is used is further explained in \myref{sec:opencl}. %http://cuda-programming.blogspot.dk/2013/02/texture-memory-in-cuda-what-is-texture.html
+The GPU memory is comprised of the following different memory components, how it communicates is shown on \todo{OpenCLGPUMemoryModel}. 
+Memory management of the GPU is also explicit, this means that the data must first be moved from the host, to global memory, then to local memory where the SMs can start to use it. 
+Once they are done the result must be sent back the same way.
+The memory architecture is designed with regard to performance by reducing memory traffic.
+Although the hierarchy and its components were originally designed to improve performance for graphical applications, it can also be used efficiently in some GPU computing applications, how the memory is used is further explained in \todo{Advanced OpenCL}. %http://cuda-programming.blogspot.dk/2013/02/texture-memory-in-cuda-what-is-texture.html
 
 \textbf{Registers:}
 
 For any given SM, thousands of registers are contained, this is the most plentiful type of memory used in the SM. 
 Once a kernel is launched, registers are allocated to threads as per the kernels requirements.
-This also means that the registers shared across the SM, but only to the allocated to a thread the allocated register is no longer available to the entire SM, untill the thread is done and it can be reallocated.
-The registers can contain both integers and floating-points.
+This also means that the registers are shared across the SM, but only to the allocated thread.
+When allocated the registers are no longer available to the entire SM, once the thread is done and they can be reallocated.
+The registers can each contain either integers and floating-points.
 
 \textbf{Local Memory:}
 
@@ -68,18 +69,19 @@ Each SM has its own allocated local memory available which is available to the e
 
 \textbf{Global and Constant Memory:}
 
-The SMs can read and write to global memory, this is however significantly slower than using local memory. %http://www.it.uu.se/edu/course/homepage/avdark/ht10/slides/09-GPU-and-OpenCL-4.pdf
-Constant memory is read only for SM however each SM contains a small optimized chache for the purpose of reading from this memory such that less reading is required. Both of these memory types are located on the DRAM and not in the SM.
+The SMs can read and write to global memory, this is significantly slower than using local memory. %http://www.it.uu.se/edu/course/homepage/avdark/ht10/slides/09-GPU-and-OpenCL-4.pdf
+Constant memory is read only for the SM however each SM contains a small optimized cache for the purpose of reading from this memory such that less reading is required. 
+Both of these memory types are located on the DRAM and not in the SM.
 
 \textbf{Shared Memory:}
 
 Shared memory, as mentioned earlier, is part of the SM.
-It is a very fast on-chip memory that threads can use for data interchange withing thread blocks.
-Although it is fast, it being an on-chip per-SM ressource, using it can affect the number of blocks and threads can use for computations.
+It is a very fast on-chip memory that threads can use for data interchange within thread blocks.
+Although it is fast, being an on-chip per-SM resource, using it can affect the number of blocks and threads can used for computations.
 
 \textbf{Texture Memory:}
 
-Texture memory is shared amongst a number of SMs, like constant memory this is read-only and is cached in its own texture chache on the SM
+Texture memory is shared amongst a number of SMs, like constant memory this is read-only for the SM and is cached in its own texture cache on the SM.
 
 %Streaming Multiprocessors
 \begin{wrapfigure}{r}{0.25\textwidth}
