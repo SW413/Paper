@@ -7,6 +7,7 @@ These cores sacrifice the architectural components that enables the CPU run sing
 \centering
  \includegraphics[width=1\textwidth]{figures/GPUCPUimage.PNG} % trim=4.85cm 15cm 0.85cm 1cm
 \caption{A basic representation of the Transistor allocation on the GPU compared to the CPU}\label{image:GPUCPUimage} %ftp://download.nvidia.com/developer/cuda/seminar/TDCI_Arch.pdf
+\vspace{-25pt}
 \end{figure}
 
 This concept of using many cores to process a high number of threads giving GPUs a high throughput, is the heart of this very architecture.
@@ -28,7 +29,7 @@ The compute device(The GPU) consists of Compute units(\textbf{Streaming Multipro
 %http://www.cudahandbook.com/uploads/Chapter_8._Streaming_Multiprocessors.pdf
 For GPU-accelerated computing the GPU acts as a co-processor, the execution of the application using the GPU originates from the CPU, once compute intensive functions that are not sequential are met.
 The CPU calls the GPU driver and starts a data transfer with the GPU or a \textbf{kernel} launch on the GPU.
-A kernel is a function executed on the GPU, this is explained further on \myref{OpenCL}.
+A kernel is a function executed on the GPU, this is explained further on \myref{sec:opencl}.
 A kernel specifies the number of threads and data it requires.
 The GPU, trough its architecture uses \textbf{Single Instruction Multiple Data(SIMD)} to do its computations, this is a concept that is used for its parallel computing power.
 This concept is brought to life through exploiting SMs computing power, aswell as the number of SMs.
@@ -52,7 +53,7 @@ The GPU memory is comprised of the following different memory components, how it
 Memory managment of the GPU is also explicit, this means that the data must first be moved from the host, to global memory, then to local memory where the SMs can start to use it. 
 Once they are done it must be sent back the same way.
 The memory architecture is designed with regard to increased performence by reducing memory traffic.
-Although the hierachy and its components were originally designed to improve performance for graphical applications, it can also be used efficiently in some GPU computing applications, how the memory is used is further explained in \myref{OpenCL}. %http://cuda-programming.blogspot.dk/2013/02/texture-memory-in-cuda-what-is-texture.html
+Although the hierachy and its components were originally designed to improve performance for graphical applications, it can also be used efficiently in some GPU computing applications, how the memory is used is further explained in \myref{sec:opencl}. %http://cuda-programming.blogspot.dk/2013/02/texture-memory-in-cuda-what-is-texture.html
 
 \textbf{Registers:}
 
