@@ -1,0 +1,59 @@
+\chapter{State of the art}
+\todo{Introduction to the chapter}
+
+\section{Theano}
+Theano is one of the already existing mathematical languages that support the use of parallel computing via the GPU.
+Theano is a Python library that allows you to define, optimize, and evaluate mathematical expressions involving multi-dimensional arrays efficiently.
+The language have to ways to use the GPU.
+One of which only support NVIDA cards, with CUDA as backend, and the other that should support any OpenCL device as well as NVIDIA cards having GpuArray as backend.
+It being able to support both CUDA and OpenCL gives it a bit of boilerplate and you have to write it differently to use either.
+Theano is having a medium level of abstraction since you have to declare if the GPU should be used and can only operate on float32.
+But on the other side do Theano optimize the code by replacing methods with a GPU version of same method to create transparency.\citep{Theano,Theano_GPU}
+
+\section{MATLAB}
+MATLAB is a high-level mathematical programming language with a interactive environment.
+MATLAB support the use of parallel computations in the form of using either a GPU or using a cloud of computers.
+It only supports the use of NVIDA GPU since it is using CUDA as a backend for its parallel computations.
+The programmer would have to define whenever he wishes to use th GPU and he needs to declare how much memory is available.
+Declaring the memory gives a lot of boilerplate since it needs to been done for each element there need to be computed on.
+Looking at matrix as an example, there would need to be declared memory for each of the matrix's in the computations\citep{MATLAB_backend,MATLAB_benchmark,}.
+
+Using the interactive environment provided by MATLAB there is build in tools for parallel programming.
+These tools provides a higher level of abstraction such as parallel for-loops (parfor) and special array types for distributed processing and for GPU computing simplify parallel code development by abstracting away the complexity of managing computations and data\citep{MATLAB_parallel}.
+
+\section{Julia}
+Julia is a high-level, high-performance dynamic programming language for technical computing, with syntax that is familiar to users of other technical computing environments.
+The language support C functions calls directly whit no use of wrappers or special APIs.
+There are powerful shell-like capabilities for managing other processes.
+Julia is designed for parallelism and cloud computing. 
+Making it extremely efficient and easy to use.
+Julia have a high level of abstraction because the user only needs a single keyword (\@parallel) of it to do the calculation in parallel.
+The code is therefor looking clean whiteout any boilerplate and there are a high level of readability.
+Julie have both OpenCL and CUDA as backend making it very compatible and easy to use on different systems.\citep{Julia_Git,Julia}
+
+\section{R} %% Selektivt uddrag fra Mortens dokument på drive med lidt rettelser. - Det så godt ud.
+R is a language for statistical programming.
+It is used for scientific computing often by people in areas such as health, mathematics or social research.
+The language is among the most popular tools in the data mining community\citep{R_datamining}.
+The language is for scientifically computing with focus on statistic and visualization of data.
+It got many built in functions to support this, ie. it has wide variety of is functions, where you can check for data types, lengths, ranges, if the data is ordered or many other things.
+R is best described as a muti-paradim programing language.
+The language is described using all of the following paradigms; array, object-oriented, imperative, functional, procedural, reflective.
+There exist several tools in R to use GPU cores for intensive task that can be parallelized.
+There is both libraries to utilize OpenCL and CUDA. 
+The abstraction vary much between the different libraries./todo{Mangler kilde på dette - snak med Morten}
+OpenCL is very alike OpenCLC with a low level of abstraction whereas GPUtools which utilize CUDA has a much higher abstraction.\citep{R_history,R_speed}
+
+\section{Libraries}
+Beside all the languages made specificity aimed at mathematical computations, there also exist libraries to different kind of programming languages.
+The libraries used for GPU work is often with a lot of boilerplate and a low level of abstraction.
+As an example there be looked at C and Java, and theirs GPU Libraries.
+Java have an library called jcuda which support the use of CUDA.
+When using the library there is a lot of boilerplate, and the abstraction level is low/medium\citep{Java_library}. 
+Jcuda requires many imports and the user needs to use malloc to allocate a memory block for each element which result in a lot of boilerplate.\citep{Java_malloc}
+Looking at C it is possible to use CUDA c. Which allows the user to run pure CUDA.
+CUDA C is an implementation of C with GPU usage.
+CUDA C have the same problem as with the Java library as you have to allocate memory for everything, and there is a lot of redundancy which create a lot of boilerplate.
+The abstraction level is low as you have to keep in mind what is where and what can be done with this specific element.\citep{C_CUDA}
+
+\input{figures/MathGPULanguages.tex}
