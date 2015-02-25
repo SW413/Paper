@@ -1,16 +1,29 @@
-\chapter{Introduction}\label{ch:introduction}
+\chapter{Introduction} % (fold)
+\label{cha:introduction}
+Ever since the dawn of mathematics, mathematicians has strived for faster computations while maintaining correctness.
+In our time computers have become the main target for doing extensive computations, and their CPUs are what the majority of programming languages apply to.
+CPUs are good at handling sequential instructions and moderns CPUs even exploit their multiple cores in order to attend to serial and task parallel workloads.
 
-New central processing units (``CPUs'') are able to calculate at ever greater speeds.
-Moore's law predicts an exponential growth in transistor count, thus faster computation, however experts predict that this trend may end as soon as 2020 or 2022. \citep{Moore2013}
+   
 
-This begs the question, if our processors are reaching their maximum potential, what other computational devices can be used?
+% chapter introduction (end)
 
-Graphics processing units (``GPUs'') are extremely fast at calculating in parallel due to their internal architecture. (More on this in chapter\todo{Marcs kapitel})
-GPUs are starting to be used around the world for calculating very large numerical computations, since it is possible to parallelize some computations.
-Most compilers, like GCC, targets only the CPU, and it can be difficult using common programming languages like C or C++, to transfer computations to the GPU.
-To use the GPU for general purpose computation (General-purpose computing on graphics processing units ``GPGPU''), there exists frameworks such as OpenCL and CUDA.
-CUDA is a virtual instruction set created by NVIDIA, and is therefore only usable by CUDA enabled NVIDIA GPUs.
-OpenCL is an open standard and supported by more GPUs, most noticeable Intel, AMD and NVIDIA GPUs. (More on OpenCl and CUDA in chapter \todo{Mortens kapitel})
 
-Programming for GPUs with CUDA or OpenCL requires a lot of code, which can make it difficult for developers and scientists.
-Therefore this paper will research the possibilities of creating a programming language and a compiler, which can perform numerical computations on the GPU seamlessly to the programmer. 
+
+%% Made by the Søren
+%\chapter{Introduction}\label{ch:introduction}
+
+%New central processing units (``CPUs'') are able to calculate at ever greater speeds.
+%Moore's law predicts an exponential growth in transistor count, thus faster computation, however experts predict that this trend may end as soon as 2020 or 2022. \citep{Moore2013}
+
+%This begs the question, if our processors are reaching their maximum potential, what other computational devices can be used?
+
+%Graphics processing units (``GPUs'') are extremely fast at calculating in parallel due to their internal architecture. (More on this in chapter\todo{Marcs kapitel})
+%GPUs are starting to be used around the world for calculating very large numerical computations, since it is possible to parallelize some computations.
+%Most compilers, like GCC, targets only the CPU, and it can be difficult using common programming languages like C or C++, to transfer computations to the GPU.
+%To use the GPU for general purpose computation (General-purpose computing on graphics processing units ``GPGPU''), there exists frameworks such as OpenCL and CUDA.
+%CUDA is a virtual instruction set created by NVIDIA, and is therefore only usable by CUDA enabled NVIDIA GPUs.
+%OpenCL is an open standard and supported by more GPUs, most noticeable Intel, AMD and NVIDIA GPUs. (More on OpenCl and CUDA in chapter \todo{Mortens kapitel})
+
+%Programming for GPUs with CUDA or OpenCL requires a lot of code, which can make it difficult for developers and scientists.
+%Therefore this paper will research the possibilities of creating a programming language and a compiler, which can perform numerical computations on the GPU seamlessly to the programmer.      

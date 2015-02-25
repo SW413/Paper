@@ -6,7 +6,7 @@ These cores sacrifice the architectural components that enables the CPU run sing
 \begin{figure}[h!]
 \centering
  \includegraphics[width=1\textwidth]{figures/GPUCPUimage.png} % trim=4.85cm 15cm 0.85cm 1cm
-\caption{A basic representation of the Transistor allocation on the GPU compared to the CPU}\label{image:GPUCPUimage} %ftp://download.nvidia.com/developer/cuda/seminar/TDCI_Arch.pdf
+\caption{A basic  of the Transistor allocation on the GPU compared to the CPU}\label{image:GPUCPUimage} %ftp://download.nvidia.com/developer/cuda/seminar/TDCI_Arch.pdf
 \vspace{-25pt}
 \end{figure}
 
@@ -94,16 +94,18 @@ Texture memory is shared amongst a number of SMs, like constant memory this is r
 \subsection{Streaming Multiprocessors}
 On the GPU the work is divided by the hardware.
 When a kernel is launched, the hardware dynamically assign work groups to SMs, doing so while balancing the load across the GPU.
-For each work group, a number of work items exists, these are the threads that execute the kernel.
+For each workgroup, a number of work items exists, these are the threads that execute the kernel.
 Work items running on a SM can communicate through local memory, all the different work groups can communicate through global memory. %https://www.khronos.org/assets/uploads/developers/library/2009-hotchips/NVIDIA_OpenCL-for-NVIDIA-GPUs.pdf
 A collection of a given number of SMs are refered to as a \textbf{Thread Processing Cluster(TPC)}, this TPC shares a controller, aswell as a texture cache.
 All SMs consist of a number of ALUs, \textbf{multiply-add(MAD)} and special function units for doing computations, multithreaded instruction fetch and issue unit, instruction cache, read-only constant cache and a shared memory cache, \myref{image:SM} shows an example of this, note that the ALUs and MAD corresponds to the SPs.
 The SM schedules and executes threads in groups called warps.
 A warp waits untill all its threads have finished execution, before the next instruction is fetched. 
+   
+
 
 %http://www.cs.virginia.edu/~skadron/Papers/thesis_prateeksha.pdf
 \subsection{Conclusion} %This needs serious rework - but not now!
-The architectural difference of the GPU from the CPU, are intented to maximize the throughput for problems that can handle a higher latency.
+The architectural difference of the GPU from the CPU, are intented to maximise the throughput for problems that can handle a higher latency.
 Such as an image, rather than the response time of a decive like a keyboard.
 The lack of control and chache memory for the processing units used in the GPU, also greatly reduces its capabilities of handling complex issues that requires a concurrent apporach.
 With the removal of such hardware as interrupts, an instruction in a given thread, will run till it is complete, and no thread will start without all the available ressource, as such given a complex problem stalls in the GPU would occur.
