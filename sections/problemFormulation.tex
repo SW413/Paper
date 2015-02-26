@@ -2,14 +2,14 @@
 \section{Problem Formulation}
 
 Linear algebra calculations when sufficiently large can take a long time to compute sequentially. 
-Therefore it is smarter to parallelise these computations, and even better to do so on a GPU compared to a CPU, due to its internal architecture, described in \todo{GPU label}.
-Linear algebra calculations can be parallelise since none of the calculations done in for example multiplying 2 matrices, depend on previous calculations.
+Therefore it is smarter to parallelise these computations, and even better to do so on a GPU compared to a CPU, due to its internal architecture.
+Linear algebra calculations can be parallelised since none of the calculations done in for example multiplying 2 matrices, depend on previous calculations.
 Therefore these kinds of computations are an obvious choice for parallelisation on the GPU.
 
-Writing programs which can be run on a GPU, can be very time consuming using the languages found in \todo{SOTA kilde}.
-It is time consuming because of the difficult writing in some of these languages like OpenCL C, and CUDA.
-Therefore we believe that more abstraction of writing to the GPU would serve well and reduce the workload on the programmer.
-In the rest of this report, the following problem will be thoroughly investigated, not only in the design of the syntax and the semantics of the language, but also in the design of the compiler.
+Writing programs which can be run on a GPU, can be time consuming using the languages found in \todo{SOTA kilde}.
+It is time consuming due to the difficulty of writing code in some of these languages like OpenCL C, and CUDA.
+Therefore we believe that more abstraction when writing code to the GPU would serve well and reduce the workload for the programmer.
+In the rest of this paper, the following problem will be thoroughly investigated, not only in the design of the syntax and the semantics of the language, but also in the design of the compiler.
 
 \[
   \left[
