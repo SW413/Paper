@@ -1,37 +1,25 @@
 \chapter{Introduction} % (fold)
 \label{cha:introduction}
-Ever since the dawn of mathematics, mathematicians has strived for faster computations while maintaining correctness.
+Before the computer mathematical computations were done by hand which was a tiresome and error-prone process.
 In our time computers have become the main target for doing extensive computations, and their CPUs are what the majority of programming languages apply to.
-CPUs are good at handling sequential instructions and modern CPUs even exploit their multiple cores in order to attend to serial and task parallel workloads.
-As applications and computations grow larger and more complex, programmers and mathematicians find themselves in need of more and more computation power.
+CPUs are good at handling sequential instructions and modern compilers can even exploit the CPUs multiple cores in order to attend to serial and task parallel workloads.
+As applications and computations grow larger and more complex, programmers and mathematicians find themselves in need of more and more computation power.\citep[pp. 4]{OpenCL_AMD}
 At the moment this demand is met mostly with faster multi-cored CPUs however Moore's law, which predicts an exponential growth in transistor count, thus faster computations on said CPUs, seems to be a trend coming to an end.
-Experts foresee this stagnation of Moore's Law as soon as 2020 or 2022; hence other options than CPUs need to be explored. \citep{Moore2013}
+A former engineer from Intel foresees this stagnation of Moore's Law as soon as 2020 or 2022; hence other options than CPUs need to be explored. \citep{Moore2013}
 
-One of these options is the GPU, or graphics processing unit, which mainly is used to generate the graphics that are displayed on the screen.
-The GPU is specialised in performing a vast number of smaller computations in parallel, since that essentially is what generating graphics is about.
+One of these options is the graphics processing unit (GPU), which mainly is used to generate the graphics that are displayed on the screen.
+The GPU is specialised in performing a vast number of smaller computations in parallel, which generally is optimal for rendering graphics.
 Because of this specialisation, the GPU can handle data parallel workloads just as well as the CPU can handle task parallel workloads.
 Mathematicians and programmers alike can utilise this advantage and hereby complete large computations on big sets of data in parallel.
-The concept of executing computations on the GPU not related to graphics, is commonly know as GPGPU or General-purpose computing on graphics processing units. 
+The concept of executing computations on the GPU not related to graphics, is commonly know as GPGPU or General-purpose computing on graphics processing units.
+
+\begin{itemize}
+	\item How does the GPU do these parallel calculations, and why is it better at it than the CPU?
+	\item How can a programmer utilise the functionality found in the GPU, and what problems might arise from doing so? 
+\end{itemize}
 
 The following sections will go into further detail regarding both the architecture of the GPU but also existing mathematical programming languages.
 Furthermore it will be described how one can target the GPU for computational purposes, and the different opportunities for doing so. 
 
+\newpage
 % chapter introduction (end)
-
-%% Made by the Søren
-%\chapter{Introduction}\label{ch:introduction}
-
-%New central processing units (``CPUs'') are able to calculate at ever greater speeds.
-%Moore's law predicts an exponential growth in transistor count, thus faster computation, however experts predict that this trend may end as soon as 2020 or 2022. \citep{Moore2013}
-
-%This begs the question, if our processors are reaching their maximum potential, what other computational devices can be used?
-
-%Graphics processing units (``GPUs'') are extremely fast at calculating in parallel due to their internal architecture. (More on this in chapter\todo{Marcs kapitel})
-%GPUs are starting to be used around the world for calculating very large numerical computations, since it is possible to parallelize some computations.
-%Most compilers, like GCC, targets only the CPU, and it can be difficult using common programming languages like C or C++, to transfer computations to the GPU.
-%To use the GPU for general purpose computation (General-purpose computing on graphics processing units ``GPGPU''), there exists frameworks such as OpenCL and CUDA.
-%CUDA is a virtual instruction set created by NVIDIA, and is therefore only usable by CUDA enabled NVIDIA GPUs.
-%OpenCL is an open standard and supported by more GPUs, most noticeable Intel, AMD and NVIDIA GPUs. (More on OpenCl and CUDA in chapter \todo{Mortens kapitel})
-
-%Programming for GPUs with CUDA or OpenCL requires a lot of code, which can make it difficult for developers and scientists.
-%Therefore this paper will research the possibilities of creating a programming language and a compiler, which can perform numerical computations on the GPU seamlessly to the programmer.      
