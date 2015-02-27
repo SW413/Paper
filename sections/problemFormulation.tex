@@ -1,0 +1,25 @@
+\newpage
+\section{Problem statement}
+
+Linear algebra calculations when sufficiently large can take a long time to compute sequentially. 
+Therefore it is smarter to parallelise these computations, and even better to do so on a GPU compared to a CPU, due to its internal architecture.
+Linear algebra calculations can be parallelised since none of the calculations done in for example multiplying 2 matrices, depend on previous calculations.
+Therefore these kinds of computations are an obvious choice for parallelisation on the GPU.
+
+Writing programs which can be run on a GPU, can be time consuming using the languages found in \todo{SOTA kilde}.
+It is time consuming due to the difficulty of writing code in some of these languages like OpenCL C, and CUDA.
+Therefore we believe that more abstraction when writing code to the GPU would serve well and reduce the workload for the programmer.
+In the rest of this paper, the following problem will be thoroughly investigated, not only in the design of the syntax and the semantics of the language, but also in the design of the compiler.
+
+\[
+  \left[
+  \begin{minipage}{\textwidth}
+  \centering
+  \begin{minipage}{0.96\textwidth}
+  How do you design a programming language and a compiler for this language, which is able to compute parallel linear algebra calculations using the GPU instead of the CPU without the programmer specifying so?
+  %%Alternative%%
+  How would a programming language and a compiler be programmed for a language specific for computing paralles linear algebra calculations using the GPU instead of the CPU without the programmer choosing so specifically.  
+  \end{minipage}
+  \end{minipage}
+    \right]
+\]
