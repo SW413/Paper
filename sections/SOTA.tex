@@ -10,10 +10,10 @@ As an example there will be looked at C and Java, and some of their GPU Librarie
 Java have an library called jcuda which support the use of CUDA.
 When using this library there is a lot of boilerplate, and the abstraction level is low/medium\citep{Java_library}. 
 Jcuda requires many imports and the user needs to use malloc to allocate a memory block for each element which result in a lot of boilerplate.\citep{Java_malloc}
-Looking at C it is possible to libraries such as CUDA c. Which allows the user to run pure CUDA.
+Looking at C it is possible to use libraries such as CUDA c, OpenCL c or others.
 CUDA C is an implementation of C with GPU usage.
-CUDA C have the same problem as with the Java library as you have to allocate memory for everything, and there is a lot of redundancy which create a lot of boilerplate.
-The abstraction level is low as you have to keep in mind what is where and what can be done with this specific element.\citep{C_CUDA}
+These c libraries have the same problem as with the Java library as you have to allocate memory for everything, and there is a lot of redundancy which create a lot of boilerplate.
+The abstraction level is low as you have to keep in mind what is where and what can be done with each specific element.\citep{C_CUDA}
                                                   
 
 \subsection{Theano (Python)}
@@ -44,7 +44,7 @@ Julia has a high level of abstraction because the user only needs a single keywo
 The code is therefor looking clean without any boilerplate and there is a high level of readability.
 Julie uses both OpenCL and CUDA as backend making it very compatible and easy to use on different systems and devices.\citep{Julia_Git,Julia}
 
-\subsection{R (libraries)} %% Selektivt uddrag fra Mortens dokument på drive med lidt rettelser. - Det så godt ud.
+\subsection{R (libraries)} %% Selektivt uddrag fra Mortens dokument på drive med lidt rettelser. - Det så godt ud. - Tak.
 R is a language for statistical programming often used by people in areas such as health, mathematics or social research.
 The language is for scientifically computing with focus on statistic and visualisation of data.
 It has many built in functions to support this, e.g. it has wide variety of is functions, where you can check for data types, lengths, ranges, if the data is ordered and many other things.
