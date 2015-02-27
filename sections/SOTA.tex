@@ -1,16 +1,16 @@
 \section{State of the art} % (fold)
 \label{sec:state_of_the_art}
-In this section different approaches to GPGPU.....
+In this section different approaches to GPGPU using existing programming languages and/or libraries will be presented.
 \todo{Introduction to the chapter}
       
-\subsection{Libraries}
+\subsection{Libraries} \todo{Skriv så flere bibs er med. Bl.a. OPENCL!!}
 For different kind of programming languages there exist libraries in order to utilise the GPU for computations.
-The libraries used for GPU work is often with a lot of boilerplate and a low level of abstraction.
-As an example there will be looked at C and Java, and theirs GPU Libraries.
+Generally the libraries used for GPU work often requires a lot of boilerplate and has a low level of abstraction.
+As an example there will be looked at C and Java, and some of their GPU Libraries.
 Java have an library called jcuda which support the use of CUDA.
 When using this library there is a lot of boilerplate, and the abstraction level is low/medium\citep{Java_library}. 
 Jcuda requires many imports and the user needs to use malloc to allocate a memory block for each element which result in a lot of boilerplate.\citep{Java_malloc}
-Looking at C it is possible to use CUDA c. Which allows the user to run pure CUDA.
+Looking at C it is possible to libraries such as CUDA c. Which allows the user to run pure CUDA.
 CUDA C is an implementation of C with GPU usage.
 CUDA C have the same problem as with the Java library as you have to allocate memory for everything, and there is a lot of redundancy which create a lot of boilerplate.
 The abstraction level is low as you have to keep in mind what is where and what can be done with this specific element.\citep{C_CUDA}
