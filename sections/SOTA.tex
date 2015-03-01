@@ -4,13 +4,13 @@ In this section different approaches to GPGPU using existing programming languag
 \todo{Introduction to the chapter}
       
 \subsection{Libraries} \todo{Skriv så flere bibs er med. Bl.a. OPENCL!!}
-For different kind of programming languages there exist libraries in order to utilise the GPU for computations.
+For different programming languages there exist libraries in order to utilise the GPU for computations.
 Generally the libraries used for GPU work often requires a lot of boilerplate and has a low level of abstraction.
 As an example there will be looked at C and Java, and some of their GPU Libraries.
-Java have an library called jcuda which support the use of CUDA.
+Java has a library called jcuda which support the use of CUDA.
 When using this library there is a lot of boilerplate, and the abstraction level is low/medium\citep{Java_library}. 
-Jcuda requires many imports and the user needs to use malloc to allocate a memory block for each element which result in a lot of boilerplate.\citep{Java_malloc}
-Looking at C it is possible to use libraries such as CUDA c, OpenCL c or others.
+Jcuda requires many imports and the user needs to use malloc to allocate a memory block for each element which is the cause of the amount of boilerplate.\citep{Java_malloc}
+Looking at C it is possible to use libraries such as CUDA C, OpenCL C or others.
 CUDA C is an implementation of C with GPU usage.
 These c libraries have the same problem as with the Java library as you have to allocate memory for everything, and there is a lot of redundancy which create a lot of boilerplate.
 The abstraction level is low as you have to keep in mind what is where and what can be done with each specific element.\citep{C_CUDA}
@@ -18,20 +18,20 @@ The abstraction level is low as you have to keep in mind what is where and what 
 
 \subsection{Theano (Python)}
 Theano is a Python library that allows you to efficiently define, optimise, and evaluate mathematical expressions involving multi-dimensional arrays, while using the GPU.
-The library have two ways of using the GPU; one of which only support NVIDIA cards, with CUDA as backend, and the other that should support any OpenCL compatible device as well as NVIDIA cards having GPUArray as backend.
-It being able to support both CUDA and OpenCL gives it a bit of boilerplate and you have to write different code in order to use either.
+The library have two ways of using the GPU; one which only supports NVIDIA cards, with CUDA as back-end, and the other that should support any OpenCL compatible device as well as NVIDIA cards having GPUArray as back-end.
+Since Theano supports both CUDA and OpenCL, there is quite a bit of boilerplate and you have to write different code in order to use either.
 Theano has a medium level of abstraction since you have to declare if the GPU should be used and can only operate on single precision floats of 32 bits.
-But on the other side Theano does optimise the code by replacing methods with a GPU version of same method to create transparency.\citep{Theano,Theano_GPU}
+But on the other side Theano does optimise the code by replacing methods with a GPU versions of the same methods to create transparency.\citep{Theano,Theano_GPU}
 
 \subsection{MATLAB}
 MATLAB is a high-level mathematical programming language with an interactive environment.
 MATLAB supports the use of parallel computations in the form of using either a GPU or using a cloud of computers.
-It only supports the use of NVIDIA GPUs since it is using CUDA as a backend for its parallel computations.
+It only supports the use of CUDA enabled NVIDIA GPUs for its parallel computations on GPUs.
 The programmer would have to define whenever he wishes to use the GPU and he needs to declare how much memory is available.
 Declaring the memory gives a lot of boilerplate since it needs to be done for each element that one wants to computed on.
 Looking at matrices as an example, one would need to declare memory for each of the matrices in the computations.\citep{MATLAB_backend,MATLAB_benchmark,}
 
-Using the interactive environment provided by MATLAB there are build in tools for parallel programming.
+Using the interactive environment provided by MATLAB there are built in tools for parallel programming.
 These tools provide a higher level of abstraction such as parallel for-loops (parfor) and special array types for distributed processing.
 For GPU computing they simplify parallel code development by abstracting away the complexity of managing computations and data.\citep{MATLAB_parallel}
 
@@ -41,15 +41,15 @@ The language supports C function calls directly with no use of wrappers or speci
 There are powerful shell-like capabilities for managing other processes.
 Julia is designed for parallelism and cloud computing; making it extremely efficient and easy to use.
 Julia has a high level of abstraction because the user only needs a single keyword (\@parallel) for it to do the calculation in parallel.
-The code is therefor looking clean without any boilerplate and there is a high level of readability.
+The code is therefore looking clean without any boilerplate and there is a high level of readability.
 Julie uses both OpenCL and CUDA as backend making it very compatible and easy to use on different systems and devices.\citep{Julia_Git,Julia}
 
 \subsection{R (libraries)} %% Selektivt uddrag fra Mortens dokument på drive med lidt rettelser. - Det så godt ud. - Tak.
 R is a language for statistical programming often used by people in areas such as health, mathematics or social research.
 The language is for scientifically computing with focus on statistic and visualisation of data.
-It has many built in functions to support this, e.g. it has wide variety of is functions, where you can check for data types, lengths, ranges, if the data is ordered and many other things.
+It has many built in functions to support this, e.g. it has a wide variety of its functions, where you can check for data types, lengths, ranges, if the data is ordered and many other things.
 There exist several libraries in R to use GPU cores for intensive tasks that can be parallelised, both libraries to utilise OpenCL and CUDA. 
-The abstraction vary much between the different libraries./todo{Mangler kilde på dette - snak med Morten}
+The abstraction vary much between the different libraries. /todo{Mangler kilde på dette - snak med Morten}
 OpenCL is very alike OpenCL C with a low level of abstraction whereas GPUtools which utilise CUDA has a much higher abstraction.\citep{R_history,R_speed}
 
 \input{figures/MathGPULanguages.tex}
