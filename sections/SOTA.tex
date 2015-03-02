@@ -2,15 +2,15 @@
 \label{sec:state_of_the_art}
 In this section different approaches to GPGPU using existing programming languages and libraries will be presented.
 Each language and library will be running with either the OpenCL or the CUDA framework.
-Every language and library described in this section is to be found on \ref{tbl:sota} for easy comparing.
+Every language and library described in this section can be found on \ref{tbl:sota} for easy comparison.
       
 \subsection{Libraries} \todo{Skriv så flere bibs er med. Bl.a. OPENCL C!!}
-For different programming languages there exist libraries in order to utilise the GPU for computations.
+For various programming languages there exist libraries in order to utilise the GPU for computations by binding to a given API such as OpenCL and CUDA.
 Generally the libraries used for GPU work often requires a lot of boilerplate and has a low level of abstraction.
 As an example there will be looked at C and Java, and some of their GPU Libraries.
 Java has a library called jcuda which support the use of CUDA.
 When using this library there is a lot of boilerplate, and the abstraction level is low/medium\citep{Java_library}. 
-Jcuda requires many imports and the user needs to use malloc to allocate a memory block for each element which is the cause of the amount of boilerplate.\citep{Java_malloc}
+Jcuda requires many imports and the user needs to allocate a memory block for each element which is the cause of the amount of boilerplate code needed.\citep{Java_malloc}
 Looking at C it is possible to use libraries such as CUDA C, OpenCL C or others.
 CUDA C is an implementation of C with GPU usage.
 These c libraries have the same problem as with the Java library as you have to allocate memory for everything, and there is a lot of redundancy which create a lot of boilerplate.
@@ -19,15 +19,15 @@ The abstraction level is low as you have to keep in mind what is where and what 
 \subsection{Theano (Python)}
 Theano is a Python library that allows you to efficiently define, optimise, and evaluate mathematical expressions involving multi-dimensional arrays, while using the GPU.
 The library have two ways of using the GPU; one which only supports NVIDIA cards, with CUDA as back-end, and the other that should support any OpenCL compatible device as well as NVIDIA cards having GPUArray as back-end.
-Since Theano supports both CUDA and OpenCL, there is quite a bit of boilerplate and you have to write different code in order to use either.
+While Theano supports CUDA and OpenCL, there is quite a bit of boilerplate and you have to write different code in order to use either.
 Theano has a medium level of abstraction since you have to declare if the GPU should be used and can only operate on single precision floats of 32 bits.
-But on the other side Theano does optimise the code by replacing methods with a GPU versions of the same methods to create transparency.\citep{Theano,Theano_GPU}
+But on the other hand Theano does optimise the code by replacing methods with a GPU versions of the same methods to create transparency.\citep{Theano,Theano_GPU}
 
 \subsection{MATLAB}
 MATLAB is a high-level mathematical programming language with an interactive environment.
 MATLAB supports the use of parallel computations in the form of using either a GPU or using a cloud of computers.
-It only supports the use of CUDA enabled NVIDIA GPUs for its parallel computations on GPUs.
-The programmer would have to define whenever he wishes to use the GPU and he needs to declare how much memory is available.
+It only natively supports the use of CUDA enabled NVIDIA GPUs for its parallel computations on GPUs, but OpenCL extensions do exist such that it becomes possible to use other devices.
+The programmer has to define whenever he wishes to use the GPU and furthermore he needs to declare how much memory is available.
 Declaring the memory gives a lot of boilerplate since it needs to be done for each element that one wants to computed on.
 Looking at matrices as an example, one would need to declare memory for each of the matrices in the computations.\citep{MATLAB_backend,MATLAB_benchmark,}
 
@@ -46,10 +46,10 @@ Julie uses both OpenCL and CUDA as backend making it very compatible and easy to
 
 \subsection{R (libraries)}
 R is a language for statistical programming often used by people in areas such as health, mathematics or social research.
-The language is for scientifically computing with focus on statistic and visualisation of data.
-It has many built in functions to support this, e.g. it has a wide variety of its functions, where you can check for data types, lengths, ranges, if the data is ordered and many other things.
-There exist several libraries in R to use GPU cores for intensive tasks that can be parallelised, both to utilise OpenCL and CUDA. 
-The abstraction vary much between the different libraries. \todo{Mangler kilde på dette - snak med Morten}
+The language is for scientific computing with focus on statistic and visualisation of data.
+It contains many built-in functions to support this, e.g. it has a wide variety of functions, where you can check for data types, lengths, ranges, if the data is ordered and numerous other helpful things.
+There exist several libraries in R in order to use GPU cores for intensive tasks that can be parallelised, whether it be to utilise OpenCL or CUDA. 
+The level of abstraction differ much in size between the different libraries. \todo{Mangler kilde på dette - snak med Morten}
 \citep{R_history,R_speed}
 
 \input{figures/MathGPULanguages.tex}                            
