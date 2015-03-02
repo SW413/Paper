@@ -4,14 +4,15 @@
     \rowcolors{1}{white}{shadecolor}
 	\begin{tabular}{|l|c|c|l|l|}
 	\hline
-	\textbf{Language} & \textbf{Cuda}         & \textbf{OpenCL} & \textbf{Abstraction} & \textbf{Comment}			  		\\ \hline
-	Theano   & \cmark           & \cmark            & Medium      &                                                            \\ \hline
-	Matlab   & \cmark           & \cmark            & High        &                                                            \\ \hline
-	Julia    & \cmark           &               & High        &                                                            \\ \hline
-	R        & \cmark           & \cmark            & Low/High    & Abstraction is depended on theuse of either CUDA or OpenCL \\ \hline
-	C libs   & \cmark           & \cmark            & Low         & Libary is CUDA C                                           \\ \hline
-	Java     & \cmark           &               &   Low          & Libary is jcuda                                            \\ \hline
+	\textbf{Language} & \textbf{CUDA}         & \textbf{OpenCL} & \textbf{Abstraction} & \textbf{Comment}			  		\\ \hline
+	Theano   & \cmark           & \cmark            & Medium      &  Native                                                          \\ \hline
+	Matlab   & \cmark           & \cmark            & High        &  OpenCL via extensions, CUDA is native                                                         \\ \hline
+	Julia    & \cmark           & \cmark              & High        &  Both via extensions                                                          \\ \hline
+	R        & \cmark           & \cmark            & Low/High    & Abstraction is depended on the use of either CUDA or OpenCL \\ \hline
+	C   & \cmark           & \cmark            & Low         & via CUDA C, and OpenCL C (Both are supersets of C)                                           \\ \hline
+	Java     & \cmark           & \cmark              &   Low          & Bindings such as jcuda and jocl                                            \\ \hline
 	\end{tabular}
 	\caption{Existing GPU supporting languages}
-	\label{gpu-pls}
+	\label{tbl:sota}
 \end{table}
+               
