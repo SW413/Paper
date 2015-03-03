@@ -4,7 +4,7 @@
 Linear algebra calculations when sufficiently large can take a long time to compute sequentially. 
 Therefore it is smarter to parallelise these computations, and even better to do so on a GPU compared to a CPU, due to its internal architecture.
 Linear algebra calculations can be parallelised since none of the calculations done in for example multiplying 2 matrices, depend on previous calculations.
-Therefore these kinds of computations are an obvious choice for parallelisation on the GPU.
+Therefore the computation time of these calculations can be significantly improved using the parallel computing capabilities on the GPU.
 
 Writing programs which can be run on a GPU, can be time consuming using the languages found in \todo{SOTA kilde}.
 It is time consuming due to the difficulty of writing code in some of these languages like OpenCL C, and CUDA.
