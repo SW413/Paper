@@ -6,9 +6,9 @@ Therefore it is smarter to parallelise these computations, and even better to do
 Linear algebra calculations can be parallelised since none of the calculations done in for example multiplying two matrices, depend on previous calculations.
 Therefore the computation time of these calculations can be significantly improved using the parallel computing capabilities on the GPU, giving the matrices are of sufficient size.
 
-Writing programs which can be run on a GPU, can be time consuming using the languages found in \todo{SOTA kilde}.
+Writing programs which can be run on a GPU, can be time consuming using the languages found in \ref{sec:state_of_the_art}.
 It is time consuming due to the difficulty of writing code in some of these languages like OpenCL C, and CUDA C.
-Therefore we believe that more abstraction when writing code to the GPU would serve well and reduce the workload for the programmer.
+Therefore we believe that more abstraction and less boilerplate when writing code to the GPU would serve well and reduce the workload on the people programming for the GPU.
 In the rest of this paper, the following problem will be thoroughly investigated, not only in the design of the syntax and the semantics of the language, but also in the design of the compiler.
 
 \[
@@ -16,7 +16,7 @@ In the rest of this paper, the following problem will be thoroughly investigated
   \begin{minipage}{\textwidth}
   \centering
   \begin{minipage}{0.96\textwidth}
-  How does on design a programming language, with a corresponding compiler, for techical computing that is capable of performing common operations of linear algebra, while targeting GPUs as execution platform?
+  How does on design a programming language, with a corresponding compiler, for technical computing that is capable of performing common operations of linear algebra, while targeting GPUs as execution platform?
   
   %%Alternative%%
   %%How do you design a programming language and a compiler for this language, which is able to compute parallel linear algebra calculations using the GPU instead of the CPU without the programmer specifying so?
