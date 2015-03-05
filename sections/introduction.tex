@@ -13,9 +13,24 @@ Because of this specialisation, the GPU can handle data parallel workloads just 
 Mathematicians and programmers alike can utilise this advantage and hereby complete compute intensive computations on big sets of data in parallel with better performance than on a CPU, assuming these computations can be executed in parallel.
 The concept of executing computations on the GPU not related to graphics, is commonly know as General-purpose computing on graphics processing units(GPGPU).
 
+In recent years this concept has gained increasingly popularity amongst a wide range of different subjects, which requires some form of computation.
+Dr. Ian Lane at Carnegie Mellon University have used this to his advantage, in his research on speech and languange processing, significantly increasing the performance at which his system, Hydra, can transcript speech. %http://www.nvidia.com/content/cuda/spotlights/ian-lane-cmu.html
+The power provided by the GPU, is also used in fields where simulations and predictions are the primary focus. 
+Bill Putman, a NASA research meteorologist in Global Modeling and Assimilation Office, and his team restructered one of their modelling tools to take advantage of the GPUs performance. %http://www.nvidia.com/content/cuda/spotlights/bill-putman-nasa.html
+Many other areas of research could benefit from the use of GPGPU.
+This relatively newfound interrest for using the GPU, as it has become increasingly difficult to improve the CPU.
+For the past few years, the average Intel CPU has not increased significantly in regards to clock speed, most are about 3.7GHz.
+Even the highest clock speeds, seem to not be improving beyond 9GHz however these clockspeeds produce so much heat, that they require liquid nitrogen for cooling.
+Aside from the prediction that Moore's Law will end, another observation of processor development is also no longer available, the Dennard scaling.%http://en.wikipedia.org/wiki/Dennard_scaling
+This states that the amount of power required to run any amount of transistors in a given volume will stay constant; thus scaling with length rather than number of transistor.
+The reason for this no longer being valid, is the fact that the transistor gates are so thin it affects their structural integrity, and currents stat to leak.%http://www.comsol.com/blogs/havent-cpu-clock-speeds-increased-last-years/
+These problems give reason to search for other ways of increasing computational speeds, such as looking to the GPU.
+
+
 \begin{itemize}
-	\item How do GPUs do these parallel calculations, and why and when is it better at it than the CPU?
-	\item How can a one utilise the functionality found in the GPU, and what problems must be considered when doing so? 
+	\item How do GPUs do parallel calculations, and why and when is it better at it than the CPU?
+	\item How can one utilise the functionality found in the GPU for a given field, without an extensive knowledge of processor architecture?
+	\item What factors must be considered when using the GPU rather than the CPU? 
 \end{itemize}
 
 The following sections will go into further detail regarding both the hard- and software used to achieve the performance the GPU offers.
