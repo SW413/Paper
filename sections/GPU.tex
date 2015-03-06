@@ -7,13 +7,13 @@ An example of this can be calculating different properties of the pixels on a sc
 The screen can then be divided into different sections and the computations for each section is divided over the GPU.
 This is possible because the calculations do not require results from the other calculations.
 Unlike the cores in the CPU the cores in the GPU are not optimized for sequential serial processing, instead its cores are designed to handle multiple tasks at once. 
-As such running sequential code on the CPU will be more efficient, where as more compute-intensive functions may be better suited for the GPU.%http://www.nvidia.com/object/what-is-gpu-computing.html
+As such running sequential code on the CPU will be more efficient, where as more compute-intensive functions may be better suited for the GPU.\citep{NvidiaGPGPU}
 The before mentioned example can be viewed as a matrix being divided into sections, so the same method of parallelised workflow can be applied when multiplying two matrices.
 
 \begin{figure}[h!]
 \centering
  \includegraphics[width=1\textwidth]{figures/GPUCPUimage.png} % trim=4.85cm 15cm 0.85cm 1cm
-\caption{A basic representation of the Transistor allocation on a GPU compared to a CPU}\label{image:GPUCPUimage} %ftp://download.nvidia.com/developer/cuda/seminar/TDCI_Arch.pdf
+\caption{A basic representation of the Transistor allocation on a GPU compared to a CPU}\label{image:GPUCPUimage}\citep{NvidiaCUDASeminar}
 \vspace{-15pt}
 \end{figure}
 

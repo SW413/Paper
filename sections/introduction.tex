@@ -14,16 +14,17 @@ Mathematicians and programmers alike can utilise this advantage and hereby compl
 The concept of executing computations on the GPU not related to graphics, is commonly know as General-purpose computing on graphics processing units(GPGPU).
 
 In recent years this concept has gained increasingly popularity amongst a wide range of different subjects, which requires some form of computation.
-Dr. Ian Lane at Carnegie Mellon University have used this to his advantage, in his research on speech and languange processing, significantly increasing the performance at which his system, Hydra, can transcript speech. %http://www.nvidia.com/content/cuda/spotlights/ian-lane-cmu.html
+Dr. Ian Lane at Carnegie Mellon University have used this to his advantage, in his research on speech and languange processing, significantly increasing the performance at which his system, Hydra, can transcript speech.\citep{NvidiaSpotlightIan}
 The power provided by the GPU, is also used in fields where simulations and predictions are the primary focus. 
-Bill Putman, a NASA research meteorologist in Global Modeling and Assimilation Office, and his team restructered one of their modelling tools to take advantage of the GPUs performance. %http://www.nvidia.com/content/cuda/spotlights/bill-putman-nasa.html
+Bill Putman, a NASA research meteorologist in Global Modeling and Assimilation Office, and his team restructered one of their modelling tools to take advantage of the GPUs performance.\citep{NvidiaSpotlightNasa}
 Many other areas of research could benefit from the use of GPGPU.
+
 This relatively newfound interrest for using the GPU, as it has become increasingly difficult to improve the CPU.
 For the past few years, the average Intel CPU has not increased significantly in regards to clock speed, most are about 3.7GHz.
 Even the highest clock speeds, seem to not be improving beyond 9GHz however these clockspeeds produce so much heat, that they require liquid nitrogen for cooling.
-Aside from the prediction that Moore's Law will end, another observation of processor development is also no longer available, the Dennard scaling.%http://en.wikipedia.org/wiki/Dennard_scaling
-This states that the amount of power required to run any amount of transistors in a given volume will stay constant; thus scaling with length rather than number of transistor.
-The reason for this no longer being valid, is the fact that the transistor gates are so thin it affects their structural integrity, and currents stat to leak.%http://www.comsol.com/blogs/havent-cpu-clock-speeds-increased-last-years/
+Aside from the prediction that Moore's Law will end, another observation of processor development is also no longer available, the Dennard scaling.
+This states that the power density required to run a of transistor of a given size will stay constant; thus scaling down the power used, as the transistor fell in size, e.g. scaling down the transistor's linear size by 2, would scale down its power by 4 halving both voltage and current.\citep{DennardScaling}
+The reason for this no longer being valid, is the fact that the transistor gates are so thin it affects their structural integrity, and currents stat to leak.\citep{CPUClockSpeeds}
 These problems give reason to search for other ways of increasing computational speeds, such as looking to the GPU.
 
 
