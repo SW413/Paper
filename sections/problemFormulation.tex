@@ -3,12 +3,13 @@
 
 Linear algebra calculations when sufficiently large can take a long time to compute sequentially. 
 Therefore it is smarter to parallelise these computations, and even better to do so on a GPU compared to a CPU, due to its internal architecture.
-Linear algebra calculations can be parallelised since none of the calculations done in for example multiplying 2 matrices, depend on previous calculations.
-Therefore the computation time of these calculations can be significantly improved using the parallel computing capabilities on the GPU.
+Many linear algebra calculations can be parallelised since it often contains large datasets where operations on the data does not depend on previous calculations.
+An example of this could be matrix calcuations where most operations can be split into independent sub calculations.
+Therefore the computation time of these calculations can be significantly improved using the parallel computing capabilities on the GPU, giving the matrices are of sufficient size.
 
-Writing programs which can be run on a GPU, can be time consuming using the languages found in \todo{SOTA kilde}.
-It is time consuming due to the difficulty of writing code in some of these languages like OpenCL C, and CUDA.
-Therefore we believe that more abstraction when writing code to the GPU would serve well and reduce the workload for the programmer.
+Writing programs which can be run on a GPU, can be time consuming using the languages found in \ref{sec:state_of_the_art}.
+It is time consuming due to the difficulty of writing code in some of these languages like OpenCL C, and CUDA C.
+Therefore we believe that more abstraction and less boilerplate when writing code to the GPU would serve well and reduce the workload on the people programming for the GPU.
 In the rest of this paper, the following problem will be thoroughly investigated, not only in the design of the syntax and the semantics of the language, but also in the design of the compiler.
 
 \[
@@ -16,14 +17,20 @@ In the rest of this paper, the following problem will be thoroughly investigated
   \begin{minipage}{\textwidth}
   \centering
   \begin{minipage}{0.96\textwidth}
-  How do you design a programming language and a compiler for this language, which is able to compute parallel linear algebra calculations using the GPU instead of the CPU without the programmer specifying so?
+  %%Den vi har sendt til Thomas 2015-03-08
+  How does one design a programming language, with a corresponding compiler, which compiles programs to utilise the GPU on runtime for certain linear algebra calculations, such as matrix operations?
+  %%How does one design a programming language, with a corresponding compiler, for technical computing that is capable of performing common operations of linear algebra, while targeting GPUs as execution platform?
+  
   %%Alternative%%
-  How would a programming language and a compiler be programmed for a language specific for computing paralles linear algebra calculations using the GPU instead of the CPU without the programmer choosing so specifically.  
+  %%How do you design a programming language and a compiler for this language, which is able to compute parallel linear algebra calculations using the GPU instead of the CPU without the programmer specifying so?
+  
+  %%How would a programming language and a compiler be programmed for a language specific for computing paralles linear algebra calculations using the GPU instead of the CPU without the programmer choosing so specifically.  
+
   %%Is it possible to design a programming language for numerical computation with a focus on matrices, which is simple to use but also fast by taking advantage of the GPU on modern computers? How would such a language be implemented? 
 
-  %% How can a simple programming language, which compiles code targeting the GPU, be construed so it's easier to perform matrix calculations? 
+  %%How can a simple programming language, which compiles code targeting the GPU, be construed so it's easier to perform matrix calculations? 
 
-  %% Is it possible to construct a programming language in which matrix operations and linear algebra can be performed, with the power of the GPU, without the programmer having to worry about boilerplate code. 
+  %%Is it possible to construct a programming language in which matrix operations and linear algebra can be performed, with the power of the GPU, without the programmer having to worry about boilerplate code. 
   \end{minipage}
   \end{minipage}
     \right]
