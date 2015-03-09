@@ -23,9 +23,10 @@ We deem that it has a high level of abstractions, since it is just function call
 
 \subsection{Theano (Python)}
 Theano is a Python library that allows one to define, optimise, and evaluate mathematical expressions involving multi-dimensional arrays, while utilising the GPU.
-The library have two ways of using the GPU; one with CUDA as back-end, and the other support NVIDIA GPU and to some extent OpenCL compatible hardware.
-The OpenCL implementation however does not support all the options available in the library due to an incomplete port of an old backend.
+The library has two ways of using the GPU; one with CUDA as back-end, and the other that should support any OpenCL compatible device as well NVIDIA cards.
+The OpenCL implementation however does not support all the options available in the library due to an incomplete port of an old back-end.
 While Theano supports CUDA and OpenCL, there is quite a bit of boilerplate and one must write different code in order to use either.
+Theano does not require that the programmer allocates memory for arrays.
 We deem that Theano has a medium level of abstraction since one has to declare if the GPU should be used and can only operate on single precision floats of 32 bits.
 But on the other hand Theano does optimise the code by replacing methods with a GPU versions of the same methods to create transparency.\citep{Theano,Theano_GPU}
 
@@ -44,17 +45,24 @@ For GPU computing MATLAB simplify parallel code development by abstracting away 
 Julia is a high-level, high-performance dynamic programming language for technical computing, with syntax familiar to users of other technical computing environments.
 Julia is designed for parallelism and cloud computing; making it efficient and easy to use for these tasks.
 Julia has a high level of abstraction because the user only needs a single keyword (\@parallel) for it to do the calculation in parallel.
-The code is therefore looking clean without any boilerplate and there is a high level of readability\todo{Vi har ikke skrevet om readability de andre steder. Er det ligemeget?}.
-Julia uses both OpenCL and CUDA as backend making it very compatible and easy to use on different systems and devices.\citep{Julia_Git,Julia}
+The code is therefore looking clean without any boilerplate and is easy to read.
+Julia uses both OpenCL and CUDA as back-end making it very compatible and easy to use on different systems and devices.\citep{Julia_Git,Julia}
 
 \input{figures/MathGPULanguages.tex} 
 
 \subsection{Conclusion}  
 
 The different languages mentioned in this section all have some way of communicating with the GPU using both CUDA and OpenCL, which also can be seen on \myref{tbl:sota} .
-They all require the user to specify when to use the GPU instead of the CPU, and the level of abstraction varies, where some require a lot of control of the programmer, and others require specific function calls to GPU functions\todo{Sidste del her er lidt underligt}.
-They are all usable for general purpose programming, except the libraries for R, which only provides the programmer with specific R functions to be computed on the GPU.
-For scientific computing, especially oriented towards linear algebra with matrices and vector calculations, these are all viable options.
-The languages do require some knowledge of them, and if one were to choose a language with low level of abstraction, one would need knowledge of specific control of a programs resources like allocating memory.
+They all require the user to specify when to use the GPU instead of the CPU, and the level of abstraction varies, where some require a lot of control of the programmer, and others require specific function calls to GPU functions.
 
+This explicit processor targeting seems inconvenient, and it takes away focus from the calculations done in the program.
+On the other hand, it gives the programmer more control of where the code is executed.
+This aspect requires a deeper knowledge of processor architecture, and we deem that greater abstraction is more important than the control of processor targeting.
+
+They are all usable for general purpose programming, except the libraries for R, which only provides the programmer with specific R functions to be computed on the GPU.
+For scientific computing, especially oriented towards matrices and vector calculations such as linear algebra uses, these are all viable options.
+
+The control of memory on the CPU and the GPU is different, so allocating memory is more difficult when you transfer the calculations to the GPU.
+Therefore languages that require the programmer to allocate memory themselves, takes away focus from the computations that need to be done.
+We deem that allocating memory for arrays and matrices is unnecessary.
                      
