@@ -20,7 +20,7 @@ These C libraries have the same problem as with the Java library as one needs to
 The abstraction level is therefore deemed low as one must keep in mind what is where and what can be done with each specific element.\citep{C_CUDA} 
 There is also different libraries for the R language, one of which is called rpud.
 It provides many functions from the R language, which can be performed on the GPU, and it is based on CUDA.
-We deem that it has a high level of abstractions, since it is just function calls, without any memory allocation or direct GPU calls from the source code. \citep{Rcuda}                                                 
+We deem that it has a high level of abstractions, since it is just function calls, without any memory allocation or direct GPU calls from the source code. \todo{Rcuda source}                                                 
 
 
 \subsection{Theano (Python)}
@@ -37,7 +37,7 @@ MATLAB is a high-level mathematical programming language with an interactive env
 MATLAB supports the use of parallel computations in the form of using either a GPU or cloud computing.
 It only natively supports the use of CUDA enabled NVIDIA GPUs for its parallel computations on GPUs, but OpenCL extensions do exist such that it becomes possible to use other devices.
 The user of MATLAB much declare when the GPU must be used and also allocate memory for these tasks.
-Declaring the memory gives a lot of boilerplate since it needs to be done for each element that one wants to compute.\citep{MATLAB_backend,MATLAB_benchmark,}
+Declaring the memory gives a lot of boilerplate since it needs to be done for each element that one wants to compute.\citep{MATLAB_backend,MATLAB_benchmark}
 Using the interactive environment provided by MATLAB there are built in tools for parallel computations on GPUs.
 These tools provide a higher level of abstraction such as parallel for-loops (parfor) and special array types for distributed processing.
 For GPU computing MATLAB simplify parallel code development by abstracting away the complexity of managing computations and data.\citep{MATLAB_parallel}
