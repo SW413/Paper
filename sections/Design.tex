@@ -5,11 +5,44 @@
 
 \section{Generel}
 \textbf{Character set}
+Source code must be in Unicode.
+This is chosen even though all variables and types is in ACSI, because Unicode gives the programmer of different origins the possibility to use special characters of theirs first language.
+An example of this would be the danish %\"\Æ,\Ø,\Å\".
+
 \textbf{Comments}
+Comments are done as in other large languages i.e. C and Java, with the use of \"\/\/\".
+The compiler ignores everything from \"\/\/\" to the end of the line.
+The decision  to use already existing solutions is to make sure the language is easy to learn if the programmer already have some coding experience.
+Below on \todo{myref} a snippet of an comment in use can be seen.
+
+\textbf{Semicolon}
+A semicolon \"\;\" is used as a terminator and are required after every statement.
+This is again based on other already existing languages such as Java and the C family.
+The use of terminators in a language is of less importance, and therefore we decide that a semicolon is required to terminate each statement for easier readability.
+The use of semicolon can also be found on \todo{myref}
+
+
+\begin{lstlisting}[caption={Comment and Semicolon}]
+int a = 1;		//initialization with specified type.
+\end{lstlisting}
+
 \textbf{Case Sensitivity}
+The language is case sensitive to make sure the programmer uses whatever convention he is most use to, and pleased with.
+C\# uses case sensitivity to i.e. allow the programmer to separate class names and instances.
+Having a case sensitive language provide a higher readability and writability since the programmer are use to writing English or other spoken language which are case sensitivity.
+
 \textbf{Ignored characters}
+The language is a free-form language, which means all whitespace is ignored.
+Whitespace includes, space, tabs and line feed.
+Whitespace is ignored so it easier to organise  the source code to achieve a higher level of readability.
+
 \textbf{Scope}
+\todo{Scope rules?}
+
 \textbf{Operators}
+Available operators in the language can be found on \ref{tbl:operators} with a short description.
+\input{figures/Operators.tex}   
+
 
 \section{Type and variables}
 \textbf{Integers}
