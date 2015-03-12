@@ -34,8 +34,76 @@
 
 
 \section{Control Flow}
-\subsection{For-loop}
+Control flow is the parts of the language which will make ``decitions''.
+Often these are separated into two primary groups: iteration and condition. 
+An iteration is a statement which gives the program the possibility to iterate over the same code a given number of times. 
+Common loops in programming languages are: do..while, while, for and foreach. 
+The iteration of a loop can be broken in our language, to jump out of the loop, by a statement often called \texttt{break}, and the ability to skip to start of the next iteration by the keyword \texttt{continue}.
+
+The conditionals in many programming languages are: if, ternary operator (?:) and switch.
+The combination of a conditional and a jump, often seen as a \texttt{goto} can produce an iteration. 
+The goto statement is not in our language, it is considered harmful by many, and in all but a few cases useless, if other conditionals are in the programming language. \citep{DijkstraGoto}
+The switch statement is not included in our language. \todo{Skal vi have switch med?}
 
 \subsection{While-loop}
+The while-loop is a very common language construct, it iterates once or more times \textit{while} a given boolean condition is true. 
+In our language blocks are delimited by curly brackets (``\texttt{\{}'' and ``\texttt{\}}''), and so is the body of the while-loop. 
+Unlike languages like C, C\# and Java etc. in our language it is not allowed to omit the curly brackets if one wishes to only to have a single statement in the while-loop, this is a syntax error. 
+This is to increase the consistency of the code thus making it more readable. 
+In \myref{lst:whileExample} is an example of a while-loop in our language. 
+An variation of the while-loop called the do..while-loop, in which a single execution a done before checking the boolean condition is not included in our language. 
+This is to reduce the amount of built-in control structures. 
 
-\subsection{If \& If else}
+\begin{figure}[h]
+\begin{lstlisting}[caption=An example of a while-loop, label=lst:whileExample]
+while ( boolean_condition )
+{
+    example_statement();
+}
+\end{lstlisting}
+\end{figure}
+\subsection{For-loop}
+A for-loop is a loop like the while-loop, with additional features. 
+The traditional for-loop has three fields, the initialization, the condition and the increment/decrement. 
+Any of these can be omitted, if the conditional is omitted then the loop is an infinite loop, but it can still be broken by the \texttt{break} statement.
+Like for while-loops, curly brackets around the body of for-loops are enforced. 
+Any traditional for-loop can be translated into a while-loop, by putting the initialization before the while-loop and the increment/decrement in the end of the body. 
+We have the tradition for-loop in our language, an example of it is shown in \myref{lst:whileExample}. 
+For-loops are often used to iterate over a collection, and it is easier to see what the for-loop does than a while-loop, as the three fields are in one place. 
+This can be further simplified by having a foreach-loop, which iterate over each element in a collection.
+However this is not included in our language, in order to reduce the scope of the language and simplify its development. \todo{Skal vi have foreach?}
+\begin{figure}[h]
+\begin{lstlisting}[caption=An example of a for-loop, label=lst:forExample]
+for ( initialization ; boolean_condition ; increment/decrement )
+{
+    example_statement();
+}
+\end{lstlisting}
+\end{figure}
+
+
+\subsection{Conditionals}
+The if-statement is a very common language construct, it is just like a while-loop except it does not iterate and only executes once if the condition is true.
+Like for while-loops, curly brackets around the if-statement are enforced. 
+Optionally an else statement can be added to the if-statement, this occurs only if the boolean condition of the previous if was false. 
+A grouping of several if and else statements are allowed and is called an if-else-chain. 
+
+The \texttt{?:} operator known as the conditional-operator or ternary if, is also in our language. 
+Before the question mark is a boolean condition if it is true, then the statement after the question mark is executed otherwise the one after the colon. 
+An example of both the if, if-else and ternary if are shown in \myref{lst:condExample}.
+\begin{figure}[h]
+\begin{lstlisting}[caption=An example of the conditional operators., label=lst:condExample]
+if ( boolean_condition )
+{
+    example_statement();
+} else {
+    // executed only if the boolean_condition is false
+    other_statement;
+}
+
+// ternary example, if the boolean_condition is true,
+// value is alternative_one, else it is alternative_two
+value = boolean_condition ? alternative_one : alternative_two;
+
+\end{lstlisting}
+\end{figure}
