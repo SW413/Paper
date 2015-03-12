@@ -39,5 +39,22 @@ Therefore to use the niche that GAMBLE proclaims, having the languange be famili
 
 Read- and wiretability directly influences the reliability of a languange. 
 The easier a program is to write, the more likely it is to be correct.\citep{Sebesta}
-This is gained through using a familiar syntax, as meniton above, aswell as sticking to certain languange characteristis shown in \myref{}.\TODO{Lav dette table - Marc er for LaTeX Noob til at lave et table der ikke giver cancer i øjnene, table der skal laves kan ses i sebesta book page 28}
+This is gained through using a familiar syntax, as meniton above, aswell as sticking to certain languange characteristis shown in \myref{tbl:concepts}.
 It makes sense for GAMBLE to stick with a C-like syntax, as several of the most popular languanges also uses a C-like syntax, the difference will be in how code is structured.\citep{TIOBE}
+\begin{table}[h]
+\begin{tabular}{|l|l|c|c|}
+\hline
+\begin{tabular}[c]{@{}l@{}}Languange\\ Concepts\end{tabular} & Readability            & \multicolumn{1}{l|}{Writeability} & \multicolumn{1}{l|}{Reliability} \\ \hline
+Simplicity                                                   & \multicolumn{1}{c|}{x} & x                                 & x                                \\ \hline
+Othogonality                                                 & \multicolumn{1}{c|}{x} & x                                 & x                                \\ \hline
+Data types                                                   & \multicolumn{1}{c|}{x} & x                                 & x                                \\ \hline
+Syntax design                                                & \multicolumn{1}{c|}{x} & x                                 & x                                \\ \hline
+Support for abstraction                                      &                        & x                                 & x                                \\ \hline
+Expressivity                                                 &                        & x                                 & x                                \\ \hline
+Type checking                                                &                        & \multicolumn{1}{l|}{}             & x                                \\ \hline
+Execption handling                                           &                        & \multicolumn{1}{l|}{}             & x                                \\ \hline
+Retricted aliasing                                           &                        & \multicolumn{1}{l|}{}             & x                                \\ \hline
+\caption{Languange evaluation criteria and the characteristics that affect them.\citep{Sebesta}}
+	\label{tbl:concepts}
+\end{tabular}
+\end{table}
