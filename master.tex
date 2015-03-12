@@ -38,7 +38,7 @@
 \pagenumbering{arabic}
 
 \input{sections/introduction.tex}
-\input{sections/GPU.tex}
+\input{sections/GPU.tex} %label sec:gpu
 \input{sections/SOTA.tex}
 \input{sections/problemFormulation.tex}
 \input{sections/Design.tex}
@@ -46,6 +46,7 @@
 \bibliography{bib/mybib}
 \label{bib:mybiblio}
 
-%\appendix
-%\input{sections/appAname.tex}
+\appendix
+\input{sections/appendices/gpuoverhead.tex} %label app:gpuoverhead
+\input{sections/appendices/cd.tex} %label app:cd
 \end{document}

@@ -1,4 +1,4 @@
-\section{Graphics Processing Units}
+\section{Computation architectures}
 \label{sec:GPU}
 Dedicated Graphic Processing Units - GPUs - are very common in desktop and laptops. \citep{STEAMHW}
 GPUs are commonly used in the private and professional world, for computer gaming and accelerating graphic intensive programs such as Adobe Photoshop and 3D modelling tools. \citep{NVIDIAADOBE}
@@ -26,5 +26,16 @@ Due to their architectural differences the GPU allows for about 12 times more op
 This makes the GPU particularly useful for computation, even some which are not graphical. % Antagende/konkluderende?!?
 
 
+for simpler problems, where as more complex problems can prove difficult. \todo{Expand on this(Interesting)} 
 
- for simpler problems, where as more complex problems can prove difficult. \todo{Expand on this(Interesting)} 
+But the GPU has an overhead.
+This means that moving computations to the GPU cost a lot af time.
+Therefore one has to reach a certian size of computation, before the advantage of parallel GPU computations exceeds the cost of transfering a calculation onto the GPU.
+To illustrate this problem we have set up a case study to examine whereabout the threshold lies. 
+
+\subsubsection{Case study: GPU overhead treshold}
+In this section we set up some calculations which can be split up in parallel problems to take advantages of the GPU arcitechture described in \ref{app:gpuoverhead}.
+We will write and run a program written i regular C and write an equilent in CUDA which utilize the GPU for computations.
+With these programs, we will then scale the size of the problems and compare the execution time for the C programs and the CUDA programs, to estimate where the threshold for computations on GPU lies.
+We have chosen our testcase to be a matrix opration, more precisely the  Hadamard product
+
