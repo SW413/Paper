@@ -16,7 +16,7 @@
 
 \subsection{Operators}
 
-\section{Type and variables}
+\section{Type and variables}\label{Types}
 \subsection{Integers}
 
 \subsection{Floating points}
@@ -24,13 +24,52 @@
 \subsection{Booleans}
 
 \section{Functions}
+This section will describe GAMBLE's use of functions. 
+Like in many other languages it is possible to declare your own functions in GAMBLE.
+This is useful for organising code, and reusing code in sourcecode.
+
 \subsection{Function identifiers}
+When identifying a function you also need to write the function's body.
+If function identifiers were spread out all over the document it could be hard to find where certain elements of the code were.
+In C it is possible to make prototypes of functions in the top of the document, and then declare the bodies of the functions in other places of the document. 
+This is not possible in GAMBLE because of the increase in readability.
+A function identifier is exactly like C, with the \texttt{return type} then the \texttt{functionname}, \texttt{(formal parameters)} and finally \texttt{\{body\}}.
+An example of a function identifier can be seen on \myref{functionID}.
+Other syntaxes could have been made, but not only is this the way C does it, it is also widely used in many other languages like C\# and Java.
+
+
+\begin{lstlisting}[label=functionID]
+int functionName(int a, float b){
+	functionbody..
+}
+\end{lstlisting}
 
 \subsection{Function calls}
+When you have made a function, you need to call the function as well.
+This is done again exactly like in C, where you call a function by writing its name followed by the formal parameters in parenthesis.
+This is a widely used way of calling functions in many languages just like the identification was.
+An example can be seen on \myref{functionCall}.
+
+\begin{lstlisting}[label=functionCall]
+functionName(4, 3.4);
+\end{lstlisting}
+
 
 \subsection{Return value}
+Functions have a return value which can be seen on \myref{functionId}.
+The return values are all the types in GAMBLE mentioned in \myref{Types} and then void. 
+A void function will not return anything, but instead can be seen as a procedure which manipulates its input, and maybe prints something.
+This choice was made because GAMBLE should to be able to return all the different types in the language from a function, but also be able to perform these procedures which a void function may do.
+GAMBLE assign return values from a function just like it assigns other values to variables.
+An example can be seen on \myref{returnFunction}.
 
-\subsection{Premade functions (rename)}
+\begin{lstlisting}[label=returnFunction]
+int a = 0;
+
+a = functionName(4, 3.4);
+\end{lstlisting}
+
+\subsection{Premade functions (rename)}\todo{This}
 
 
 \section{Control Flow}
