@@ -1,0 +1,87 @@
+\section{Control Flow}\label{subsec:control-flow}
+Control flow is any part of the language in which a branch occurs. 
+A branch is in this case a change in which instruction happens next. 
+These come in 3 variations: primitives, choice and loops.
+C, C\#, Java etc contain some or all of these elements to control the flow of a program:
+
+\begin{itemize}
+    \item \texttt{if/if-else}
+    \item \texttt{?:} (Ternary operator)
+    \item \texttt{switch}
+    \item \texttt{while}
+    \item \texttt{for}
+    \item \texttt{foreach}
+    \item \texttt{do..while}
+    \item \texttt{goto}
+\end{itemize}
+
+If a programming language has if, goto and label then the other constructs can be made.
+For example a while-loop can be translated to a if and goto, this is shown in \myref{ifgotowhile1} and \myref{ifgotowhile2} written in C. 
+
+\noindent\begin{minipage}{.45\textwidth}
+\begin{lstlisting}[caption=Loop made with while.,frame=tlrb, label=ifgotowhile1, numbers=none]{Name}
+while ( condition )
+{
+    statement();
+}
+\end{lstlisting}
+\end{minipage}\hfill
+\begin{minipage}{.45\textwidth}
+\begin{lstlisting}[caption=The same loop with if and goto.,frame=tlrb, label=ifgotowhile2, numbers=none]{Name}
+label startOfLoop:
+if ( condition )
+{
+    statement();
+    goto startOfLoop;
+}
+\end{lstlisting}
+\end{minipage}
+
+The same can be done with the \texttt{for} and \texttt{do..while} loops. 
+This means that the only need control structures should be \texttt{if} and \texttt{goto}. 
+However the use of goto is considered harmful, because it is easy to make mistakes when using it. \citep{DijkstraGoto}
+Even though \texttt{for} and \texttt{while} are very similar, they are often used in different contexts.
+The for loop is very useful for iterating over a collection or knowing exactly how many time the code is executed. 
+Therefore we have decided to include both \texttt{for} and \texttt{while} in GAMBLE, but not \texttt{foreach} and \texttt{do..while}, this is to simplify the number of control structures.
+
+We have decided to keep the traditional \texttt{if} and \texttt{if-else} constructs. 
+These are very useful, and can achieve very much the same as a \texttt{switch}, by chaining if-else statements, so we have excluded it. 
+The ternary operator, also known as the inline if, written as \texttt{?:} in C and many other languages, is useful for compacting code to make it more readable, therefore we include it in GAMBLE.
+
+\subsection{if, if-else and ?:} \todo{Jeg blander meget rundt i statement og construct, kan ikke helt beslutte mig. }
+Examples of if/if-else GAMBLE are shown in \myref{iflst} and \myref{ifelselst}. 
+The condition is enclosed in a parenthesis this is to make the if construct similar to the function call, in which the parameters are in a parenthesis. 
+All the conditional code must be enclosed in a curly bracket, this is to make the code more readable. 
+The use of curly brackets is to make them similar to functions to make the language more alike \todo{mangler et godt fagord her.}.
+
+\noindent\begin{minipage}{.45\textwidth}
+\begin{lstlisting}[caption=An if statement in GAMBLE.,frame=tlrb, label=iflst, numbers=none]{Name}
+if ( condition )
+{
+    statement();
+}
+\end{lstlisting}
+\begin{lstlisting}[caption=A use of \texttt{?:} in GAMBLE.,frame=tlrb, label=terlst, numbers=none]{Name}
+condition ? ifTrue() : ifFalse();
+\end{lstlisting}
+
+\end{minipage}\hfill
+\begin{minipage}{.45\textwidth}
+\begin{lstlisting}[caption=An if-else statement in GAMBLE.,frame=tlrb, label=ifelselst, numbers=none]{Name}
+if ( condition )
+{
+    statement();
+} else {
+    alternative_statement();
+}
+\end{lstlisting}
+\end{minipage}
+
+An example of the ternary operator \texttt{?:} is shown in \myref{terlst}. 
+If the boolean statement before the question mark is true, then the first statement is executed otherwise the second is. 
+The ternary operator can also be used for an assignment. 
+
+\subsection{while} 
+\todo{Er ikke sikker på om den metode anvendt til if er fik og/eller den vi vil bruge. Venter med at skrive dette.}
+\subsection{for} 
+\todo{Er ikke sikker på om den metode anvendt til if er fik og/eller den vi vil bruge. Venter med at skrive dette.}
