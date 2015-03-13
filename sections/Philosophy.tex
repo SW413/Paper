@@ -1,0 +1,43 @@
+%GAMBLE is used to refer to our languange
+\section{Design philosophy}
+For big computations on a computer one must acknowledge the computing power required for such computations.
+The main focus for GAMBLE is to use the computational powers of the GPU to handle such computations without it being inconvient for the programmer.
+From \myref{sec:state_of_the_art} we know that several libraries and languanges allows the programmer to explicitly designate workloads to the GPU however this often requires explicit memory handling as well.
+GAMBLE is ment to be used for computations which has a need for more computational power; due to this the languange should not be too unfamiliar.
+Keeping GAMBLE familiar to other languanges reduces the time required to familiarize one with GAMBLE.
+This is done by using a C-like syntax, while stripping GAMBLE of things deemed not necessary for computational needs, as will be documented in the rest of this chapter.
+As the GPU is the resource being used to achieve more computing power, the data computed must also be applicable to the niche of the GPU, i.e. the data must be parallelisable.
+This basic need will influence how data is represented, and also puts focus onto matrice and vector calculations, which often can be paralellised.
+As it follows from this philosophy, some criteria for GAMBLE exists.
+\begin{itemize}
+	\item Allow the programmer to use the GPU without it being inconvient.
+	\item Avoid implementing unnecessary datatypes and features.
+	\item Let the languange be somewhat familiar to read and use.
+	\item Let the languange promote read- and writeability.
+\end{itemize}
+
+\textbf{Allow the programmer to use the GPU without it being inconvient}
+
+Due to GAMBLE being focused on numerical computations, allowing the programmer to focus on managing the mathematical aspects is key.
+Therefore having the programmer control the data flow seems an unnecessary distraction.
+GAMBLE takes care of designating the computations to the right processor, whether it be the GPU or the CPU, as such any inconvience in that process is removed from the programmer whose focus can be solely on the mathematics.
+
+\textbf{Avoid implementing unnecessary datatypes and features}
+
+When deciding what any languange should offer its user, it is important to keep in mind what is the purpose of the languange.
+As GAMBLEs purpose is to use the GPU to for calculations which can be parallelised implementing features or datatypes that do not hold any regard to this aspect would clutter the languange.
+Additionally GAMBLE should not try to adapt itself towards purposes for which it is not designed, and example of excluding such features is the fact that strings are not part of the languange, this choice and others like it are further documented in this chapter.
+
+\textbf{Let the languange be somewhat familiar to read and use}
+
+As mentioned the main purpose of GAMBLE is to use the GPU for computations, and is focused on doing computations, not developing new software.
+As such GAMBLE would most often be used where this niche is required.
+It may even be likely that it is not used when developing and algortithm to do a thing, but first used once the algorithm is complete, and can be applied to bigger sets of data.
+Therefore to use the niche that GAMBLE proclaims, having the languange be familiar makes it easier to use for its pure computational aspect.
+
+\textbf{Let the languange promote read- and writeability}
+
+Read- and wiretability directly influences the reliability of a languange. 
+The easier a program is to write, the more likely it is to be correct.\citep{Sebesta}
+This is gained through using a familiar syntax, as meniton above, aswell as sticking to certain languange characteristis shown in \myref{}.\TODO{Lav dette table - Marc er for LaTeX Noob til at lave et table der ikke giver cancer i øjnene, table der skal laves kan ses i sebesta book page 28}
+It makes sense for GAMBLE to stick with a C-like syntax, as several of the most popular languanges also uses a C-like syntax, the difference will be in how code is structured.\citep{TIOBE}
