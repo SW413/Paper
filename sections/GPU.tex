@@ -1,11 +1,11 @@
 \section{Computation architectures}
 \label{sec:comparch}
-Normally computations are preformed on a computers Central Processing Unit - a CPU.
+Normally computations are performed on a computer's Central Processing Unit - a CPU.
 A CPU is often fastest for everyday task and calculations.
 The CPU consist of only a few cores which are highly optimized for sequential serial processing.\citep{whatisgpu}
-But in recent years developers and sciencetist seem to have developed at interest for preforming calculations on Dedicated Graphic Processing Units.\citep{gpurise}
-This is a whole other architechture which normally only was used for graphics processing but with some problems it seems that one coud utilise a GPU for General Purpose GPU compution - GPGPU, with an performance inprovement over a CPU.
-In the following text we explore the possiblities that a GPU architecture offers.
+But in recent years developers and scientists seem to have developed at interest for performing calculations on Dedicated Graphic Processing Units.\citep{gpurise}
+This is a whole other architecture which normally only was used for graphics processing but with some problems it seems that one could utilise a GPU for General Purpose GPU computing - GPGPU, with an performance improvement over a CPU.
+In the following text we explore the possibilities that a GPU architecture offers.
 
 GPUs are very common in desktop and laptops. \citep{STEAMHW}
 GPUs are commonly used in the private and professional world, for computer gaming and accelerating graphic intensive programs such as Adobe Photoshop and 3D modelling tools. \citep{NVIDIAADOBE}
@@ -14,8 +14,8 @@ An example of this can be calculating different properties of the pixels on a sc
 The screen can then be divided into different sections and the computations for each section is divided over the GPU internally.
 This is possible because the specific calculations do not require results from the other calculations.
 Unlike the cores in the CPU the cores in the GPU are not optimized for sequential serial processing, instead its cores are designed to handle multiple tasks at once. 
-As such running sequential code on the CPU will be more efficient, where as more compute-intensive functions may be better suited for the GPU.\citep{NvidiaGPGPU}
-The before mentioned example with pixels can be viewed as a matrix being divided into sections, so the same method of parallelised workflow can be applied for much liniar algebra expecially many operations on matrices where the problem can be split to nondependent subproblems.
+As such running sequential code on the CPU will be more efficient, whereas more compute-intensive functions may be better suited for the GPU.\citep{NvidiaGPGPU}
+The before mentioned example with pixels can be viewed as a matrix being divided into sections, so the same method of parallelised workflow can be applied for much linear algebra especially many operations on matrices where the problem can be split to non dependent subproblems.
 
 \begin{figure}[h!]
 \centering
@@ -34,26 +34,26 @@ Due to their architectural differences the GPU allows for about 12 times more op
 This makes the GPU particularly useful for large and complex computation, even some which are not graphical, if it is possibly to distribute the workload among the GPU cores.
 But the GPU has an overhead.
 This means that moving data and computations to the GPU cost a lot af time compared to running the computations on the CPU.
-Therefore one has to reach a certian size of computation, before the advantage of parallel GPU computations exceeds the cost of transfering calculations onto the GPU.
-To illustrate this problem as well a estimate an approximate computaion size where the GPU is advantageous we have written some test problems, which preforms different opreations on all elements in a matrix. 
+Therefore one has to reach a certain size of computation, before the advantage of parallel GPU computations exceeds the cost of transferring calculations onto the GPU.
+To illustrate this problem as well a estimate an approximate computation size where the GPU is advantageous we have written some test problems, which performs different operations on all elements in a matrix. 
 
 \subsection{GPU and CPU computations comparison}
-To compare the computation speed of a GPU and CPU for operations of each element in a matrix we have wirtten to programs.
-A program written regular C targeting the CPU and an equilent program written in C with CUDA libraries targeting the GPU for computations.
+To compare the computation speed of a GPU and CPU for operations of each element in a matrix we have written to programs.
+A program written regular C targeting the CPU and an equivalent program written in C with CUDA libraries targeting the GPU for computations.
 Further procedure of this test and the full sourcecode of both programs and the accompanying scripts can be found in \myref{app:gpuoverhead} and \myref{app:cd}.
 
 These programs, we have run with multiple sizes of the matrix and then compared the execution times for the C program and the CUDA program, to estimate where the threshold for computations on GPU lies.
-The testcase for the following comparison are seven operations on a square matrix of size n.
-The operations are division, multiplication, addition and substraction.
+The test case for the following comparison are seven operations on a square matrix of size n.
+The operations are division, multiplication, addition and subtraction.
 The result can be seen on \myref{image:benchmark}.
 \begin{figure}[h!]
 \centering
  \includegraphics[width=1\textwidth]{figures/benchmark.png} % trim=4.85cm 15cm 0.85cm 1cm
-\caption{A becnhmark of preforming seven opertions on each element in a square matrix with size n on respectively a CPU and a GPU.}\label{image:benchmark}
+\caption{A benchmark of performing seven operations on each element in a square matrix with size n on respectively a CPU and a GPU.}\label{image:benchmark}
 \vspace{-15pt}
 \end{figure}
 
 The result of the test show that in this case the GPU becomes advantageous when n reaches about 7000 as can be seen in \myref{image:benchmark}
 When n is 7000 the size of the matrix represent operations on almost 50 millions elements.
-This is a large amount of data but this is partly due to the simple operations done on the elements in the matrix, we beleive that the treshold would happen earlier for at more complex operations in the elements in matrix.
-In addition to the treshold, the result also confirms that as the dataset grows the GPU becomes the incresingly preferred architecture for computing the data fast.
+This is a large amount of data but this is partly due to the simple operations done on the elements in the matrix, we believe that the threshold would happen earlier for a more complex operations in the elements in matrix.
+In addition to the threshold, the result also confirms that as the dataset grows the GPU becomes the increasingly preferred architecture for computing the data fast.
