@@ -4,18 +4,18 @@
 
 
 \section{Generel}
-\textbf{Character set}
+\subsection{Character set}
 Source code must be in Unicode.
 This is chosen even though all variables and types is in ACSI, because Unicode gives the programmer of different origins the possibility to use special characters of theirs first language.
 An example of this would be the danish %\"\Æ,\Ø,\Å\".
 
-\textbf{Comments}
+\subsection{Comments}
 Comments are done as in other large languages i.e. C and Java, with the use of \"\/\/\".
 The compiler ignores everything from \"\/\/\" to the end of the line.
 The decision  to use already existing solutions is to make sure the language is easy to learn if the programmer already have some coding experience.
 Below on \myref{lst:CommSemi} a snippet of an comment in use can be seen.
 
-\textbf{Semicolon}
+\subsection{Semicolon}
 A semicolon \"\;\" is used as a terminator and are required after every statement.
 This is again based on other already existing languages such as Java and the C family.
 The use of terminators in a language is of less importance, and therefore we decide that a semicolon is required to terminate each statement for easier readability.
@@ -26,46 +26,46 @@ The use of semicolon can also be found on \myref{lst:CommSemi}.
 int a = 1;		//initialization with specified type.
 \end{lstlisting}
 
-\textbf{Case Sensitivity}
+\subsection{Case Sensitivity}
 The language is case sensitive to make sure the programmer uses whatever convention he is most use to, and pleased with.
 C\# uses case sensitivity to i.e. allow the programmer to separate class names and instances.
 Having a case sensitive language provide a higher readability and writability since the programmer are use to writing English or other spoken language which are case sensitivity.
 
-\textbf{Ignored characters}
+\subsection{Ignored characters}
 The language is a free-form language, which means all whitespace is ignored.
 Whitespace includes, space, tabs and line feed.
 Whitespace is ignored so it easier to organise the source code to achieve a higher level of readability.
 
-\textbf{Scope}
+\subsection{Scope}
 \todo{Scope rules?}
 
-\textbf{Operators}
+\subsection{Operators}
 Available operators in the language can be found on \ref{tbl:operators} with a short description.
 \input{figures/Operators.tex}  
 
-\textbf{Structure} 
+\subsection{Structure} 
 
 
 \section{Type and variables}
 %http://www.informit.com/articles/article.aspx?p=2103809&seqNum=3
 GAMBLE uses three primitive data types; integers(int), floating points(float) and boolean values(bool), as well as two composite data types; matrices and vector.
 
-\textbf{Integers and floating points}
+\subsection{Integers and floating points}
 Integers default to 32bit and the same goes for floating points, it is possible to declare them of another bit size; 16bit and 64bit are valid alternatives in case such should be needed.%Gør vi faktisk dette - im not sure?
 The time sink of using the GPU is the overhead data transfer from the CPU to the GPU, as such having the data types declarable in smaller bit sizes allows the programmer to determine what bit size is really needed.
 Thus awards the programmer the ability to optimize their computations while taking the data transfer into account.
 
-\textbf{Booleans}
+\subsection{Booleans}
 In a languange such as C, booleans are represented by integers where 0 evaluates to false.
 To enhance readability and avoid the booleans acting as integers, they are given their own data type, where the meaning is clear by it being either true or false.
 
-\textbf{Matrices}
+\subsection{Matrices}
 The two composite data types provided by GAMBLE are representations of matrices and vectors from linear algebra.
 A matrice can be of size n by m where n represents rows and m represents columns.
 Each row correlates to a row vector, vectors exist both as row and column vectors.
 As such a matrice can be seen as a number n of stacked row vectors, which happen to have the same representation as arrays do in C-like languanges i.e vectors can be seen as a type of array, and matrices as multiple arrays.
 
-\textbf{Vectors}
+\subsection{Vectors}
 The vectors are a subset of matrices, as such they are represented in a similar fashion.
 %Det kunne eventuelt give mening at lave et table over hvordan vi repræsentere data(bitwise)??
 
