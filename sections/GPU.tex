@@ -33,19 +33,27 @@ Due to their architectural differences the GPU allows for about 12 times more op
 
 This makes the GPU particularly useful for large and complex computation, even some which are not graphical, if it is possibly to distribute the workload among the GPU cores.
 But the GPU has an overhead.
-This means that moving computations to the GPU cost a lot af time compared to running the computations on the CPU.
+This means that moving data and computations to the GPU cost a lot af time compared to running the computations on the CPU.
 Therefore one has to reach a certian size of computation, before the advantage of parallel GPU computations exceeds the cost of transfering calculations onto the GPU.
 To illustrate this problem as well a estimate an approximate computaion size where the GPU is advantageous we have written some test problems, which preforms different opreations on all elements in a matrix. 
 
 \subsection{GPU and CPU computations comparison}
-In this section we set up some calculations which can be split up in parallel problems to take advantages of the GPU arcitechture described in \myref{app:gpuoverhead}.
-We will write and run a program written i regular C and write an equilent in CUDA which utilize the GPU for computations.
-With these programs, we will then scale the size of the problems and compare the execution time for the C programs and the CUDA programs, to estimate where the threshold for computations on GPU lies.
-We have chosen our testcase to be a matrix opration, more precisely the  Hadamard product
+To compare the computation speed of a GPU and CPU for operations of each element in a matrix we have wirtten to programs.
+A program written regular C targeting the CPU and an equilent program written in C with CUDA libraries targeting the GPU for computations.
+Further procedure of this test and the full sourcecode of both programs and the accompanying scripts can be found in \myref{app:gpuoverhead} and \myref{app:cd}.
 
+These programs, we have run with multiple sizes of the matrix and then compared the execution times for the C program and the CUDA program, to estimate where the threshold for computations on GPU lies.
+The testcase for the following comparison are seven operations on a square matrix of size n.
+The operations are division, multiplication, addition and substraction.
+The result can be seen on \myref{image:benchmark}.
 \begin{figure}[h!]
 \centering
  \includegraphics[width=1\textwidth]{figures/benchmark.png} % trim=4.85cm 15cm 0.85cm 1cm
-\caption{A becnhmark of preforming 7 opertions on each element in a square matrix with size n on respectively a CPU and a GPU.}\label{image:benchmark}
+\caption{A becnhmark of preforming seven opertions on each element in a square matrix with size n on respectively a CPU and a GPU.}\label{image:benchmark}
 \vspace{-15pt}
 \end{figure}
+
+The result of the test show that in this case the GPU becomes advantageous when n reaches about 7000 as can be seen in \myref{image:benchmark}
+When n is 7000 the size of the matrix represent operations on almost 50 millions elements.
+This is a large amount of data but this is partly due to the simple operations done on the elements in the matrix, we beleive that the treshold would happen earlier for at more complex operations in the elements in matrix.
+In addition to the treshold, the result also confirms that as the dataset grows the GPU becomes the incresingly preferred architecture for computing the data fast.
