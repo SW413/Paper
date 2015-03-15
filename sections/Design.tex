@@ -47,23 +47,25 @@ Available operators in the language can be found on \ref{tbl:operators} with a s
 
 
 \section{Type and variables}
-%http://www.informit.com/articles/article.aspx?p=2103809&seqNum=3
+%http://www.informit.com/articles/article.aspx?p=210380l9&seqNum=3
 GAMBLE uses three primitive data types; integers(int), floating points(float) and boolean values(bool), as well as two composite data types; matrices and vector.
 
 \subsection{Integers and floating points}
-Integers default to 32bit and the same goes for floating points, it is possible to declare them of another bit size; 16bit and 64bit are valid alternatives in case such should be needed.%Gør vi faktisk dette - im not sure?
+Integers default to 32bit and the same goes for floating points, it is possible to declare them of another bit size; 16bit and 64bit are valid alternatives in case such would be needed.%Gør vi faktisk dette - im not sure?
 The time sink of using the GPU is the overhead data transfer from the CPU to the GPU, as such having the data types declarable in smaller bit sizes allows the programmer to determine what bit size is really needed.
 Thus awards the programmer the ability to optimize their computations while taking the data transfer into account.
+Integers are restricted to whole numbers, both negative and positive.
+Floating points are decimals that can be both negative and positive.
 
 \subsection{Booleans}
-In a languange such as C, booleans are represented by integers where 0 evaluates to false.
+In a language such as C, booleans are represented by integers where 0 evaluates to false.
 To enhance readability and avoid the booleans acting as integers, they are given their own data type, where the meaning is clear by it being either true or false.
 
 \subsection{Matrices}
 The two composite data types provided by GAMBLE are representations of matrices and vectors from linear algebra.
-A matrice can be of size n by m where n represents rows and m represents columns.
+A matrix can be of size n by m where n represents rows and m represents columns.
 Each row correlates to a row vector, vectors exist both as row and column vectors.
-As such a matrice can be seen as a number n of stacked row vectors, which happen to have the same representation as arrays do in C-like languanges i.e vectors can be seen as a type of array, and matrices as multiple arrays.
+As such a matrix can be seen as a number n of stacked row vectors, which happen to have the same representation as arrays do in C-like languanges i.e vectors can be seen as a type of array, and matrices as multiple arrays.
 
 \subsection{Vectors}
 The vectors are a subset of matrices, as such they are represented in a similar fashion.
