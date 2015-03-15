@@ -55,21 +55,31 @@ Integers default to 32bit and the same goes for floating points, it is possible 
 The time sink of using the GPU is the overhead data transfer from the CPU to the GPU, as such having the data types declarable in smaller bit sizes allows the programmer to determine what bit size is really needed.
 Thus awards the programmer the ability to optimize their computations while taking the data transfer into account.
 Integers are restricted to whole numbers, both negative and positive.
-Floating points are decimals that can be both negative and positive.
+Integers is shortened to int for easier writing.
+Floating points are decimals numbers which can be both negative and positive.
+Floating points is shortened to float for easier writing as well.
 
 \subsection{Booleans}
-In a language such as C, booleans are represented by integers where 0 evaluates to false.
+In a language such as C, booleans are represented by integers where 0 evaluates to false and everything else evaluates to true.
 To enhance readability and avoid the booleans acting as integers, they are given their own data type, where the meaning is clear by it being either true or false.
+GAMBLE have booleans implemented because it is needed in control flows and give an advangtange compared to using integers or floats for stats verification.   
 
-\subsection{Matrices}
+\subsection{Matrices and vectors}
 The two composite data types provided by GAMBLE are representations of matrices and vectors from linear algebra.
 A matrix can be of size n by m where n represents rows and m represents columns.
 Each row correlates to a row vector, vectors exist both as row and column vectors.
-As such a matrix can be seen as a number n of stacked row vectors, which happen to have the same representation as arrays do in C-like languanges i.e vectors can be seen as a type of array, and matrices as multiple arrays.
-
-\subsection{Vectors}
+As such a matrix can be seen as a number n of stacked row vectors, which happen to have the same representation as arrays do in C-like languages i.e vectors can be seen as a type of array, and matrices as multiple arrays.
 The vectors are a subset of matrices, as such they are represented in a similar fashion.
-%Det kunne eventuelt give mening at lave et table over hvordan vi repræsentere data(bitwise)??
+An example of an matrix can be seen on \myref{lst:matrix}.
+
+\begin{lstlisting}[caption={Creating a matrix},label={lst:matrix}]
+imatrix m[2,2] = [1, 0; 0, 1] //prefix [i|f|b] can be used to make a corrosponding int, float or boolean matrix.
+
+//Alternatives
+matrix m;
+m = mkMatrix(int, 5, 5); //making a 5x5 matrix accepting integers.
+\end{lstlisting}
+
 
 \section{Functions}
 \textbf{Function identifiers}
