@@ -38,13 +38,17 @@
 \pagenumbering{arabic}
 
 \input{sections/introduction.tex}
-\input{sections/GPU.tex}
+\input{sections/GPU.tex} %label sec:comparch
 \input{sections/SOTA.tex}
 \input{sections/problemFormulation.tex}
-\input{sections/conclusion.tex}
-\input{sections/LanguangeDesign.tex}
+\input{sections/strategy.tex}
+\input{sections/Design.tex}
+%\input{sections/conclusion.tex}
+>>>>>>> origin/master
 \bibliography{bib/mybib}
 \label{bib:mybiblio}
+
 \appendix
-\input{sections/appAname.tex}
+\input{sections/appendices/gpuoverhead.tex} %label app:gpuoverhead
+\input{sections/appendices/cd.tex} %label app:cd
 \end{document}

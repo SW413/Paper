@@ -3,7 +3,8 @@
 
 Linear algebra calculations when sufficiently large can take a long time to compute sequentially. 
 Therefore it is smarter to parallelise these computations, and even better to do so on a GPU compared to a CPU, due to its internal architecture.
-Linear algebra calculations can be parallelised since none of the calculations done in for example multiplying two matrices, depend on previous calculations.
+Many linear algebra calculations can be parallelised since it often contains large datasets where operations on the data does not depend on previous calculations.
+An example of this could be matrix calcuations where most operations can be split into independent sub calculations.
 Therefore the computation time of these calculations can be significantly improved using the parallel computing capabilities on the GPU, giving the matrices are of sufficient size.
 
 Writing programs which can be run on a GPU, can be time consuming using the languages found in \ref{sec:state_of_the_art}.
@@ -17,7 +18,7 @@ In the rest of this paper, the following problem will be thoroughly investigated
   \centering
   \begin{minipage}{0.96\textwidth}
   %%Den vi har sendt til Thomas 2015-03-08
-  How does one design a programming language, with a corresponding compiler, which compiles programs to utilise the GPU on runtime for certain linear algebra calculations, such as matrix operations?
+  How does one design a programming language, with a corresponding compiler, which compiles sourcecode to execute on the GPU at runtime for certain linear algebra calculations, such as matrix operations?
   %%How does one design a programming language, with a corresponding compiler, for technical computing that is capable of performing common operations of linear algebra, while targeting GPUs as execution platform?
   
   %%Alternative%%

@@ -478,7 +478,7 @@
 \renewcommand*{\BR@citex}{\phantomsection\BR@direct@oldBR@citex}%
 
 % 2. if using page numbers, show the page number but still hyperlink to the phantomsection instead of just the page!
-\long\def\hyper@page@BR@direct@ref#1#2#3{\textit{\hyperlink{#3}{Side #1}}}
+\long\def\hyper@page@BR@direct@ref#1#2#3{\textit{\hyperlink{#3}{Page #1}}}
 
 % check which package option the user loaded (pages (hyperpageref) or sections (hyperref)?)
 \ifx\backrefxxx\hyper@page@backref
@@ -551,7 +551,6 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Add bibliography and index to the table of
 % contents
-%\usepackage[nottoc]{tocbibind}
 % Add the command \pageref{LastPage} which refers to the
 % page number of the last page
 \usepackage[
@@ -560,6 +559,8 @@ colorinlistoftodos, %enable a coloured square in the list of todos
 textwidth=\marginparwidth, %set the width of the todonotes
 textsize=scriptsize, %size of the text in the todonotes
 ]{todonotes}
+
+\usepackage{tocbibind}
 
 \usepackage[english]{cleveref}
 \crefname{exa}{eksempel}{eksempler}
