@@ -69,19 +69,19 @@ GAMBLE aims for high readability, which is the reasoning behind this choice.
 GAMBLE uses three primitive data types; integers(int), floating points(float) and boolean values(bool), as well as two composite data types; matrices and vector. 
 Null is not a valid value for any data type, hereby forcing the programmer to assign a value in every variable declaration.
 
-\subsection{Integers and floating points}
+\subsection*{Integers and floating points}
 Integers default to 32bit and the same goes for floating point numbers, it is possible to declare both types of another bit size; 16bit and 64bit are valid alternatives in case such would is needed.
 The time sink of using the GPU is the overhead data transfer from the CPU to the GPU, as such having the data types declarable in smaller bit sizes allows the programmer to determine what bit size advantageous.
 Thus awards the programmer the ability to optimise their computations while taking the data transfer into account.
 Integers are restricted to whole numbers, both negative and positive and are shortened to int for easier writing.
 Floating points are decimals numbers which can be both negative and positive and are shortened to float for easier writing as well.
 
-\subsection{Booleans}
+\subsection*{Booleans}
 In a language such as C, booleans are represented by integers where 0 evaluates to false and everything else evaluates to true.
 To enhance readability and avoid the booleans acting as integers, they are given their own data type, where the meaning is clear by it being either true or false.
 GAMBLE has booleans implemented because it is needed in control flows and give an advantage compared to using integers or floats for stats verification.   
 
-\subsection{Matrices and vectors}
+\subsection*{Matrices and vectors}
 The two composite data types provided by GAMBLE are representations of matrices and vectors.
 A matrix can be of size n by m where n represents rows and m represents columns.
 Each row correlates to a row vector, vectors exist both as row and column vectors.
@@ -98,10 +98,10 @@ matrix<int> m2 = mkMatrix(/* some arguments */); //making a 5x5 matrix
 \end{lstlisting}
 
 \subsection*{Operators}
-Available operators in the language can be found on \ref{tbl:operators} with a short description.
-\input{figures/Operators.tex}  
+Available operators in the language can be found on \ref{tbl:operators} with a short description.  
 It is not possible to use operators with matrices or vectors, functions which support different operations on these types will be included in a library.
 The only operators which work with booleans are the logical ``and'' and the logical ``or''. 
+\input{figures/Operators.tex}
 
 \section{Functions}
 \textbf{Function identifiers}
