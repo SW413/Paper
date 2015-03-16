@@ -1,0 +1,21 @@
+\chapter{GPU overhead}
+\label{app:gpuoverhead}
+To reach an approximation for when a GPU can run a program faster than a CPU  we wrote two equivalent programs.
+The first with C as sourcecode and the second as a C sourcecode with CUDA libraries to preform calculations on the GPU.
+Both program was run on a desktop computer with an i5 3570k processer and GTX 660 Ti graphics card.
+
+The programs performs different operations on a square matrix of size n, then we ran the program for multiple n's between 100 and 20000.
+
+The operations on the matrix can be seen on \myref{gpuoversource}, the full sourcecode of the two programs can be found on the CD-ROM on \myref{app:cd}.
+
+\begin{lstlisting}[language=C,caption={Operations on the matrix},label=gpuoversource,frame=single]
+for (i = 0; i < dim; i++) {
+	for (j = 0; j < dim; j++) {
+		a[i*dim+j] *= a[i*dim+j];
+		a[i*dim+j] -= a[i*dim+j] / 2.0;
+		a[i*dim+j] /= dim / 2;
+		a[i*dim+j] += a[i] * 2;
+	}
+}
+\end{lstlisting}
+
