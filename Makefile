@@ -11,7 +11,7 @@ OTHER = *~ *.aux *.dvi *.toc *.bbl *.blg *.gz *.out *.thm *.ps *.idx *.ilg *.ind
 
 pdflatex: master.tex
 	pdflatex --synctex=1 master.tex
-	makeglossaries.exe master
+	makeglossaries master
 	bibtex master
 	pdflatex --synctex=1 master.tex
 	pdflatex --synctex=1 master.tex
@@ -21,7 +21,7 @@ clean:
 
 fast: master.tex
 	pdflatex --synctex=1 -interaction batchmode master.tex
-	makeglossaries.exe master
+	makeglossaries master
 	bibtex master
 	pdflatex --synctex=1 -interaction batchmode master.tex
 	pdflatex --synctex=1 -interaction batchmode master.tex
