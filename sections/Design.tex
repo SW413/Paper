@@ -1,7 +1,11 @@
 \chapter{Design}
 \label{cha:Design}
-\section{Philosophy of the language}
+%Metatext for design chapter
+In this chapter the design of the languange will be represented.
+First the philosophy for the languange will be introduced to clarify what this languange is attempting to acheive.
+The philosophy will lead to some attributes being more important than others, the choices we deem the more impactful ones will also be documented in this chapter.
 
+\input{sections/philosophy.tex}
 
 \section{Generel}
 \textbf{Character set}
@@ -70,11 +74,54 @@ The vectors are a subset of matrices, as such they are represented in a similar 
 %Det kunne eventuelt give mening at lave et table over hvordan vi repræsentere data(bitwise)??
 
 \section{Functions}
-\textbf{Function identifiers}
-\textbf{Function calls}
-\textbf{Return value}
-\textbf{Premade functions (rename)}
+This section will describe GAMBLE's use of functions. 
+Like in many other languages it is possible to declare your own functions in GAMBLE.
+This is useful for organising code, and reusing parts of the sourcecode.
 
+\subsection{Function identifiers}
+When identifying a function is is required to write the body of the function.
+If function identifiers were spread out all over the document it could be hard to find where certain elements of the code were.
+In C it is possible to make prototypes of functions in the top of the document, and then declare the bodies of the functions in other places of the document. 
+This is not possible in GAMBLE because of the increase in readability.
+A function identifier is exactly like C, with the \texttt{return type} then the \texttt{functionname}, \texttt{(formal parameters)} and finally \texttt{\{body\}}.
+The function body can contain a number of statements and various controlflows.
+Furthermore it can contain calls to other functions or calls to the function itself, and hereby recursion is a possibility in GAMBLE
+An example of a function identifier can be seen on \myref{functionID}.
+Other syntaxes could have been used, but not only is this the way C does it, it is also widely used in many other languages like C\# and Java.
+
+\begin{lstlisting}[label=functionID]                                                                           %LOL%
+int add(int a, int b){
+	return a + b;
+}
+\end{lstlisting}
+
+\subsection{Function calls}
+When you have made a function, you need to call the function as well.
+This is done again exactly like in C, where you call a function by writing its name followed by the formal parameters in parenthesis.
+This is a widely used way of calling functions in many languages just like the identification was.
+An example can be seen on \myref{functionCall}.
+
+\begin{lstlisting}[label=functionCall]
+add(4, 3);
+\end{lstlisting}
+
+
+\subsection{Return value}
+Functions have a return value which can be seen on \myref{functionID}.
+The return values are all the types in GAMBLE mentioned in \myref{Types} and then void. 
+A void function will not return anything, but instead can be seen as a procedure which manipulates its input, and perhaps prints something.
+This choice was made because GAMBLE should to be able to return all the different types in the language from a function, but also be able to perform these procedures which a void function may do.
+GAMBLE assigns return values from a function just like it assigns other values to variables.
+The value or type to be returned is preceded by the keyword \texttt{return}, just like it is in C and other C-like languages.
+An example can be seen on \myref{returnFunction}.
+
+\begin{lstlisting}[label=returnFunction]
+int a = 0;
+
+a = add(4, 3);
+\end{lstlisting}
+
+\subsection{Premade functions (rename)}\todo{This} 
 %\section{Control Flow}
 %\textbf{For-loop}
 %\textbf{While-loop}
