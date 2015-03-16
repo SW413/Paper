@@ -1,0 +1,167 @@
+\chapter{Design}
+\label{cha:Design}
+%Metatext for design chapter
+In this chapter the design of the language will be represented.
+First the philosophy for the language will be introduced to clarify what this language is attempting to achieve.
+The philosophy will lead to some attributes being more important than others, the choices we deem the more impactful ones will also be documented in this chapter.
+
+\input{chapters/sections/philosophy.tex}
+
+In the following sections different parts of GAMBLE will be investigated.
+
+\section{Core syntax choices}
+
+\subsection*{Character set}
+Source code must be in Unicode.
+This is chosen even though all variables and types is in ASCII, because Unicode gives the programmer of different origins the possibility to use special characters of their first language.
+An example of this would be the danish %\"\Æ,\Ø,\Å\".
+
+\subsection*{Comments}
+Comments are done as in other large languages i.e. C and Java, with the use of \"\/\/\".
+The compiler ignores everything from \"\/\/\" to the end of line(EOL).
+The decision to use already existing solutions is to make sure the language is easy to learn if the programmer already have some coding experience.
+On \myref{lst:CommSemi} a snippet of a comment in use can be seen.
+
+\subsection*{Semicolon}
+A semicolon \"\;\" is used as a terminator and are required after every statement.
+This is again based on other already existing languages such as Java and the C family.
+The use of terminators in a language is of less importance, and therefore we decide that a semicolon is required to terminate each statement for easier readability.
+The use of semicolon can also be found on \myref{lst:CommSemi}.
+
+\begin{lstlisting}[caption={Comment and Semicolon},label={lst:CommSemi}]
+int a = 1; //initialization with specified type.
+\end{lstlisting}
+
+\subsection*{Case Sensitivity}
+The language is case sensitive to make sure the programmer uses whatever convention he or she is most used to, and pleased with.
+C\# uses case sensitivity to i.e. allow the programmer to separate class names and instances.
+Having a case sensitive language provides a higher readability and writability since the programmer is used to writing English or other spoken language which are case sensitive.
+
+\subsection*{Ignored characters}
+The language is a free-form language, which means all whitespace is ignored.
+Whitespace includes, space, tabs and line feed.
+Whitespace is ignored and have no meaning in the sourcecode, which makes it easier to organise the source code to achieve a higher level of readability.
+
+\subsection*{Scope}
+GAMBLE uses static scoping like you find in many modern programming languages like C\# and Java, and also in C.
+This gives better readability and writability, since it easier to have an understanding on what the call-stack will look like, in order to determine what different variables are in scope.
+The curly brackets \texttt{\{\}}, can be used to make a new block in the sourcecode.
+
+\subsection*{Structure} 
+The structure of a GAMBLE file is seen on \myref{lst:Structure}.
+
+\begin{lstlisting}[caption={The structure of GABMLE files},label={lst:Structure}]
+Including different libraries
+
+Function declarations
+
+Statements
+
+EOF
+\end{lstlisting}
+
+
+With this structure GAMBLE reaches a high level of readability, since all the files are structured in the same way.
+In languages like C\# and Java, a class can be written with any structure, which can result in files which are very difficult to read.
+GAMBLE aims for high readability, which is the reasoning behind this choice.
+
+\section{Type and variables} \label{sec:Types}
+%http://www.informit.com/articles/article.aspx?p=210380l9&seqNum=3
+GAMBLE uses three primitive data types; integers (int), floating points (float) and boolean values (bool), as well as two composite data types; matrices and vector. 
+Null is not a valid value for any data type, hereby forcing the programmer to assign a value in every variable declaration.
+
+\subsection*{Integers and floating points}
+Integers default to 32bit and the same goes for floating point numbers, it is possible to declare both types of another bit size; 16bit and 64bit are valid alternatives in case such would is needed.
+The time sink of using the GPU is the overhead data transfer from the CPU to the GPU, as such having the data types declarable in smaller bit sizes allows the programmer to determine what bit size advantageous.
+Thus awards the programmer the ability to optimise their computations while taking the data transfer into account.
+Integers are restricted to whole numbers, both negative and positive and are shortened to int for easier writing.
+Floating points are decimals numbers which can be both negative and positive and are shortened to float for easier writing as well.
+
+\subsection*{Booleans}
+In a language such as C, booleans are represented by integers where 0 evaluates to false and everything else evaluates to true.
+To enhance readability and avoid the booleans acting as integers, they are given their own data type, where the meaning is clear by it being either true or false.
+GAMBLE has booleans implemented because it is needed in control flows and give an advantage compared to using integers or floats for stats verification.   
+
+\subsection*{Matrices and vectors}
+The two composite data types provided by GAMBLE are representations of matrices and vectors.
+A matrix can be of size n by m where n represents rows and m represents columns.
+Each row correlates to a row vector, vectors exist both as row and column vectors.
+As such a matrix can be seen as a number n of stacked row vectors, which happen to have the same representation as arrays do in C-like languages i.e vectors can be seen as a type of array, and matrices as multiple arrays.
+The vectors are a subset of matrices, as such they are represented in a similar fashion.
+Both matrices and vectors must be declared with the type of which the entrances should represent, with \texttt{int}, \texttt{float} and \texttt{bool} as possible datatypes.
+An example of an matrix can be seen on \myref{lst:matrix}.
+
+\begin{lstlisting}[caption={Creating a matrix},label={lst:matrix}]
+matrix<int> m = [1, 0; 0, 1];
+
+// Alternatives
+matrix<int> m2 = mkMatrix(/* some arguments */); // making a 5x5 matrix
+\end{lstlisting}
+
+\subsection*{Operators}
+Available operators in the language can be found on \ref{tbl:operators} with a short description.  
+It is not possible to use operators with matrices or vectors, functions which support different operations on these types will be included in a library.
+The only operators which work with booleans are the logical ``and'' and the logical ``or''. 
+\input{figures/Operators.tex}
+
+\section{Functions}
+This section will describe GAMBLE's use of functions. 
+Like in many other languages it is possible to declare your own functions in GAMBLE.
+This is useful for organising code, and reusing parts of the sourcecode.
+
+\subsection*{Function identifiers}
+When identifying a function is is required to write the body of the function.
+If function identifiers were spread out all over the document it could be hard to find where certain elements of the code were.
+In C it is possible to make prototypes of functions in the top of the document, and then declare the bodies of the functions in other places of the document. 
+This is not possible in GAMBLE because of the increase in readability.
+A function identifier is exactly like C, with the \texttt{return type} then the \texttt{functionname}, \texttt{(formal parameters)} and finally \texttt{\{body\}}.
+The function body can contain a number of statements and various controlflows.
+Furthermore it can contain calls to other functions or calls to the function itself, and hereby recursion is a possibility in GAMBLE
+An example of a function identifier can be seen on \myref{lst:functionID}.
+Other syntaxes could have been used, but not only is this the way C does it, it is also widely used in many other languages like C\# and Java.
+
+
+\begin{lstlisting}[caption={Function Idemtifier},label={lst:functionID}]                                                        
+int add(int a, int b){
+	return a + b;
+}
+\end{lstlisting}
+
+\subsection*{Function calls}
+When you have made a function, you need to call the function as well.
+This is done again exactly like in C, where you call a function by writing its name followed by the formal parameters in parenthesis.
+This is a widely used way of calling functions in many languages just like the identification was.
+An example can be seen on \myref{lst:functionCall}.
+
+\begin{lstlisting}[caption={Function Call},label={lst:functionCall}]
+add(4, 3);
+\end{lstlisting}
+
+
+\subsection*{Return value}
+Functions have a return value which can be seen on \myref{lst:functionID}.
+The return values are all the types in GAMBLE mentioned in \myref{sec:Types} and then void. 
+A void function will not return anything, but instead can be seen as a procedure which manipulates its input, and perhaps prints something.
+This choice was made because GAMBLE should to be able to return all the different types in the language from a function, but also be able to perform these procedures which a void function may do.
+GAMBLE assigns return values from a function just like it assigns other values to variables.
+The value or type to be returned is preceded by the keyword \texttt{return}, just like it is in C and other C-like languages.
+An example can be seen on \myref{lst:returnFunction}.
+
+\begin{lstlisting}[caption={Return Function},label={lst:returnFunction}]
+int a = 0;
+
+a = add(4, 3);
+\end{lstlisting}
+
+%STD LIB EVT?!
+%\subsection*{Premade functions (rename)}\todo{This} 
+%\section{Control Flow}
+%\textbf{For-loop}
+%\textbf{While-loop}
+%\textbf{If \& If else}
+
+%% OLD
+%\input{sections/subsections/controlflow.tex}
+%% New
+\input{chapters/sections/subsections/controlflow2.tex}
+
