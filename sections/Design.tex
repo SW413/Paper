@@ -50,7 +50,7 @@ Available operators in the language can be found on \ref{tbl:operators} with a s
 \textbf{Structure} 
 
 
-\section{Type and variables}
+\section{Type and variables}\label{sec:Types}
 %http://www.informit.com/articles/article.aspx?p=2103809&seqNum=3
 GAMBLE uses three primitive data types; integers(int), floating points(float) and boolean values(bool), as well as two composite data types; matrices and vector.
 
@@ -109,7 +109,7 @@ add(4, 3);
 
 \subsection{Return value}
 Functions have a return value which can be seen on \myref{lst:functionID}.
-The return values are all the types in GAMBLE mentioned in \myref{Types} and then void. 
+The return values are all the types in GAMBLE mentioned in \myref{sec:Types} and then void. 
 A void function will not return anything, but instead can be seen as a procedure which manipulates its input, and perhaps prints something.
 This choice was made because GAMBLE should to be able to return all the different types in the language from a function, but also be able to perform these procedures which a void function may do.
 GAMBLE assigns return values from a function just like it assigns other values to variables.
