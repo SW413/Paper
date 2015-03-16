@@ -1,0 +1,144 @@
+\section{Control Flow}\label{subsec:control-flow}\todo{Troels: Imo er hele dette afsnit på en måde for langt. }
+Control flow is any part of the language in which a branch occurs. 
+A branch is in this case a change in which instruction happens next. 
+These come in three variations: primitives, choice and loops.
+C, C\#, Java etc. contain some or all of these elements to control the flow of a program:
+
+\textbf{Primitive:}
+\begin{itemize}[noitemsep,topsep=-5pt] %removes whitespace before and between points.
+    \item \texttt{goto}
+\end{itemize}
+
+\textbf{Choice:}
+\begin{itemize}[noitemsep,topsep=-5pt] %removes whitespace before and between points.
+    \item \texttt{if/if-else}
+    \item \texttt{?:} (Ternary operator)
+    \item \texttt{switch}
+\end{itemize}
+
+\textbf{Loops:}
+\begin{itemize}[noitemsep,topsep=-5pt] %removes whitespace before and between points.
+    \item \texttt{while}
+    \item \texttt{for}
+    \item \texttt{foreach}
+    \item \texttt{do..while}
+\end{itemize}
+
+If a programming language has if, goto and label then the other constructs can be made.
+For example a while-loop can be translated to a combination of the if and goto statements, this is shown in \myref{ifgotowhile1} and \myref{ifgotowhile2} written in C. 
+
+\noindent\begin{minipage}{.45\textwidth}
+\begin{lstlisting}[caption=Loop made with while.,frame=tlrb, label=ifgotowhile1, numbers=none]{Name}
+while ( condition )
+{
+    statement();
+}
+\end{lstlisting}
+\end{minipage}\hfill
+\begin{minipage}{.45\textwidth}
+\begin{lstlisting}[caption=The same loop with if and goto.,frame=tlrb, label=ifgotowhile2, numbers=none]{Name}
+label startOfLoop:
+if ( condition )
+{
+    statement();
+    goto startOfLoop;
+}
+\end{lstlisting}
+\end{minipage}
+
+The same can be done with the \texttt{for} and \texttt{do..while} loops. 
+This means that the only need control structures should be \texttt{if} and \texttt{goto}. 
+However the use of goto is considered harmful, because it is easy to make mistakes when using it. \citep{DijkstraGoto}
+Even though \texttt{for} and \texttt{while} are similar, they are often used in different contexts.
+The for loop is useful for iterating over a collection or knowing exactly how many time the code is executed. 
+Therefore we have decided to include both \texttt{for} and \texttt{while} in GAMBLE, but not \texttt{foreach} and \texttt{do..while}, this is to simplify the number of control structures.
+
+We have decided to keep the traditional \texttt{if} and \texttt{if-else} constructs. 
+These are useful, and can achieve the same as a \texttt{switch}, by chaining if-else statements, so we have excluded the switch construct. 
+The ternary operator, also known as the inline if, written as \texttt{?:} in C and many other languages, is useful for compacting code to make it more readable, therefore we include it in GAMBLE.
+
+\subsection{if, if-else and ?:} \todo{Jeg blander meget rundt i statement og construct, kan ikke helt beslutte mig. }
+Examples of if/if-else GAMBLE are shown in \myref{iflst} and \myref{ifelselst}. 
+The condition is enclosed in a parenthesis this is to make the if construct similar to the function call, in which the parameters are in a parenthesis. 
+All the conditional code must be enclosed in a curly bracket, this is to make the code more readable. 
+The use of curly brackets is to make them similar to functions to make the language more alike \todo{mangler et godt fagord her. marc: more familiar/relateable/orthogonal?}.
+
+\noindent\begin{minipage}{.45\textwidth}
+\begin{lstlisting}[caption=An if statement in GAMBLE.,frame=tlrb, label=iflst, numbers=none]{Name}
+if ( condition )
+{
+    statement();
+}
+\end{lstlisting}
+\begin{lstlisting}[caption=A use of \texttt{?:} in GAMBLE.,frame=tlrb, label=terlst, numbers=none]{Name}
+condition ? ifTrue() : ifFalse();
+\end{lstlisting}
+
+\end{minipage}\hfill
+\begin{minipage}{.45\textwidth}
+\begin{lstlisting}[caption=An if-else statement in GAMBLE.,frame=tlrb, label=ifelselst, numbers=none]{Name}
+if ( condition )
+{
+    statement();
+} else {
+    alternative_statement();
+}
+\end{lstlisting}
+\end{minipage}
+
+An example of the ternary operator \texttt{?:} is shown in \myref{terlst}. 
+If the boolean statement before the question mark is true, then the first statement is executed otherwise the second is. 
+The ternary operator can also be used for an assignment, only if the value getting assigned to is left of the question mark.
+As the ternary operator allows any statement in its middle body, it is possible to chain them together, just like a if-else chain. 
+
+\subsection{while}
+An example of the while loop in GAMBLE is shown in \myref{whilelst}. 
+The syntax is identical to the if statement, which also makes it look like a function in certain ways. 
+It's also identical to the syntax found in many other programming languages and is therefore similar to many programmers. \todo{Skal sådan et argument være med?}
+
+\noindent\begin{minipage}{.40\textwidth}
+\begin{lstlisting}[caption=A while loop in GAMBLE.,frame=tlrb, label=whilelst, numbers=none]{Name}
+while ( condition )
+{
+    statement();
+}
+\end{lstlisting}
+\end{minipage}\hfill
+\begin{minipage}{.50\textwidth}
+\begin{lstlisting}[caption=A for loop in GAMBLE.,frame=tlrb, label=forlst, numbers=none, language=C]{Name}
+for ( initialize; condition; update )
+{
+    statement();
+}
+\end{lstlisting}
+\end{minipage}
+
+\subsection{for}
+An example of the for loop in GAMBLE is shown in \myref{forlst}.
+An alternative to this syntax is one which allows an iteration over a collection such as a foreach or one that iterates over a range.
+Examples of how such a syntax should be is shown in \myref{forextlst}.
+
+\begin{lstlisting}[caption=Alternative syntaxes for the for loop.,frame=tlrb, label=forextlst, numbers=none, language=C]{Name}
+// iterates over every int in the range.
+for ( int i in range 0:10 )
+{
+    statement(i);
+}
+// iterates over every other int in the range.
+for ( int i in range 0:10:2 )
+{
+    statement(i);
+}
+// iterates over each element as a reference to the element in the collection
+foreach ( item i in collection )
+{
+    statement(i);
+}
+// iterates over each index in a collection
+foreach ( index i in collection )
+{
+    statement(collection[i]);
+}
+\end{lstlisting}
+
+These each have the strength of expressing clearly what they do, however they are easily expressed in the form expressed in \myref{forlst}.

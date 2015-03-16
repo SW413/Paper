@@ -122,13 +122,13 @@
 
 %%% Text stuff %%%
 % Filler text
-\usepackage{lipsum}
+%\usepackage{lipsum}
 % Page counting
-\usepackage{totpages}
+%\usepackage{totpages}
 % Acronyms
-\usepackage{acronym}
+%\usepackage{acronym}
 %avoid widows
-\widowpenalty10000
+%\widowpenalty10000
 
 
 %%% Source Code Stuff %%%
@@ -569,15 +569,9 @@ textsize=scriptsize, %size of the text in the todonotes
 
 
 % GLOSARIEIASI
-\usepackage{glossaries}
+\usepackage[acronym]{glossaries}
 \usepackage{xparse}
 
 \makeglossaries
-\DeclareDocumentCommand{\newdualentry}{ O{} O{} m m m m } {
-  \newglossaryentry{gls-#3}{name={#5},text={#5\glsadd{#3}},
-    description={#6},#1
-  }
-  \newacronym[see={[Glossary:]{gls-#3}},#2]{#3}{#4}{#5\glsadd{gls-#3}}
-}
 
-\input{sections/glossaries.tex}
+\input{formal/glossaries.tex}
