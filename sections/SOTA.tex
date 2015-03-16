@@ -1,10 +1,9 @@
-\section{State of the art} % (fold)
+\section{Existing solutions} % (fold)
 \label{sec:state_of_the_art}
 In this section different approaches to GPGPU using existing programming languages and libraries will be presented.
 Each language and library will be running with either the OpenCL or the CUDA framework.
-Every language and library described in this section can be found on \ref{tbl:sota} for an overview of their comparison.
+Every language and library described in this section can be found on \myref{tbl:sota} for an overview of their comparisons.
       
-
 \subsection{Libraries} 
 There exists libraries for programming languages in order to utilise the GPU for computations by binding either to OpenCL or CUDA.
 Generally the libraries used for GPU work often requires a lot of boilerplate and has what we deem to be a low level of abstraction.
@@ -20,8 +19,7 @@ These C libraries have the same problem as with the Java library as one needs to
 The abstraction level is therefore deemed low as one must keep in mind what is where and what can be done with each specific element.\citep{C_CUDA} 
 There is also different libraries for the R language, one of which is called rpud.
 It provides many functions from the R language, which can be performed on the GPU, and it is based on CUDA.
-We deem that it has a high level of abstractions, since it is just function calls, without any memory allocation or direct GPU calls from the source code. \todo{Rcuda source}                                                 
-
+We deem that it has a high level of abstractions, since it is just function calls, without any memory allocation or direct GPU calls from the source code. \citep{Rcuda}                                                 
 
 \subsection{Theano (Python)}
 Theano is a Python library that allows one to define, optimise, and evaluate mathematical expressions involving multi-dimensional arrays, while utilising the GPU.
@@ -37,21 +35,20 @@ MATLAB is a high-level mathematical programming language with an interactive env
 MATLAB supports the use of parallel computations in the form of using either a GPU or cloud computing.
 It only natively supports the use of CUDA enabled NVIDIA GPUs for its parallel computations on GPUs, but OpenCL extensions do exist such that it becomes possible to use other devices.
 The user of MATLAB much declare when the GPU must be used and also allocate memory for these tasks.
-Declaring the memory gives a lot of boilerplate since it needs to be done for each element that one wants to compute.\citep{MATLAB_backend,MATLAB_benchmark}
+Declaring the memory gives a lot of boilerplate since it needs to be done for each element that one wants to compute.\citep{MATLAB_backend,MATLAB_benchmark,}
+
 Using the interactive environment provided by MATLAB there are built in tools for parallel computations on GPUs.
 These tools provide a higher level of abstraction such as parallel for-loops (parfor) and special array types for distributed processing.
 For GPU computing MATLAB simplify parallel code development by abstracting away the complexity of managing computations and data.\citep{MATLAB_parallel}
 
 \subsection{Julia}
 Julia is a high-level, high-performance dynamic programming language for technical computing, with syntax familiar to users of other technical computing environments.
-The language supports C function calls directly with no use of wrappers or special APIs.
-There are powerful shell-like capabilities for managing other processes.
-Julia is designed for parallelism and cloud computing; making it efficient and easy to use.
+Julia is designed for parallelism and cloud computing; making it efficient and easy to use for these tasks.
 Julia has a high level of abstraction because the user only needs a single keyword (\@parallel) for it to do the calculation in parallel.
 The code is therefore looking clean without any boilerplate and is easy to read.
 Julia uses both OpenCL and CUDA as back-end making it very compatible and easy to use on different systems and devices.\citep{Julia_Git,Julia}
 
-\input{figures/MathGPULanguages.tex}   
+\input{figures/MathGPULanguages.tex} 
 
 \subsection{Conclusion}  
 
