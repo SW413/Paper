@@ -24,30 +24,30 @@
 %frontmatter
 \pagestyle{empty} %disable headers and footers
 \pagenumbering{roman} %use roman page numbering in the frontmatter
-\input{sections/frontpage.tex}
-\input{sections/colophon.tex}
-\input{sections/titlepages.tex}
+\input{formal/frontpage.tex}
+\input{formal/colophon.tex}
+\input{formal/titlepages.tex}
 \cleardoublepage
 \pdfbookmark[0]{Contents}{label:contents}
 \pagestyle{empty} %enable headers and footers again
 \tableofcontents*
 \listoftodos
-\input{sections/preface.tex}
+\input{formal/preface.tex}
 \cleardoublepage
 %mainmatter
 \pagenumbering{arabic}
 
-\input{sections/introduction.tex}
-\input{sections/GPU.tex} %label sec:comparch
-\input{sections/SOTA.tex}
-\input{sections/problemFormulation.tex}
-\input{sections/strategy.tex}
-\input{sections/Design.tex}
-%\input{sections/conclusion.tex}
+\input{chapters/introduction.tex}
+%\input{sections/GPU.tex} %label sec:comparch
+%\input{sections/SOTA.tex}
+%\input{sections/problemFormulation.tex}
+\input{chapters/strategy.tex}
+\input{chapters/Design.tex}
+\input{chapters/conclusion.tex}
 \bibliography{bib/mybib}
 \label{bib:mybiblio}
 
 \appendix
-\input{sections/appendices/gpuoverhead.tex} %label app:gpuoverhead
-\input{sections/appendices/cd.tex} %label app:cd
+\input{chapters/sections/appendices/gpuoverhead.tex} %label app:gpuoverhead
+\input{chapters/sections/appendices/cd.tex} %label app:cd
 \end{document}
