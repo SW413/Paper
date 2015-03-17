@@ -1,21 +1,14 @@
 %\gls{gamble} is used to refer to our languange
-\section{Design philosophy}
+\section{Design Philosophy}
 For complex computations or large datasets one must acknowledge the computing power required for such computations.
 The main focus for \gls{gamble} is to use the computational powers of the \acrshort{gpu} to handle such computations without it being inconvenient for the programmer.
-From \myref{sec:state_of_the_art} we know that several libraries and languages allows the programmer to explicitly designate workloads to the \acrshort{gpu} however this often requires explicit memory handling as well.
-\gls{gamble} is meant to be used for computations which has a need for more computational power; due to this the language should not be too unfamiliar.
-Keeping \gls{gamble} familiar to other languages reduces the time required for users to familiarize themselves with \gls{gamble}.
+As described in \myref{sec:state_of_the_art} several libraries and languages allows the programmer to explicitly designate workloads to the \acrshort{gpu} however this often requires explicit memory handling as well.
+%\gls{gamble} is meant to be used for computations which has a need for more computational power; due to this the language should not be too unfamiliar.
+Keeping \gls{gamble} familiar to other languages makes it more accessiblez and reduces the time required for users to familiarize themselves with it.
 This is done by using a C-like syntax, while stripping \gls{gamble} of features we deem not necessary for a laungauge which main focus lies in easy acces to \acrshort{gpgpu} programming and linear algebra calculations.
 These choises will be documented in the rest of this chapter.
 As the \acrshort{gpu} is the resource being used to achieve more computing power, the data computed must also be applicable to the niche of the GPU, i.e. the data must be parallelisable as explained in \myref{sec:comparch}.
 This basic need will influence how data is represented, and also puts focus onto matrices and vector calculations, which as mentioned before often can be paralellised.
-As it follows from this philosophy, some criteria for \gls{gamble} exists.
-\begin{itemize}
-	\item Allow the programmer to use the \acrshort{gpu} without it being inconvenient.
-	\item Avoid implementing unnecessary data types and features.
-	\item Let the language be somewhat familiar to read and use.
-	\item Let the language promote read- and write-ability.
-\end{itemize}
 
 \textbf{Allow the programmer to use the \acrshort{gpu} without it being inconvenient}
 
@@ -39,9 +32,9 @@ Therefore to use the niche that \gls{gamble} proclaims, having the language be f
 \textbf{Let the language promote read- and write-ability}
 
 Read- and write-ability directly influences the reliability of a language. 
-The easier a program is to write, the more likely it is to be correct.\citep{Sebesta}
+The easier a program is to write, the more likely it is to be correct. \citep{Sebesta}
 This is gained through using a familiar syntax, as mention above, as well as sticking to certain language characteristics shown in \myref{tbl:concepts}.
-It makes sense for \gls{gamble} to adopt a C-like syntax, as several of the most popular languages also uses a C-like syntax, the difference will be in how code is structured.\citep{TIOBE}
+It makes sense for \gls{gamble} to adopt a C-like syntax, as several of the most popular languages also uses a C-like syntax, the difference will be in how code is structured. \citep{TIOBE}
 \begin{table}[h]
 \center
 \begin{tabular}{|l|l|c|c|}
