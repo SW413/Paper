@@ -27,4 +27,11 @@ fast: master.tex
 	pdflatex --synctex=1 -interaction batchmode master.tex
 	pdflatex --synctex=1 -interaction batchmode master.tex
 	
+hax: master.tex
+	pdflatex --synctex=1 -interaction scrollmode master.tex
+	makeglossaries master
+	bibtex master
+	pdflatex --synctex=1 -interaction scrollmode master.tex
+	pdflatex --synctex=1 -interaction scrollmode master.tex
+	pdflatex --synctex=1 -interaction scrollmode master.tex
 	
