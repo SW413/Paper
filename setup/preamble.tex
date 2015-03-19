@@ -92,21 +92,21 @@
 
 %%% Mathematic formulas %%%
 % AMS math
-\usepackage{amsmath}
-\usepackage{amssymb}
+%\usepackage{amsmath}
+%\usepackage{amssymb}
 % Extra fonts (for math, I think)
 \usepackage{stmaryrd}
 % Access text symbols
 \usepackage{textcomp}
 % Extend AMS
-\usepackage{mathtools}
-\usepackage{cancel}
+%\usepackage{mathtools}
+%\usepackage{cancel}
 % Use theorems in your document
 % The ntheorem package is also used for the example environment
 % When using thmmarks, amsmath must be an option as well. Otherwise \eqref doesn't work anymore.
-\usepackage[framed,amsmath,thmmarks]{ntheorem}
+%\usepackage[framed,amsmath,thmmarks]{ntheorem}
 % Pretty fractions, just because
-\usepackage{nicefrac}
+%\usepackage{nicefrac}
 
 
 %%% Graphics %%%
@@ -122,13 +122,13 @@
 
 %%% Text stuff %%%
 % Filler text
-\usepackage{lipsum}
+%\usepackage{lipsum}
 % Page counting
-\usepackage{totpages}
+%\usepackage{totpages}
 % Acronyms
-\usepackage{acronym}
+%\usepackage{acronym}
 %avoid widows
-\widowpenalty10000
+%\widowpenalty10000
 
 
 %%% Source Code Stuff %%%
@@ -566,3 +566,12 @@ textsize=scriptsize, %size of the text in the todonotes
 \crefname{exa}{eksempel}{eksempler}
 \newcommand{\myref}[1]{\autoref{#1}}
 \newcommand{\Myref}[1]{\Autoref{#1}}
+
+
+% GLOSARIEIASI
+\usepackage[acronym]{glossaries}
+\usepackage{xparse}
+
+\makeglossaries
+
+\input{formal/glossaries.tex}

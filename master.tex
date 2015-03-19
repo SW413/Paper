@@ -21,6 +21,7 @@
 \input{setup/macros.tex}% my new macros
 
 \begin{document}
+%
 %frontmatter
 \pagestyle{empty} %disable headers and footers
 \pagenumbering{roman} %use roman page numbering in the frontmatter
@@ -36,14 +37,11 @@
 \cleardoublepage
 %mainmatter
 \pagenumbering{arabic}
-
 \input{chapters/introduction.tex}
-%\input{sections/GPU.tex} %label sec:comparch
-%\input{sections/SOTA.tex}
-%\input{sections/problemFormulation.tex}
 \input{chapters/strategy.tex}
 \input{chapters/Design.tex}
 \input{chapters/conclusion.tex}
+\printglossaries
 \bibliography{bib/mybib}
 \label{bib:mybiblio}
 
