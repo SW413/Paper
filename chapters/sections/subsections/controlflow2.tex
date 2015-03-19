@@ -1,6 +1,6 @@
-\section{Control Flow}\label{subsec:control-flow}\todo{Troels: Imo er hele dette afsnit på en måde for langt. }
+\section{Control Flow}\label{subsec:control-flow}
 Control flow is any part of the language in which a branch occurs. 
-A branch is in this case a change in which instruction happens next. 
+A branch is in this case a is a place in the code where multiple codepaths are possible. 
 These come in three variations: primitives, choice and loops.
 C, C\#, Java etc. contain some or all of these elements to control the flow of a program:
 
@@ -24,8 +24,8 @@ C, C\#, Java etc. contain some or all of these elements to control the flow of a
     \item \texttt{do..while}
 \end{itemize}
 
-If a programming language has if, goto and label then the other constructs can be made.
-For example a while-loop can be translated to a combination of the if and goto statements, this is shown in \myref{ifgotowhile1} and \myref{ifgotowhile2} written in C. 
+From the elements if, goto and label the other constructs above can be made.
+For example a \texttt{while} loop can be translated to a combination of the if and goto statements, this is shown in \myref{ifgotowhile1} and \myref{ifgotowhile2} written in C. 
 
 \noindent\begin{minipage}{.45\textwidth}
 \begin{lstlisting}[caption=Loop made with while.,frame=tlrb, label=ifgotowhile1, numbers=none]{Name}
@@ -47,24 +47,24 @@ if ( condition )
 \end{minipage}
 
 The same can be done with the \texttt{for} and \texttt{do..while} loops. 
-This means that the only need control structures should be \texttt{if} and \texttt{goto}. 
-However the use of goto is considered harmful, because it is easy to make mistakes when using it. \citep{DijkstraGoto}
+This means that the only needed control structures should be \texttt{if} and \texttt{goto}. 
+However the use of goto is considered harmful in many cases, because it is easy to make mistakes when using it. \citep{DijkstraGoto}
 Even though \texttt{for} and \texttt{while} are similar, they are often used in different contexts.
-The for loop is useful for iterating over a collection or knowing exactly how many time the code is executed. 
+The for \texttt{loop} is useful for iterating over a collection or knowing exactly how many time the code is executed. 
 Therefore we have decided to include both \texttt{for} and \texttt{while} in \gls{gamble}, but not \texttt{foreach} and \texttt{do..while}, this is to simplify the number of control structures.
 
-We have decided to keep the traditional \texttt{if} and \texttt{if-else} constructs. 
-These are useful, and can achieve the same as a \texttt{switch}, by chaining if-else statements, so we have excluded the switch construct. 
-The ternary operator, also known as the inline if, written as \texttt{?:} in C and many other languages, is useful for compacting code to make it more readable, therefore we include it in \gls{gamble}.
+\subsection{Choice structure}
+We have decided to implement the traditional \texttt{if} and \texttt{if-else} constructs. 
+These are useful, and can achieve the same as a \texttt{switch}, by chaining if-else statements, therefore we have excluded the switch construct to simplify the implement. 
+The ternary operator, also known as the inline if, written as show in \myref{terlst} in C and many other languages, is useful for compacting code to make it more readable, therefore we include it in \gls{gamble}.
 
-\subsection{if, if-else and ?:} \todo{Jeg blander meget rundt i statement og construct, kan ikke helt beslutte mig. }
 Examples of if/if-else \gls{gamble} are shown in \myref{iflst} and \myref{ifelselst}. 
 The condition is enclosed in a parenthesis this is to make the if construct similar to the function call, in which the parameters are in a parenthesis. 
 All the conditional code must be enclosed in a curly bracket, this is to make the code more readable. 
-The use of curly brackets is to make them similar to functions to make the language more alike \todo{mangler et godt fagord her. marc: more familiar/relateable/orthogonal?}.
+The use of curly brackets is to make them similar to functions and the explicit declaring the scope if the choice structure.
 
 \noindent\begin{minipage}{.45\textwidth}
-\begin{lstlisting}[caption=An if statement in \gls{gamble}.,frame=tlrb, label=iflst, numbers=none]{Name}
+\begin{lstlisting}[caption=An if construct in \gls{gamble}.,frame=tlrb, label=iflst, numbers=none]{Name}
 if ( condition )
 {
     statement();
@@ -76,7 +76,7 @@ condition ? ifTrue() : ifFalse();
 
 \end{minipage}\hfill
 \begin{minipage}{.45\textwidth}
-\begin{lstlisting}[caption=An if-else statement in \gls{gamble}.,frame=tlrb, label=ifelselst, numbers=none]{Name}
+\begin{lstlisting}[caption=An if-else construct in \gls{gamble}.,frame=tlrb, label=ifelselst, numbers=none]{Name}
 if ( condition )
 {
     statement();
@@ -86,16 +86,13 @@ if ( condition )
 \end{lstlisting}
 \end{minipage}
 
-An example of the ternary operator \texttt{?:} is shown in \myref{terlst}. 
-If the boolean statement before the question mark is true, then the first statement is executed otherwise the second is. 
+In a ternary operator, if the boolean statement before the question mark is true, then the first statement is executed otherwise the second is. 
 The ternary operator can also be used for an assignment, only if the value getting assigned to is left of the question mark.
 As the ternary operator allows any statement in its middle body, it is possible to chain them together, just like a if-else chain. 
 
 \subsection{while}
 An example of the while loop in \gls{gamble} is shown in \myref{whilelst}. 
-The syntax is identical to the if statement, which also makes it look like a function in certain ways. 
-It's also identical to the syntax found in many other programming languages and is therefore similar to many programmers. \todo{Skal sådan et argument være med?}
-
+The syntax is identical to the if statement, which also makes it look like a function in certain ways and exciplict express the scope 
 \noindent\begin{minipage}{.40\textwidth}
 \begin{lstlisting}[caption=A while loop in \gls{gamble}.,frame=tlrb, label=whilelst, numbers=none]{Name}
 while ( condition )
@@ -113,8 +110,8 @@ for ( initialize; condition; update )
 \end{lstlisting}
 \end{minipage}
 
-\subsection{for}
-An example of the for loop in \gls{gamble} is shown in \myref{forlst}.
+\subsection{for loop}
+An example of the \texttt{for} loop in \gls{gamble} is shown in \myref{forlst}.
 An alternative to this syntax is one which allows an iteration over a collection such as a foreach or one that iterates over a range.
 Examples of how such a syntax should be is shown in \myref{forextlst}.
 
