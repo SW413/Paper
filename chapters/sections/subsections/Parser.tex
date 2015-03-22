@@ -1,5 +1,5 @@
 \subsection*{Parser}
-The parser is based on formal syntax specification such as a CFG. 
+The parser is based on formal syntax specification such as a context-free grammar, whose alphabet consists of tokens produced by the lexer. 
 It reads tokens and groups them into phrases according to the syntax specification.
 The Parser verifies the syntax, and if an syntax error is found it issues an corresponding error message.
  \citep{Crafting}
@@ -11,9 +11,6 @@ There are different kind of parsers, both bottom-up and top down parsers.
 We have chosen to make a top- down parser, more specific a recursive descent parser.
 A recursive decent parser is a kind of top-down parser build from a set of mutually recursive procedures where each such procedure usually implements on of the productions of the grammar.
 The structure of the resulting program closely mirrors the grammar it recognizes.\citep{Recursive_programming}
-
-
-
 
 \subsubsection*{Visitor Pattern}
 We have chosen the visitor pattern which is a alternative to the listener pattern.

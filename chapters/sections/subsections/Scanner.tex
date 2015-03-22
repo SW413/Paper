@@ -1,2 +1,41 @@
 \subsection{Scanner}
-\todo{to be written}
+The primary function of a scanner is to transform a sequence of chracters into a sequence of tokens.
+A scanner is sometime called a lexer og lexical anayzer.
+The scanner is generally combined with a parser, which together analyze the syntax of the language.
+With the scanner we can specify how our language should be witting. 
+An example of this, would be whatever you could use the notation .1 or 0.1 for a decimal number.
+The scanner syntax is usually regular language, whose alphabet consists of the individual characters of the source code.
+A scanners job is to convert a stream of characters into a stream of tokens.
+A token is a character string that is used when writing source code in the programming language.
+
+%We have been using ANTLR to generate our token stream from the context-free grammar.
+%Using ANTLR is saving us time, but writing a scanner in the hand is possible.
+%Writing a scanner from scratch means reimplementing components that are common to all scanners.
+%This leads to a heavy reproduction of effort.
+Some example of a token stream from GAMBLE can be seen on \myref{}.
+Looking at the integer it is seen  the int must start with a number 1-9 and then have all the 0-9 that is needed.
+When the formal structure of tokens and program structure is given, it is possible to go through the language and look for design flaws.
+This allows for flaws to be discovered before the design is complete, and therefore provide a better flow in the creation of a compiler or interpretor.
+
+\begin{lstlisting}[caption={Example from out Scanner,label={lst:token},numbers=none]
+\\Integers
+INT: 'int' | 'int16' | 'int32' | 'int64' ; // Integers
+INTNUM: '0' | SIGN? [1-9][0-9]* ;
+
+\\Matrices and vectors
+MATRIX: 'matrix' ;
+ROWVECTOR: 'rowvector' | 'rvec' ;
+COLVECTOR: 'colvector' | 'cvec' ;  
+
+\\Whitespace and comments
+WS: [ \t ]+ -> skip;
+NL: [ \r \n | \n ] -> skip;
+
+COMMENT
+    :   '/*' .*? '*/' -> skip
+    ;
+
+LINE_COMMENT
+    :   '//' ~[\r\n]* -> skip
+    ;
+\end{lstlisting}
