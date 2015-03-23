@@ -1,23 +1,27 @@
 \subsection*{Parser}
-The parser is based on formal syntax specification such as a context-free grammar, whose alphabet consists of tokens produced by the lexer. 
-It reads tokens and groups them into phrases according to the syntax specification.
-The Parser verifies the syntax, and if an syntax error is found it issues an corresponding error message.
- \citep{Crafting}
-By using a parser generator like ANTLR or SapleCC handling of syntactic error and repairs can be done automatically.
-An parser can also be written manual but doing so can result in syntactic errors that is hard to locate or solve.
-We have been using ANTLR as our parser generator tool, for ease of use.
+The parser is based on formal syntax specification such as a \acrfull{cfg} written in \acrfull{ebnf}, whose alphabet consists of tokens produced by the lexer. 
+The parser reads tokens and groups them into phrases according to the syntax specification.
+The parser verifies the syntax, and if a syntax error is found it provides a corresponding error message. \citep{Crafting_book}
+By using a parser generator like ANTLR or SableCC, handling of syntactic error and repairs can be done automatically.
+A parser can also be written manually but doing so can result in syntactic errors that is hard to locate or solve.
+We have chosen to use ANTLR to generate our parser.
 
-There are different kind of parsers, both bottom-up and top down parsers.
-We have chosen to make a top- down parser, more specific a recursive descent parser.
-A recursive decent parser is a kind of top-down parser build from a set of mutually recursive procedures where each such procedure usually implements on of the productions of the grammar.
-The structure of the resulting program closely mirrors the grammar it recognizes.\citep{Recursive_programming}
+There are different kind of parsers, most common are bottom-up and top-down parsers.
+ANTLR makes a top-down parser, more specific a recursive descent parser.
+A recursive decent parser is a kind of top-down parser build from a set of mutually recursive procedures where each such procedure usually implements one of the productions of the grammar.
+The structure of the resulting program closely mirrors the grammar it recognizes. \citep{Recursive_programming}
 
-\subsubsection*{Visitor Pattern}
-We have chosen the visitor pattern which is a alternative to the listener pattern.
+The parser outputs a parse-tree which is an alternate representation of the input source-code. 
+This also verifies if the input is syntactical valid, but not type and scope checking which is done later. 
+
+\subsubsection*{Traversing the Parse-Tree}
+Two of the most common ways of travering the parse-tree are the visitor pattern and the listener pattern. 
 Both of the patterns are parse-tree listeners and visitors to build language applications.
 The biggest difference between listeners and visitors is that listener methods are not explicitly responsible for calling methods to walk every children.
 The visitor pattern on the other hand must walk the children in the parse-tree to keep the tree traversal going.
-Visitor get to control the tree traversal and in what order the tree is visited because of these explicit calls to visit children.\citep{ANTLR4_Book}
+Visitor get to control the tree traversal and in what order the tree is visited because of these explicit calls to visit children. \citep{ANTLR4_Book}
+
+We have chosen the visitor pattern to traverse the parse tree. 
 
 Using the visitor pattern we can keep application-specific code out of out grammar.
 It is possible, with the visitor pattern, add functionality to pass around return values and arguments.
