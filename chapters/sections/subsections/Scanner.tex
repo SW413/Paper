@@ -15,19 +15,19 @@ A token is a character string that is used when writing source code in the progr
 Some example of a token stream from GAMBLE can be seen on \myref{lst:token}.
 Looking at the integer it is seen  the int must start with a number 1-9 and then have all the 0-9 that is needed.
 When the formal structure of tokens and program structure is given, it is possible to go through the language and look for design flaws.
-This allows for flaws to be discovered before the design is complete, and therefore provide a better flow in the creation of a compiler or interpretor. \citep{Crafting}
+This allows for flaws to be discovered before the design is complete, and therefore provide a better flow in the creation of a compiler or interpretor. \citep{Crafting_book}
 
-\begin{lstlisting}[caption=Example from out Scanner,label={lst:token},numbers=none]
-\\Integers
+\begin{lstlisting}[caption=Example from out Scanner,,frame=tlrb,label={lst:token},numbers=none]
+// Integers
 INT: 'int' | 'int16' | 'int32' | 'int64' ; // Integers
 INTNUM: '0' | SIGN? [1-9][0-9]* ;
 
-\\Matrices and vectors
+// Matrices and vectors
 MATRIX: 'matrix' ;
 ROWVECTOR: 'rowvector' | 'rvec' ;
 COLVECTOR: 'colvector' | 'cvec' ;  
 
-\\Whitespace and comments
+// Whitespace and comments
 WS: [ \t ]+ -> skip;
 NL: [ \r \n | \n ] -> skip;
 
