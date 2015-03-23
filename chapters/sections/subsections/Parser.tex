@@ -15,13 +15,10 @@ The parser outputs a parse-tree which is an alternate representation of the inpu
 This also verifies if the input is syntactical valid, but not type and scope checking which is done later. 
 
 \subsubsection*{Traversing the Parse-Tree}
-Two of the most common ways of travering the parse-tree are the visitor pattern and the listener pattern. 
-Both of the patterns are parse-tree listeners and visitors to build language applications.
-The biggest difference between listeners and visitors is that listener methods are not explicitly responsible for calling methods to walk every children.
-The visitor pattern on the other hand must walk the children in the parse-tree to keep the tree traversal going.
-Visitor get to control the tree traversal and in what order the tree is visited because of these explicit calls to visit children. \citep{ANTLR4_Book}
+Two of the most common ways of traversing the parse-tree are the visitor pattern and the listener pattern. 
+The difference between listeners and visitors is that listener methods are not explicitly responsible for calling methods to walk every children, the visitor pattern on the other hand must walk all the children in the parse-tree to keep the tree traversal going.
+With the visitor pattern the user get to control the tree traversal because of the explicit calls to visit the children. \citep{ANTLR4_Book}
+Using the visitor pattern one can keep application-specific code out of out grammar.
+It is as well possible with the visitor pattern, to pass around return values and arguments.
 
-We have chosen the visitor pattern to traverse the parse tree. 
-
-Using the visitor pattern we can keep application-specific code out of out grammar.
-It is possible, with the visitor pattern, add functionality to pass around return values and arguments.
+We have chosen to use the visitor pattern to gain controls over the traverse of the parse-tree. 
