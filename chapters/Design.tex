@@ -22,10 +22,15 @@ Both single line and multi line comments can be used in \gls{gamble}.
 ``/* */'' is used for multi line comments, meaning that everything between ``/*'' and ``*/'' is ignored by the compiler, also known as C style comments. 
 
 \subsection*{End of statement terminator}
-Some languages use a statement terminator, often a semicolon, this is useful for parsing.
-In contrast often the newline terminates statements in other languages.
-Having an explicit character terminating statements allows statements to span across multiple lines, without explicitly expressing it in the syntax.
-This allows statements to span more than a single line.
+When choosing an end of state terminator there is two main choices.
+Either one can use the newline character as a terminator or one can use another symbol, often semicolon (;).
+The use of newline is often used in simple languages i.e. MATLAB or other mathematical oriented languages. 
+We deem the main value of using the newline are simplicity and a decrease in errors due to forgotten semicolons.
+Semicolon is as mentioned the other main choice, this choice has been used through many programming languages throughout the history. 
+%Some languages use a statement terminator, often a semicolon, this is useful for parsing.
+%In contrast often the newline terminates statements in other languages.
+%Having an explicit character terminating statements allows statements to span across multiple lines, without explicitly expressing it in the syntax.
+%This allows statements to span more than a single line.
 
 \subsection*{Scope}
 A variable is in scope from its deceleration until the end of the block it is declared in.
