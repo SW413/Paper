@@ -38,10 +38,11 @@ This is static scoping without information hiding.
 
 \subsection*{Structure} 
 The structure of the source code to a \gls{gamble} program is shown in \myref{lst:Structure}.
-Inclusions are gathered in the top, this is to make it easy to get an overview of any and all included libraries. 
-Then all function declarations are made, this is to gather all functions. 
-Then all the main statements are written. 
-This is to separate all the different parts of the program into distinct parts. 
+For a high level of readability we have decided  to split the source code up in segments.
+A single segment contains only a small part of source code.
+Inclusions are gathered in the top segment, this is to make it easy to get an overview of any and all included libraries. 
+Then all function declarations are witting in the next segment.
+Then all the main statements are written in the last segment. 
 This is also easier to parse and write context free grammar for.  
 
 \begin{lstlisting}[caption={Source code file layout in \gls{gamble}},frame=tlrb,label={lst:Structure}, numbers=none]
