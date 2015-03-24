@@ -1,25 +1,24 @@
 %\gls{gamble} is used to refer to our languange
 \section{Design Philosophy}
 For complex computations or large datasets one must acknowledge the computing power required for such computations.
-The main focus for \gls{gamble} is to use the computational powers of the \acrshort{gpu} to handle such computations without it being inconvenient for the programmer.
+The focus for \gls{gamble} is to use the computational powers of the \acrshort{gpu} to handle such computations without it being inconvenient for the programmer.
 As described in \myref{sec:state_of_the_art} several libraries and languages allows the programmer to explicitly designate workloads to the \acrshort{gpu} however this often requires explicit memory handling as well.
 %\gls{gamble} is meant to be used for computations which has a need for more computational power; due to this the language should not be too unfamiliar.
-Keeping \gls{gamble} familiar to other languages makes it more accessiblez and reduces the time required for users to familiarize themselves with it.
-This is done by using a C-like syntax, while stripping \gls{gamble} of features we deem not necessary for a laungauge which main focus lies in easy acces to \acrshort{gpgpu} programming and linear algebra calculations.
-These choises will be documented in the rest of this chapter.
+Keeping \gls{gamble} familiar to other languages makes it more accessible and reduces the time required for users to familiarize themselves with it.
+This is done by using a C-like syntax, while stripping \gls{gamble} of features we deem not necessary for a language which main focus lies in easy access to \acrshort{gpgpu} programming and linear algebra calculations.
+These choices will be documented in the rest of this chapter.
 As the \acrshort{gpu} is the resource being used to achieve more computing power, the data computed must also be applicable to the niche of the GPU, i.e. the data must be parallelisable as explained in \myref{sec:comparch}.
-This basic need will influence how data is represented, and also puts focus onto matrices and vector calculations, which as mentioned before often can be paralellised.
+This basic need will influence how data is represented, and also puts focus onto matrices and vector calculations, which as mentioned before often can be parallelised.
 
 \textbf{Allow the programmer to use the \acrshort{gpu} without it being inconvenient}
 
-Due to \gls{gamble} being focused on numerical computations, allowing the programmer to focus on managing the mathematical aspects is key.
+Due to \gls{gamble} being focused on numerical computations, allowing the programmer to focus on managing the mathematical aspects is the main focus.
 Therefore having the programmer control the runtime architecture seems an unnecessary distraction.
 \gls{gamble} takes care of designating the computations to the right processor, whether it be the \acrshort{gpu} or the CPU, as such any inconvenience in that process is removed from the programmer whose focus can be solely on the mathematics.
 
 \textbf{Avoid implementing unnecessary data types and features}
 
-When deciding what any language should offer its user, it is important to keep in mind what is the purpose of the language.
-As \glspl{gamble} purpose is to use the \acrshort{gpu} for calculations which can be parallelised implementing features or data types that do not hold any regard to this aspect would clutter the language.
+As \glspl{gamble} purpose is to use the \acrshort{gpu} for calculations which can be parallelised implementing features or data types, that do not hold any regard to this aspect would clutter the language.
 Additionally \gls{gamble} should not try to adapt itself towards purposes for which it is not designed, and example of excluding such features is the fact that strings are not part of the language, this choice and others like it are further documented in this chapter.
 
 \textbf{Let the language be somewhat familiar to read and use}
