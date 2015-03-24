@@ -68,11 +68,13 @@ This avoids any null reference which can cause runtime errors in many languages 
 An integer is a whole number either positive or negative, represented by the two's compliment method. 
 Meaning that it ranges from $-(2^{n-1}) $ to $2^{n-1} - 1 $, where n is the number of bits used.
 A floating point number is an approximation to a real number. 
-It is seperated in 3 parts, the sign bit, the mantissa and the exponent. 
+It is separated in 3 parts, the sign bit, the mantissa and the exponent. 
 Floats in \gls{gamble} are in base 2, the value of a float is calculated by $ (-1)^{sign bit} \cdot mantissa \cdot 2^{exponent} $. 
 Integers and float point numbers default to 32 bits with the keywords \texttt{int} and \texttt{float}. 
 It is possible to declare 16 and 64 bit integers and floating point numbers by postfixing their size to their respective keywords, i.e. \texttt{float64} or \texttt{int16}. 
 It is useful to be able to specify the size of an integer or a floating point number, as data transfer can cause a lot of overhead particularly when transferring data to and from the \acrshort{gpu}. 
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 \subsection*{Boolean}
 A boolean value is either true or false. 
@@ -101,7 +103,7 @@ It is not possible to use operators with matrices or vectors, functions which su
 \section{Functions}
 This section will describe \gls{gamble}'s use of functions. 
 Like in many other languages it is possible to declare your own functions in \gls{gamble}.
-This is useful for organising code, and reusing parts of the sourcecode.
+This is useful for organising code, and reusing parts of the source code.
 
 \subsection*{Function identifiers}
 When declaring a function is is required to write the body of the function.
