@@ -4,7 +4,7 @@ For complex computations or large datasets one must acknowledge the computing po
 The main focus for \gls{gamble} is to use the computational powers of the \acrshort{gpu} to handle such computations without it being inconvenient for the programmer.
 As described in \myref{sec:state_of_the_art} several libraries and languages allows the programmer to explicitly designate workloads to the \acrshort{gpu} however this often requires explicit memory handling as well.
 %\gls{gamble} is meant to be used for computations which has a need for more computational power; due to this the language should not be too unfamiliar.
-Keeping \gls{gamble} familiar to other languages makes it more accessiblez and reduces the time required for users to familiarize themselves with it.
+Keeping \gls{gamble} familiar to other languages makes it more accessible and reduces the time required for users to familiarise themselves with it.
 This is done by using a C-like syntax, while stripping \gls{gamble} of features we deem not necessary for a laungauge which main focus lies in easy acces to \acrshort{gpgpu} programming and linear algebra calculations.
 These choises will be documented in the rest of this chapter.
 As the \acrshort{gpu} is the resource being used to achieve more computing power, the data computed must also be applicable to the niche of the GPU, i.e. the data must be parallelisable as explained in \myref{sec:comparch}.
@@ -52,3 +52,5 @@ Restricted aliasing                                           &                 
 \end{tabular}
 \caption{Language evaluation criteria and the characteristics that affect them. \citep{Sebesta}}\label{tbl:concepts}
 \end{table}
+
+
