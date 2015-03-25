@@ -19,16 +19,19 @@ These C libraries have the same problem as with the Java library as one needs to
 The abstraction level is therefore deemed low as one must keep in mind what is where and what can be done with each specific element. \citep{C_CUDA} 
 There is also different libraries for the R language, one of which is called rpud.
 It provides many functions from the R language, which can be performed on the \acrshort{gpu}, and it is based on CUDA.
-We deem that it has a high level of abstractions, since it is just function calls, without any memory allocation or direct \acrshort{gpu} calls from the source code. \citep{Rcuda}                                                 
+We deem that it has a high level of abstractions, since it is just function calls, without any memory allocation or direct \acrshort{gpu} calls from the source code. \citep{Rcuda} 
 
 \subsection{Theano (Python)}
 Theano is a Python library that allows one to define, optimise, and evaluate mathematical expressions involving multi-dimensional arrays, while utilising the \acrshort{gpu}.
 The library has two ways of using the \acrshort{gpu}; one with CUDA as back-end, and the other that should support any OpenCL compatible device as well NVIDIA cards.
 The OpenCL implementation however does not support all the options available in the library due to an incomplete port of an old back-end.
 While Theano supports CUDA and OpenCL, there is quite a bit of boilerplate and one must write different code in order to use either.
-Theano does not require that the programmer allocates memory for arrays.
+The scoping rules for Python which Theano uses are quite special where the compiler looks for a variable in four different scopes.
+These scoping rules seems to be exclusive to the Python language.
+This can cause some problems for new programmers of the language, because these scoping rules are special.
+ Theano does not require that the programmer allocates memory for arrays.
 We deem that Theano has a medium level of abstraction since one has to declare if the \acrshort{gpu} should be used and can only operate on single precision floats of 32 bits.
-But on the other hand Theano does optimise the code by replacing methods with a \acrshort{gpu} versions of the same methods to create transparency. \citep{Theano,Theano_GPU}
+But on the other hand Theano does optimise the code by replacing methods with a \acrshort{gpu} versions of the same methods to create transparency. \citep{Theano,Theano_GPU,bergstratheano, LEGB}
 
 \subsection{MATLAB}
 MATLAB is a high-level mathematical programming language with an interactive environment.
