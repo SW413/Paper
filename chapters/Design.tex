@@ -27,12 +27,20 @@ Either one can use the newline character as a terminator or one can use another 
 The use of newline is often used in simple languages i.e. MATLAB or other mathematical oriented languages. 
 We deem the main value of using the newline are simplicity and a decrease in errors due to forgotten semicolons.
 Semicolon is as mentioned the other main choice, this choice has been used through many programming languages throughout the history. 
+The main advantage of a end of statement terminator  like semicolon is that it allows freeform code. 
+This freeform allows to have multiple statements in one line or allows long statements to span across multiple lines.
+We deem this to enhance the readability of the code.
+Furthermore the semicolon terminator allows for a simpler syntax and compiler design.
+As mentioned before forgotten semicolons can result in compiler errors, we deem this as the biggest disadvantages of this end of statement terminator.
+
+Based on this analysis we have chosen to use the semicolon as end of statement terminator.
 %Some languages use a statement terminator, often a semicolon, this is useful for parsing.
 %In contrast often the newline terminates statements in other languages.
 %Having an explicit character terminating statements allows statements to span across multiple lines, without explicitly expressing it in the syntax.
 %This allows statements to span more than a single line.
 
 \subsection*{Scope}
+\todo{expand this section. mention the "golbal scope" that matlab etc. uses}
 A variable is in scope from its deceleration until the end of the block it is declared in.
 An inner block such as a control flow structure, see \myref{subsec:control-flow} for more, inherits the variables from the outer scope. 
 It is also not allowed to redeclare a variable while it is in scope. 
@@ -42,11 +50,12 @@ Additionally any function is in scope of any other function including itself, th
 This is static scoping without information hiding. 
 
 \subsection*{Structure} 
+\todo{compare with existing languages and present alternatives, pro's and con's}
 The structure of the source code to a \gls{gamble} program is shown in \myref{lst:Structure}.
 For a high level of readability we have decided  to split the source code up in segments.
 A single segment contains only a small part of source code.
 Inclusions are gathered in the top segment, this is to make it easy to get an overview of any and all included libraries. 
-Then all function declarations are witting in the next segment.
+Then all function declarations are written in the next segment.
 Then all the main statements are written in the last segment. 
 This is also easier to parse and write context free grammar for.  
 
