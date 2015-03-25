@@ -40,7 +40,12 @@ Based on this analysis we have chosen to use the semicolon as end of statement t
 %This allows statements to span more than a single line.
 
 \subsection*{Scope}
-\todo{expand this section. mention the "golbal scope" that matlab etc. uses}
+If a programming language contain no implementation of scoping rules, the one must assume that all the source code in a given program would be in the same scope.
+Such a single scope would mean that any variable can be used form any place in the code. 
+Mostly, as briefly decried in \myref{vsec:state_of_the_art}, a programming language implements some kind of scoping rules.
+There are several reasons for this, the main reason being it gives the programmer more control her code and reduced the change of chancing variables by fault.
+There exist two main methods of scoping, static and dynamic scoping.
+
 A variable is in scope from its deceleration until the end of the block it is declared in.
 An inner block such as a control flow structure, see \myref{subsec:control-flow} for more, inherits the variables from the outer scope. 
 It is also not allowed to redeclare a variable while it is in scope. 
