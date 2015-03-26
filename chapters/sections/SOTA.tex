@@ -25,7 +25,7 @@ We deem that it has a high level of abstractions, since it is just function call
 Theano is a Python library that allows one to define, optimise, and evaluate mathematical expressions involving multi-dimensional arrays, while utilising the \acrshort{gpu}.
 The library has two ways of using the \acrshort{gpu}; one with CUDA as back-end, and the other that should support any OpenCL compatible device as well NVIDIA cards.
 The OpenCL implementation however does not support all the options available in the library due to an incomplete port of an old back-end.
-While Theano supports CUDA and OpenCL, there is quite a bit of boilerplate and one must write different code in order to use either.
+While Theano supports CUDA and OpenCL, there is quite a bit of boilerplate and one must write different code in order to use either.	
 The scoping rules for Python which Theano uses are quite special where the compiler looks for a variable in four different scopes.
 These scoping rules seems to be exclusive to the Python language.
 This can cause some problems for new programmers of the language, because these scoping rules are special.
@@ -37,6 +37,7 @@ But on the other hand Theano does optimise the code by replacing methods with a 
 MATLAB is a high-level mathematical programming language with an interactive environment.
 MATLAB supports the use of parallel computations in the form of using either a \acrshort{gpu} or cloud computing.
 It only natively supports the use of CUDA enabled NVIDIA \acrshortpl{gpu} for its parallel computations on \acrshortpl{gpu}, but OpenCL extensions do exist such that it becomes possible to use other devices.
+MATLAB uses static scoping  with rules very similar to programming languages like.
 The user of MATLAB much declare when the \acrshort{gpu} must be used and also allocate memory for these tasks.
 Declaring the memory gives a lot of boilerplate since it needs to be done for each element that one wants to compute. \citep{MATLAB_backend,MATLAB_benchmark}
 
@@ -49,7 +50,8 @@ Julia is a high-level, high-performance dynamic programming language for technic
 Julia is designed for parallelism and cloud computing; making it efficient and easy to use for these tasks.
 Julia has a high level of abstraction because the user only needs a single keyword (\@parallel) for it to do the calculation in parallel.
 The code is therefore looking clean without any boilerplate and is easy to read.
-Julia uses both OpenCL and CUDA as back-end making it very compatible and easy to use on different systems and devices. \citep{Julia_Git,Julia}
+Julia uses both OpenCL and CUDA as back-end making it very compatible and easy to use on different systems and devices.
+Julia uses similar scoping rules as MATLAB.\citep{Julia_Git,Julia, Julia_scope}
 
 \input{figures/MathGPULanguages.tex} 
 
