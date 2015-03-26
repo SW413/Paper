@@ -10,9 +10,9 @@ The philosophy will lead to some values being more important than others, the ch
 In the following sections different parts of \gls{gamble} will be investigated.
 
 \section{Core syntax choices}
-
 The source code must be written in Unicode, but only the ASCII alphabet and numbers are allowed for names, this is to simplify the parsing. 
-The language is case sensitive, this is to avoid programmer errors related to naming. 
+The language is case sensitive, this is done because the most used languages seen on TIOBEs index\citep{TIOBE} also are case sensitive
+When a language is case sensitive it is possible for the programmer to name different parts of the code like he pleases, resulting in a higher readability.
 Some languages, such as Python, uses whitespace and indentation to indicate scope, in our language scope is indicated by curly brackets like many exciting languages\texttt{\{\}}.  
 
 \subsection*{Comments}
@@ -36,10 +36,6 @@ Furthermore the semicolon terminator allows for a simpler syntax and compiler de
 As mentioned before forgotten semicolons can result in compiler errors, we deem this as the biggest disadvantages of this end of statement terminator.
 
 Based on this analysis we have chosen to use the semicolon as end of statement terminator.
-%Some languages use a statement terminator, often a semicolon, this is useful for parsing.
-%In contrast often the newline terminates statements in other languages.
-%Having an explicit character terminating statements allows statements to span across multiple lines, without explicitly expressing it in the syntax.
-%This allows statements to span more than a single line.
 
 \subsection*{Scope}
 If a programming language contain no implementation of scoping rules, the one must assume that all the source code in a given program would be in the same scope.
@@ -64,7 +60,11 @@ A single segment contains only a small part of source code.
 Inclusions are gathered in the top segment, this is to make it easy to get an overview of any and all included libraries. 
 Then all function declarations are written in the next segment.
 Then all the main statements are written in the last segment. 
-This is also easier to parse and write context free grammar for.  
+This is also easier to parse and write context free grammar for.
+
+An alternative to the strictly split segments, is i.e C.
+C can use functions before they are declared, but it can't only be done with prototypes in the top of the source code.
+We find the feature very good, but we limit our self to the more simple structure hence it is a lot easier to implement.
 
 \begin{lstlisting}[caption={Source code file layout in \gls{gamble}},frame=tlrb,label={lst:Structure}, numbers=none]
 Libary inclusions
