@@ -117,16 +117,19 @@ It is not possible to use operators with matrices or vectors, functions which su
 \input{figures/Operators.tex}
 
 \section{Functions}
+Functions are blocks of code which can be called to do a specific computation, often but not always, such a function takes some variables as inputs.
+
 This section will describe \gls{gamble}'s use of functions. 
 Like in many other languages it is possible to declare your own functions in \gls{gamble}.
 This is useful for organising code, and reusing parts of the source code.
+Functions in \gls{gamble} can take inputs, but are not required to, the inputs can be any of the types the languages supports.
+
 
 \subsection*{Function identifiers}
-When declaring a function is is required to write the body of the function.
-In C it is possible to make prototypes of functions in the top of the document, and then declare the bodies of the functions in other places of the document. 
+When declaring a \gls{gamble} function it is required to write the body of the function immediately after.
 This is not possible in \gls{gamble}, because we do not need the lookahead which prototypes gives.
-A function identifier is exactly like C, with the \texttt{return type} or \texttt{void} then the \texttt{functionname}, \texttt{(formal parameters)} and finally \texttt{\{body\}}.
-The function body can contain a number of statements and various control flows.
+A function identifier is exactly like C, with the \texttt{return type} or \texttt{void} then the \texttt{functionname}, \texttt{(formal parameters)} and finally \texttt{\{body\}}.T
+he function body can contain a number of statements and various control flows.
 Furthermore it can contain calls to other functions or calls to the function itself, and hereby recursion is a possibility in \gls{gamble}
 An example of a function identifier can be seen on \myref{lst:functionID}.
 Other syntaxes could have been used, but not only is this the way C does it, it is also widely used in many other languages i.e. C\# and Java.
