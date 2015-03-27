@@ -127,9 +127,9 @@ Functions in \gls{gamble} can take inputs, but are not required to, the inputs c
 
 \subsection*{Function identifiers}
 When declaring a \gls{gamble} function it is required to write the body of the function immediately after.
-This is not possible in \gls{gamble}, because we do not need the lookahead which prototypes gives.
-A function identifier is exactly like C, with the \texttt{return type} or \texttt{void} then the \texttt{functionname}, \texttt{(formal parameters)} and finally \texttt{\{body\}}.T
-he function body can contain a number of statements and various control flows.
+This is to avoid lookahead which function prototypes requires.
+A function identifier is exactly like C, with the \texttt{return type} then the \texttt{functionname}, \texttt{(formal parameters)} and finally \texttt{\{body\}}.
+The function body can contain a number of statements and various control flows.
 Furthermore it can contain calls to other functions or calls to the function itself, and hereby recursion is a possibility in \gls{gamble}
 An example of a function identifier can be seen on \myref{lst:functionID}.
 Other syntaxes could have been used, but not only is this the way C does it, it is also widely used in many other languages i.e. C\# and Java.
