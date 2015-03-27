@@ -12,7 +12,14 @@ The lexer, the part which handles lexical analysis, matches the tokens found in 
 The lexer provided by ANTLR can group related tokens into token types such as INT, ID and FLOAT.
 A token contains two pieces of information, the token type and the text matched for the token. 
 
-The second stage of the parser is the actual parsing of these tokens, which in turn outputs the parse tree.
+The second stage of the parser is the actual parser.
+The parser is fed a stream of tokens to recognise a sentence structure and in turn outputs the structure to a parse tree.
+The parse tree records how the parser recognises the structure of the input and its components.
+The parse tree that ANTLR provides contains information about how the parser have grouped the tokens into more abstract languange definitions such as expressions and statements.
+Where previous versions of ANTLR have also implemented the AST, it is not contained in ANTLR V4 instead the parse tree provided by ANTLR have been used to generate an AST this is discussed in \myref{sec:AST}.
+This tree is a trimmed version of the parse tree, where the less informative data have been removed, this makes it easier to read, and thus easier to use throughout development of the rest of the compiler.
+
+ANTLR is a recursive-descent parser
 
 \todo{introduction to ANTLR and what it brings, the specific things ANTLR affects in the compiler phases will be mentioned in the respective sections where it is relevant}
 %chars/source code ->Lexer ->Tokens->Parser->Parse tree
