@@ -1,2 +1,51 @@
 \section{ANTLR}
-\todo{introduction to ANTLR in comparison to other tools, the specific things ANTLR provides will be mentioned in the respective sections where it is relevant}
+ANTLR(ANother Tool for Languange Recognition) is a parser generator tool for reading, processing, executing or tranlating CFG into a parse tree.
+ANTLR allows for certain unique features to be present in the CFG from which the parse tree is build, features which other parse generators such as SableCC and JavaCup cannot handle. 
+In this chapter a closer look upon what these features are, as well as how the parse tree is generated follows.
+
+The parse tree is build in the syntax analysis phase of the compiler described in \myref{sec:syntaxAnalysis}.
+The programmer supplies the compiler with some source code that ANTLR then turns into a parse tree.
+The process of parsing can be broken into two stages, these stages are similar to how the human brain reads languanges.
+The brain does not read a sentence character by character, instead we see a stream of words this is because the brain subconciously groups together characters to form words
+First the source code is simpky a stream of symbols, this stream is then turned into appropriate tokens through lexical analysis.
+The lexer, the part which handles lexical analysis, matches the tokens found in the source code to the grammar rules provided by the languange developers to determine what tokens are present.
+The lexer provided by ANTLR can group related tokens into token types such as INT, ID and FLOAT.
+A token contains two pieces of information, the token type and the text matched for the token. 
+
+The second stage of the parser is the actual parsing of these tokens, which in turn outputs the parse tree.
+
+\todo{introduction to ANTLR and what it brings, the specific things ANTLR affects in the compiler phases will be mentioned in the respective sections where it is relevant}
+%chars/source code ->Lexer ->Tokens->Parser->Parse tree
+%Language is a stream of words
+%The process of grouping characters into words or symbols (tokens) is called lexical analysis or simply tokenizing
+%Program that tokenizes is lexer
+%Creates tokens types such as int, float
+%Token consists of atleast two types of info, Token Type(identifying lexical structure) And text matched for that token
+%2nd stage is the actual parser, feeds of tokens to recognize sentence structure
+%Parse tree records how the parser recognized structure of input and its component phrases
+%Trees provide an easy to walk data structure that will be helpful for the rest of the compiler
+%2.2 Implementing Parser - Recursive descent
+%Recursive-descent parsers are really just a collection of recursive methods, one per rule.
+%Such a rule may look similar to this
+%// assign : ID ``='' expr ``;'' ;
+%void assign() { // method generated from rule assign
+%match(ID); // compare ID to current input symbol then consume
+%match('=');
+%expr(); // match an expression by calling expr()
+%match(';');
+%}
+%Descent refers to the fact we start from the root and go down to the leaves(tokens)
+%Reursive descent is just one form of top-down parsers.					NOTE topdown/bottom up parsing
+%The call graph traaced out by invoking methods, mirrors the interior parse tree nodes
+%To Build a parse tree manually one would insert ``add new subroot note' operations at the start of each rule, and a ``add new leaf node'' operation to match()
+%The assign method checks if all necessary tokens are present and in the right order. When the parser enters assign it doesnt have to choose between more than one alternative. An alternative is one of the choices on the right side of a rule def. A parsing method for such rule would be a switch which looks for what token is present.
+% This is called a parising decision or prediction by examining next token
+%This is where lookahead comes into play , the lookahead token is the next input token, this can be any token the parser "sniffs" before consuming
+%This is one of the places where ANTLR is an especially handy tool to use, because ANTLR allows for more lookahead than other parser generators.
+%Most parsers use a lookahead of one which LL(1) or LR(1), ANTLR tones the lookahead up and down depending on what token stream it is trying to decode, as such the ANTLR has a lookahead of LL(*)
+%ANTLR Solves simple ambiguity simply by using the first mentioned rule.
+
+
+%LL is Top-down parser, LR is Bottom up parser
+%Parse vs AST
+%AST only useful, Parse all artifacts(space, brackets and so on)
