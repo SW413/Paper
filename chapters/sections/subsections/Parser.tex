@@ -1,2 +1,24 @@
 \subsection*{Parser}
-\todo{to be written}
+The parser is based on formal syntax specification such as a \acrfull{cfg} written in \acrfull{ebnf}, whose alphabet consists of tokens produced by the lexer. 
+The parser reads tokens and groups them into phrases according to the syntax specification.
+The parser verifies the syntax, and if a syntax error is found it provides a corresponding error message. \citep{Crafting_book}
+By using a parser generator like ANTLR or SableCC, handling of syntactic error and repairs can be done automatically.
+A parser can also be written manually but doing so can result in syntactic errors that is hard to locate or solve.
+We have chosen to use ANTLR to generate our parser.
+
+There are different kind of parsers, most common are bottom-up and top-down parsers.
+ANTLR makes a top-down parser, more specific a recursive descent parser.
+A recursive decent parser is a kind of top-down parser build from a set of mutually recursive procedures where each such procedure usually implements one of the productions of the grammar.
+The structure of the resulting program closely mirrors the grammar it recognizes. \citep{Recursive_programming}
+
+The parser outputs a parse-tree which is an alternate representation of the input source-code. 
+This also verifies if the input is syntactical valid, but not type and scope checking which is done later. 
+
+\subsubsection*{Traversing the Parse-Tree}
+Two of the most common ways of traversing the parse-tree are the visitor pattern and the listener pattern. 
+The difference between listeners and visitors is that listener methods are not explicitly responsible for calling methods to walk every children, the visitor pattern on the other hand must walk all the children in the parse-tree to keep the tree traversal going.
+With the visitor pattern the user get to control the tree traversal because of the explicit calls to visit the children. \citep{ANTLR4_Book}
+Using the visitor pattern one can keep application-specific code out of out grammar.
+It is as well possible with the visitor pattern, to pass around return values and arguments.
+
+We have chosen to use the visitor pattern to gain controls over the traverse of the parse-tree. 

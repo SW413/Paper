@@ -1,2 +1,40 @@
 \subsection{Scanner}
-\todo{to be written}
+The primary function of a scanner is to transform a sequence of characters into a sequence of tokens.
+A scanner is sometime called a lexer og lexical analyser.
+The scanner is generally combined with a parser, which together analyse the syntax of the language.
+With the scanner we can specify how our language should be witting. 
+An example of this, would be whatever you could use the notation .1 or 0.1 for a decimal number.
+The scanner syntax is usually regular language, whose alphabet consists of the individual characters of the source code.
+A scanners job is to convert a stream of characters into a stream of tokens.
+A token is a character string that is used when writing source code in the programming language.
+
+%We have been using ANTLR to generate our token stream from the context-free grammar.
+%Using ANTLR is saving us time, but writing a scanner in the hand is possible.
+%Writing a scanner from scratch means reimplementing components that are common to all scanners.
+%This leads to a heavy reproduction of effort.
+Some examples of our lexer rules written for ANTLR4 from GAMBLE can be seen on \myref{lst:token}.
+The definition of a integer number on line 3 states that an integer is either a zero or a negative sign followed by a single digit from one to nine followed by zero or more numbers from zero to nine.
+It is necessary to clearly define tokens for the lexer to read in order to read source code correctly. \citep{Crafting_book}
+
+\begin{lstlisting}[caption=Example of our lexer rules for ANTLR4,frame=tlrb,label={lst:token}]
+// Integers
+INT: 'int' | 'int16' | 'int32' | 'int64' ; // Integers
+INTNUM: '0' | SIGN? [1-9][0-9]* ;
+
+// Matrices and vectors
+MATRIX: 'matrix' ;
+ROWVECTOR: 'rowvector' | 'rvec' ;
+COLVECTOR: 'colvector' | 'cvec' ;  
+
+// Whitespace and comments
+WS: [ \t ]+ -> skip;
+NL: [ \r \n | \n ] -> skip;
+
+COMMENT
+    :   '/*' .*? '*/' -> skip
+    ;
+
+LINE_COMMENT
+    :   '//' ~[\r\n]* -> skip
+    ;
+\end{lstlisting}
