@@ -16,7 +16,7 @@ expr : expr '*' expr // match expressions with ´´*'' operator
 | INT // matches simple intege
 ;
 \end{lstlisting}
-While it may not be obious \myref{lst:amb} also implements ANTLRs way of representing operator prescedence by simply obeying the first alternative in the ruleset, as such ´´*'' will have the higher prescedence.
+While it may not be obvious from \myref{lst:amb} also implements ANTLRs way of representing operator prescedence by simply obeying the first alternative in the ruleset, as such ´´*'' will have the higher prescedence.
 ANTLR being LL(*) also means that one can completly disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.
 \todo{tænkte at skrive noget omkring labels eftersom vi bruger dem - men der stod ikke rigtigt noget i ANTLR reference så tænkte sass/søren kunne skrive noget}
 
