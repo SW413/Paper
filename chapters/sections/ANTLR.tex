@@ -1,27 +1,41 @@
 \section{ANTLR}
 ANTLR(ANother Tool for Languange Recognition) is a parser generator tool for reading, processing, executing or tranlating CFG into a parse tree.
-ANTLR allows for certain unique features to be present in the CFG from which the parse tree is build, features which other parse generators such as SableCC and JavaCup cannot handle. 
-In this chapter a closer look upon what these features are, as well as how the parse tree is generated follows.
+ANTLR allows for certain unique features\todo{det bare ikke rigtigt features tho e.g. left recursion, slight ambiguity, ignored lookahead} to be present in the CFG from which the parse tree is build, features which other parse generators such as SableCC and JavaCup cannot handle. 
+In this section a closer look upon what ANTLR provides and what we gain by using it, how the parsing and scanning works is described in \myref{sec:syntaxAnalysis}.
 
-The parse tree is build in the syntax analysis phase of the compiler described in \myref{sec:syntaxAnalysis}.
-The programmer supplies the compiler with some source code that ANTLR then turns into a parse tree.
-The process of parsing can be broken into two stages, these stages are similar to how the human brain reads languanges.
-The brain does not read a sentence character by character, instead we see a stream of words this is because the brain subconciously groups together characters to form words
-First the source code is simpky a stream of symbols, this stream is then turned into appropriate tokens through lexical analysis.
-The lexer, the part which handles lexical analysis, matches the tokens found in the source code to the grammar rules provided by the languange developers to determine what tokens are present.
-The lexer provided by ANTLR can group related tokens into token types such as INT, ID and FLOAT.
-A token contains two pieces of information, the token type and the text matched for the token. 
+ANTLR is used for the syntax analysis part of the compiler, by providing ANTLR with a CFG is generates a parser capable of building and walking parse trees for acceptable strings in the languange.
+%allows for labels
+ANTLR is a particularly useful tool for this in comparison to other tools, because it uses a newer parsing technology known as Adaptive LL(*) (ALL(*))\todo{glossery this}.
+The idea is that the grammar is analysed dynamically at runtime rather than statically, before executed by the generated parser.
+This allows ANTLR access to input sequences while reading through the grammar, meaning not all possible inputs must be considered.
+Due to this dynamic analysis ANTLR v4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
+Furthermore ANTLR also takes care of left-recursion if such is present in the grammar by rewriting it as long as the left recursion is recursive to its own rule on the left side, as such would be the case in \myref{lst:amb}
+\begin{lstlisting}[caption=An ambiguous rule for expr,frame=tlrb,label={lst:amb}]
+expr : expr '*' expr // match expressions with ´´*'' operator
+| expr '+' expr // match expressions with ´´+'' operator
+| INT // matches simple intege
+;
+\end{lstlisting}
+While it may not be obious \myref{lst:amb} also implements ANTLRs way of representing operator prescedence by simply obeying the first alternative in the ruleset, as such ´´*'' will have the higher prescedence.
+ANTLR being LL(*) also means that one can completly disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.
+\todo{tænkte at skrive noget omkring labels eftersom vi bruger dem - men der stod ikke rigtigt noget i ANTLR reference så tænkte sass/søren kunne skrive noget}
 
-The second stage of the parser is the actual parser.
-The parser is fed a stream of tokens to recognise a sentence structure and in turn outputs the structure to a parse tree.
-The parse tree records how the parser recognises the structure of the input and its components.
-The parse tree that ANTLR provides contains information about how the parser have grouped the tokens into more abstract languange definitions such as expressions and statements.
-Where previous versions of ANTLR have also implemented the AST, it is not contained in ANTLR V4 instead the parse tree provided by ANTLR have been used to generate an AST this is discussed in \myref{sec:AST}.
-This tree is a trimmed version of the parse tree, where the less informative data have been removed, this makes it easier to read, and thus easier to use throughout development of the rest of the compiler.
+%The parse tree is build in the syntax analysis phase of the compiler described in \myref{sec:syntaxAnalysis}.
+%The programmer supplies the compiler with some source code that ANTLR then turns into a parse tree.
+%The process of parsing can be broken into two stages, these stages are similar to how the human brain reads languanges.
+%The brain does not read a sentence character by character, instead we see a stream of words this is because the brain subconciously groups together characters to form words
+%First the source code is simpky a stream of symbols, this stream is then turned into appropriate tokens through lexical analysis.
+%The lexer, the part which handles lexical analysis, matches the tokens found in the source code to the grammar rules provided by the languange developers to determine what tokens are present.
+%The lexer provided by ANTLR can group related tokens into token types such as INT, ID and FLOAT.
+%A token contains two pieces of information, the token type and the text matched for the token. 
 
-ANTLR is a recursive-descent parser
+%The second stage of the parser is the actual parser.
+%The parser is fed a stream of tokens to recognise a sentence structure and in turn outputs the structure to a parse tree.
+%The parse tree records how the parser recognises the structure of the input and its components.
+%The parse tree that ANTLR provides contains information about how the parser have grouped the tokens into more abstract languange definitions such as expressions and statements.
+%Where previous versions of ANTLR have also implemented the AST, it is not contained in ANTLR V4 instead the parse tree provided by ANTLR have been used to generate an AST this is discussed in \myref{sec:AST}.
+%This tree is a trimmed version of the parse tree, where the less informative data have been removed, this makes it easier to read, and thus easier to use throughout development of the rest of the compiler.
 
-\todo{introduction to ANTLR and what it brings, the specific things ANTLR affects in the compiler phases will be mentioned in the respective sections where it is relevant}
 %chars/source code ->Lexer ->Tokens->Parser->Parse tree
 %Language is a stream of words
 %The process of grouping characters into words or symbols (tokens) is called lexical analysis or simply tokenizing
