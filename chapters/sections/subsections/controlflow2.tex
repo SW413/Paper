@@ -1,6 +1,6 @@
 \section{Control Flow}\label{subsec:control-flow}
 Control flow is any part of the language in which a branch occurs. 
-A branch is in this case a is a place in the code where multiple codepaths are possible. 
+A branch is in this case a place in the code where multiple codepaths are possible. 
 These come in three variations: primitives, choice and loops.
 C, C\#, Java etc. contain some or all of these elements to control the flow of a program:
 
@@ -50,7 +50,7 @@ The same can be done with the \texttt{for} and \texttt{do..while} loops.
 This means that the only needed control structures should be \texttt{if} and \texttt{goto}. 
 However the use of goto is considered harmful in many cases, because it is easy to make mistakes when using it. \citep{DijkstraGoto}
 Even though \texttt{for} and \texttt{while} are similar, they are often used in different contexts.
-The for \texttt{loop} is useful for iterating over a collection or knowing exactly how many time the code is executed. 
+Therefor \texttt{loop} is useful for iterating over a collection or knowing exactly how many time the code is executed. 
 Therefore we have decided to include both \texttt{for} and \texttt{while} in \gls{gamble}, but not \texttt{foreach} and \texttt{do..while}, this is to simplify the number of control structures.
 
 \subsection{Choice structure}
@@ -69,10 +69,6 @@ if ( condition )
 {
     statement();
 }
-\end{lstlisting}
-\begin{lstlisting}[caption=A use of \texttt{?:} in \gls{gamble}.,frame=tlrb, label=terlst, numbers=none]{Name}
-condition ? ifTrue() : ifFalse();
-\end{lstlisting}
 
 \end{minipage}\hfill
 \begin{minipage}{.45\textwidth}
@@ -86,9 +82,6 @@ if ( condition )
 \end{lstlisting}
 \end{minipage}
 
-In a ternary operator, if the boolean statement before the question mark is true, then the first statement is executed otherwise the second is. 
-The ternary operator can also be used for an assignment, only if the value getting assigned to is left of the question mark.
-As the ternary operator allows any statement in its middle body, it is possible to chain them together, just like a if-else chain. 
 
 \subsection{while loop}
 An example of the while loop in \gls{gamble} is shown in \myref{whilelst}. 
