@@ -45,7 +45,7 @@ There are several reasons for this, the main reason being it gives the programme
 There exist two main methods of scoping, static and dynamic scoping.
 As seen in \myref{sec:state_of_the_art} most of the languages examined in this section used a form of static scope. 
 \gls{gamble} will use this form of scoping because we find it to be the easiest to work with and less prone to errors than dynamic scoping.
-The scope rules of \gls{gabmle} are as follows:
+The scope rules of \gls{gamble} are as follows:
 
 A variable is in scope from its declaration until the end of the block it is declared in.
 An inner block such as a control flow structure, see \myref{subsec:control-flow} for more, has access to the variables from the outer scope. 
@@ -60,12 +60,8 @@ For a high level of readability we have decided  to split the source code up in 
 A single segment contains only a small part of source code.
 Including of other files are, like in many other languages, written in the top segment, this is to make it easy to get an overview of any and all included libraries. 
 All function declarations are written in the next segment followed by the main statements which is the last segment.
-This is also easier to parse and write context free grammar for, which also reduces the amount of times the scanner will need to read the source code.
-If it was not structured like this, the resulting tree of the code would need to be traversed more than once, to fill the symbol table.
-This is done in C\# where a function can be declared later in the document than the function is called.
-This results in the value of the function call not being known, and therefore tree must be traversed several times.
-
-We find the feature very good, but we limit ourselves to the more simple structure hence it is a lot easier to implement.
+This collects the main statements, which makes it easier for a programmer to get an overview over the order of execution, compared to if the main statements were allowed between the function declarations.
+This also makes it easier to write a context free grammar for the language.
 
 \begin{lstlisting}[caption={Source code file layout in \gls{gamble}},frame=tlrb,label={lst:Structure}, numbers=none]
 Libary inclusions
