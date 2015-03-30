@@ -6,7 +6,7 @@ How the parsing and scanning works is described in \myref{sec:syntaxAnalysis}.
 
 ANTLR is used for the syntax analysis part of the compiler.
 By providing ANTLR with a \gls{cfg} it generates a lexer, then a parser capable of building and walking parse trees for an acceptable token stream in the language.
-Furthermore by running ANTLR on the grammer using the \texttt{--visitor} flag, ANTLR sets up an interface and base implementation of the visitor patttern for the parse tree. 
+Furthermore by running ANTLR on the grammar using the \texttt{--visitor} flag, ANTLR sets up an interface and base implementation of the visitor pattern for the parse tree. 
 ANTLR is a particularly useful tool for this in comparison to other tools, because it uses a newer parsing technology known as Adaptive LL(*) (ALL(*)).
 The idea is that the grammar is analysed dynamically at runtime rather than statically, before executed by the generated parser.
 This allows ANTLR access to input sequences while reading through the grammar, meaning not all possible inputs must be considered.
