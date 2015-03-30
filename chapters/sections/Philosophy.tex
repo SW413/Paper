@@ -1,14 +1,14 @@
 %\gls{gamble} is used to refer to our languange
 \section{Design Philosophy}
-For complex computations or large datasets one must acknowledge the computing power required for such computations.
+For complex computations or large datasets one needs to have significant computational power.
 The focus for \gls{gamble} is to use the computational powers of the \acrshort{gpu} to handle such computations without it being inconvenient for the programmer.
 As described in \myref{sec:state_of_the_art} several libraries and languages allows the programmer to explicitly designate workloads to the \acrshort{gpu} however this often requires explicit memory handling as well.
-%\gls{gamble} is meant to be used for computations which has a need for more computational power; due to this the language should not be too unfamiliar.
 Keeping \gls{gamble} familiar to other languages makes it more accessible and reduces the time required for users to familiarize themselves with it.
 This is done by using a C-like syntax, while stripping \gls{gamble} of features we deem not necessary for a language which main focus lies in easy access to \acrshort{gpgpu} programming and linear algebra calculations.
 These choices will be documented in the rest of this chapter.
-As the \acrshort{gpu} is the resource being used to achieve more computing power, the data computed must also be applicable to the niche of the GPU, i.e. the data must be parallelisable as explained in \myref{sec:comparch}.
-This basic need will influence how data is represented, and also puts focus onto matrices and vector calculations, which as mentioned before often can be parallelised.
+The C-like syntax is chosen because the top 5 languages on Tiobe's list of most popular programming languages, is C-like, and therefore if \gls{gamble} resembles these languages, it will be easier to start programming in \gls{gamble}.\citep{TIOBE}
+As the \acrshort{gpu} is the resource being used to achieve more computational power, the data computed must also be applicable to the niche of the GPU, i.e. the data must be parallelisable as explained in \myref{sec:comparch}.
+This basic need will influence how data is represented, and also puts focus onto matrices and vector calculations, which as mentioned before can often be parallelised.
 
 \textbf{Allow the programmer to use the \acrshort{gpu} without it being inconvenient}
 
@@ -18,22 +18,22 @@ Therefore having the programmer control the runtime architecture seems an unnece
 
 \textbf{Avoid implementing unnecessary data types and features}
 
-As \glspl{gamble} purpose is to use the \acrshort{gpu} for calculations which can be parallelised implementing features or data types, that do not hold any regard to this aspect would clutter the language.
-Additionally \gls{gamble} should not try to adapt itself towards purposes for which it is not designed, and example of excluding such features is the fact that strings are not part of the language, this choice and others like it are further documented in this chapter.
+As the purpose of \glspl{gamble} is to use the \acrshort{gpu} for calculations which can be parallelised implementing features or data types, that do not hold any regard to this aspect would clutter the language.
+Additionally \gls{gamble} should not try to adapt itself towards purposes for which it is not designed, an example of excluding such features is the fact that strings are not part of the language, this choice and others like it are further documented later in this chapter.
 
 \textbf{Let the language be somewhat familiar to read and use}
 
 As mentioned the main purpose of \gls{gamble} is to use the \acrshort{gpu} for computations, and is focused on doing computations, not developing new software.
 As such \gls{gamble} would most often be used where this niche is required.
 It may even be likely that it is not used when developing an algorithm to do computations, but first used once the algorithm is complete, and can be applied to bigger sets of data.
+This is because of the large overhead as explained in \myref{comparch}, it will be faster to perform a test of an algorithm with smaller datasets in other languages, like C.
 Therefore to use the niche that \gls{gamble} proclaims, having the language be familiar makes it easier to use for its pure computational aspect.
 
 \textbf{Let the language promote read- and write-ability}
 
 Read- and write-ability directly influences the reliability of a language. 
 The easier a program is to write, the more likely it is to be correct. \citep{Sebesta}
-This is gained through using a familiar syntax, as mention above, as well as sticking to certain language characteristics shown in \myref{tbl:concepts}.
-It makes sense for \gls{gamble} to adopt a C-like syntax, as several of the most popular languages also uses a C-like syntax, the difference will be in how code is structured. \citep{TIOBE}
+This is gained through using a familiar syntax, as mentioned above, as well as sticking to certain language characteristics shown in \myref{tbl:concepts}.
 \begin{table}[h]
 \center
 \begin{tabular}{|l|l|c|c|}
