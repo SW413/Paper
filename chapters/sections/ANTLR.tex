@@ -11,8 +11,8 @@ This allows ANTLR access to input sequences while reading through the grammar, m
 Due to this dynamic analysis ANTLR v4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
 Furthermore ANTLR also takes care of left-recursion if such is present in the grammar by rewriting it as long as the left recursion is recursive to its own rule on the left side, as such would be the case in \myref{lst:amb}
 \begin{lstlisting}[caption=An ambiguous rule for expr,frame=tlrb,label={lst:amb}]
-expr : expr '*' expr // match expressions with ´´*'' operator
-| expr '+' expr // match expressions with ´´+'' operator
+expr : expr '*' expr // match expressions with * operator
+| expr '+' expr // match expressions with + operator
 | INT // matches simple intege
 ;
 \end{lstlisting}
