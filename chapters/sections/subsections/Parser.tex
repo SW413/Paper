@@ -8,7 +8,7 @@ We have chosen to use ANTLR to generate our parser.
 
 There are different kind of parsers, most common are bottom-up and top-down parsers.
 ANTLR makes a top-down parser, more specific a recursive descent parser.
-A recursive decent parser is a kind of top-down parser build from a set of mutually recursive procedures where each such procedure usually implements one of the productions of the grammar.
+A recursive decent parser is a subtype of top-down parser build from a set of mutually recursive procedures where each such procedure usually implements one of the productions of the grammar.
 The structure of the resulting program closely mirrors the grammar it recognizes. \citep{Recursive_programming}
 
 The parser outputs a parse-tree which is an alternate representation of the input source-code. 
@@ -24,16 +24,6 @@ This also verifies if the input is syntactical valid, but not type and scope che
 %2nd stage is the actual parser, feeds of tokens to recognize sentence structure
 %Parse tree records how the parser recognized structure of input and its component phrases
 %Trees provide an easy to walk data structure that will be helpful for the rest of the compiler
-
-\subsubsection*{Traversing the Parse-Tree}
-Two of the most common ways of traversing the parse-tree are the visitor pattern and the listener pattern. 
-The difference between listeners and visitors is that listener methods are not explicitly responsible for calling methods to walk every children, the visitor pattern on the other hand must walk all the children in the parse-tree to keep the tree traversal going.
-With the visitor pattern the user get to control the tree traversal because of the explicit calls to visit the children. \citep{ANTLR4_Book}
-Using the visitor pattern one can keep application-specific code out of out grammar.
-It is as well possible with the visitor pattern, to pass around return values and arguments.
-
-We have chosen to use the visitor pattern to gain controls over the traverse of the parse-tree. 
-
 %2.2 Implementing Parser - Recursive descent
 %Recursive-descent parsers are really just a collection of recursive methods, one per rule.
 %Such a rule may look similar to this
@@ -55,5 +45,16 @@ We have chosen to use the visitor pattern to gain controls over the traverse of 
 %Most parsers use a lookahead of one which LL(1) or LR(1), ANTLR tones the lookahead up and down depending on what token stream it is trying to decode, as such the ANTLR has a lookahead of LL(*)
 %ANTLR Solves simple ambiguity simply by using the first mentioned rule.
 %AST only useful, Parse all artifacts(space, brackets and so on)
+
+\subsubsection*{Traversing the Parse-Tree}
+Two of the most common ways of traversing the parse-tree are the visitor pattern and the listener pattern. 
+The difference between listeners and visitors is that listener methods are not explicitly responsible for calling methods to walk every children, the visitor pattern on the other hand must walk all the children in the parse-tree to keep the tree traversal going.
+With the visitor pattern the user get to control the tree traversal because of the explicit calls to visit the children. \citep{ANTLR4_Book}
+Using the visitor pattern one can keep application-specific code out of out grammar.
+It is as well possible with the visitor pattern, to pass around return values and arguments.
+
+We have chosen to use the visitor pattern to gain controls over the traverse of the parse-tree. 
+
+
 
 
