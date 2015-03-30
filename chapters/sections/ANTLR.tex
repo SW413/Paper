@@ -18,7 +18,7 @@ expr : expr '*' expr // match expressions with * operator
 ;
 \end{lstlisting}
 While it may not be obvious from \myref{lst:amb} also implements ANTLRs way of representing operator precedence by simply obeying the first alternative in the rule set, as such ´´*'' will have the higher precedence.
-ANTLR being LL(*) also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.
+ANTLR being LL(*) also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.\citep{ANTLR4}
 \todo{tænkte at skrive noget omkring labels eftersom vi bruger dem - men der stod ikke rigtigt noget i ANTLR reference så tænkte sass/søren kunne skrive noget}
 
 %The parse tree is build in the syntax analysis phase of the compiler described in \myref{sec:syntaxAnalysis}.
