@@ -4,8 +4,10 @@ ANTLR allows for certain unique features to be present in the \gls{cfg} from whi
 In this section there will be explained what ANTLR provides and what we gain by using it.
 How the parsing and scanning works is described in \myref{sec:syntaxAnalysis}.
 
-ANTLR is used for the syntax analysis part of the compiler, by providing ANTLR with a \gls{cfg} it generates a parser generator capable of building and walking parse trees for acceptable character streams in the language.
-ANTLR is a particularly useful tool for this in comparison to other tools, because it uses a newer parsing technology known as Adaptive LL(*) (ALL(*))\todo{glossery this}.
+ANTLR is used for the syntax analysis part of the compiler.
+By providing ANTLR with a \gls{cfg} it generates a lexer, then a parser capable of building and walking parse trees for an acceptable token stream in the language.
+Furthermore by running ANTLR on the grammer using the \texttt{--visitor} flag, ANTLR sets up an interface and base implementation of the visitor patttern for the parse tree. 
+ANTLR is a particularly useful tool for this in comparison to other tools, because it uses a newer parsing technology known as Adaptive LL(*) (ALL(*)).
 The idea is that the grammar is analysed dynamically at runtime rather than statically, before executed by the generated parser.
 This allows ANTLR access to input sequences while reading through the grammar, meaning not all possible inputs must be considered.
 Due to this dynamic analysis ANTLR v4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
@@ -19,6 +21,7 @@ expr : expr '*' expr // match expressions with * operator
 \end{lstlisting}
 While it may not be obvious from \myref{lst:amb} also implements ANTLRs way of representing operator precedence by simply obeying the first alternative in the rule set, as such ´´*'' will have the higher precedence.
 ANTLR being LL(*) also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.\citep{ANTLR4}
+
 \todo{tænkte at skrive noget omkring labels eftersom vi bruger dem - men der stod ikke rigtigt noget i ANTLR reference så tænkte sass/søren kunne skrive noget}
 
 %The parse tree is build in the syntax analysis phase of the compiler described in \myref{sec:syntaxAnalysis}.
