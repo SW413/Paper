@@ -1,5 +1,5 @@
 \section{ANTLR}
-ANTLR(ANother Tool for Languange Recognition) is a parser generator tool for reading, processing, executing or tranlating CFG into a parse tree.
+ANTLR (ANother Tool for Languange Recognition) is a parser generator tool for reading, processing, executing or tranlating CFG into a parse tree.
 ANTLR allows for certain unique features\todo{det bare ikke rigtigt features tho e.g. left recursion, slight ambiguity, ignored lookahead} to be present in the CFG from which the parse tree is build, features which other parse generators such as SableCC and JavaCup cannot handle. 
 In this section a closer look upon what ANTLR provides and what we gain by using it, how the parsing and scanning works is described in \myref{sec:syntaxAnalysis}.
 
@@ -8,15 +8,15 @@ ANTLR is used for the syntax analysis part of the compiler, by providing ANTLR w
 ANTLR is a particularly useful tool for this in comparison to other tools, because it uses a newer parsing technology known as Adaptive LL(*) (ALL(*))\todo{glossery this}.
 The idea is that the grammar is analysed dynamically at runtime rather than statically, before executed by the generated parser.
 This allows ANTLR access to input sequences while reading through the grammar, meaning not all possible inputs must be considered.
-Due to this dynamic analysis ANTLR v4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
+Due to this dynamic analysis ANTLRv4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
 Furthermore ANTLR also takes care of left-recursion if such is present in the grammar by rewriting it as long as the left recursion is recursive to its own rule on the left side, as such would be the case in \myref{lst:amb}
-\begin{lstlisting}[caption=An ambiguous rule for expr,frame=tlrb,label={lst:amb}]
-expr : expr '*' expr // match expressions with * operator
-| expr '+' expr // match expressions with + operator
-| INT // matches simple intege
-;
+\begin{lstlisting}[caption=An ambiguous rule for expr,frame=tlrb,label={lst:amb},numbers=none]
+expr : expr '*' expr 	// match expressions with * operator
+     | expr '+' expr 	// match expressions with + operator
+     | INT 	 	// matches simple integer
+     ;
 \end{lstlisting}
-While it may not be obvious from \myref{lst:amb} also implements ANTLRs way of representing operator prescedence by simply obeying the first alternative in the ruleset, as such ´´*'' will have the higher prescedence.
+While it may not be obvious from \myref{lst:amb} also implements ANTLRs way of representing operator prescedence by simply obeying the first alternative in the ruleset, as such the multiplication operator (``*'') will have the higher prescedence.
 ANTLR being LL(*) also means that one can completly disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.
 \todo{tænkte at skrive noget omkring labels eftersom vi bruger dem - men der stod ikke rigtigt noget i ANTLR reference så tænkte sass/søren kunne skrive noget}
 
