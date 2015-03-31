@@ -1,6 +1,6 @@
 \section{Control Flow}\label{subsec:control-flow}
 Control flow is any part of the language in which a branch occurs. 
-A branch is in this case a is a place in the code where multiple codepaths are possible. 
+A branch is in this case a place in the code where multiple codepaths are possible. 
 These come in three variations: primitives, choice and loops.
 C, C\#, Java etc. contain some or all of these elements to control the flow of a program:
 
@@ -50,13 +50,13 @@ The same can be done with the \texttt{for} and \texttt{do..while} loops.
 This means that the only needed control structures should be \texttt{if} and \texttt{goto}. 
 However the use of goto is considered harmful in many cases, because it is easy to make mistakes when using it. \citep{DijkstraGoto}
 Even though \texttt{for} and \texttt{while} are similar, they are often used in different contexts.
-The for \texttt{loop} is useful for iterating over a collection or knowing exactly how many time the code is executed. 
+Therefor \texttt{loop} is useful for iterating over a collection or knowing exactly how many time the code is executed. 
 Therefore we have decided to include both \texttt{for} and \texttt{while} in \gls{gamble}, but not \texttt{foreach} and \texttt{do..while}, this is to simplify the number of control structures.
 
 \subsection{Choice structure}
 We have decided to implement the traditional \texttt{if} and \texttt{if-else} constructs. 
 These are useful, and can achieve the same as a \texttt{switch}, by chaining if-else statements, therefore we have excluded the switch construct to simplify the implement. 
-The ternary operator, also known as the inline if, written as show in \myref{terlst} in C and many other languages, is useful for compacting code to make it more readable, however this is not implemtented in \gls{gamble}, because the functionality is redundant with the if-else structure and it is not important for the goal of this project.
+The ternary operator, also known as the inline if, is useful for compacting code to make it more readable, however this is not implemented in \gls{gamble}, because the functionality is redundant with the if-else structure and it is not important for the goal of this project.
 
 Examples of if/if-else \gls{gamble} are shown in \myref{iflst} and \myref{ifelselst}. 
 The condition is enclosed in a parenthesis this is to make the if construct similar to the function call, in which the parameters are in a parenthesis. 
@@ -70,10 +70,6 @@ if ( condition )
     statement();
 }
 \end{lstlisting}
-\begin{lstlisting}[caption=A use of \texttt{?:} in \gls{gamble}.,frame=tlrb, label=terlst, numbers=none]{Name}
-condition ? ifTrue() : ifFalse();
-\end{lstlisting}
-
 \end{minipage}\hfill
 \begin{minipage}{.45\textwidth}
 \begin{lstlisting}[caption=An if-else construct in \gls{gamble}.,frame=tlrb, label=ifelselst, numbers=none]{Name}
@@ -86,13 +82,10 @@ if ( condition )
 \end{lstlisting}
 \end{minipage}
 
-In a ternary operator, if the boolean statement before the question mark is true, then the first statement is executed otherwise the second is. 
-The ternary operator can also be used for an assignment, only if the value getting assigned to is left of the question mark.
-As the ternary operator allows any statement in its middle body, it is possible to chain them together, just like a if-else chain. 
 
 \subsection{while loop}
 An example of the while loop in \gls{gamble} is shown in \myref{whilelst}. 
-The syntax is identical to the if statement, which also makes it look like a function in certain ways and exciplict express the scope.
+The syntax is identical to the if statement, which also makes it look like a function in certain ways and explicit express the scope.
 
 \vspace{10pt}
 \noindent\begin{minipage}{.40\textwidth}
