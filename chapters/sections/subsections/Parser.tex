@@ -3,12 +3,12 @@ The parser is based on formal syntax specifications such as a \acrfull{cfg} writ
 The parser reads tokens and groups them into phrases according to the syntax specification.
 The parser verifies the syntax, and if a syntax error is found it provides a corresponding error message. \citep{Crafting_book}
 By using a parser generator like ANTLR or SableCC, handling of syntactic errors and repairs can be done automatically.
-A parser can also be written manually but doing so can result in syntactic errors that is hard to locate or solve.
+A parser can also be written manually but doing so can result in syntactic errors that are hard to locate or solve.
 We have chosen to use ANTLR to generate our parser.
 
 There are different kind of parsers, most common are bottom-up and top-down parsers.
 ANTLR makes a top-down parser, more specific a recursive descent parser.
-A recursive decent parser is a subtype of top-down parser build from a set of mutually recursive procedures where each such procedure usually implements one of the productions of the grammar.
+A recursive descent parser is a subtype of top-down parser build from a set of mutually recursive procedures where each such procedure usually implements one of the productions of the grammar.
 The structure of the resulting program closely mirrors the grammar it recognizes. \citep{Recursive_programming}
 
 The parser outputs a parse-tree which is an alternate representation of the input source-code. 

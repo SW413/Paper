@@ -24,9 +24,9 @@ Therefore both single line and multi line comments can be used in \gls{gamble}.
 ``/* */'' is used for multi line comments, meaning that everything between ``/*'' and ``*/'' is ignored by the compiler, also known as C style comments. 
 
 \subsection*{End of statement terminator}
-When choosing an end of state terminator there is two main choices.
+When choosing an end of state terminator there are two main choices.
 The newline character as a terminator or another symbol, often semicolon (;).
-The use of newline is often used in simple languages i.e. MATLAB or other mathematical oriented languages. 
+The use of newline is often used in simple languages e.g. MATLAB or other mathematical oriented languages. 
 We deem the main value of using the newline are simplicity and a decrease in errors due to forgotten semicolons.
 Semicolon is as mentioned the other main choice, this choice has been used through many programming languages throughout the history. 
 The main advantage of a end of statement terminator  like semicolon is that it allows freeform code. 
@@ -38,7 +38,7 @@ As mentioned before forgotten semicolons can result in compiler errors, we deem 
 Based on this analysis we have chosen to use the semicolon as end of statement terminator, for easier parsing.
 
 \subsection*{Scope}
-If a programming language contain no implementation of scoping rules, the one must assume that all the source code in a given program would be in the same scope.
+If a programming language contain no implementation of scoping rules, then one must assume that all the source code in a given program would be in the same scope.
 Such a single scope would mean that any variable can be used form any place in the code. 
 Mostly, as briefly described in \myref{sec:state_of_the_art}, a programming language implements some kind of scoping rules.
 There are several reasons for this, the main reason being it gives the programmer more control of the code and reduces the chance of changing variables by accident.
@@ -51,8 +51,7 @@ A variable is in scope from its declaration until the end of the block it is dec
 An inner block such as a control flow structure, see \myref{subsec:control-flow} for more, has access to the variables from the outer scope. 
 It is also not allowed to redeclare a variable which is already declared in the current scope. 
 Additionally any function is in scope of any other function including itself, this also allows recursion. 
-
-This is static scoping without information hiding. 
+- This is static scoping without information hiding. 
 
 \subsection*{Structure} 
 The structure of the source code to a \gls{gamble} program is shown in \myref{lst:Structure}.
@@ -61,7 +60,7 @@ A single segment contains only a small part of source code.
 Including of other files are, like in many other languages, written in the top segment, this is to make it easy to get an overview of any and all included libraries. 
 All function declarations are written in the next segment followed by the main statements which is the last segment.
 This collects the main statements, which makes it easier for a programmer to get an overview over the order of execution, compared to if the main statements were allowed between the function declarations.
-This also makes it easier to write a context free grammar for the language.
+This sectioning also makes it easier to write a context free grammar for the language.
 
 \begin{lstlisting}[caption={Source code file layout in \gls{gamble}},frame=tlrb,label={lst:Structure}, numbers=none]
 Libary inclusions
@@ -84,7 +83,7 @@ A floating point number is an approximation to a real number.
 It is separated in 3 parts, the sign bit, the mantissa and the exponent. 
 Floats in \gls{gamble} are in base 2, the value of a float is calculated by $ (-1)^{sign bit} \cdot mantissa \cdot 2^{exponent} $. 
 Integers and floating point numbers default to 32 bits with the keywords \texttt{int} and \texttt{float}. 
-It is possible to declare 16 and 64 bit integers and floating point numbers by postfixing their size to their respective keywords, i.e. \texttt{float64} or \texttt{int16}. 
+It is possible to declare 16 and 64 bit integers and floating point numbers by postfixing their size to their respective keywords, e.g. \texttt{float64} or \texttt{int16}. 
 It is useful to be able to specify the size of an integer or a floating point number, as data transfer can cause a lot of overhead particularly when transferring data to and from the \acrshort{gpu}. 
 
 \subsection*{Boolean}
