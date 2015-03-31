@@ -56,7 +56,7 @@ Therefore we have decided to include both \texttt{for} and \texttt{while} in \gl
 \subsection{Choice structure}
 We have decided to implement the traditional \texttt{if} and \texttt{if-else} constructs. 
 These are useful, and can achieve the same as a \texttt{switch}, by chaining if-else statements, therefore we have excluded the switch construct to simplify the implement. 
-The ternary operator, also known as the inline if, written as show in \myref{terlst} in C and many other languages, is useful for compacting code to make it more readable, however this is not implemtented in \gls{gamble}, because the functionality is redundant with the if-else structure and it is not important for the goal of this project.
+The ternary operator, also known as the inline if, is useful for compacting code to make it more readable, however this is not implemented in \gls{gamble}, because the functionality is redundant with the if-else structure and it is not important for the goal of this project.
 
 Examples of if/if-else \gls{gamble} are shown in \myref{iflst} and \myref{ifelselst}. 
 The condition is enclosed in a parenthesis this is to make the if construct similar to the function call, in which the parameters are in a parenthesis. 
@@ -69,7 +69,7 @@ if ( condition )
 {
     statement();
 }
-
+\end{lstlisting}
 \end{minipage}\hfill
 \begin{minipage}{.45\textwidth}
 \begin{lstlisting}[caption=An if-else construct in \gls{gamble}.,frame=tlrb, label=ifelselst, numbers=none]{Name}
