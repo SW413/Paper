@@ -1,7 +1,7 @@
 \chapter{Syntax}\label{chap:syntax}
 
 To describe the formal syntax of \gls{gamble} in order to parse the language it is necessary to write a \acrfull{cfg}.
-Our grammar is written using \acrfull{ebnf}, and uses \acrfull{regex}s for defining \texttt{term}inals such as numbers and names.
+Our grammar is written using \acrfull{ebnf}, and uses \acrfull{regex} for defining terminals such as numbers and names.
 
 \section{Context-Free Grammar}
 A \acrshort{cfg} is an areal of formal languages which are useful for specifying syntax. 
@@ -18,9 +18,10 @@ factor     = constant | "(" expression ")";
 constant   = [0-9]+
 \end{lstlisting}
 
-It is possible to generate a parse tree for a string which is follows the grammar. 
+It is possible to generate a parse tree for a string which follows the grammar. 
 If there exists two or more trees for any given string then the grammar is ambiguous. 
-Having an ambiguous grammar can be a problem when parsing.
+Having an ambiguous grammar can be a problem when parsing.   
+\todo{skriv om de transformationer man kan lave for at omgå ambiguous grammar}
 
 There are two common strategy followed to generate a parse tree: the leftmost derivation and the rightmost derivation. 
 A leftmost derivation always applies the rules in the grammar by always applying a production rule to the leftmost non-terminal. 
@@ -53,13 +54,13 @@ A rightmost derivation is the reverse, and whats used in a bottom-up parser, als
 %\end{table}
 
 \section{Classes of CFGs}
-As mentioned there are two common strategys for parsing, leftmost and rightmost. 
+As mentioned there are two common strategies for parsing, leftmost and rightmost. 
 A parser also has a lookahead which is the maximum numbers of tokens which are needed to determine what rule should be applied, this is denoted in a parenthesis, so i.e. LL(1) means leftmost derivation using a lookahead of 1 token. 
 A lookahead of k means that there is a constant lookahead of a maximum of k tokens for the given parser. 
-There also exists the LL(*) which can dynamicly change the number of tokens needed to parse by recognizing if they follow a \acrshort{regex}.
+There also exists the LL(*) which can dynamically change the number of tokens needed to parse by recognising if they follow a \acrshort{regex}.
 Combining this with the fact that any LL grammar is a special case of a LR grammar and the different cases of lookahead constructs a hierarchy. 
 This hierarchy is shown in \myref{image:hierarchyofgrammars}, LL(*) not included.
-In this figure is also contains the SLR which is more powerful than a LR(0) grammar, but less than a LR(1), and the LALR(1) which is more powerfull than SLR and less than LR(1).
+In this figure is also contains the SLR which is more powerful than a LR(0) grammar, but less than a LR(1), and the LALR(1) which is more powerful than SLR and less than LR(1).
 \begin{figure}[!ht]
 \centering
  \includegraphics[width=0.5\textwidth]{figures/classesofgrammars.png} % trim=4.85cm 15cm 0.85cm 1cm
