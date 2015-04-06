@@ -21,7 +21,50 @@ constant   = [0-9]+
 It is possible to generate a parse tree for a string which follows the grammar. 
 If there exists two or more trees for any given string then the grammar is ambiguous. 
 Having an ambiguous grammar can be a problem when parsing.   
-\todo{skriv om de transformationer man kan lave for at omgå ambiguous grammar}
+\todo{skriv om de transformationer man kan lave for at omgå ambiguous grammar. Har nu skrevet om dangling else nedenfor.}
+
+\subsection{The dangling else problem}
+
+A common mistake leading to ambiguous grammar is the dangling else problem. \citep{danglingelse}
+In many programming languages is it possible to have an if statement and an else statement, and inside the body of these having the same statements. 
+A \acrshort{cfg} describing it is shown in \myref{lst:danglingelseex1}.
+\begin{lstlisting}[caption={An example of a \acrshort{cfg} describing an if statement. \citep{danglingelse}},frame=tlrb,label={lst:danglingelseex1},numbers=none]
+if statement =
+    | if clause statement
+    | if clause statement else statement
+
+statement =
+    | simple statement
+    | if statement
+    | loop statement
+\end{lstlisting}
+
+Given an input where the statement of an if statement contains an if statement this grammar is ambiguous.  
+However it can be rewritten to allow for this, this however will in almost all cases cause the size of the grammar to increase. 
+A solution to this problem is to observe that there exists two kinds of if statements, open and closed if statements.
+An open statement is one which the if statement is not paired with an else, and a closed is any if statement paired with an else.
+A simple statement is also a closed statement.
+A grammar resolving the dangling else problem using this method is shown in \myref{lst:danglingelseex2}.
+
+\begin{lstlisting}[caption={An example of a \acrshort{cfg} describing an if statement, that is not ambiguous. \citep{danglingelse}},frame=tlrb,label={lst:danglingelseex2},numbers=none]
+statement =
+    | open statement
+    | closed statement
+
+open statement =
+    | if clause statement
+    | if clause closed statement else open statement
+    | loop header open statement
+
+closed statement =
+    | simple statement
+    | if clause closed statement else closed statement
+    | loop header closed statement
+\end{lstlisting}
+
+Another way to resolve this issue is to force statement bodies of if statements, when followed by else statement, to be delimited by explicit blocks, such as \texttt{begin..end} used in Pascal or curly brackets (\texttt{\{...\}}) used in C and derivatives. 
+
+\subsection{Derivations of parse trees}
 
 There are two common strategy followed to generate a parse tree: the leftmost derivation and the rightmost derivation. 
 A leftmost derivation always applies the rules in the grammar by always applying a production rule to the leftmost non-terminal. 
@@ -64,7 +107,7 @@ In this figure is also contains the SLR which is more powerful than a LR(0) gram
 \begin{figure}[!ht]
 \centering
  \includegraphics[width=0.5\textwidth]{figures/classesofgrammars.png} % trim=4.85cm 15cm 0.85cm 1cm
-\caption{The hierarchy of \acrlong{cfg}. \citep{NvidiaCUDASeminar}}\label{image:hierarchyofgrammars}
+\caption{The hierarchy of \acrlong{cfg}. \citep{NvidiaCUDASeminar} \todo[inline]{TODO: Tikz figur med LL(*) indsat.}}\label{image:hierarchyofgrammars}
 \vspace{-15pt}
 \end{figure}
 
