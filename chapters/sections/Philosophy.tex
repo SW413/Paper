@@ -1,25 +1,27 @@
 %\gls{gamble} is used to refer to our languange
-\section{Design Philosophy}
+\section{Design Philosophy}\label{sec:phil}
+
 For complex computations or large datasets one needs to have significant computational power.
 The focus for \gls{gamble} is to use the computational powers of the \acrshort{gpu} to handle such computations without it being inconvenient for the programmer.
 As described in \myref{sec:state_of_the_art} several libraries and languages allows the programmer to explicitly designate workloads to the \acrshort{gpu} however this often requires explicit memory handling as well.
 Keeping \gls{gamble} familiar to other languages makes it more accessible and reduces the time required for users to familiarize themselves with it.
 This is done by using a C-like syntax, while stripping \gls{gamble} of features we deem not necessary for a language which main focus lies in easy access to \acrshort{gpgpu} programming and linear algebra calculations.
-These choices will be documented in the rest of this chapter.
 The C-like syntax is chosen because the top 5 languages on Tiobe's list of most popular programming languages, is C-like, and therefore if \gls{gamble} resembles these languages, it will be easier to start programming in \gls{gamble}.\citep{TIOBE}
 As the \acrshort{gpu} is the resource being used to achieve more computational power, the data computed must also be applicable to the niche of the GPU, i.e. the data must be parallelisable as explained in \myref{sec:comparch}.
-This basic need will influence how data is represented, and also puts focus onto matrices and vector calculations, which as mentioned before can often be parallelised.
+This basic need will influence how data is represented, and also put focus onto matrices and vector calculations, which as mentioned before can often be parallelised.
 
 \textbf{Allow the programmer to use the \acrshort{gpu} without it being inconvenient}
 
 Due to \gls{gamble} being focused on numerical computations, allowing the programmer to focus on managing the mathematical aspects is the main focus.
 Therefore having the programmer control the runtime architecture seems an unnecessary distraction.
 \gls{gamble} takes care of designating the computations to the right processor, whether it be the \acrshort{gpu} or the CPU, as such any inconvenience in that process is removed from the programmer whose focus can be solely on the mathematics.
+This abstraction therefore results in better writability.
 
 \textbf{Avoid implementing unnecessary data types and features}
 
-As the purpose of \glspl{gamble} is to use the \acrshort{gpu} for calculations which can be parallelised implementing features or data types, that do not hold any regard to this aspect would clutter the language.
+As the purpose of \gls{gamble} is to use the \acrshort{gpu} for calculations which can be parallelised implementing features or data types, that do not hold any regard to this aspect would clutter the language.
 Additionally \gls{gamble} should not try to adapt itself towards purposes for which it is not designed, an example of excluding such features is the fact that strings are not part of the language, this choice and others like it are further documented later in this chapter.
+This makes \gls{gamble} simpler, and therefore both easier to read and write.
 
 \textbf{Let the language be somewhat familiar to read and use}
 
@@ -27,29 +29,4 @@ As mentioned the main purpose of \gls{gamble} is to use the \acrshort{gpu} for c
 As such \gls{gamble} would most often be used where this niche is required.
 It may even be likely that it is not used when developing an algorithm to do computations, but first used once the algorithm is complete, and can be applied to bigger sets of data.
 This is because of the large overhead as explained in \myref{sec:comparch}, it will be faster to perform a test of an algorithm with smaller datasets in other languages, like C.
-Therefore to use the niche that \gls{gamble} proclaims, having the language be familiar makes it easier to use for its pure computational aspect.
-
-\textbf{Let the language promote read- and write-ability}
-
-Read- and write-ability directly influences the reliability of a language. 
-The easier a program is to write, the more likely it is to be correct. \citep{Sebesta}
-This is gained through using a familiar syntax, as mentioned above, as well as sticking to certain language characteristics shown in \myref{tbl:concepts}.
-\begin{table}[h]
-\center
-\begin{tabular}{|l|l|c|c|}
-\hline
-\begin{tabular}[c]{@{}l@{}}Language\\ Concepts\end{tabular} & Readability            & \multicolumn{1}{l|}{Write-ability} & \multicolumn{1}{l|}{Reliability} \\ \hline
-Simplicity                                                   & \multicolumn{1}{c|}{x} & x                                 & x                                \\ \hline
-Orthogonality                                                 & \multicolumn{1}{c|}{x} & x                                 & x                                \\ \hline
-Data types                                                   & \multicolumn{1}{c|}{x} & x                                 & x                                \\ \hline
-Syntax design                                                & \multicolumn{1}{c|}{x} & x                                 & x                                \\ \hline
-Support for abstraction                                      &                        & x                                 & x                                \\ \hline
-Expressivity                                                 &                        & x                                 & x                                \\ \hline
-Type checking                                                &                        & \multicolumn{1}{l|}{}             & x                                \\ \hline
-Exception handling                                           &                        & \multicolumn{1}{l|}{}             & x                                \\ \hline
-Restricted aliasing                                           &                        & \multicolumn{1}{l|}{}             & x                                \\ \hline
-\end{tabular}
-\caption{Language evaluation criteria and the characteristics that affect them. \citep{Sebesta}}\label{tbl:concepts}
-\end{table}
-
-
+Therefore to use the niche that \gls{gamble} proclaims, having the language be familiar makes it easier to use for its pure computational aspect, and improves on the \gls{gamble}'s read- and writability.
