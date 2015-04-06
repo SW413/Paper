@@ -1,9 +1,15 @@
-\chapter{Compiler Design}
+\chapter{Compiler Design}\todo{Evenetuelt et nyt navn hvis dette er mere teori end hvordan vi implementere vores compiler}
+A compiler can be seperated into three phases; syntax analysis, contextual analysis and code generation.
+The syntax analysis phase checks whether or not the source code adheres to the rules for the languange, such as statement constructs.
+The contextual analysis phase checks whether or not the languange is used correctly, such as type checking.
+The code generation translates the source code into the target code once the syntax and contextual analysis phases have accepted the source code.
+This chapter examines each phase of the compiler and what these entail.
+How each phase is constructet for GAMBLE will also be gone over in this chapter. %This may or may not change
 
 \info[inline]{A few thing such as symbol table i am unaware where as to put, but possibly in the Metatext for compiler design, or in metatext for syntax analysis}
 \improvement[inline]{Metatext}
 %Antlr
-\input{chapters/sections/ANTLR.tex}
+\input{chapters/sections/ANTLR.tex}\todo{skal flytte}
 %Phase1
 \input{chapters/sections/SyntaxAnalysis.tex}
 %Subphases
