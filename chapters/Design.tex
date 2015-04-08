@@ -165,19 +165,11 @@ a = add(4, 3);
 
 
 \subsection*{Print function}\todo{rename maybe}
-In the out language \gls{gamble} we have one function that is ready-made. It is a print function.
-The print function is a special function hence it returns a string.
-Strings is not a valid data type in \gls{gamble} and we therefore need a function for providing a output to the user.
-With a function, print, that can output a string of characters, it is possible to give the user a visual representation of the computations result, in the console.
-The function is first see in the AST where it is visited.
-Then the function is then used in the pretty print. \todo{Der skal skrive mere præcist hvordan den bliver brugt - ja det skal bare skrive bedre :( }
-
-
-The print function can be seen on \myref{lst:printfunction}
-
-\begin{lstlisting}[caption={Print Function},label={lst:printfunction}]
-
-\end{lstlisting}
-
+In \gls{gamble} we have one function that is ready-made. It is a print function.
+The function is special because it can both take variables, numerical values and strings as input parameter.
+Since string is not a valid data type in \gls{gamble} this function is special. 
+With the print function it is possible to give the user a visual representation of the computations result, in the console.
+A simple print function which take string inputs increases both readability and writability.
+Strings in the print function allows the programmer to write easier understandable and readable program output. 
 %STD LIB EVT?!
 \input{chapters/sections/subsections/controlflow2.tex}
