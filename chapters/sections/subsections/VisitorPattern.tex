@@ -1,1 +1,26 @@
 \subsection*{Visitor Pattern}\label{subs:visit}
+%This i notes - dont mind them:
+Antlr generates methods for each visitor for us to fill out, for its generated parse tree
+We override these methods and design our own AST
+We then make our own visitor pattern for this AST
+Visitor pattern is the basis for everything we have done in our compiler, it is implemented in prettyprint, symbol table, AST - Everything in the compiler is in some way based on the visitor pattern implemented.
+As such is it clear the visitor pattern is important
+What is the visitor pattern?
+%http://www.blackwasp.co.uk/GofPatterns.aspx
+%http://www.blackwasp.co.uk/Visitor.aspx
+The visitor pattern is used to seperate a relatively complex data structure, from the functions that are to be performed on said classes
+
+In doing so it provides the ability to add operations without modifying data classes, an invaluable feature when doing work in iterations.
+
+It is a behavioral pattern as it controls communications between classes or entities.
+
+By using this pattern, your classes contains very limited internal functionality, but are controlled through visitors that performs operations on the classes, theses visitors are implemented through an interface, this can be done without knowing the details of the class.
+
+All classes contain a method to call a visitor.
+
+This method performs a callback to the visitor, passing itself to the visitors method as paramater - in turn this allows the visitor to perform operations on the class.
+
+As such to add a new operation a new visitor class is created, and the class needs no modification.
+
+Another benefit is that a single visitor object is used to visit all classes.
+THis visitor can maintain state between calls to individual data objects.
