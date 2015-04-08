@@ -1,0 +1,18 @@
+include <printing.lib>
+//Make a 100x100 matrix with all zeroes
+matrix<int> a [100,100] = 0;
+//Make a 100x100 matrix with all ones
+matrix<int> b [100,100] = 1;  
+
+for (int i = 0; i < 100; i++) {
+	for (int j = 0; j < 100; i++) {
+		a [i,j] = i*j*j;
+	}
+}
+
+for (int i = 0; i < 100; i++) {
+    for (int j = 0; j < 100; i++) {
+        b [i,j] = a[i,j] * 55;
+    }
+}
+print(a);
