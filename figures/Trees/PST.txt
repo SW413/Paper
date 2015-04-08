@@ -1,0 +1,23 @@
+digraph G{
+
+
+toplevel->statement
+toplevel->EOF
+statement->declaration
+semi[label=";"];
+statement->semi
+declaration->datatype
+declaration->a;
+
+lig [label="="];
+declaration-> lig
+
+declaration->expression
+datatype->int
+expression->value
+value->constant
+constant->5
+}
+
+Paste in: http://cpettitt.github.io/project/dagre-d3/latest/demo/interactive-demo.html
+  
