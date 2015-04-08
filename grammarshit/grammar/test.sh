@@ -6,9 +6,9 @@ if [[ $ans = 'y' ]]; then
 	path=$(cygpath -w /usr/local/lib/antlr-4.5-complete.jar)
 else
 	path='/usr/local/lib/antlr-4.5-complete.jar'
-fi 
+fi
 java -jar $path ourLang.g4
-javac ourLang*.java 
+javac ourLang*.java
 echo "What test? (type first unique string)" 
 ls ../tests
 read query
