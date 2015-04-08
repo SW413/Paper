@@ -3,7 +3,9 @@ Our grammar is written using \acrfull{ebnf}, and uses \acrfull{regex} to define 
 The full \acrshort{cfg} of \gls{gamble} can be found on \todo{ref til appendix} together with the lexer. This section only presents a small selection of the entire \acrshort{cfg}.
 In this section there will be a short traversal of one of the parse trees branches.
 
-The first production from the \acrshort{cfg} that will be the statement. Looking at \myref{lst:statements} it is seen that a statement can be both a assignment, declaration, functioncall, controlblock and a loop. Statement productions is the building blocks of the code.
+The first production from the \acrshort{cfg} that will be the statement. 
+Looking at \myref{lst:statements} it is seen that a statement can be both a assignment, declaration, functioncall, controlblock and a loop. 
+Statement productions is the building blocks of the code.
 
 \begin{lstlisting}[caption={\acrshort{cfg} Statement},frame=tlrb,label={lst:statements},numbers=none]
 statement
@@ -29,7 +31,7 @@ declaration
 Further expanding into the expression production, it is seen that it have five different elements.
 The expression can be called in different ways inside the expression itself because there may be a need for several different expressions to be used in the same expression.
 Aside the expressions non-terminal there is are an no-terminal value and an no-terminal postUnaryOperator.
-\begin{lstlisting}[caption={\acrshort{cfg} Expression},frame=tlrb,label={lst:declaration},numbers=none]
+\begin{lstlisting}[caption={\acrshort{cfg} Expression},frame=tlrb,label={lst:expression},numbers=none]
 expression
     : expression ( '*' | '/' | '%' ) expression     #mulExpr
     | expression ( '+' | '-' ) expression           #addExpr
@@ -40,8 +42,8 @@ expression
 \end{lstlisting}
   
 The value production expands into what is seen on \myref{lst:value}.
-In this production are there both termials, and non-terminals.
-The terminals are elements that have no production, leading to a "dead end".
+In this production are there both terminals, and non-terminals.
+The terminals are elements that have no production, leading to a ``dead end''.
 When a terminal is reached it is used and is as a leaf on a tree, also seen in \myref{sec:parsetrees}
 \begin{lstlisting}[caption={\acrshort{cfg} Value},frame=tlrb,label={lst:value},numbers=none]
 value
