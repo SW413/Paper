@@ -1,7 +1,7 @@
 %\gls{gamble} is used to refer to our languange
 \chapter{Language Criterias}
 When evaluating programming languages it can be difficult to agree on the value of a language's characteristics.
-\todo{måske Robert W. Sebesta, ved første benævnelse? dunno} Sebesta have given some criterias which can be evaluated from, and we will take these criterias into account when designing our language.\citep{Sebesta}
+Robert W. Sebesta have given some criterias which can be evaluated from, and we will take these criterias into account when designing our language.\citep{Sebesta}
 The criterias can be seen on \myref{tbl:concepts}.
 First a brief description of the criterias will be given, followed by how we rate these criterias for our language according to the information found in \myref{cha:introduction}.
 \begin{table}[h]
@@ -33,13 +33,11 @@ For our language the three criterias readability, writability and reliability, a
 	\item Reliability
 \end{enumerate}
 
-We want it to be easy for programmers and mathmaticians alike to write and read programs in our language.
+We want it to be easy for programmers and mathematicians alike to write and read programs in our language.
 The focus should be on calculating the problem at hand, without having to conform to low level language specifics, controlling memory etc.
-Our language must be simple, which means that the number of basic constructs is kept low. 
+Our language must adhere to the concept of simplicity, which means that the number of basic constructs is kept low. 
 This results in both better readability and writability as can be seen on \myref{tbl:concepts}.
-The language supports abstraction over the programmer's\todo{måske platform? -  det kan køres på flere end programmørens maskine.} hardware, by not having to specify where the computations must be run, or having to allocate memory.
-
-\todo{Skal vi gå igennem dem allesammen dybdegående som vi nok ville have gjort sidste semester, eller er sådan en hurtig overskuelig gennemgang fin nok?}
+The language supports abstraction over the programmer's hardware, by not having to specify where the computations must be run, or having to allocate memory.
 
 \section{Success criterias}\label{sec:OurCriterias}
 We deem our language and compiler to be a good solution for our problem statement if it upholds to the following criterias:
@@ -52,5 +50,4 @@ We deem our language and compiler to be a good solution for our problem statemen
 	\item Giving good error messages, for easier debugging, resulting in better writability.
 \end{itemize}
 
-Our overall thoughts of our language according to Sebesta's criterias can be found in \myref{sec:phil}.\todo{msåke noget ala, "a more precise description of our language will be presented and argued for in the following chapter"?}
-
+A more precise description of our language abiding to Sebesta's criterias will be presented and argued for in the following chapter.
