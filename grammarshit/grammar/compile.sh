@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#find . -type f -not -name '*.g4' -not -name '*.sh' | xargs rm
+find . -type f -not -name '*.g4' -not -name '*.sh' | xargs rm
 echo "Babun? y/n"
 read ans
 if [[ $ans = 'y' ]]; then
@@ -7,5 +7,5 @@ if [[ $ans = 'y' ]]; then
 else
 	path='/usr/local/lib/antlr-4.5-complete.jar'
 fi 
-java -jar $path ourLang.g4 -o ../src/com/antlr -no-listener -visitor -package com.antlr
-#javac ourLang*.java 
+java -jar $path ourLang.g4 -no-listener 
+javac ourLang*.java 
