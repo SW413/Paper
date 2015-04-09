@@ -4,9 +4,6 @@ To describe the formal syntax of \gls{gamble}, in order to parse the language, i
 This chapter will explain what a \acrfull{cfg} is, and the problems of creating one.
 After this explanation our own \acrfull{cfg}, will be presented.
 
-%Our grammar is written using \acrfull{ebnf}, and uses \acrfull{regex} to define terminals such as numbers and names.
-%Dette skal nok i afsnittet om vores eget sprog istedet?
-
 \section{Context-Free Grammar}
 A \acrshort{cfg} is an area of formal languages which are useful for specifying syntax. 
 A \acrshort{cfg} generates a context-free language. 
@@ -66,7 +63,7 @@ closed statement =
 
 Another way to resolve this issue is to force statement bodies of if statements, when followed by else statement, to be delimited by explicit blocks, such as \texttt{begin..end} used in Pascal or curly brackets (\texttt{\{...\}}) used in C and derivatives. 
 
-\subsection{Derivations of parse trees}
+\subsection{Derivations of parse trees}\label{sec:parsetrees}
 A parser is a program which takes a string, and parses it into segments according to the rules specified in a grammar.
 A more thorough explanation of parsers can be found in \myref{subsec:parser}
 Two common strategies to generate a parse tree is leftmost derivation and rightmost derivation. 
@@ -114,4 +111,4 @@ More powerful means that a grammar following it can produce more languages typic
 \caption{The hierarchy of \acrlong{cfg}. \citep{NvidiaCUDASeminar} \todo[inline]{TODO: Tikz figur med LL(*) indsat.}}\label{image:hierarchyofgrammars}
 \vspace{-15pt}
 \end{figure}
-
+\input{chapters/sections/GambleCFG.tex}
