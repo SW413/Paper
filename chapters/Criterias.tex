@@ -1,37 +1,29 @@
 %\gls{gamble} is used to refer to our languange
-\chapter{Language Criterias}
+\chapter{Language Criteria}
 When evaluating programming languages it can be difficult to agree on the value of a language's characteristics.
-Robert W. Sebesta have given some criterias which can be evaluated from, and we will take these criterias into account when designing our language.\citep{Sebesta}
-The criterias can be seen on \myref{tbl:concepts}.
-First a brief description of the criterias will be given, followed by how we rate these criterias for our language according to the information found in \myref{cha:introduction}.
+Robert W. Sebesta has given some criteria which can be evaluated from, and we will take these criteria into account when designing our language.\citep{Sebesta}
+The criteria can be seen on \myref{tbl:concepts}.
+First a brief description of the criteria will be given, followed by how we rate these criteria for our language according to the information found in \myref{cha:introduction}.
 \begin{table}[h]
 	\centering
 	\colorlet{shadecolor}{gray!40}
     \rowcolors{1}{white}{shadecolor}
-	\begin{tabular}{|l|l|c|c|}
+	\begin{tabular}{|l|c|c|c|}
 	\hline
-	\textbf{Language Concepts}										& \textbf{Readability}  & \textbf{Writability} & \textbf{Reliability}   \\ \hline
-	Simplicity                                                  	& x 					& x             		 & x           			\\ \hline
-	Orthogonality                                               	& x 					& x             		 & x           			\\ \hline
-	Data types                                                  	& x 					& x             		 & x           			\\ \hline
-	Syntax design                                               	& x 					& x             		 & x           			\\ \hline
-	Support for abstraction                                    		&                       & x             		 & x           			\\ \hline
-	Expressivity                                                	&                       & x             		 & x           			\\ \hline
-	Type checking                                               	&                       &            			 & x           			\\ \hline
-	Exception handling                                          	&                       &             			 & x           			\\ \hline
-	Restricted aliasing                                         	&                       &             			 & x           			\\ \hline
+	\textbf{Language Concepts} & \textbf{Readability}  & \textbf{Writability} & \textbf{Reliability}   \\ \hline
+	Simplicity                 & x      		       & x             		  & x           		   \\ \hline
+	Orthogonality              & x 				       & x             		  & x           		   \\ \hline
+	Data types                 & x 				       & x             		  & x           		   \\ \hline
+	Syntax design              & x 				       & x             		  & x           		   \\ \hline
+	Support for abstraction    &                       & x             		  & x           		   \\ \hline
+	Expressivity               &                       & x             		  & x           		   \\ \hline
+	Type checking              &                       &               		  & x           		   \\ \hline
+	Exception handling         &                       &               		  & x           		   \\ \hline
+	Restricted aliasing        &                       &               		  & x           		   \\ \hline
 	\end{tabular}
 	\caption{Language evaluation criteria and the characteristics that affect them.}
 	\label{tbl:concepts}
 \end{table}
-
-For our language the three criterias readability, writability and reliability, are rated as follows.
-
-\begin{enumerate}
-	\item Writability
-	\item Readability
-	\item Reliability
-\end{enumerate}
 
 We want it to be easy for programmers and mathematicians alike to write and read programs in our language.
 The focus should be on calculating the problem at hand, without having to conform to low level language specifics, controlling memory etc.
@@ -39,15 +31,15 @@ Our language must adhere to the concept of simplicity, which means that the numb
 This results in both better readability and writability as can be seen on \myref{tbl:concepts}.
 The language supports abstraction over the programmer's hardware, by not having to specify where the computations must be run, or having to allocate memory.
 
-\section{Success criterias}\label{sec:OurCriterias}
-We deem our language and compiler to be a good solution for our problem statement if it upholds to the following criterias:
+\section{Success criteria}\label{sec:OurCriterias}
+We deem our language and compiler to be a good solution for our problem statement if it upholds to the following criteria:
 
 \begin{itemize}
 	\item Calculating matrix and vector calculations on the GPU, without the programmer specifically specifying it to do so.
 	\item Can calculate very large matrix operations faster than regular C being run on the CPU.\todo{ - very large - vi skal finde på noget mere konkret, synes jeg.}
-	\item Expresses good read- and writability, by being simple and having a familiar syntax design.
-	\item Has somewhat good reliability, with type and scope checking.
-	\item Giving good error messages, for easier debugging, resulting in better writability.
+	\item Expresses a high level of read- and writability, by being simple and having a familiar syntax design.
+	\item Provides reliability, with type and scope checking.
+	\item Gives descriptive and fulfilling error messages, for easier debugging, resulting in better writability.
 \end{itemize}
 
-A more precise description of our language abiding to Sebesta's criterias will be presented and argued for in the following chapter.
+A more precise description of our language abiding to Sebesta's criteria will be presented and argued for in the following chapter.
