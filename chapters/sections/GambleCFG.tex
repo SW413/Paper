@@ -1,9 +1,9 @@
 \section{Context free grammar in gamble}
 Our grammar is written using \acrfull{ebnf}, and uses \acrfull{regex} to define terminals such as numbers and names.
-The full \acrshort{cfg} of \gls{gamble} can be found on \todo{ref til appendix} together with the lexer. This section only presents a small selection of the entire \acrshort{cfg}.
+The full \acrshort{cfg} of \gls{gamble} can be found on \todo{ref til appendix} alongside  the lexer. This section only presents a small selection of the entire \acrshort{cfg}.
 In this section there will be a short traversal of one of the parse trees branches.
 
-The first production ruel from the \acrshort{cfg} that will be the statement. 
+The first production rule from the \acrshort{cfg} that will be the statement. 
 Looking at \myref{lst:statements} it is seen that a statement can be both a assignment, declaration, functioncall, controlblock and a loop. 
 Statement productions is the building blocks of the code.
 
@@ -58,7 +58,7 @@ value
 
 Going through this small part of the \acrshort{cfg} one single branch of the parse tree have been unfolded and shown.
 \gls{gamble}s \acrshort{cfg} is then used in the parser.
-The parser takes the input from a lexical analyzer, the soruce code in the form of a token stream.
-The parser analtzes uses the \acrshort{cfg}s production rules to set up again the soruce code to decet any erros in the soruce.
+The parser takes the input from a lexical analyzer, the source code in the form of a token stream.
+The parser uses the \acrshort{cfg}s production rules to set up again the source code to detect any errors in the source.
 The output is a parse tree.
-This is future expained in \myref{sec:syntaxAnalysis} and \myref{subsec:parser}.
+This is future explained in \myref{sec:syntaxAnalysis} and \myref{subsec:parser}.
