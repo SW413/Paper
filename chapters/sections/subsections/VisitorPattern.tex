@@ -15,7 +15,7 @@ Instead the functionality is on a interface that each visitor implements.
 The classes have an accept method that allows them to call the visitor in question with itself as an argument.
 This allows the ability of adding new operations without changing the original data structure, an invaluable feature when doing iterative development.
 \myref{image:visitor} shows a UML diagram of the visitor pattern.
-This diagram is from a C# representation, and while the idea is the same the exact implementation is not identical to the one used in the compiler for GAMBLE.
+This diagram is from a C\# representation, and while the idea is the same the exact implementation is not identical to the one used in the compiler for GAMBLE.
 The most important things to take note of are the classes ``ConcreteElement'' and ``ConcreteVisitor''.
 The ``ConcreteElement'' represent the different kinds of nodes in a given tree.
 The ``ConcreteVisitor'' represent the different kind of visitors implemented, this being one for AST, parse tree, symbol table, code generation and pretty print, all these implements an interface that contains visit methods for each ``ConcreteElement''.
