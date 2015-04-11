@@ -15,7 +15,7 @@ A transformation from a parse tree to an \acrfull{ast}, on the declaration: \tex
 
 As mentioned the parse tree is generated using a parser produced by compiling the grammar with ANTLR, which means we cannot decide what information is contained on the nodes of the tree.
 The nodes of the \acrfull{ast} can therefore be made to contain information for type and scope checking, which makes those phases a lot easier.
-All that is needed to make this transformation, is to make classes for all the nodes of the \arcfull{ast}, and create a way to traverse the AST.
+All that is needed to make this transformation, is to make classes for all the nodes of the \acrfull{ast}, and create a way to traverse the AST.
 The next section will present ways of traversing trees, while performing different computations like scope and type checking on the tree data structures.
 
 
