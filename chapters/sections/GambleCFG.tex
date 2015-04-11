@@ -3,7 +3,7 @@ Our grammar is written using \acrfull{ebnf}, and uses \acrfull{regex} to define 
 The full \acrshort{cfg} of \gls{gamble} can be found on \todo{ref til appendix} together with the lexer. This section only presents a small selection of the entire \acrshort{cfg}.
 In this section there will be a short traversal of one of the parse trees branches.
 
-The first production from the \acrshort{cfg} that will be the statement. 
+The first production ruel from the \acrshort{cfg} that will be the statement. 
 Looking at \myref{lst:statements} it is seen that a statement can be both a assignment, declaration, functioncall, controlblock and a loop. 
 Statement productions is the building blocks of the code.
 
@@ -44,7 +44,7 @@ expression
 The value production expands into what is seen on \myref{lst:value}.
 In this production are there both terminals, and non-terminals.
 The terminals are elements that have no production, leading to a ``dead end''.
-When a terminal is reached it is used and is as a leaf on a tree, also seen in \myref{sec:parsetrees}
+When a terminal is reached it is used and is as a leaf on a tree, also seen in .\todo{Kilde til afsnittet med billeder Søren har lavet.}
 \begin{lstlisting}[caption={\acrshort{cfg} Value},frame=tlrb,label={lst:value},numbers=none]
 value
     : ID                                     #valID
@@ -57,4 +57,8 @@ value
 \end{lstlisting}
 
 Going through this small part of the \acrshort{cfg} one single branch of the parse tree have been unfolded and shown.
-\gls{gamble}s \acrshort{cfg} is then used by ANTLR to generate a token stream. \todo{Her mangler en linje eller to med noget fornuftigt}
+\gls{gamble}s \acrshort{cfg} is then used in the parser.
+The parser takes the input from a lexical analyzer, the soruce code in the form of a token stream.
+The parser analtzes uses the \acrshort{cfg}s production rules to set up again the soruce code to decet any erros in the soruce.
+The output is a parse tree.
+This is future expained in \myref{sec:syntaxAnalysis} and \myref{subsec:parser}.

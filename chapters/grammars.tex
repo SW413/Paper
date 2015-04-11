@@ -1,15 +1,14 @@
 \chapter{Syntax}\label{chap:syntax}
 
-To describe the formal syntax of \gls{gamble}, in order to parse the language, it is necessary to write a \acrfull{cfg}.
+To describe the formal syntax of \gls{gamble}, and to parse the language, it is necessary to write a \acrfull{cfg}.
 This chapter will explain what a \acrfull{cfg} is, and the problems of creating one.
 After this explanation our own \acrfull{cfg}, will be presented.
 
 \section{Context-Free Grammar}
 A \acrshort{cfg} is an area of formal languages which are useful for specifying syntax. 
-A \acrshort{cfg} generates a context-free language. 
 A \acrshort{cfg} consists of one or several production rules.
-On the left side of a production rule is a nonterminal and on the right side are terminals and/or nonterminals, additionally there is a start symbol. % OG/ELLER HYPE!!!
-An example of this written in \myref{lst:cfglst1}, where a definition for multiplication and addition with parenthesis is shown.
+On the left side of a production rule is a nonterminal and on the right side are terminals and/or nonterminals, additionally there is a start symbol.
+An example of this is written in \myref{lst:cfglst1}, where a definition for multiplication and addition with parenthesis is shown.
 The grammar is structured such that the multiplication operator have a higher precedence than the addition operator.
 
 \begin{lstlisting}[caption={An example of a \acrshort{cfg} written in \acrshort{ebnf}, with \acrshort{regex} for defining numbers. },frame=tlrb,label={lst:cfglst1},numbers=none]
@@ -21,9 +20,10 @@ constant   = [0-9]+
 
 It is possible to generate a parse tree for a string which follows the grammar. 
 If there exists two or more trees for any given string then the grammar is ambiguous. 
-Having an ambiguous grammar can be a problem when parsing.   
+Having an ambiguous grammar can be a problem when parsing because the parser cannot always decide which grammar rule it has to apply.
+Ambiguity is a feature of the grammar, not the language. 
 
-\subsection{The dangling else problem}
+\subsection{The dangling else problem}\todo{Thomas spørger om det er vigtigt for os.}
 
 A common mistake leading to ambiguous grammar is the dangling else problem. \citep{danglingelse}
 In many programming languages is it possible to have an if statement and an else statement, and inside the body of these also having if- and else statements. 
@@ -41,9 +41,9 @@ statement =
 \end{lstlisting}
 
 Given an input where the statement of an if statement contains an if statement this grammar is ambiguous.  
-However it can be rewritten to allow if- and else statements in a grammar, however this will in almost all cases cause the size of the grammar to increase. 
+However it can be rewritten to allow if- and else statements in a grammar, yet this will in almost all cases cause the size of the grammar to increase. 
 A solution to this problem is to observe that there exists two kinds of if statements, open and closed if statements.
-An open statement is one which the if statement is not paired with an else, and a closed one is any if statement paired with an else.
+An open statement is one which the if statement is not paired with an else, and a closed statement is any if statement paired with an else.
 A simple statement is also a closed statement.\todo{Hvad er simple :P ?}
 A grammar resolving the dangling else problem using this method is shown in \myref{lst:danglingelseex2}.
 
@@ -64,7 +64,7 @@ closed statement =
 Another way to resolve this issue is to force statement bodies of if statements, when followed by else statement, to be delimited by explicit blocks, such as \texttt{begin..end} used in Pascal or curly brackets (\texttt{\{...\}}) used in C and derivatives. 
 
 \subsection{Derivations of parse trees}\label{sec:parsetrees}
-A parser is a program which takes a string, and parses it into segments according to the rules specified in a grammar.
+A parser is a program which takes a string of symbols, and parses it into segments according to the rules specified in a grammar.
 A more thorough explanation of parsers can be found in \myref{subsec:parser}
 Two common strategies to generate a parse tree is leftmost derivation and rightmost derivation. 
 A leftmost derivation applies the rules in the grammar by always applying a production rule to the leftmost non-terminal. 
@@ -101,9 +101,10 @@ As mentioned there are two common strategies for parsing, leftmost and rightmost
 A parser also has a lookahead which is the maximum numbers of tokens which are needed to determine what rule should be applied, this is denoted in a parenthesis, so i.e. LL(1) means leftmost derivation using a lookahead of 1 token. 
 A lookahead of k means that there is a constant lookahead of a maximum of k tokens for the given parser. 
 There also exists the LL(*) which can dynamically change the number of tokens needed to parse by recognising if they follow a \acrshort{regex}.
+An LL parser is calleed an LL(*) parser if it is not limited to finite tokens of lookahead, but can make parsing decisions by recognizing whether the following tokens belong to a regular language.
 Combining this with the fact that any LL grammar is a special case of a LR grammar and the different cases of lookahead constructs a hierarchy. 
-This hierarchy is shown in \myref{image:hierarchyofgrammars}, LL(*) not included.
-This figure is also contains the SLR which is more powerful than a LR(0) grammar, but less than a LR(1), and the LALR(1) which is more powerful than SLR and less than LR(1).
+This hierarchy is shown in \myref{image:hierarchyofgrammars}, LL(*) is not included.
+This figure is also contains the Simple LR which is more powerful than a LR(0) grammar, but less than a LR(1), and the LALR(1) which is more powerful than Simple LR and less than LR(1).
 More powerful means that a grammar following it can produce more languages typically a superset of another. 
 \begin{figure}[!ht]
 \centering
