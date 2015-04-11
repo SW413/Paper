@@ -100,8 +100,8 @@ A rightmost derivation is the reverse, and what is used in a bottom-up parser, a
 As mentioned there are two common strategies for parsing, leftmost and rightmost. 
 A parser also has a lookahead which is the maximum numbers of tokens which are needed to determine what rule should be applied, this is denoted in a parenthesis, so i.e. LL(1) means leftmost derivation using a lookahead of 1 token. 
 A lookahead of k means that there is a constant lookahead of a maximum of k tokens for the given parser. 
-There also exists the LL(*) which can dynamically change the number of tokens needed to parse by recognising if they follow a \acrshort{regex}.
-An LL parser is calleed an LL(*) parser if it is not limited to finite tokens of lookahead, but can make parsing decisions by recognizing whether the following tokens belong to a regular language.
+There also exists the LL(*) which can dynamically change the number of tokens needed to parse by recognizing if they follow a \acrshort{regex}.
+An LL parser is called an LL(*) parser if it is not limited to finite k tokens of lookahead, but can make parsing decisions by recognizing whether the following tokens belong to a regular language.
 Combining this with the fact that any LL grammar is a special case of a LR grammar and the different cases of lookahead constructs a hierarchy. 
 This hierarchy is shown in \myref{image:hierarchyofgrammars}, LL(*) is not included.
 This figure is also contains the Simple LR which is more powerful than a LR(0) grammar, but less than a LR(1), and the LALR(1) which is more powerful than Simple LR and less than LR(1).
