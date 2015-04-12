@@ -1,7 +1,7 @@
 %\gls{gamble} is used to refer to our languange
 \chapter{Language Criteria}
-When evaluating programming languages it can be difficult to agree on the value of a language's characteristics.
-Robert W. Sebesta has given some criteria which can be evaluated from, and we will take these criteria into account when designing our language.\citep{Sebesta}
+When evaluating programming languages one must first agree on the goals of a given of a language's characteristics.
+Robert W. Sebesta has given some criteria which can be evaluated from, we will use these criteria to design our language and to state which criteria are important to the language we are designing.\citep{Sebesta}
 The criteria can be seen on \myref{tbl:concepts}.
 First a brief description of the criteria will be given, followed by how we rate these criteria for our language according to the information found in \myref{cha:introduction}.
 \begin{table}[h]
@@ -28,15 +28,20 @@ First a brief description of the criteria will be given, followed by how we rate
 We want it to be easy for programmers and mathematicians alike to write and read programs in our language.
 The focus should be on calculating the problem at hand, without having to conform to low level language specifics, controlling memory etc.
 Our language must adhere to the concept of simplicity, which means that the number of basic constructs is kept low. 
-This results in both better readability and writability as can be seen on \myref{tbl:concepts}.
+This results in high levels of both readability and writability as can be seen on \myref{tbl:concepts}.
 The language supports abstraction over the programmer's hardware, by not having to specify where the computations must be run, or having to allocate memory.
+
+To get an idea of what each criteria expressed, we will in the following text, describe our thoughts and goals in respect to the concepts of simplicity and exception handling.
+Simplicity is important in the language of \gls{gamble}.
+It is so beacuse of the goals expressed in 
+
 
 \section{Success criteria}\label{sec:OurCriterias}
 We deem our language and compiler to be a good solution for our problem statement if it upholds to the following criteria:
 
 \begin{itemize}
 	\item Calculating matrix and vector calculations on the GPU, without the programmer specifically specifying it to do so.
-	\item Can calculate very large matrix operations faster than regular C being run on the CPU.\todo{ - very large - vi skal finde på noget mere konkret, synes jeg.}
+	\item Can implicit calculate matrix operations on the \acrshort{gpu} faster than regular C being run on the \acrshort{cpu}, when sufficient large matrices are provided.
 	\item Expresses a high level of read- and writability, by being simple and having a familiar syntax design.
 	\item Provides reliability, with type and scope checking.
 	\item Gives descriptive and fulfilling error messages, for easier debugging, resulting in better writability.
