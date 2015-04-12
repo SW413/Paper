@@ -1,12 +1,12 @@
 \section{Context free grammar in gamble}
-Our grammar is written using \acrfull{ebnf}, and uses \acrfull{regex} to define terminals such as numbers and names.
+Our grammar is written using \acrfull{ebnf}, and uses \acrfull{regex} to define terminals such as numbers and identifiers.
 In this section there will be a short traversal of what wil corrospond to one of the parse trees branches.
-The full \acrshort{cfg} of \gls{gamble} can be found on \todo{ref til appendix} alongside the lexer.
+The full \acrshort{cfg} of \gls{gamble} can be found on \todo{ref til appendix} alongside the lexing rules.
 This section only presents a small selection of the entire \acrshort{cfg}.
 
-The first production rule from the \acrshort{cfg} that will be the statement. 
-Looking at \myref{lst:statements} it is seen that a statement can be both a assignment, declaration, functioncall, controlblock and a loop. 
-Statement productions is the building blocks of the code.
+The first production rule from the \acrshort{cfg} of \gls{gamble} is the statement. 
+Looking at \myref{lst:statements} it is seen that a statement can be both an assignment, declaration, functioncall, controlblock or a loop construct. 
+Statement productions are the building blocks of sourcecode written in \gls{gamble}.
 
 \begin{lstlisting}[caption={\acrshort{cfg} Statement},frame=tlrb,label={lst:statements},numbers=none]
 statement
@@ -18,7 +18,7 @@ statement
     ;
 \end{lstlisting}
 
-Each of these elements in the statement productions are non-terminals, since they expands to each of their own production.
+All the elements in the statement productions expand to each of their own production, hence they are non-terminals.
 Looking at the declaration production on \myref{lst:declaration} it see that it have two elements, datatype '=' expression and complexdatatype ID '=' expression.
 Each of there are non-terminal since they both have their own production. They both end on the expression production.
 
