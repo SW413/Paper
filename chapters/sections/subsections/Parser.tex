@@ -47,7 +47,7 @@ This also verifies if the input is syntactical valid, but not type and scope che
 %AST only useful, Parse all artifacts(space, brackets and so on)
 
 \subsubsection*{Traversing the Parse-Tree}
-Two of the most common ways of traversing the parse-tree are the visitor pattern and the listener pattern. 
+Two common ways of traversing the parse-tree are the visitor pattern and the listener pattern. 
 The difference between listeners and visitors is that listener methods are not explicitly responsible for calling methods to walk every children, the visitor pattern on the other hand must walk all the children in the parse-tree to keep the tree traversal going.
 With the visitor pattern it is possible to control the tree traversal because of the explicit calls to visit the children. \citep{ANTLR4_Book}
 Using the visitor pattern one can keep application-specific code out of grammar.
