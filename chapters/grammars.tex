@@ -44,7 +44,8 @@ Given an input where the statement of an if statement contains an if statement t
 However it can be rewritten to allow if- and else statements in a grammar, yet this will in almost all cases cause the size of the grammar to increase. 
 A solution to this problem is to observe that there exists two kinds of if statements, open and closed if statements.
 An open statement is one which the if statement is not paired with an else, and a closed statement is any if statement paired with an else.
-A simple statement is also a closed statement.\todo{Hvad er simple :P ?}
+A simple statement is also a closed statement.
+A simple statement is any regular statement, i.e. Assignment
 A grammar resolving the dangling else problem using this method is shown in \myref{lst:danglingelseex2}.
 
 \begin{lstlisting}[caption={An example of a \acrshort{cfg} describing an if statement, that is not ambiguous. \citep{danglingelse}},frame=tlrb,label={lst:danglingelseex2},numbers=none]
