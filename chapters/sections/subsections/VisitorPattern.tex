@@ -14,6 +14,8 @@ Through use of the visitor pattern the functionality is seperated from the class
 Instead the functionality is on a visitorclass implementing the visitorinterface, which means different visitors can be made, which all do different computations while traversing the tree.
 Each class in the tree have an \texttt{accept} method that allows them to call the visitor in question with itself as an argument.
 This allows the ability of adding new operations without changing the original data structure, and also without changing other visitors, an invaluable feature when doing iterative development.
+Another benefit is that a single visitor object is used to visit all the classes in the tree.
+This visitor can therefore maintain a state between calls to individual data objects, which can be used to save information in an outer scope from the different visit calls.
 \myref{image:visitor} shows a UML diagram of the visitor pattern.
 This diagram is from a C\# representation, and while the idea is the same the exact implementation is not identical to the one used in the compiler for GAMBLE.
 The most important things to take note of are the classes ``ConcreteElement'' and ``ConcreteVisitor''.
@@ -26,11 +28,5 @@ The ``ConcreteVisitor'' represent the different kind of visitors implemented, th
 \caption{A UML diagram for the implementation of the visitor pattern in a C\# environment}\label{image:visitor}
 \vspace{-15pt}
 \end{figure}
-\todo{Vi har ikke den der Object Structure som er med på figuren her, waht do ?}
 
 
-\todo{
-Gang of four beskriver også denne benefit - men er ikke helt sikker på hvad den benefit rent faktisk betyder for os?
-Another benefit is that a single visitor object is used to visit all classes.
-This visitor can maintain state between calls to individual data objects. <----- dis is what im not sure of.
-}
