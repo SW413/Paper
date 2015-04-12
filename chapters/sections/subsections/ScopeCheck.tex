@@ -1,0 +1,28 @@
+\subsection*{Scope Checking}
+In \myref{subsec:Scope} the scope of identifiers, variables and functions, are defined for \gls{gamble}.
+A variable is in scope from its declaration until the end of the block it is declared in.
+And an inner scope inherits the identifiers declared in the outer scopes. 
+
+In the contextual analysis part of the compiler it is central to verify that each variable and function used are in scope, and it should produce a useful error message.
+The error message should indicate which identifiers is not in scope, and what line this identifiers is used wrongly.
+
+To check this every reference to identifiers must be checked to see if they matches an identifiers in the symbol table of the current scope, and the scopes which enclose it. 
+Furthermore if it important that any usage of a identifiers is after its declaration.
+
+The scope checker produces two errors: redeclaration error and undeclared error.
+A redeclaration error is an attempt to declare a variable while it is already in scope.
+A undeclared error is the attempt to use a variable which is not declared in the current scope. 
+Examples shown in \myref{lst:scopeErrors}.
+
+\begin{lstlisting}[caption=Examples of scope errors in \gls{gamble}, numbers=none,frame=tlrb,label={lst:scopeErrors}]
+/* [...] */
+int a = 1;
+float a = 2.2;   /* Redeclaration error */
+int a = 2;       /* Redeclaration error */ 
+
+b = 2;           /* Undeclared error */
+b = foo();       /* Redeclaration error and undeclared error */ 
+/* [...] */
+\end{lstlisting}
+
+These errors are found when the symbol table is being filled by the SymbolTableFillVisitor ... \todo{Er det her implementering?}
