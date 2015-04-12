@@ -75,7 +75,12 @@ Statements
 %http://www.informit.com/articles/article.aspx?p=2103809&seqNum=3
 \gls{gamble} uses three primitive data types; integers (int), floating points (float) and boolean values (bool), as well as two composite data types; matrices and vector. 
 In \gls{gamble} any variable must be initialised when it is declared. 
-This avoids any null reference which can cause runtime errors in many languages such as C, C\# and Java. 
+This avoids any null reference which can cause runtime errors in many languages such as C, C\# and Java.
+In \gls{gamble} every variable are statically stored, there are several reasons for this and therefor the language does not implement neither explicit or dynamic memory handling.
+The first reason being the purpose of the language is calculation operations on the \acrshort{cpu}, we therefor deem this to be a language for smaller applications and thereby the memory is less likely to be filled upon runtime.
+A second reason being every variable in \gls{gamble} is immutable.
+Memory handing could increase the potentiality for which programs would be possibly in the language and is therefor seen as a viable extension to future versions of \gls{gamble}.
+
 
 \subsection*{Integers and floating points}
 An integer is a whole number either positive or negative, represented by the two's compliment method. 
@@ -111,6 +116,13 @@ rowvector<int> rv = [1, 0];
 Available operators in the language can be found on \myref{tbl:operators} with a short description.  
 It is not possible to use operators with matrices or vectors, functions which support different operations on these types will be included in a library.
 \input{figures/Operators.tex}
+
+%\subsection*{Memory handling}
+%Locally declared and small and simple variables will be written to the stack, while large quantities of data must be written to the heap. 
+%To manage the heap in a programming language one must decide how the management must be implemented.
+%At the topmost level there exist to different approaches, the first being explicit memory handling as seen in C with function calls like \texttt{alloc()} and \texttt{free()}. 
+%The second approach is dynamic memory handling, often called garbage collection.
+%While  manual memory handling is a very low level concept, it has some advantages over dynamic memory handling, for instance manual handling gives the users full control over a programs resources and while this can be hard o get right, can both increase the simplicity of the compiler and increase a programs runtime execution speed because garbage collection can be a complex runtime process.\citep{Sebesta, gribble}
 
 \section{Functions}
 \todo{Forklar print funktionen}

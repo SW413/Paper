@@ -1,11 +1,13 @@
 \section{Context free grammar in gamble}
 Our grammar is written using \acrfull{ebnf}, and uses \acrfull{regex} to define terminals such as numbers and names.
-The full \acrshort{cfg} of \gls{gamble} can be found on \todo{ref til appendix} togheter with the lexer. This section only presents a small selection of the entire \acrshort{cfg}.
-In this section there will be a short treversal of one of the parse trees branches.
+The full \acrshort{cfg} of \gls{gamble} can be found on \todo{ref til appendix} together with the lexer. This section only presents a small selection of the entire \acrshort{cfg}.
+In this section there will be a short traversal of one of the parse trees branches.
 
-The first production from the \acrshort{cfg} that will be the statement. Looking at \myref{lst:statements} it is seen that a statement can be both a assigment, declaration, functioncall, controlblock and a loop. Statement productions is the building blocks of the code.
+The first production from the \acrshort{cfg} that will be the statement. 
+Looking at \myref{lst:statements} it is seen that a statement can be both a assignment, declaration, functioncall, controlblock and a loop. 
+Statement productions is the building blocks of the code.
 
-\begin{lstlisting}[caption={\acrshort{cfg} Statement},label={lst:statements},numbers=none]
+\begin{lstlisting}[caption={\acrshort{cfg} Statement},frame=tlrb,label={lst:statements},numbers=none]
 statement
     : assignment ';'
     | declaration ';'
@@ -19,17 +21,17 @@ Each of these elements in the statement productions are non-terminals, since the
 Looking at the declaration production on \myref{lst:declaration} it see that it have two elements, datatype '=' expression and complexdatatype ID '=' expression.
 Each of there are non-terminal since they both have their own production. They both end on the expression production.
 
-\begin{lstlisting}[caption={\acrshort{cfg} Declaration},label={lst:declaration},numbers=none]
+\begin{lstlisting}[caption={\acrshort{cfg} Declaration},frame=tlrb,label={lst:declaration},numbers=none]
 declaration
     : datatype ID '=' expression                        #primitiveDecl
     | complexdatatype ID '=' expression                 #complexDecl
     ; ;
 \end{lstlisting}
 
-Further expanding into the expression production, it is seen that it have five diffrent elements.
-The expression can be called in diffrent ways inside the expression itself because there may be a need for several diffrent expressions to be used in the same expression.
-Aside the expressions non-terimanl there is are an no-terminal value and an no-terminal postUnaryOperator.
-\begin{lstlisting}[caption={\acrshort{cfg} Declaration},label={lst:declaration},numbers=none]
+Further expanding into the expression production, it is seen that it have five different elements.
+The expression can be called in different ways inside the expression itself because there may be a need for several different expressions to be used in the same expression.
+Aside the expressions non-terminal there is are an no-terminal value and an no-terminal postUnaryOperator.
+\begin{lstlisting}[caption={\acrshort{cfg} Expression},frame=tlrb,label={lst:expression},numbers=none]
 expression
     : expression ( '*' | '/' | '%' ) expression     #mulExpr
     | expression ( '+' | '-' ) expression           #addExpr
@@ -40,10 +42,10 @@ expression
 \end{lstlisting}
   
 The value production expands into what is seen on \myref{lst:value}.
-In this production are there both terimals, and non-terminals.
-The terminals are elemntes that have no production, leading to a "dead end".
+In this production are there both terminals, and non-terminals.
+The terminals are elements that have no production, leading to a ``dead end''.
 When a terminal is reached it is used and is as a leaf on a tree, also seen in \myref{sec:parsetrees}
-\begin{lstlisting}[caption={\acrshort{cfg} Value},label={lst:value},numbers=none]
+\begin{lstlisting}[caption={\acrshort{cfg} Value},frame=tlrb,label={lst:value},numbers=none]
 value
     : ID                                     #valID
     | constant                               #valConstant
@@ -55,4 +57,4 @@ value
 \end{lstlisting}
 
 Going through this small part of the \acrshort{cfg} one single branch of the parse tree have been unfolded and shown.
-\gls{gamble}s \acrshort{cfg} is then used by ANTLR to generate a tokenstream. \todo{Her mangler en linje eller to med noget fornuftigt}
+\gls{gamble}s \acrshort{cfg} is then used by ANTLR to generate a token stream. \todo{Her mangler en linje eller to med noget fornuftigt}
