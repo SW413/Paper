@@ -79,7 +79,8 @@ This avoids any null reference which can cause runtime errors in many languages 
 In \gls{gamble} all variables are statically stored, there are several reasons for this and therefore the language does not implement neither explicit or dynamic memory handling.
 The first reason for this is that the purpose of the language is to perform arithmetic operations on the \acrshort{gpu}, so by excluding this the language's simplicity increases, and therefore its read- and writability increases.
 A second reason being that the size of every variable in \gls{gamble} is unchangeable.
-Memory handling could increase the number of possible programs in the language and is therefore seen as a viable extension to future versions of \gls{gamble}.
+Any vector and matrix will be allocated on the heap by the compiler.
+Manual memory handling could increase the number of possible programs in the language and is therefore seen as a viable extension to future versions of \gls{gamble}.
 
 
 \subsection*{Integers and floating points}
