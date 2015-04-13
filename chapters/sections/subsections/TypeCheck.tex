@@ -5,7 +5,7 @@ Since implicit conversion between floating point and integer types is not a part
 It is however possible to implicitly convert between integer and floating point types internally e.g. from int16 to int64, as long as the source variable is of larger bit-wise.
 This is also the case for complex datatypes, matrices and vectors, e.g. from \texttt{matrix<float>} to \texttt{matrix<float64>}. 
 
-The symbol table is used as a reference for which type the variable is, and therefore the type checking happens after the symbol table have been filled, hence after scope checking is completed. 
+The symbol table is used as a reference for which type the variable is, and therefore the type checking happens after the symbol table has been filled, hence after scope checking is completed. 
 Type checking is done in many parts of the code, one or more times for each line is common. 
 For every operator it must be checked if its types match and if it results in an assignment if that also matches.
 Every function call must match the formal parameters of the function. 
@@ -26,4 +26,5 @@ b = foo(1);         /* Argument error (Takes more or fewer arguments) */
 /* [...] */
 \end{lstlisting}
 
-This check is done as a part of decorating the AST and uses a visitor to traverse the AST. \todo{implementering? ...(ja -sass)}
+%This check is done as a part of decorating the AST and uses a visitor to traverse the AST. 
+%\todo{implementering? ...(ja -sass)}
