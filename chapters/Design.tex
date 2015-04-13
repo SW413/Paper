@@ -76,10 +76,10 @@ Statements
 \gls{gamble} uses three primitive data types; integers (int), floating points (float) and boolean values (bool), as well as two composite data types; matrices and vector. 
 In \gls{gamble} any variable must be initialised when it is declared. 
 This avoids any null reference which can cause runtime errors in many languages such as C, C\# and Java.
-In \gls{gamble} every variable are statically stored, there are several reasons for this and therefore the language does not implement neither explicit or dynamic memory handling.
-The first reason being the purpose of the language is calculation operations on the \acrshort{cpu}, we therefore deem this to be a language for smaller applications and thereby the memory is less likely to be filled upon runtime.
-A second reason being every variable in \gls{gamble} is immutable.
-Memory handing could increase the potentiality for which programs would be possibly in the language and is therefore seen as a viable extension to future versions of \gls{gamble}.
+In \gls{gamble} all variables are statically stored, there are several reasons for this and therefore the language does not implement neither explicit or dynamic memory handling.
+The first reason for this is that the purpose of the language is to perform arithmetic operations on the \acrshort{gpu}, so by excluding this the language's simplicity increases, and therefore its read- and writability increases.
+A second reason being that the size of every variable in \gls{gamble} is unchangeable.
+Memory handling could increase the number of possible programs in the language and is therefore seen as a viable extension to future versions of \gls{gamble}.
 
 
 \subsection*{Integers and floating points}
