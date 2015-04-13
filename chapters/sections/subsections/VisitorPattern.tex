@@ -1,0 +1,23 @@
+\subsection*{Visitor Pattern}\label{subs:visit}
+As mentioned the visitor pattern is but one way of traversing a tree.
+For our compiler the visitor pattern is used not only to traverse the parse tree provided but ANTLR.
+The visitor pattern is implemented throughout the compiler, to both create the AST from the parse tree, for our pretty print as well as filling the symbol table.
+As such the visitor pattern defines the structure of our compiler, and thus understanding what is gained from using this pattern is important.
+The visitor pattern is a Gang of Four, authors of ``Design Patterns: Elements of Reusable Object-Oriented Software'', design pattern.
+Its description says ``The visitor pattern is a design pattern that separates a set of structured data from the functionality that may be performed upon it.''. %http://www.blackwasp.co.uk/Visitor.aspx
+
+The pattern is a behavioural pattern i.e. it defines how communication between classes and entities are handled.
+For a compiler this would be what happens when a given token is read.
+For the tree walk for the ANTLR generated parse tree, the visitor should convert the entirety into a new AST.
+This entails that each different token node in the parse tree must be visited and create an equivelent node for the AST.
+
+Through use of the visitor pattern one the functionality is seperated from the classes they are performed upon.
+Instead the functionality is on a interface that each class extends.
+The classes have an accept method that allows them to call the visitor in question with itself as an argument.
+This allows the ability of adding new operations without changing the original data structure, an invaluable feature when doing iterative development.
+
+\todo{jeg ved ikke om der burde være et kodeeksempel heri? jeg tænkte eventuelt en visitor for at vise den har en method for hver node}
+
+%Gang of four beskriver også denne benefit - men er ikke helt sikker på hvad den benefit rent faktisk betyder for os?
+%Another benefit is that a single visitor object is used to visit all classes.
+%This visitor can maintain state between calls to individual data objects. <----- dis is what im not sure of.

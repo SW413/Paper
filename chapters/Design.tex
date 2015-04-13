@@ -1,11 +1,12 @@
 \chapter{Design}
 \label{cha:Design}
 %Metatext for design chapter
-In this chapter the design of the language will be presented.
-First the philosophy for the language will be introduced to clarify what this language is attempting to achieve.
-The philosophy will lead to some values being more important than others, the choices we deem impactful will be documented in this chapter.
+In this chapter the design of the language called \gls{gamble} will be presented.\todo{Hvad står Gamble for?}
+First with a brief description of our design philosophy for \gls{gamble} will be introduced to clarify what this language is attempting to achieve and why.
+The design philosophy will address some of the criterias found in \myref{sec:OurCriterias}.
+Furthermore the features and design of \gls{gamble} will be documented later in this chapter.
 
-\input{chapters/sections/philosophy.tex}
+\input{chapters/sections/Philosophy.tex}
 
 In the following sections different parts of \gls{gamble} will be investigated.
 
@@ -24,9 +25,9 @@ Therefore both single line and multi line comments can be used in \gls{gamble}.
 ``/* */'' is used for multi line comments, meaning that everything between ``/*'' and ``*/'' is ignored by the compiler, also known as C style comments. 
 
 \subsection*{End of statement terminator}
-When choosing an end of state terminator there is two main choices.
+When choosing an end of state terminator there are two main choices.
 The newline character as a terminator or another symbol, often semicolon (;).
-The use of newline is often used in simple languages i.e. MATLAB or other mathematical oriented languages. 
+The use of newline is often used in simple languages e.g. MATLAB or other mathematical oriented languages. 
 We deem the main value of using the newline are simplicity and a decrease in errors due to forgotten semicolons.
 Semicolon is as mentioned the other main choice, this choice has been used through many programming languages throughout the history. 
 The main advantage of a end of statement terminator  like semicolon is that it allows freeform code. 
@@ -38,7 +39,7 @@ As mentioned before forgotten semicolons can result in compiler errors, we deem 
 Based on this analysis we have chosen to use the semicolon as end of statement terminator, for easier parsing.
 
 \subsection*{Scope}
-If a programming language contain no implementation of scoping rules, the one must assume that all the source code in a given program would be in the same scope.
+If a programming language contain no implementation of scoping rules, then one must assume that all the source code in a given program would be in the same scope.
 Such a single scope would mean that any variable can be used form any place in the code. 
 Mostly, as briefly described in \myref{sec:state_of_the_art}, a programming language implements some kind of scoping rules.
 There are several reasons for this, the main reason being it gives the programmer more control of the code and reduces the chance of changing variables by accident.
@@ -51,8 +52,7 @@ A variable is in scope from its declaration until the end of the block it is dec
 An inner block such as a control flow structure, see \myref{subsec:control-flow} for more, has access to the variables from the outer scope. 
 It is also not allowed to redeclare a variable which is already declared in the current scope. 
 Additionally any function is in scope of any other function including itself, this also allows recursion. 
-
-This is static scoping without information hiding. 
+- This is static scoping without information hiding. 
 
 \subsection*{Structure} 
 The structure of the source code to a \gls{gamble} program is shown in \myref{lst:Structure}.
@@ -61,7 +61,7 @@ A single segment contains only a small part of source code.
 Including of other files are, like in many other languages, written in the top segment, this is to make it easy to get an overview of any and all included libraries. 
 All function declarations are written in the next segment followed by the main statements which is the last segment.
 This collects the main statements, which makes it easier for a programmer to get an overview over the order of execution, compared to if the main statements were allowed between the function declarations.
-This also makes it easier to write a context free grammar for the language.
+This sectioning also makes it easier to write a context free grammar for the language.
 
 \begin{lstlisting}[caption={Source code file layout in \gls{gamble}},frame=tlrb,label={lst:Structure}, numbers=none]
 Libary inclusions
@@ -75,7 +75,12 @@ Statements
 %http://www.informit.com/articles/article.aspx?p=2103809&seqNum=3
 \gls{gamble} uses three primitive data types; integers (int), floating points (float) and boolean values (bool), as well as two composite data types; matrices and vector. 
 In \gls{gamble} any variable must be initialised when it is declared. 
-This avoids any null reference which can cause runtime errors in many languages such as C, C\# and Java. 
+This avoids any null reference which can cause runtime errors in many languages such as C, C\# and Java.
+In \gls{gamble} every variable are statically stored, there are several reasons for this and therefore the language does not implement neither explicit or dynamic memory handling.
+The first reason being the purpose of the language is calculation operations on the \acrshort{cpu}, we therefore deem this to be a language for smaller applications and thereby the memory is less likely to be filled upon runtime.
+A second reason being every variable in \gls{gamble} is immutable.
+Memory handing could increase the potentiality for which programs would be possibly in the language and is therefore seen as a viable extension to future versions of \gls{gamble}.
+
 
 \subsection*{Integers and floating points}
 An integer is a whole number either positive or negative, represented by the two's compliment method. 
@@ -84,7 +89,7 @@ A floating point number is an approximation to a real number.
 It is separated in 3 parts, the sign bit, the mantissa and the exponent. 
 Floats in \gls{gamble} are in base 2, the value of a float is calculated by $ (-1)^{sign bit} \cdot mantissa \cdot 2^{exponent} $. 
 Integers and floating point numbers default to 32 bits with the keywords \texttt{int} and \texttt{float}. 
-It is possible to declare 16 and 64 bit integers and floating point numbers by postfixing their size to their respective keywords, i.e. \texttt{float64} or \texttt{int16}. 
+It is possible to declare 16 and 64 bit integers and floating point numbers by postfixing their size to their respective keywords, e.g. \texttt{float64} or \texttt{int16}. 
 It is useful to be able to specify the size of an integer or a floating point number, as data transfer can cause a lot of overhead particularly when transferring data to and from the \acrshort{gpu}. 
 
 \subsection*{Boolean}
@@ -102,7 +107,7 @@ Here it is also seen why the use of ``;'' is a smart choice for ending statement
 
 \begin{lstlisting}[caption={Creating a matrix},label={lst:matrix},numbers=none]
 matrix<int> m = [1, 0; 
-				 0, 1];
+                 0, 1];
 
 rowvector<int> rv = [1, 0];
 \end{lstlisting}
@@ -111,6 +116,13 @@ rowvector<int> rv = [1, 0];
 Available operators in the language can be found on \myref{tbl:operators} with a short description.  
 It is not possible to use operators with matrices or vectors, functions which support different operations on these types will be included in a library.
 \input{figures/Operators.tex}
+
+%\subsection*{Memory handling}
+%Locally declared and small and simple variables will be written to the stack, while large quantities of data must be written to the heap. 
+%To manage the heap in a programming language one must decide how the management must be implemented.
+%At the topmost level there exist to different approaches, the first being explicit memory handling as seen in C with function calls like \texttt{alloc()} and \texttt{free()}. 
+%The second approach is dynamic memory handling, often called garbage collection.
+%While  manual memory handling is a very low level concept, it has some advantages over dynamic memory handling, for instance manual handling gives the users full control over a programs resources and while this can be hard o get right, can both increase the simplicity of the compiler and increase a programs runtime execution speed because garbage collection can be a complex runtime process.\citep{Sebesta, gribble}
 
 \section{Functions}
 \todo{Forklar print funktionen}
@@ -135,7 +147,7 @@ Other syntaxes could have been used, but not only is this the way C does it, it 
 \begin{lstlisting}[caption={Function Identifier},label={lst:functionID},numbers=none]                                                        
 int add(int a, int b)
 {
-	return a + b;
+    return a + b;
 }
 \end{lstlisting}
 
@@ -163,15 +175,13 @@ int a = 0;
 a = add(4, 3);
 \end{lstlisting}
 
+
+\subsection*{Print function}\todo{rename maybe}
+In \gls{gamble} we have one function that is ready-made. It is a print function.
+The function is special because it can both take variables, numerical values and strings as input parameter.
+Since string is not a valid data type in \gls{gamble} this function is special. 
+With the print function it is possible to give the user a visual representation of the computations result, in the console.
+A simple print function which take string inputs increases both readability and writability.
+Strings in the print function allows the programmer to write easier understandable and readable program output. 
 %STD LIB EVT?!
-%\subsection*{Premade functions (rename)}\todo{This} 
-%\section{Control Flow}
-%\textbf{For-loop}
-%\textbf{While-loop}
-%\textbf{If \& If else}
-
-%% OLD
-%\input{sections/subsections/controlflow.tex}
-%% New
 \input{chapters/sections/subsections/controlflow2.tex}
-

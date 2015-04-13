@@ -1,0 +1,57 @@
+include <tests/simple.hlial>
+include <tests/while.hlial>
+
+void customPrintMatrix( matrix<float> a) {
+    print("This is a custom matrix print");
+    print(a[1,1]);
+    print(a[2,2]);
+    print(a[3,3]);
+}
+
+float addIntAndFloat(int a, float b) {
+    return a + b;
+}
+
+matrix<float> matrix1 = [1, 0, 1;
+                         2, 5, 1;
+                         0, 3, 1];
+
+vector<int> vec1 = [2, 4, 5];
+
+for(int i = 1; i <= 3; i++) {
+	matrix1[dinMor(2),i] = i + 23;
+}
+
+
+//Diagonal from 1,1 to 3,3 should be 24 25 26
+customPrintMatrix(matrix1);
+
+int tmp = 2;
+float tmpF = 2.2;
+float c = 0;
+
+while(c < tmpf) {
+    c = addIntAndFloat(tmp, tmpF);
+}
+
+for(int i = 0; i <= 10; i++){
+c = c + 1;
+}
+
+if( c == addIntAndFloat(tmp, tmpF) && tmp == 2 || tmpF == 2.2) {
+    print("Success!");
+    exit();
+} else if (c != tmp) {
+    //"Trying the old manual way..."
+    float res = tmp + tmpF;
+    if(c == res) {
+        print("YAY!!");
+        exit();
+    } else {
+        print("fubar");
+        exit();
+    }
+} else {
+    print("Goodbye");
+    exit();
+}

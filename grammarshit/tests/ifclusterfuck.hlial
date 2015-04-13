@@ -1,0 +1,28 @@
+void somefunction() {}
+
+int a = 12;
+int b = 22;
+
+if (a > 2) {
+    if (b > 2) {
+        if (a == b) {
+            somefunction();
+        } else if (a > b) {
+            somefunction();
+        } else {
+            somefunction();
+        }
+    }
+} else if (a < 2) {
+    if (b < 2) {
+        if (a == b) {
+            somefunction();
+        } else if (b > a) {
+            somefunction();
+        } else {
+            somefunction();
+        }
+    }
+} else {
+    somefunction();
+}

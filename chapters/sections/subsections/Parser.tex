@@ -1,4 +1,4 @@
-\subsection*{Parser}
+\subsection*{Parser}\label{subsec:parser}
 The parser is based on formal syntax specifications such as a \acrfull{cfg} written in \acrfull{ebnf}, whose alphabet consists of tokens produced by the lexer. 
 The parser reads tokens and groups them into phrases according to the syntax specification.
 The parser verifies the syntax, and if a syntax error is found it provides a corresponding error message. \citep{Crafting_book}
@@ -10,7 +10,7 @@ Where previous versions of ANTLR have also implemented the AST, it is not contai
 
 There are different kind of parsers, most common are bottom-up and top-down parsers.
 ANTLR makes a top-down parser, more specific a recursive descent parser.
-A recursive decent parser is a subtype of top-down parser build from a set of mutually recursive procedures where each such procedure usually implements one of the productions of the grammar.
+A recursive descent parser is a subtype of top-down parser build from a set of mutually recursive procedures where each such procedure usually implements one of the productions of the grammar.
 The structure of the resulting program closely mirrors the grammar it recognizes. \citep{Recursive_programming}
 Recursive-descent parsers are really just a collection of recursive methods, one per rule.
 Such a method for an assignment rule may look as shown in \myref{lst:rdpmethod}
@@ -66,7 +66,7 @@ With the visitor pattern it is possible to control the tree traversal because of
 Using the visitor pattern one can keep application-specific code out of grammar.
 It is also possible with the visitor pattern, to pass around return values and arguments.
 
-We have chosen to use the visitor pattern to gain controls over the traverse of the parse-tree. 
+We have chosen to use the visitor pattern to gain controls over the traverse of the parse-tree, the pattern and how it is implemented is described further in \myref{subs:visit}. 
 
 
 

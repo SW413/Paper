@@ -1,0 +1,28 @@
+int a = 1;
+
+//Printing a from 2 to 100
+while(a < 100) {
+	a++;
+	print(a);
+}
+
+//Printing a from 100 to 1
+while(a != 1) {
+	a--;
+	print(a);
+}
+
+while(a != 1 && a > 2) {
+    a--;
+    print(a);
+}
+
+while(a == 2 || a < 0 && a != -1) {
+    a--;
+    print(a);
+}
+
+while(true) {
+	print("Infinite loop!");
+}
+
