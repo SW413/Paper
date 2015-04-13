@@ -2,15 +2,17 @@
 In a compiler it is useful to store information about the identifiers, variables and functions in a data structure. 
 This information can be useful for scope checking and type checking.
 
-There are two common ways of having a Symbol Table, either have one single table for every identifier or have one for each scope. 
-If constrained by memory then having a single symbol table can be beneficial, however having multiple symbol tables can simply the code at a memory cost. 
+There are two common ways of implementing a Symbol Table; either you have one table which contains every identifier or you have a Symbol table for each scope. 
+If constrained by memory, having a single symbol table can be beneficial, however having multiple symbol tables can simplify the code at a memory cost. 
 
 In \gls{gamble} there exists scopes, and for each of these scopes there is a corresponding symbol table. 
 Scopes inherit from each other so a scope can enclose another. 
-The outermost scope, the global scope, is where functions are declared, every scope is either directly enclosed by this scope or recursively.
-This means that every function can be called from anywhere within the source code. 
+The outermost scope, the global scope, is where functions are declared; every scope is either directly enclosed by this scope or recursively.
+This means that every function can be called from anywhere within the source code - including within its' own function declarations; allowing for recursive functions. 
+  
 
-In \gls{gamble} the class SymbolTable represents the symbol table.
+\info[inline]{Flyttes til implementationsafsnit $\downarrow$ }
+In \gls{gamble} the class \texttt{SymbolTable} represents the symbol table.
 The core constituent of this class is the ArrayList of the Scope class, called allScopes, meaning that every scope is stored in this ArrayList.
 Every scope contains Map of Symbols and strings as keys, and information about the scope such what scope it is enclosed by. 
 The key represents the name of the symbol, and must be unique to the scope and not found in an enclosing scope, as this could cause an ambiguity to arise. 
