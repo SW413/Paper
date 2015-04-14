@@ -1,51 +1,44 @@
-\chapter{Compiler Design}\todo{Evenetuelt et nyt navn hvis dette er mere teori end hvordan vi implementere vores compiler}
-A compiler can be seperated into three phases; syntax analysis, contextual analysis and code generation.
-The syntax analysis phase checks whether or not the source code adheres to the rules for the languange, such as statement constructs.
-The contextual analysis phase checks whether or not the languange is used correctly, such as type checking.
+\chapter{Phases of a compiler}
+A compiler can be separated into three phases; syntax analysis, contextual analysis and code generation.
+The syntax analysis phase checks whether or not the source code adheres to the rules for the language, such as statement constructs.
+The contextual analysis phase checks whether or not the language is used correctly, such as type checking.
 The code generation translates the source code into the target code once the syntax and contextual analysis phases have accepted the source code.
 This chapter examines each phase of the compiler and what these entail.
-How each phase is constructet for GAMBLE will also be gone over in this chapter. %This may or may not change
+How each phase is constructed for GAMBLE will also be gone over in this chapter. %This may or may not change
+\todo{Mere tekst.}
 
-\info[inline]{A few thing such as symbol table i am unaware where as to put, but possibly in the Metatext for compiler design, or in metatext for syntax analysis}
-\improvement[inline]{Metatext}
-%Antlr
-\input{chapters/sections/ANTLR.tex}\todo{skal flytte}
-%Phase1
-\input{chapters/sections/SyntaxAnalysis.tex}
-%Subphases
+\chapter{Parser}
+\todo{Meta tekst}
+%Design
+\section{Design}
 \input{chapters/sections/subsections/Scanner.tex}
 \input{chapters/sections/subsections/Parser.tex}
-\input{chapters/sections/subsections/AST.tex}
-\input{chapters/sections/subsections/VisitorPattern.tex}
-%Phase2
-\input{chapters/sections/ContextualAnalysis.tex}
+
+%Implementation
+\input{chapters/sections/ANTLR.tex}
+\input{chapters/sections/SyntaxAnalysis.tex}
+
 %Subphases
-\input{chapters/sections/subsections/ContextualConstraints.tex}
+\chapter{Traversing the tree}
+\todo{Meta}
+\section{Design}
+\input{chapters/sections/subsections/VisitorPattern.tex}
+\input{chapters/sections/subsections/AST.tex}
+\section{Implementation}
+\todo{Make this part}
+
+\chapter{Contextual Analysis}
+\input{chapters/sections/ContextualAnalysis.tex}
 \input{chapters/sections/subsections/SymbolTable.tex}
+
+\section{Scope Checking}
+\todo{Meta}
 \input{chapters/sections/subsections/ScopeCheck.tex}
+
+\section{Type Checking}
 \input{chapters/sections/subsections/TypeCheck.tex}
 
-\input{chapters/sections/subsections/DAST.tex}
 %Phase3
 \input{chapters/sections/CodeGeneration.tex}
 
-%	Syntaks Analyse
-%		Scannar > Parser > ANTLR > AST - Visitor til AST
-%		Implementation
-%
-%	Kontekstuel Analyse
-%		Symboltable
-%		Hvad tester vi for? Og hvorfor gør vi det?
-%		Implementation
-%
-%	Code Generation
-%		What do? How do?
-%		How did we do ?
-%
-%
-%
-%
-%
-%
-%
-%
+\info[inline]{next chapters are : Test of language, Conclusion, and Perspektivaaation(top kek)}

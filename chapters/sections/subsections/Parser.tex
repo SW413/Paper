@@ -59,18 +59,3 @@ This also verifies if the input is syntactical valid, but not type and scope che
 %ANTLR Solves simple ambiguity simply by using the first mentioned rule.
 %AST only useful, Parse all artifacts(space, brackets and so on)
 
-\subsubsection*{Traversing the Parse-Tree}
-When working with trees, traversing those trees is an important part of the process.
-For this task different approaches can be taken, a common way is to implement a design pattern, the visitor pattern is particularly popular for tree traversal.
-Alternatively one can implement the composite pattern or choose to implement no pattern at all, but simply create a case analysis for each object.
-The use of a design pattern is not a requirement for the creation of a compiler.
-
-Design patterns provide solution templates for software problems, each pattern providing its own benefits.
-In OOP design patterns are typically aimed at helping object generation and interaction between these objects.
-However the most important thing to keep in mind when using a design pattern, is not its exact implementation of classes and methods, but the concept the pattern describes.
-
-The two aforementioned patterns are classified under two different branches of patterns.
-The composite pattern is a structural pattern where the visitor pattern is a behavioral one.
-A structural pattern provides a way of defining the relations between objects, the composite pattern is used to create a hierarchical recursive tree structure of related objects that may be accessed in a standardised manner.
-A behavioral pattern is instead used to define how the objects communicate, the visitor pattern is used to separate a set of structured classes from any functionality that should be performed upon them.
-For the compiler the visitor pattern have been implemented for the traversal of trees as such the pattern is described further in \myref{subs:visit}.  

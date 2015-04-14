@@ -1,4 +1,4 @@
-\subsection*{Scope Checking}
+\subsection*{Design}
 In \myref{subsec:Scope} the scope of identifiers, variables and functions, are defined for \gls{gamble}.
 A variable is in scope from its declaration until the end of the block it is declared in.
 An inner scope inherits the identifiers declared in the outer scopes. 
@@ -27,6 +27,8 @@ int b = 0;
 b = foo();       /* Redeclaration error and undeclared error */ 
 /* [...] */
 \end{lstlisting}
-                         
+
+\subsection*{Implementation}
+\todo{Make this}
 %These errors are found when the symbol table is being filled by the SymbolTableFillVisitor ... 
 %\todo{Er det her implementering? (ja -sass)}
