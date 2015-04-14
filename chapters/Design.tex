@@ -38,7 +38,7 @@ As mentioned before forgotten semicolons can result in compiler errors, we deem 
 
 Based on this analysis we have chosen to use the semicolon as end of statement terminator, for easier parsing.
 
-\subsection*{Scope}
+\subsection*{Scope}\label{subsec:Scope}
 If a programming language contain no implementation of scoping rules, then one must assume that all the source code in a given program would be in the same scope.
 Such a single scope would mean that any variable can be used form any place in the code. 
 Mostly, as briefly described in \myref{sec:state_of_the_art}, a programming language implements some kind of scoping rules.
@@ -75,11 +75,12 @@ Statements
 %http://www.informit.com/articles/article.aspx?p=2103809&seqNum=3
 \gls{gamble} uses three primitive data types; integers (int), floating points (float) and boolean values (bool), as well as two composite data types; matrices and vector. 
 In \gls{gamble} any variable must be initialised when it is declared. 
-This avoids any null reference which can cause runtime errors in many languages such as C, C\# and Java. 
-In \gls{gamble} every variable are statically stored, there are several reasons for this and therefor the language does not implement neither explicit or dynamic memory handling.
-The first reason being the purpose of the language is calculation operations on the \acrshort{cpu}, we therefor deem this to be a language for smaller applications and thereby the memory is less likely to be filled.
-A second reason being every variable in \gls{gamble} is immutable.
-Memory handing could increase the potentiality for which programs would be possibly in the language and is therefor seen as a viable extension to future versions of \gls{gamble}.
+This avoids any null reference which can cause runtime errors in many languages such as C, C\# and Java.
+In \gls{gamble} all variables are statically stored, there are several reasons for this and therefore the language does not implement neither explicit or dynamic memory handling.
+The first reason for this is that the purpose of the language is to perform arithmetic operations on the \acrshort{gpu}, so by excluding this the language's simplicity increases, and therefore its read- and writability increases.
+A second reason being that the size of every variable in \gls{gamble} is unchangeable.
+Any vector and matrix will be allocated on the heap by the compiler.
+Manual memory handling could increase the number of possible programs in the language and is therefore seen as a viable extension to future versions of \gls{gamble}.
 
 
 \subsection*{Integers and floating points}
@@ -185,3 +186,4 @@ A simple print function which take string inputs increases both readability and 
 Strings in the print function allows the programmer to write easier understandable and readable program output. 
 %STD LIB EVT?!
 \input{chapters/sections/subsections/controlflow2.tex}
+\input{chapters/sections/subsections/reservedwords.tex}
