@@ -18,14 +18,14 @@ For the compiler the visitor pattern have been implemented for the traversal of 
 \todo{meta}
 \subsubsection*{Visitor Pattern}\label{subs:visit}
 The visitor pattern is not only used to traverse the parse tree provided by ANTLR, but also the \acrfull{ast}.
-The visitor pattern is implemented throughout the compiler, to create the \acrfull{ast} from the parse tree, for traversing the \acrfull{ast} for pretty printing, as well as for filling the symbol table, type and scope checking, and also for code generation.
+The visitor pattern is implemented throughout the compiler, to create the \acrshort{ast} from the parse tree, for traversing the \acrshort{ast} for pretty printing, as well as for filling the symbol table, type and scope checking, and also for code generation.
 As such the visitor pattern defines the structure of the compiler, and thus understanding what is gained from using this pattern is important.
 The visitor pattern is one of the design patterns by the Gang of Four, authors of ``Design Patterns: Elements of Reusable Object-Oriented Software''.
 Its description says ``The visitor pattern is a design pattern that separates a set of structured data from the functionality that may be performed upon it.''. \citep{GOF}
 
 The pattern is a behavioral pattern i.e. it defines how communication between classes and entities are handled.
-In the tree walk for the parse tree, the visitor should convert the parse tree into a \acrfull{ast}.
-This entails that each different node in the parse tree must be visited to find the information needed to create the \acrfull{ast}.
+In the tree walk for the parse tree, the visitor should convert the parse tree into a \acrshort{ast}.
+This entails that each different node in the parse tree must be visited to find the information needed to create the \acrshort{ast}.
 
 Through use of the visitor pattern the functionality is separated from the classes they are performed upon. 
 Instead the functionality is on a visitor class implementing the visitor interface, which means different visitors can be made, which all do different computations while traversing the tree.
