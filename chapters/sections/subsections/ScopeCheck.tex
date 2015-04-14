@@ -1,0 +1,32 @@
+\subsection*{Scope Checking}
+In \myref{subsec:Scope} the scope of identifiers, variables and functions, are defined for \gls{gamble}.
+A variable is in scope from its declaration until the end of the block it is declared in.
+An inner scope inherits the identifiers declared in the outer scopes. 
+
+In the contextual analysis part of the compiler it is important to verify that each variable and function used are in scope, and it should produce a useful error message.
+The error message should indicate which identifier is not in scope, and on what line this identifier is used wrongly.
+
+To check this all references to identifiers must be checked to see if they match an identifier in the symbol table of the current scope, and recursively the scope which encloses it. 
+Furthermore it is important that any usage of an identifier only exists after its declaration.
+In the compiler for this project, the symbol table is filled while the compiler is also performing the scope checking.
+This is because it reduces the amount of traversals through the tree, and scope checking and filling the symbol table is also similair in concept, e.g. a declaration creates an entry in the symbol table, while expressions simply make lookups in this table.
+
+The scope checker produces two errors: redeclaration errors and undeclared errors.
+A redeclaration error is produced when an attempt to declare a variable while it is already declarared in scope is made.
+An undeclared error is produced when an attempt to use a variable which is not declared in the current scope or any enclosing scopes is made. 
+Examples are shown in \myref{lst:scopeErrors}.
+
+\begin{lstlisting}[caption=Examples of scope errors in \gls{gamble}, numbers=none,frame=tlrb,label={lst:scopeErrors}]
+/* [...] */
+int a = 1;
+float a = 2.2;   /* Redeclaration error */
+int a = 2;       /* Redeclaration error */ 
+
+b = 2;           /* Undeclared error */   
+int b = 0;
+b = foo();       /* Redeclaration error and undeclared error */ 
+/* [...] */
+\end{lstlisting}
+                         
+%These errors are found when the symbol table is being filled by the SymbolTableFillVisitor ... 
+%\todo{Er det her implementering? (ja -sass)}
