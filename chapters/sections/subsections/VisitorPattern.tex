@@ -14,7 +14,9 @@ A structural pattern provides a way of defining the relations between objects, t
 A behavioural pattern is instead used to define how the objects communicate, the visitor pattern is used to separate a set of structured classes from any functionality that should be performed upon them.
 For the compiler the visitor pattern have been implemented for the traversal of trees as such the pattern is described further in \myref{subs:visit}.  
 
-\subsection*{Visitor Pattern}\label{subs:visit}
+\subsection{Design}
+\todo{meta}
+\subsubsection*{Visitor Pattern}\label{subs:visit}
 The visitor pattern is not only used to traverse the parse tree provided by ANTLR, but also the \acrfull{ast}.
 The visitor pattern is implemented throughout the compiler, to create the \acrfull{ast} from the parse tree, for traversing the \acrfull{ast} for pretty printing, as well as for filling the symbol table, type and scope checking, and also for code generation.
 As such the visitor pattern defines the structure of the compiler, and thus understanding what is gained from using this pattern is important.
