@@ -1,12 +1,12 @@
 \section{Context free grammar in gamble}
-Our grammar is written using \acrfull{ebnf}, and uses \acrfull{regex} to define terminals such as numbers and identifiers.
-In this section there will be a short traversal of what wil corrospond to one of the parse trees branches.
+Our grammar is written in \acrfull{ebnf}, and uses \acrfull{regex}s to define terminals such as numbers and identifiers.
+In this section there will be a short traversal of a branch from the parse tree.
 The full \acrshort{cfg} of \gls{gamble} can be found on \todo{ref til appendix} alongside the lexing rules.
-This section only presents a small selection of the entire \acrshort{cfg}.
+This section only presents a small selection of the \acrshort{cfg}.
 
-The first production rule from the \acrshort{cfg} of \gls{gamble} is the statement. 
+A production rule from the \acrshort{cfg} of \gls{gamble} is the statement. 
 Looking at \myref{lst:statements} it is seen that a statement can be both an assignment, declaration, functioncall, controlblock or a loop construct. 
-Statement productions are the building blocks of sourcecode written in \gls{gamble}.
+Statement productions are the building blocks of any sourcecode written in \gls{gamble}.
 
 \begin{lstlisting}[caption={\acrshort{cfg} Statement},frame=tlrb,label={lst:statements},numbers=none]
 statement
@@ -18,9 +18,9 @@ statement
     ;
 \end{lstlisting}
 
-All the elements in the statement productions expand to each of their own production, hence they are non-terminals.
-Looking at the declaration production on \myref{lst:declaration} it see that it have two elements, datatype '=' expression and complexdatatype ID '=' expression.
-Each of there are non-terminal since they both have their own production. They both end on the expression production.
+All production rules in the statement each expand to their own production hence they are non-terminals.
+Looking at the declaration production on \myref{lst:declaration} observe that it has two production rules, ``datatype '=' expression'' and ``complexdatatype ID '=' expression''. 
+They both end on the expression production which can be seen on \myref{lst:expression}.
 
 \begin{lstlisting}[caption={\acrshort{cfg} Declaration},frame=tlrb,label={lst:declaration},numbers=none]
 declaration
@@ -29,9 +29,11 @@ declaration
     ; ;
 \end{lstlisting}
 
-Further expanding into the expression production, it is seen that it have five different elements.
-The expression can be called in different ways inside the expression itself because there may be a need for several different expressions to be used in the same expression.
-Aside the expressions non-terminal there is are an no-terminal value and an no-terminal postUnaryOperator.
+Further expanding into the expression production, it can be seen that it has five different production rules.
+An expression has production rules expanding the expression into a construct containing more expressions.
+This is done because an expression can derive to a value, and several values are needed for multiple arithmetic operations.
+This construct also causes left-recursion, something often attempted to be avoided in \acrshort{cfg}.
+The parse generator ANTLR can handle left-recursion and as such it is acceptable in the \acrshort{cfg} for \gls{gamble}.
 \begin{lstlisting}[caption={\acrshort{cfg} Expression},frame=tlrb,label={lst:expression},numbers=none]
 expression
     : expression ( '*' | '/' | '%' ) expression     #mulExpr
@@ -43,8 +45,8 @@ expression
 \end{lstlisting}
   
 The value production expands into what is seen on \myref{lst:value}.
-In this production are there both terminals, and non-terminals.
-The terminals are elements that have no production, leading to a ``dead end''.
+In this production both terminals and non-terminals are included.
+The terminals are elements that have no further production rules, leading to a ``dead end''.
 When a terminal is reached it is used and is as a leaf on a tree, also seen in .\todo{Kilde til afsnittet med billeder Søren har lavet.}
 \begin{lstlisting}[caption={\acrshort{cfg} Value},frame=tlrb,label={lst:value},numbers=none]
 value
@@ -57,9 +59,9 @@ value
     ;
 \end{lstlisting}
 
-Going through this small part of the \acrshort{cfg} one single branch of the parse tree have been unfolded and shown.
+Going through this small part of the \acrshort{cfg} one single branch of the parse tree have been unfolded.
 \gls{gamble}s \acrshort{cfg} is then used in the parser.
 The parser takes the input from a lexical analyzer, the source code in the form of a token stream.
-The parser uses the \acrshort{cfg}s production rules to set up again the source code to detect any errors in the source.
-The output is a parse tree.
-This is future explained in \myref{sec:syntaxAnalysis} and \myref{subsec:parser}.
+The parser uses the \acrshort{cfg}s production rules to determine syntax errors in the source code.
+The parser then outputs a parse tree.
+How this is done is described further in \myref{sec:syntaxAnalysis} and \myref{subsec:parser}.
