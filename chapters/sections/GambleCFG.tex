@@ -1,11 +1,12 @@
 \section{Context free grammar in gamble}
-Our grammar is written using \acrfull{ebnf}, and uses \acrfull{regex} to define terminals such as numbers and names.
-The full \acrshort{cfg} of \gls{gamble} can be found on \todo{ref til appendix} together with the lexer. This section only presents a small selection of the entire \acrshort{cfg}.
-In this section there will be a short traversal of one of the parse trees branches.
+Our grammar is written using \acrfull{ebnf}, and uses \acrfull{regex} to define terminals such as numbers and identifiers.
+In this section there will be a short traversal of what wil corrospond to one of the parse trees branches.
+The full \acrshort{cfg} of \gls{gamble} can be found on \todo{ref til appendix} alongside the lexing rules.
+This section only presents a small selection of the entire \acrshort{cfg}.
 
-The first production from the \acrshort{cfg} that will be the statement. 
-Looking at \myref{lst:statements} it is seen that a statement can be both a assignment, declaration, functioncall, controlblock and a loop. 
-Statement productions is the building blocks of the code.
+The first production rule from the \acrshort{cfg} of \gls{gamble} is the statement. 
+Looking at \myref{lst:statements} it is seen that a statement can be both an assignment, declaration, functioncall, controlblock or a loop construct. 
+Statement productions are the building blocks of sourcecode written in \gls{gamble}.
 
 \begin{lstlisting}[caption={\acrshort{cfg} Statement},frame=tlrb,label={lst:statements},numbers=none]
 statement
@@ -17,7 +18,7 @@ statement
     ;
 \end{lstlisting}
 
-Each of these elements in the statement productions are non-terminals, since they expands to each of their own production.
+All the elements in the statement productions expand to each of their own production, hence they are non-terminals.
 Looking at the declaration production on \myref{lst:declaration} it see that it have two elements, datatype '=' expression and complexdatatype ID '=' expression.
 Each of there are non-terminal since they both have their own production. They both end on the expression production.
 
@@ -44,7 +45,7 @@ expression
 The value production expands into what is seen on \myref{lst:value}.
 In this production are there both terminals, and non-terminals.
 The terminals are elements that have no production, leading to a ``dead end''.
-When a terminal is reached it is used and is as a leaf on a tree, also seen in \myref{sec:parsetrees}
+When a terminal is reached it is used and is as a leaf on a tree, also seen in .\todo{Kilde til afsnittet med billeder Søren har lavet.}
 \begin{lstlisting}[caption={\acrshort{cfg} Value},frame=tlrb,label={lst:value},numbers=none]
 value
     : ID                                     #valID
@@ -57,4 +58,8 @@ value
 \end{lstlisting}
 
 Going through this small part of the \acrshort{cfg} one single branch of the parse tree have been unfolded and shown.
-\gls{gamble}s \acrshort{cfg} is then used by ANTLR to generate a token stream. \todo{Her mangler en linje eller to med noget fornuftigt}
+\gls{gamble}s \acrshort{cfg} is then used in the parser.
+The parser takes the input from a lexical analyzer, the source code in the form of a token stream.
+The parser uses the \acrshort{cfg}s production rules to set up again the source code to detect any errors in the source.
+The output is a parse tree.
+This is future explained in \myref{sec:syntaxAnalysis} and \myref{subsec:parser}.
