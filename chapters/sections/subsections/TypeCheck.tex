@@ -1,0 +1,30 @@
+\subsection*{Type Checking}
+The second important part of the contextual analysis phase for the compiler is the type checking, which enforces the type system of \gls{gamble}.
+As \gls{gamble} is statically typed it is necessary to check if all references to identifiers and constant values fit into the context they exist in. 
+Since implicit conversion between floating point and integer types is not a part of gamble an error must be issued everywhere they are used wrongly. 
+It is however possible to implicitly convert between integer and floating point types internally e.g. from int16 to int64, as long as the source variable is of larger bit-wise.
+This is also the case for complex datatypes, matrices and vectors, e.g. from \texttt{matrix<float>} to \texttt{matrix<float64>}. 
+
+The symbol table is used as a reference for which type the variable is, and therefore the type checking happens after the symbol table has been filled, hence after scope checking is completed. 
+Type checking is done in many parts of the code, one or more times for each line is common. 
+For every operator it must be checked if its types match and if it results in an assignment if that also matches.
+Every function call must match the formal parameters of the function. 
+
+The errors produced by the type checker are: Argument errors and type mismatch errors.
+An argument error indicates that the number of arguments in the function declaration does not match the number of arguments provided in the function call.
+A type mismatch error is caused by a value or identifier not being compatible (type safe) with the function parameters, operator used etc.
+Examples are shown in \myref{lst:typeErrors}.
+
+\begin{lstlisting}[caption=Examples of type errors in \gls{gamble},numbers=none,frame=tlrb,label={lst:typeErrors}]
+/* [...] */
+int a = 1 + 2;      /* Valid */
+float b = 2.2 + 1;  /* Type mismatch error */
+float c = 2;        /* Type mismatch error */
+
+a = 2.2;            /* Type mismatch error */
+b = foo(1);         /* Argument error (Takes more or fewer arguments) */ 
+/* [...] */
+\end{lstlisting}
+
+%This check is done as a part of decorating the AST and uses a visitor to traverse the AST. 
+%\todo{implementering? ...(ja -sass)}

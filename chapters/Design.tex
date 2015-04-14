@@ -38,7 +38,7 @@ As mentioned before forgotten semicolons can result in compiler errors, we deem 
 
 Based on this analysis we have chosen to use the semicolon as end of statement terminator, for easier parsing.
 
-\subsection*{Scope}
+\subsection*{Scope}\label{subsec:Scope}
 If a programming language contain no implementation of scoping rules, then one must assume that all the source code in a given program would be in the same scope.
 Such a single scope would mean that any variable can be used form any place in the code. 
 Mostly, as briefly described in \myref{sec:state_of_the_art}, a programming language implements some kind of scoping rules.
@@ -75,7 +75,13 @@ Statements
 %http://www.informit.com/articles/article.aspx?p=2103809&seqNum=3
 \gls{gamble} uses three primitive data types; integers (int), floating points (float) and boolean values (bool), as well as two composite data types; matrices and vector. 
 In \gls{gamble} any variable must be initialised when it is declared. 
-This avoids any null reference which can cause runtime errors in many languages such as C, C\# and Java. 
+This avoids any null reference which can cause runtime errors in many languages such as C, C\# and Java.
+In \gls{gamble} all variables are statically stored, there are several reasons for this and therefore the language does not implement neither explicit or dynamic memory handling.
+The first reason for this is that the purpose of the language is to perform arithmetic operations on the \acrshort{gpu}, so by excluding this the language's simplicity increases, and therefore its read- and writability increases.
+A second reason being that the size of every variable in \gls{gamble} is unchangeable.
+Any vector and matrix will be allocated on the heap by the compiler.
+Manual memory handling could increase the number of possible programs in the language and is therefore seen as a viable extension to future versions of \gls{gamble}.
+
 
 \subsection*{Integers and floating points}
 An integer is a whole number either positive or negative, represented by the two's compliment method. 
@@ -112,13 +118,12 @@ Available operators in the language can be found on \myref{tbl:operators} with a
 It is not possible to use operators with matrices or vectors, functions which support different operations on these types will be included in a library.
 \input{figures/Operators.tex}
 
-\subsection*{Memory handling}
-Locally declared and small and simple variables will be written to the stack, while large quantities of data must be written to the heap. 
-To manage the heap in a programming language one must decide how the management must be implemented.
-At the topmost level there exist to different approaches, the first being explicit memory handling as seen in C with function calls like \texttt{alloc()} and \texttt{free()}. 
-The second approach is dynamic memory handling, often called garbage collection.
-While  manual memory handling is a very low level concept, it has some advantages over dynamic memory handling, for instance manual handling gives the users full control over a programs resources and while this can be hard o get right, can both increase the simplicity of the compiler and increase a programs runtime execution speed because garbage collection can be a complex runtime process.\citep{Sebesta, gribble}
-\todo{need moar info on how we chose to handle dis, can't write it else.} 
+%\subsection*{Memory handling}
+%Locally declared and small and simple variables will be written to the stack, while large quantities of data must be written to the heap. 
+%To manage the heap in a programming language one must decide how the management must be implemented.
+%At the topmost level there exist to different approaches, the first being explicit memory handling as seen in C with function calls like \texttt{alloc()} and \texttt{free()}. 
+%The second approach is dynamic memory handling, often called garbage collection.
+%While  manual memory handling is a very low level concept, it has some advantages over dynamic memory handling, for instance manual handling gives the users full control over a programs resources and while this can be hard o get right, can both increase the simplicity of the compiler and increase a programs runtime execution speed because garbage collection can be a complex runtime process.\citep{Sebesta, gribble}
 
 \section{Functions}
 \todo{Forklar print funktionen}
@@ -181,3 +186,4 @@ A simple print function which take string inputs increases both readability and 
 Strings in the print function allows the programmer to write easier understandable and readable program output. 
 %STD LIB EVT?!
 \input{chapters/sections/subsections/controlflow2.tex}
+\input{chapters/sections/subsections/reservedwords.tex}

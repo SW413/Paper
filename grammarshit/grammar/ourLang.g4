@@ -32,8 +32,9 @@ block
     ;
     
 conditionalExpression
-    : conditionalExpression ('&&' | '||') conditionalExpression  #multiCondExpr
-    | expression conditionalOperator expression                  #singleCondExpr
+    : conditionalExpression '&&' conditionalExpression  #multiAndCondExpr
+    | conditionalExpression '||' conditionalExpression  #multiOrCondExpr
+    | expression conditionalOperator expression         #singleCondExpr
     ;
 
 functiondeclaration
@@ -79,19 +80,19 @@ expression
 
 assignment
     : valassignment
-	| collectionassignment
+    | collectionassignment
     ;
 
 valassignment
-	: ID assignmentOperator ( expression | BOOLVAL ) #stdAssignment
+    : ID assignmentOperator ( expression | BOOLVAL ) #stdAssignment
     | ID postUnaryOperator                           #postUnaryAssignment
-	;
+    ;
 
 collectionassignment
-	: ID '=' expression                                 #entireCollectionAssignment
-	| collectionEntrance assignmentOperator expression  #collectionEntranceAssignment
-	;
-	
+    : ID '=' expression                                 #entireCollectionAssignment
+    | collectionEntrance assignmentOperator expression  #collectionEntranceAssignment
+    ;
+    
 declaration
     : datatype ID '=' expression                        #primitiveDecl
     | complexdatatype ID '=' expression                 #complexDecl

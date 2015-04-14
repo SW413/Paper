@@ -3,13 +3,26 @@ The parser is based on formal syntax specifications such as a \acrfull{cfg} writ
 The parser reads tokens and groups them into phrases according to the syntax specification.
 The parser verifies the syntax, and if a syntax error is found it provides a corresponding error message. \citep{Crafting_book}
 By using a parser generator like ANTLR or SableCC, handling of syntactic errors and repairs can be done automatically.
-A parser can also be written manually but doing so can result in syntactic errors that are hard to locate or solve.
-We have chosen to use ANTLR to generate our parser.
+A parser can also be written manually but doing so can result in syntactic errors that is hard to locate or solve.
+We have chosen to use ANTLR to generate our parser. 
+ANTLR generates a parse tree which contains information about how the parser have grouped the tokens into more abstract languange definitions, such as expressions and statements.
+Where previous versions of ANTLR have also implemented the AST, it is not contained in ANTLR v4, instead the parse tree provided by ANTLR has been used to generate an AST this is discussed in \myref{sec:AST}.
 
 There are different kind of parsers, most common are bottom-up and top-down parsers.
 ANTLR makes a top-down parser, more specific a recursive descent parser.
 A recursive descent parser is a subtype of top-down parser build from a set of mutually recursive procedures where each such procedure usually implements one of the productions of the grammar.
 The structure of the resulting program closely mirrors the grammar it recognizes. \citep{Recursive_programming}
+Recursive-descent parsers are really just a collection of recursive methods, one per rule.
+Such a method for an assignment rule may look as shown in \myref{lst:rdpmethod}
+\begin{lstlisting}[caption=Example a recursive descent parser method,frame=tlrb,label={lst:rdpmethod}]
+// assign : ID ``='' expr ``;'' ;
+void assign() { // method generated from rule assign
+match(ID); // compare ID to current input symbol then consume
+match('=');
+expr(); // match an expression by calling expr()
+match(';');
+}
+\end{lstlisting}
 
 The parser outputs a parse-tree which is an alternate representation of the input source-code. 
 This also verifies if the input is syntactical valid, but not type and scope checking which is done later in the contextual analysis phase. 
@@ -47,14 +60,17 @@ This also verifies if the input is syntactical valid, but not type and scope che
 %AST only useful, Parse all artifacts(space, brackets and so on)
 
 \subsubsection*{Traversing the Parse-Tree}
-Two of the most common ways of traversing the parse-tree are the visitor pattern and the listener pattern. 
-The difference between listeners and visitors is that listener methods are not explicitly responsible for calling methods to walk every children, the visitor pattern on the other hand must walk all the children in the parse-tree to keep the tree traversal going.
-With the visitor pattern it is possible to control the tree traversal because of the explicit calls to visit the children. \citep{ANTLR4_Book}
-Using the visitor pattern one can keep application-specific code out of grammar.
-It is also possible with the visitor pattern, to pass around return values and arguments.
+When working with trees, traversing those trees is an important part of the process.
+For this task different approaches can be taken, a common way is to implement a design pattern, the visitor pattern is particularly popular for tree traversal.
+Alternatively one can implement the composite pattern or choose to implement no pattern at all, but simply create a case analysis for each object.
+The use of a design pattern is not a requirement for the creation of a compiler.
 
-We have chosen to use the visitor pattern to gain controls over the traverse of the parse-tree, the pattern and how it is implemented is described further in \myref{subs:visit}. 
+Design patterns provide solution templates for software problems, each pattern providing its own benefits.
+In OOP design patterns are typically aimed at helping object generation and interaction between these objects.
+However the most important thing to keep in mind when using a design pattern, is not its exact implementation of classes and methods, but the concept the pattern describes.
 
-
-
-
+The two aforementioned patterns are classified under two different branches of patterns.
+The composite pattern is a structural pattern where the visitor pattern is a behavioral one.
+A structural pattern provides a way of defining the relations between objects, the composite pattern is used to create a hierarchical recursive tree structure of related objects that may be accessed in a standardised manner.
+A behavioral pattern is instead used to define how the objects communicate, the visitor pattern is used to separate a set of structured classes from any functionality that should be performed upon them.
+For the compiler the visitor pattern have been implemented for the traversal of trees as such the pattern is described further in \myref{subs:visit}.  
