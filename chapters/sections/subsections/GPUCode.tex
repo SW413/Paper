@@ -1,0 +1,13 @@
+\subsection*{GPU Usage}\label{GPUCode}
+Since \gls{gamble} distances its programmers from directly controlling which computations are performed on the \acrshort{gpu}, determining what code to perform on the \acrshort{gpu} becomes a problem for the compiler to solve.
+To make this decision the compiler must know what kind of code makes sense to be performed upon a \acrshort{gpu}.
+From \myref{sec:comparch} it is clear that for it to make sense moving any computation to the \acrshort{gpu} it must be of significant size to make up for the overhead of moving data, and be executable in parallel.
+If a computation is reliant on the outcome of other computations, the fibonacci sequence as an example, moving it to the \acrshort{gpu} would be a significant decrease in performance.
+
+As such any code written in a recursive format will not be run on the \acrshort{cpu} furthermore due to the overhead in data transfer, only computations requiring a significant amount of operations to be performed should be executed on the \acrshort{gpu} as \myref{image:benchmark} shows.
+Therefore statements not containing complex data types, i.e. statements with no vector or matrix arithmetics, are also performed on the \acrshort{gpu}.
+
+However statements that do include matrix or vector arithmetics will be performed on the \acrshort{gpu}.
+This entails such computations as matrix multiplication.
+Now it is entirely possible to make a matrix multiplication of a 2x2 matrix, which would be so small that the overhead of data transfer is more expensive than simply computing on the CPU however as mentioned in \myref{sec:phil} a computation containing that little data is not what the languange is designed to compute.
+The languange is ment for larger computations that can actually benefit from using the \acrshort{gpu}, therefore the size of a given matrix or vector is irrelevant when the compiler considers what processor to use.
