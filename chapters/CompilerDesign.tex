@@ -1,4 +1,4 @@
-\chapter{Phases of a compiler}
+\chapter{Compiler Overview}
 A compiler can be separated into three phases; syntax analysis, contextual analysis and code generation.
 The syntax analysis phase checks whether or not the source code adheres to the rules for the language, such as statement constructs.
 The contextual analysis phase checks whether or not the language is used correctly, such as type checking.
@@ -9,7 +9,7 @@ How each phase is constructed for GAMBLE will also be gone over in this chapter.
 
 \section{Source Code as Trees}
 \todo{Meta}
-\input{chapters/sections/subsections/VisitorPattern.tex}
+\input{chapters/sections/subsections/SourceCodeAsTrees.tex}
 \input{chapters/sections/subsections/AST.tex}
 
 
@@ -22,6 +22,9 @@ How each phase is constructed for GAMBLE will also be gone over in this chapter.
 
 %Implementation
 \input{chapters/sections/ANTLR.tex}
+\input{chapters/sections/subsections/TraversalOfTrees.tex}
+\input{chapters/sections/subsections/VisitorPattern.tex}
+\input{chapters/sections/subsections/AST.tex}
 \input{chapters/sections/SyntaxAnalysis.tex}
 
 %Subphases
@@ -35,6 +38,9 @@ How each phase is constructed for GAMBLE will also be gone over in this chapter.
 
 \section{Type Checking}
 \input{chapters/sections/subsections/TypeCheck.tex}
+
+\section{Error Handling}
+\input{chapters/sections/subsections/ErrorHandling.tex}
 
 %Phase3
 \input{chapters/sections/CodeGeneration.tex}
