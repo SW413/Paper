@@ -126,7 +126,6 @@ It is not possible to use operators with matrices or vectors, functions which su
 %While  manual memory handling is a very low level concept, it has some advantages over dynamic memory handling, for instance manual handling gives the users full control over a programs resources and while this can be hard o get right, can both increase the simplicity of the compiler and increase a programs runtime execution speed because garbage collection can be a complex runtime process.\citep{Sebesta, gribble}
 
 \section{Functions}
-\todo{Forklar print funktionen}
 Functions are blocks of code which can be called to do a specific computation, often but not always, a function takes some variables as inputs.
 
 This section will describe \gls{gamble}'s use of functions. 
@@ -134,6 +133,17 @@ Like in many other languages it is possible to declare your own functions in \gl
 This is useful for organising code, and reusing parts of the source code.
 Functions in \gls{gamble} can take input, but are not required to, the inputs can be any of the types the languages support.
 Because of high implementation cost in the compiler, it is not possible to use a function as an input for a function.
+
+\gls{gamble} also have certain functions build into the languange for varying reasons.
+The most unique function in question here will be the \texttt{print} function.
+This function is unique in the sense that it enables the programmer to use strings, a datatype otherwise not implemented in the languange.
+This is enabled such that the programmer can use this feature to write out messages to the console, it is not uncommong to use strings to test if a certain branch of the program is reached which is just one place where this function could be of use.
+
+Other \gls{gamble} provided functions are created out of convenience.
+In object-oriented languanges subscripting is quite popular and allows for a wide range of neat features such as \texttt{.GetLength} on arrays.
+Similar to this \gls{gamble} provides the \texttt{Rows} and \texttt{Cols} functions for matrix's which returns their amount of rows or columns.
+With these functions the programmer does not necessaritly need to remember throughout the program what the dimensions of an arbitrary array is but can use these functions to retrieve that information.
+\todo{måske også relevant at nævne Make<T>Matrix func her?}
 
 
 \subsection*{Function identifiers}
