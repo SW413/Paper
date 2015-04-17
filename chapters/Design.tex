@@ -134,16 +134,19 @@ This is useful for organising code, and reusing parts of the source code.
 Functions in \gls{gamble} can take input, but are not required to, the inputs can be any of the types the languages support.
 Because of high implementation cost in the compiler, it is not possible to use a function as an input for a function.
 
-\gls{gamble} also have certain functions build into the languange for varying reasons.
+\gls{gamble} also have certain functions built into the language for varying reasons.
 The most unique function in question here will be the \texttt{print} function.
-This function is unique in the sense that it enables the programmer to use strings, a datatype otherwise not implemented in the languange.
-This is enabled such that the programmer can use this feature to write out messages to the console, it is not uncommong to use strings to test if a certain branch of the program is reached which is just one place where this function could be of use.
+This function is unique in the sense that it enables the programmer to use strings, a data type otherwise not implemented in the language.
+This is enabled such that the programmer can use this feature to write out messages to the console. 
+This is both useful for output and for debugging. 
+%it is not uncommon to use strings to test if a certain branch of the program is reached which is just one place where this function could be of use.
 
-Other \gls{gamble} provided functions are created out of convenience.
-In object-oriented languanges subscripting is quite popular and allows for a wide range of neat features such as \texttt{.GetLength} on arrays.
-Similar to this \gls{gamble} provides the \texttt{Rows} and \texttt{Cols} functions for matrix's which returns their amount of rows or columns.
-With these functions the programmer does not necessaritly need to remember throughout the program what the dimensions of an arbitrary array is but can use these functions to retrieve that information.
-\todo{måske også relevant at nævne Make<T>Matrix func her?}
+Other functions provided by \gls{gamble} are created out of convenience.
+In object-oriented languages subscripting is common and allows for a wide range of useful features, e.g. \texttt{.GetLength} on arrays in C\#.
+Similar to this \gls{gamble} provides \texttt{Rows} and \texttt{Cols} functions for matrix' which returns their amount of rows or columns.
+This can be used in loops to make them iterate of matrices of any size.
+%With these functions the programmer does not necessarily need to remember throughout the program what the dimensions of an arbitrary array is but can use these functions to retrieve that information.
+\improvement[inline]{måske også relevant at nævne Make<T>Matrix func her? Enig - Troels}
 
 
 \subsection*{Function identifiers}
@@ -187,7 +190,7 @@ a = add(4, 3);
 \end{lstlisting}
 
 
-\subsection*{Print function}\todo{rename maybe}
+\subsection*{Print function}\todo{rename maybe}\todo{skal flyttes op til de andre funktioner?}
 In \gls{gamble} we have one function that is ready-made. It is a print function.
 The function is special because it can both take variables, numerical values and strings as input parameter.
 Since string is not a valid data type in \gls{gamble} this function is special. 
