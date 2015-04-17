@@ -8,12 +8,5 @@ If constrained by memory, having a single symbol table can be beneficial, howeve
 In \gls{gamble} there exists scopes, and for each of these scopes there is a corresponding symbol table. 
 Scopes inherit from each other so a scope can enclose another. 
 The outermost scope, the global scope, is where functions are declared; every scope is either directly enclosed by this scope or recursively.
-This means that every function can be called from anywhere within the source code - including within its' own function declarations; allowing for recursive functions. 
-  
+This means that every function can be called from anywhere within the source code - including within its' own function declarations; allowing for recursive functions.
 
-\info[inline]{Flyttes til implementationsafsnit $\downarrow$ }
-In \gls{gamble} the class \texttt{SymbolTable} represents the symbol table.
-The core constituent of this class is the ArrayList of the Scope class, called allScopes, meaning that every scope is stored in this ArrayList.
-Every scope contains Map of Symbols and strings as keys, and information about the scope such what scope it is enclosed by. 
-The key represents the name of the symbol, and must be unique to the scope and not found in an enclosing scope, as this could cause an ambiguity to arise. 
-A symbol is either a variable or a function, in the class Symbol its data type, name and scope is stored. 
