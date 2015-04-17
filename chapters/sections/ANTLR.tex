@@ -1,6 +1,15 @@
 \section{Implementation}
 \todo{More about the implementation}
 
+The syntax analysis is implemented through the tool ANTLR (ANother Tool for Languange Recognition), this tool provides some different advantages over other avaiable tools.
+ANTLR is build up around  a parser technique called LL(*), LL(*) uses an algorithm to have a variable lookahead when needed.
+The LL(*) parser technique allows a bigger class of \acrshort{cfg} than ordinary parser techniques like LL(k).
+In the most recent version of ANTLR as time of this publication, ANTLR 4, the underlying algorithm have been extended to a parser technique called Adaptive LL(*) (ALL(*)).
+ALL(*) most important feature is that it move grammar analysis to parse time. 
+This lets the parse algorithm accept any non-left-recursive.
+\citep{ALLSTAR, LLSTAR}	
+
+
 ANTLR(ANother Tool for Languange Recognition) is a parser generator tool for reading, processing, executing or translating \gls{cfg} into a parse tree.
 ANTLR allows for certain unique features to be present in the \gls{cfg} from which the parse tree is build, features which other parse generators such as SableCC and JavaCup cannot handle. %\todo{det bare ikke rigtigt features tho e.g. left recursion, slight ambiguity, ignored lookahead}
 In this section there will be explained what ANTLR provides and what we gain by using it.
@@ -22,7 +31,7 @@ expr : expr '*' expr 	// match expressions with * operator
      ;
 \end{lstlisting}
 While it may not be obvious from \myref{lst:amb} also implements ANTLRs way of representing operator precedence by simply obeying the first alternative in the rule set, as such the multiplication operator (``*'') will have the higher precedence.
-ANTLR being LL(*) also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.\citep{ANTLR4}
+ANTLR being LL(*) also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.\citep{ANTLR4_Book}
 
 \todo{tænkte at skrive noget omkring labels eftersom vi bruger dem - men der stod ikke rigtigt noget i ANTLR reference så tænkte sass/søren kunne skrive noget}
 
