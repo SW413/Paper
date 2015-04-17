@@ -8,6 +8,7 @@
 %\todo{Mere tekst.}
 
 The compiler for \gls{gamble} is separated into three phases: syntax analysis, contextual analysis and code generation.
+\myref{fig:phases} shows the phases of the compiler.
 The first two of which are sometimes known as the front end of the compiler, it transformes the source code into an intermediate representation, and verifies its correctness. \todo{Er ikke 100\% sikker på at alt verifikation sker her.}
 
 In the syntax analysis phase the input source code is transformed to an \acrfull{ast}. 
@@ -24,11 +25,44 @@ In the code generation phase the output code is generated from all the informati
 The target language of this compiler is OpenCL C.
 To get this to run on any machine it is necessary to compile the output of the \gls{gamble} compiler, with a compiler for OpenCL C.
 This is an abstraction made by the product group to simplify the process of generating code. \todo{Svagt argument? Men sandheden? Måske også fordi at det ikke er lige til at generere gpu code?} 
-\info[inline]{Kunne evt. skrive lidt om at vælge java som sprog til compileren?}
+\todo{Kunne evt. skrive lidt om at vælge java som sprog til compileren?}
+
+\begin{figure}[ht!]
+\center
+	\begin{tikzpicture}[node distance = 2.5cm]
+		\node (invi1) 		[invi,draw=none] {GAMBLE Source code};
+		\node (syntax) 		[blockz, below=0.6cm of invi1] {Syntax Analysis};
+		\node (contextual) 	[blockz, below of=syntax] {Contextual Analysis};
+		\node (codegen) 	[blockz, below of=contextual] {Code Generation};
+		\node (opencl) 		[invi,draw=none, below=0.6cm of codegen] {OpenCL C code};
+
+		\node (error1) 		[cloud, right=1cm of syntax] {Error reports};
+		\node (error2) 		[cloud, right=1cm of contextual] {Error reports};
+
+		\node (invi2) 		[invi,draw=none, below=0.4cm of syntax] {};
+		\node (ast) 		[invi,draw=none, right=-0.2cm of invi2] {Abstract Syntax Tree};
+
+		\node (invi3) 		[invi,draw=none, below=0.4cm of contextual] {};
+		\node (dast) 		[invi,draw=none, right=-0.5	cm of invi3] {Decorated Abstract Syntax Tree};
+
+		\draw [arrow] (invi1) -- (syntax);
+		\draw [arrow] (syntax) -- (contextual);
+		\draw [arrow] (contextual) -- (codegen);
+		\draw [arrow] (codegen) -- (opencl);
+		
+		\draw [arrow] (syntax) -- (error1);
+		\draw [arrow] (contextual) -- (error2);
+	\end{tikzpicture}
+	\caption{The phases of the compiler.}
+	\label{fig:phases}
+\end{figure}
 
 \section{Source Code as Trees}
 \todo{Meta}
 \input{chapters/sections/subsections/SourceCodeAsTrees.tex}
+
+\clearpage
+
 
 \chapter{Syntax Analysis}
 \todo{Meta tekst}
