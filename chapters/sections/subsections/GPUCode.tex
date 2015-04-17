@@ -1,13 +1,15 @@
-\subsection*{GPU Usage}\label{GPUCode}
+\subsection*{GPU Usage}\label{GPUCode}\change[inline]{This should probably be in the design part of codegen?}
 Since \gls{gamble} distances its programmers from directly controlling which computations are performed on the \acrshort{gpu}, determining what code to perform on the \acrshort{gpu} becomes a problem for the compiler to solve.
-To make this decision the compiler must know what kind of code makes sense to be performed upon a \acrshort{gpu}.
+To make this decision the compiler must know what kind of code performs faster on a \acrshort{gpu} than a \acrshort{cpu}.
 From \myref{sec:comparch} it is clear that for it to make sense moving any computation to the \acrshort{gpu} it must be of significant size to make up for the overhead of moving data, and be executable in parallel.
-If a computation is reliant on the outcome of other computations, the fibonacci sequence as an example, moving it to the \acrshort{gpu} would be a significant decrease in performance.
+If a computation is reliant on the outcome of other computations, the Fibonacci function as an example, moving it to the \acrshort{gpu} would be a significant decrease in performance compared to on a \acrshort{cpu}.
 
-As such any code written in a recursive format will not be run on the \acrshort{cpu} furthermore due to the overhead in data transfer, only computations requiring a significant amount of operations to be performed should be executed on the \acrshort{gpu} as \myref{image:benchmark} shows.
-Therefore statements not containing complex data types, i.e. statements with no vector or matrix arithmetics, are also performed on the \acrshort{gpu}.
+Any code written in a recursive format will not be run on the \acrshort{cpu} furthermore due to the overhead in data transfer, only computations requiring a significant amount of operations to be performed should be executed on the \acrshort{gpu} as \myref{image:benchmark} shows.
+Therefore statements which only contains simple data types, i.e. integers, floats and bools, are performed on the \acrshort{cpu}.
+An example could be \texttt{value = value1 + value2}, where all types are integers.
+%Therefore statements not containing complex data types, i.e. statements with no vector or matrix arithmetics, are also performed on the \acrshort{gpu}.
 
 However statements that do include matrix or vector arithmetics will be performed on the \acrshort{gpu}.
-This entails such computations as matrix multiplication.
-Now it is entirely possible to make a matrix multiplication of a 2x2 matrix, which would be so small that the overhead of data transfer is more expensive than simply computing on the CPU however as mentioned in \myref{sec:phil} a computation containing that little data is not what the languange is designed to compute.
-The languange is ment for larger computations that can actually benefit from using the \acrshort{gpu}, therefore the size of a given matrix or vector is irrelevant when the compiler considers what processor to use.
+An example could be matrix multiplication.
+Now it is entirely possible to make a matrix multiplication of a 2x2 matrix, which would be so small that the overhead of data transfer is more expensive than simply computing on the \acrshort{cpu}. % however as mentioned in \myref{sec:phil} a computation containing that little data is not what the languange is designed to compute.
+The language is meant for larger computations that can actually benefit from using the \acrshort{gpu}, therefore the size of a given matrix or vector is irrelevant when the compiler considers what processor to use. \improvement[inline]{Er vi enige om dette sidste? Jeg syndes lidt vi burde skrive at for simplicitet har vi valgt at alle udregninger på matricer og vectorer sker på gpuen, og at vi forstår dette ikke altid er et godt valg. - Troels}
