@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="13.2">
-  <zoom_level>10</zoom_level>
+  <zoom_level>12</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>750</x>
-      <y>490</y>
-      <w>210</w>
-      <h>90</h>
+      <x>948</x>
+      <y>936</y>
+      <w>252</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>DeclarationNode
 --
@@ -21,10 +21,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1000</x>
-      <y>490</y>
-      <w>280</w>
-      <h>170</h>
+      <x>1260</x>
+      <y>936</y>
+      <w>336</w>
+      <h>204</h>
     </coordinates>
     <panel_attributes>Variable
 --
@@ -43,10 +43,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>170</x>
-      <y>490</y>
-      <w>210</w>
-      <h>100</h>
+      <x>228</x>
+      <y>936</y>
+      <w>252</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>ExpressionNode
 --
@@ -61,21 +61,21 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>950</x>
-      <y>510</y>
-      <w>70</w>
-      <h>40</h>
+      <x>1188</x>
+      <y>960</y>
+      <w>96</w>
+      <h>48</h>
     </coordinates>
-    <panel_attributes>1     1  </panel_attributes>
-    <additional_attributes>10.0;20.0;50.0;20.0</additional_attributes>
+    <panel_attributes>0..1  1  </panel_attributes>
+    <additional_attributes>10.0;20.0;60.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>750</x>
-      <y>300</y>
-      <w>210</w>
-      <h>100</h>
+      <x>948</x>
+      <y>420</y>
+      <w>252</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>StatementNode
 --
@@ -89,10 +89,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>840</x>
-      <y>70</y>
-      <w>210</w>
-      <h>100</h>
+      <x>960</x>
+      <y>204</y>
+      <w>252</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>BaseASTNode
 --
@@ -101,49 +101,50 @@
 +Children
 --
 +Accept(visitor: BaseASTVisitor)
-</panel_attributes>
+
+fg=black</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>160</y>
-      <w>120</w>
-      <h>160</h>
+      <x>1068</x>
+      <y>312</y>
+      <w>36</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>100.0;10.0;100.0;110.0;10.0;110.0;10.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>390</y>
-      <w>290</w>
-      <h>120</h>
+      <x>1056</x>
+      <y>516</y>
+      <w>360</w>
+      <h>444</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0;270.0;80.0;270.0;100.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;330.0;280.0;330.0;280.0;350.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>390</y>
-      <w>30</w>
-      <h>120</h>
+      <x>1056</x>
+      <y>516</y>
+      <w>36</w>
+      <h>444</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;350.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>250</x>
-      <y>650</y>
-      <w>210</w>
-      <h>80</h>
+      <x>348</x>
+      <y>1128</y>
+      <w>252</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>ConstantExpressionNode
 --
@@ -156,10 +157,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>260</x>
-      <y>580</y>
-      <w>110</w>
-      <h>90</h>
+      <x>360</x>
+      <y>1044</y>
+      <w>132</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;50.0;90.0;50.0;90.0;70.0</additional_attributes>
@@ -167,10 +168,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>470</x>
-      <y>650</y>
-      <w>210</w>
-      <h>70</h>
+      <x>936</x>
+      <y>1128</y>
+      <w>252</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>VariableExpressionNode
 --
@@ -183,43 +184,45 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>260</x>
-      <y>580</y>
-      <w>330</w>
-      <h>90</h>
+      <x>360</x>
+      <y>1044</y>
+      <w>720</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0;310.0;50.0;310.0;70.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;580.0;50.0;580.0;70.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>320</x>
-      <y>570</y>
-      <w>560</w>
-      <h>70</h>
+      <x>420</x>
+      <y>1032</y>
+      <w>684</w>
+      <h>84</h>
     </coordinates>
-    <panel_attributes>1                                                                                                                              1</panel_attributes>
-    <additional_attributes>10.0;20.0;10.0;50.0;540.0;50.0;540.0;10.0</additional_attributes>
+    <panel_attributes>1                                                                                                                              1
+fg=red</panel_attributes>
+    <additional_attributes>10.0;20.0;20.0;50.0;550.0;50.0;550.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>670</x>
-      <y>650</y>
-      <w>460</w>
-      <h>50</h>
+      <x>1176</x>
+      <y>1128</y>
+      <w>240</w>
+      <h>60</h>
     </coordinates>
-    <panel_attributes>1                                                                                                  1</panel_attributes>
-    <additional_attributes>10.0;30.0;440.0;30.0;440.0;10.0</additional_attributes>
+    <panel_attributes>0..1                                  1
+fg=red</panel_attributes>
+    <additional_attributes>10.0;30.0;180.0;30.0;180.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>980</x>
-      <y>300</y>
-      <w>350</w>
-      <h>100</h>
+      <x>1224</x>
+      <y>420</y>
+      <w>420</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>TopNode
 --
@@ -234,21 +237,21 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>930</x>
-      <y>160</y>
-      <w>240</w>
-      <h>160</h>
+      <x>1068</x>
+      <y>312</y>
+      <w>384</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;110.0;220.0;110.0;220.0;140.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;300.0;50.0;300.0;90.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>410</x>
-      <y>490</y>
-      <w>320</w>
-      <h>110</h>
+      <x>540</x>
+      <y>936</y>
+      <w>384</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>AssignmentNode
 --
@@ -263,10 +266,10 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>30</x>
-      <y>650</y>
-      <w>210</w>
-      <h>60</h>
+      <x>0</x>
+      <y>1128</y>
+      <w>252</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>ConditionalExpressionNode
 --
@@ -278,10 +281,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>120</x>
-      <y>580</y>
-      <w>170</w>
-      <h>90</h>
+      <x>192</x>
+      <y>1044</y>
+      <w>204</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>150.0;10.0;150.0;50.0;10.0;50.0;10.0;70.0</additional_attributes>
@@ -289,43 +292,44 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>390</y>
-      <w>310</w>
-      <h>120</h>
+      <x>720</x>
+      <y>516</y>
+      <w>372</w>
+      <h>444</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>290.0;10.0;290.0;80.0;10.0;80.0;10.0;100.0</additional_attributes>
+    <additional_attributes>290.0;10.0;290.0;330.0;10.0;330.0;10.0;350.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>260</x>
-      <y>390</y>
-      <w>610</w>
-      <h>120</h>
+      <x>348</x>
+      <y>516</y>
+      <w>744</w>
+      <h>444</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>590.0;10.0;590.0;80.0;10.0;80.0;10.0;100.0</additional_attributes>
+    <additional_attributes>600.0;10.0;600.0;330.0;10.0;330.0;10.0;350.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>370</x>
-      <y>520</y>
-      <w>60</w>
-      <h>40</h>
+      <x>468</x>
+      <y>972</y>
+      <w>96</w>
+      <h>48</h>
     </coordinates>
-    <panel_attributes>1  1</panel_attributes>
-    <additional_attributes>10.0;20.0;40.0;20.0</additional_attributes>
+    <panel_attributes>1  0..1
+fg=red</panel_attributes>
+    <additional_attributes>10.0;20.0;60.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1330</x>
-      <y>490</y>
-      <w>230</w>
-      <h>70</h>
+      <x>1656</x>
+      <y>936</y>
+      <w>276</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>CollectionCoordinateNode
 --
@@ -337,32 +341,34 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1270</x>
-      <y>530</y>
-      <w>80</w>
-      <h>40</h>
+      <x>1584</x>
+      <y>984</y>
+      <w>96</w>
+      <h>48</h>
     </coordinates>
-    <panel_attributes>1       1</panel_attributes>
+    <panel_attributes>1   0..1
+fg=red</panel_attributes>
     <additional_attributes>10.0;20.0;60.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>240</x>
-      <y>430</y>
-      <w>1230</w>
-      <h>80</h>
+      <x>324</x>
+      <y>864</y>
+      <w>1500</w>
+      <h>96</h>
     </coordinates>
-    <panel_attributes>2                                                                                                                                                                                                                                                                                                             1               </panel_attributes>
-    <additional_attributes>10.0;60.0;10.0;20.0;1210.0;20.0;1210.0;60.0</additional_attributes>
+    <panel_attributes>2                                                                                                                                                                                                                                                                                                              0..1               
+fg=red</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;20.0;1230.0;20.0;1230.0;60.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>320</x>
-      <y>300</y>
-      <w>390</w>
-      <h>130</h>
+      <x>180</x>
+      <y>420</y>
+      <w>468</w>
+      <h>156</h>
     </coordinates>
     <panel_attributes>ConditionalNode
 --
@@ -379,34 +385,440 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>470</x>
-      <y>160</y>
-      <w>490</w>
-      <h>160</h>
+      <x>360</x>
+      <y>312</y>
+      <w>744</w>
+      <h>132</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>470.0;10.0;470.0;110.0;10.0;110.0;10.0;140.0</additional_attributes>
+    <additional_attributes>600.0;10.0;600.0;50.0;10.0;50.0;10.0;90.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>700</x>
-      <y>320</y>
-      <w>70</w>
-      <h>40</h>
+      <x>420</x>
+      <y>372</y>
+      <w>588</w>
+      <h>72</h>
     </coordinates>
-    <panel_attributes>0..*  2  </panel_attributes>
-    <additional_attributes>10.0;20.0;50.0;20.0</additional_attributes>
+    <panel_attributes>0..*                                                                                                        2  
+bg=red
+fg=red</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;20.0;470.0;20.0;470.0;40.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>100</x>
-      <y>350</y>
+      <x>72</x>
+      <y>480</y>
+      <w>132</w>
+      <h>672</h>
+    </coordinates>
+    <panel_attributes>1         1
+fg=red</panel_attributes>
+    <additional_attributes>90.0;20.0;10.0;20.0;10.0;540.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>720</x>
+      <y>624</y>
+      <w>324</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>ForLoopNode
+--
++Body : StatementNode
++Condition : ConditionalexpressionNode
++Initialize : BaseASTNode
++Update : ExpressionNode
+--
++Accept(visitor: BaseASTVisitor)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>948</x>
+      <y>516</y>
+      <w>144</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>100.0;10.0;100.0;70.0;10.0;70.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>924</x>
+      <y>312</y>
+      <w>108</w>
+      <h>336</h>
+    </coordinates>
+    <panel_attributes>1       1     
+fg=blue</panel_attributes>
+    <additional_attributes>70.0;10.0;70.0;30.0;10.0;30.0;10.0;260.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>276</x>
+      <y>756</y>
+      <w>552</w>
+      <h>204</h>
+    </coordinates>
+    <panel_attributes>1                                                                                   1 
+fg=red</panel_attributes>
+    <additional_attributes>440.0;10.0;440.0;60.0;10.0;60.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>156</x>
+      <y>756</y>
+      <w>636</w>
+      <h>396</h>
+    </coordinates>
+    <panel_attributes>1                                                                                                                 1  
+fg=red</panel_attributes>
+    <additional_attributes>10.0;310.0;10.0;40.0;510.0;40.0;510.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>936</x>
+      <y>1272</y>
+      <w>252</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>FunctionCallNode
+--
+--
++Accept(visitor: BaseASTvisitor)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1044</x>
+      <y>1200</y>
+      <w>36</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1668</x>
+      <y>420</y>
+      <w>420</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>FunctionDclNode
+--
++Variable variable
++Parameters : ArrayList&lt;Variable&gt;
++FunctionBody :  StatementNode 
++FunctionReturn : FunctionReturnNode
+ValueType : Enumeration
+--
++Accept(visitor: BaseASTVisitor)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1068</x>
+      <y>312</y>
+      <w>864</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;700.0;50.0;700.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1584</x>
+      <y>564</y>
+      <w>396</w>
+      <h>516</h>
+    </coordinates>
+    <panel_attributes>1..*                                                                0..1
+fg=red</panel_attributes>
+    <additional_attributes>10.0;410.0;310.0;410.0;310.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1152</x>
+      <y>516</y>
+      <w>540</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>1                                                                                                     1  
+fg=red</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;430.0;40.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1128</x>
+      <y>624</y>
+      <w>276</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>FunctionReturnNode
+--
++Expression : ExpressionNode
+--
++Accept(visitor: BaseASTVisitor)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1056</x>
+      <y>516</y>
       <w>240</w>
-      <h>320</h>
+      <h>132</h>
     </coordinates>
-    <panel_attributes>1                                     1  </panel_attributes>
-    <additional_attributes>220.0;20.0;10.0;20.0;10.0;300.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0;180.0;70.0;180.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1392</x>
+      <y>564</y>
+      <w>324</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>0..1                                               1
+bg=red
+fg=red</panel_attributes>
+    <additional_attributes>10.0;80.0;250.0;80.0;250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>300</x>
+      <y>696</y>
+      <w>900</w>
+      <h>264</h>
+    </coordinates>
+    <panel_attributes>1                                                                                                                                                                        1  
+
+fg=red</panel_attributes>
+    <additional_attributes>730.0;10.0;730.0;130.0;10.0;130.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>660</x>
+      <y>420</y>
+      <w>264</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>ImportNode
+--
++InputFiles : ArrayList&lt;ImportFile&gt;
+--
++Accept(visitor: BaseASTVisitor)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>312</y>
+      <w>348</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;10.0;270.0;50.0;10.0;50.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>120</x>
+      <y>624</y>
+      <w>252</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>ImportFile
+--
++FileReader : FileReader
++Linenumber : int
++Name : String
+--
+
+
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>240</x>
+      <y>492</y>
+      <w>456</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes>0..*            1
+fg=red</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;90.0;360.0;90.0;360.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>636</x>
+      <y>1128</y>
+      <w>276</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>MatrixValNode
+--
++Rows : ArrayList&lt;VectorValNode&gt;
+--
++Accept(visitor: BaseASTvisitor)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>360</x>
+      <y>1044</y>
+      <w>432</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0;340.0;50.0;340.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>336</x>
+      <y>1260</y>
+      <w>300</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>VectorValNode
+--
++Values : ArrayList&lt;ExpressionNode&gt;
+--
++Accept(visitor: BaseASTvisitor)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>324</x>
+      <y>1044</y>
+      <w>120</w>
+      <h>240</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>40.0;10.0;40.0;50.0;10.0;50.0;10.0;170.0;80.0;170.0;80.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>624</x>
+      <y>1212</y>
+      <w>84</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>1..*  1
+fg=red</panel_attributes>
+    <additional_attributes>10.0;60.0;50.0;60.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>252</x>
+      <y>1044</y>
+      <w>108</w>
+      <h>276</h>
+    </coordinates>
+    <panel_attributes>1     0..1
+fg=red</panel_attributes>
+    <additional_attributes>70.0;210.0;10.0;210.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>384</x>
+      <y>624</y>
+      <w>324</w>
+      <h>108</h>
+    </coordinates>
+    <panel_attributes>WhileLoopNode
+--
++CondNode :  ConditionalexpressionNode
++Body : StatementNote
+--
++Accept(visitor: BaseASTVisitor)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>684</x>
+      <y>516</y>
+      <w>408</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>320.0;10.0;320.0;70.0;10.0;70.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>108</x>
+      <y>720</y>
+      <w>456</w>
+      <h>432</h>
+    </coordinates>
+    <panel_attributes>1                                                                               1
+fg=red</panel_attributes>
+    <additional_attributes>360.0;10.0;360.0;30.0;10.0;30.0;10.0;340.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>672</x>
+      <y>504</y>
+      <w>300</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>1                                            1
+fg=red</panel_attributes>
+    <additional_attributes>230.0;20.0;10.0;20.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>984</x>
+      <y>516</y>
+      <w>60</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>1
+
+
+
+0..1
+fg=red</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
   </element>
 </diagram>
