@@ -1,28 +1,18 @@
 \section{Implementation}
-\todo{More about the implementation}
 
-The syntax analysis is implemented through the tool ANTLR (ANother Tool for Languange Recognition), this tool provides some different advantages over other avaiable tools.
+The syntax analysis is implemented through the tool ANTLR (ANother Tool for Languange Recognition), this tool provides some different advantages over other available tools.
 ANTLR is build up around  a parser technique called LL(*), LL(*) uses an algorithm to have a variable lookahead when needed.
 The LL(*) parser technique allows a bigger class of \acrshort{cfg} than ordinary parser techniques like LL(k).
 In the most recent version of ANTLR as time of this publication, ANTLR 4, the underlying algorithm have been extended to a parser technique called Adaptive LL(*) (ALL(*)).
 ALL(*) most important feature is that it move grammar analysis to parse time. 
 This lets the parse algorithm accept any non-left-recursive.
-\citep{ALLSTAR, LLSTAR}	
-
-
-ANTLR(ANother Tool for Languange Recognition) is a parser generator tool for reading, processing, executing or translating \gls{cfg} into a parse tree.
-ANTLR allows for certain unique features to be present in the \gls{cfg} from which the parse tree is build, features which other parse generators such as SableCC and JavaCup cannot handle. %\todo{det bare ikke rigtigt features tho e.g. left recursion, slight ambiguity, ignored lookahead}
-In this section there will be explained what ANTLR provides and what we gain by using it.
-How the parsing and scanning works is described in \myref{sec:syntaxAnalysis}.
-
-ANTLR is used for the syntax analysis part of the compiler.
-By providing ANTLR with a \gls{cfg} it generates a lexer, then a parser capable of building and walking parse trees for an acceptable token stream in the language.
-Furthermore by running ANTLR on the grammar using the \texttt{--visitor} flag, ANTLR sets up an interface and base implementation of the visitor pattern for the parse tree. 
-ANTLR is a particularly useful tool for this in comparison to other tools, because it uses a newer parsing technology known as Adaptive LL(*) (ALL(*)).
-The idea is that the grammar is analysed dynamically at runtime rather than statically, before executed by the generated parser.
+The ALL(*) approach accepts a broader class of grammars than most others parsing methods, one way this is done is to rule out ambiguity by using a rule of precedence.
+If a grammar is ambiguous the ALL(*) approach will take the first  available rule in the \acrshort{cfg} and apply it.
+This allows for a less strict \acr{cfg} and while most grammars could be rewritten to be unambiguous without applying the precedence rule, this allows the designers of languages grammars to edit existing grammars without rewriting as much a could be required if the precedence rule was not available.	
+The idea with the ALL(*) algorithm is that the grammar is analysed dynamically at runtime rather than statically, before executed by the generated parser.
 This allows ANTLR access to input sequences while reading through the grammar, meaning not all possible inputs must be considered.
-Due to this dynamic analysis ANTLR4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
-Furthermore ANTLR also takes care of left-recursion if such is present in the grammar by rewriting it, as such would be the case in \myref{lst:amb}.
+Due to this dynamic analysis ALTLR 4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
+As mentioned this allows ANTLR to take care of left-recursion if such is present in the grammar by rewriting it, as such would be the case in \myref{lst:amb}.
 
 \begin{lstlisting}[caption=An ambiguous rule for expr,frame=tlrb,label={lst:amb}]
 expr : expr '*' expr 	// match expressions with * operator
@@ -31,7 +21,34 @@ expr : expr '*' expr 	// match expressions with * operator
      ;
 \end{lstlisting}
 While it may not be obvious from \myref{lst:amb} also implements ANTLRs way of representing operator precedence by simply obeying the first alternative in the rule set, as such the multiplication operator (``*'') will have the higher precedence.
-ANTLR being LL(*) also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.\citep{ANTLR4_Book}
+The ALL(*) algorithm also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.
+ANTLR also implements rule element labels in it's \gls{cfg} which means one can apply label rules to a construct in a grammar, this allows for condintional steps in the grammar based on the source code being parsed.
+Furthermore ANTLR can set up an interface and base implementation of the visitor pattern for the parse tree on a given grammar by running ANTLR with the \texttt{--visitor} flag.\citep{ALLSTAR, LLSTAR, ANTLR4_Book}
+
+
+
+%ANTLR(ANother Tool for Languange Recognition) is a parser generator tool for reading, processing, executing or translating \gls{cfg} into a parse tree.
+%ANTLR allows for certain unique features to be present in the \gls{cfg} from which the parse tree is build, features which other parse generators such as SableCC and JavaCup cannot handle. %\todo{det bare ikke rigtigt features tho e.g. left recursion, slight ambiguity, ignored lookahead}
+%In this section there will be explained what ANTLR provides and what we gain by using it.
+%How the parsing and scanning works is described in \myref{sec:syntaxAnalysis}.
+
+%ANTLR is used for the syntax analysis part of the compiler.
+%By providing ANTLR with a \gls{cfg} it generates a lexer, then a parser capable of building and walking parse trees for an acceptable token stream in the language.
+%Furthermore by running ANTLR on the grammar using the \texttt{--visitor} flag, ANTLR sets up an interface and base implementation of the visitor pattern for the parse tree. 
+%ANTLR is a particularly useful tool for this in comparison to other tools, because it uses a newer parsing technology known as Adaptive LL(*) (ALL(*)).
+%The idea is that the grammar is analysed dynamically at runtime rather than statically, before executed by the generated parser.
+%This allows ANTLR access to input sequences while reading through the grammar, meaning not all possible inputs must be considered.
+%Due to this dynamic analysis ANTLR4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
+%Furthermore ANTLR also takes care of left-recursion if such is present in the grammar by rewriting it, as such would be the case in \myref{lst:amb}.
+
+%\begin{lstlisting}[caption=An ambiguous rule for expr,frame=tlrb,label={lst:amb}]
+%expr : expr '*' expr 	// match expressions with * operator
+%     | expr '+' expr 	// match expressions with + operator
+%     | INT 		// matches simple integer
+%     ;
+%\end{lstlisting}
+%While it may not be obvious from \myref{lst:amb} also implements ANTLRs way of representing operator precedence by simply obeying the first alternative in the rule set, as such the multiplication operator (``*'') will have the higher precedence.
+%ANTLR being LL(*) also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.\citep{ANTLR4_Book}
 
 \todo{tænkte at skrive noget omkring labels eftersom vi bruger dem - men der stod ikke rigtigt noget i ANTLR reference så tænkte sass/søren kunne skrive noget}
 
