@@ -136,18 +136,19 @@ Because of high implementation cost in the compiler, it is not possible to use a
 
 \gls{gamble} also have certain functions built into the language for varying reasons.
 The most unique function in question here will be the \texttt{print} function.
-This function is unique in the sense that it enables the programmer to use strings, a data type otherwise not implemented in the language.
+This function is unique in the sense that it enables the programmer to use strings as a paramater, a data type otherwise not implemented in the language.
 This is enabled such that the programmer can use this feature to write out messages to the console. 
-This is both useful for output and for debugging. 
-%it is not uncommon to use strings to test if a certain branch of the program is reached which is just one place where this function could be of use.
+This is both useful for output and for debugging.
 
 Other functions provided by \gls{gamble} are created out of convenience.
 In object-oriented languages subscripting is common and allows for a wide range of useful features, e.g. \texttt{.GetLength} on arrays in C\#.
 Similar to this \gls{gamble} provides \texttt{Rows} and \texttt{Cols} functions for matrix' which returns their amount of rows or columns.
 This can be used in loops to make them iterate of matrices of any size.
-%With these functions the programmer does not necessarily need to remember throughout the program what the dimensions of an arbitrary array is but can use these functions to retrieve that information.
-\improvement[inline]{måske også relevant at nævne Make<T>Matrix func her? Enig - Troels}
 
+Another such function is \texttt{MateIntMatrix}.
+This creates a matrix with int values a similar function exists for float.
+These takes three arguments as input, the amount of rows and colums wished for, aswell as what value to place at every entry.
+While this could be done manually for a small matrix, this allows the programmer to initialise a larger matrix and fill it any value in just one function call.
 
 \subsection*{Function identifiers}
 When declaring a \gls{gamble} function it is required to write the body of the function immediately after.
@@ -190,13 +191,12 @@ a = add(4, 3);
 \end{lstlisting}
 
 
-\subsection*{Print function}\todo{rename maybe}\todo{skal flyttes op til de andre funktioner?}
-In \gls{gamble} we have one function that is ready-made. It is a print function.
-The function is special because it can both take variables, numerical values and strings as input parameter.
-Since string is not a valid data type in \gls{gamble} this function is special. 
-With the print function it is possible to give the user a visual representation of the computations result, in the console.
-A simple print function which take string inputs increases both readability and writability.
-Strings in the print function allows the programmer to write easier understandable and readable program output. 
+%\subsection*{Print function}\todo{rename maybe}\todo{skal flyttes op til de andre funktioner?}
+%In \gls{gamble} we have one function that is ready-made. It is a print function.
+%The function is special because it can both take variables, numerical values and strings as input parameter.
+%Since string is not a valid data type in \gls{gamble} this function is special. 
+%With the print function it is possible to give the user a visual representation of the computations result, in the console.
+ 
 %STD LIB EVT?!
 \input{chapters/sections/subsections/controlflow2.tex}
 \input{chapters/sections/subsections/reservedwords.tex}
