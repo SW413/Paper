@@ -1,5 +1,68 @@
-\subsection*{Design}
-\todo{Make this}
+\subsection*{Design}\label{subsec:DesignErrorHandling}
+The source code given to the \gls{gamble} compiler can contain errors and warnings, these are found in the various stages of the compiler.
+Most central are scope and type related errors, these are found in the contextual analysis phase of the compiler. 
+The following errors and warnings are reported by the \gls{gamble} compiler:
+\info[inline]{Itemize yay or nay?}
+\begin{itemize}
+	\item Arguments error: The arguments of a function call doesn't match the ones used.
+	\item Redeclaration error: A variable or function with the same name is already declared.
+	\item Type mismatch error: The types used are incompatible with the operator. 
+	\item Undeclared error: Attempted use of an undefined variable or function.
+	\item Unused variable warning: A warning signaling that a variable or function is declared but never invoked.
+\end{itemize} 
+The errors in the compiler should give useful information about: Where the error is in the source code and what variable(s) or function(s) was wrongly used.
+This include line numbers which then have to be carried over from the parse tree to the abstract syntax tree, this is expanded in \todo{ref til afsnit som ikke findes i denne branch}.
 
-\subsection*{Implementation}
-\todo{Make this}
+\subsection*{Implementation}\label{subsec:ImplementationErrorHandling}
+In the \gls{gamble} compiler this is implemented by having a class \texttt{LanguageError} of which each specific error type inherits from.
+The \texttt{LanguageError} superclass has information about what type the error, an enumeration which is either \texttt{Error} or \texttt{Warning}. 
+This is so because a program which has warning but no errors, should still compile, however any program with errors should not. 
+Compared to simply printing any error when it was discovered and stopping compilation, this model allows the compiler to go through the entire \acrshort{ast} and discover every error. 
+It also unifies how errors are printed and shown to the user. \todo{Denne og forrige sætning er måske lidt svage? Skal der være mere ellere mindre om det. På plus siden er det jo en vurdering og det som viser forståelse osv.}
+There is also an integer indicating which line number the error is contained on.
+This is to enhance the error reporting process, making it easier for users to debug. 
+\todo{Måske skriv noget om at dette kræver informationen er med i ASTet fra PTet ?}
+As an example the class for \texttt{UnDeclaredError} is shown in \myref{lst:undeclarederrorclass}.
+First there are variable which contains information needed to report the error to users. 
+Then there is a constructor which simply assigns all values given to it to the new objects fields.
+Lastly there is the \texttt{toString} method which is overridden from the implementation in the \texttt{LanguageError} class. 
+An example of an \texttt{UnDeclaredError} is: \texttt{Error[line   42]-> Undeclared variable towel in scope Local}. %Sneaky H2G2 reference 
+
+\begin{lstlisting}[caption=The UnDeclaredError class in the \gls{gamble} compiler,numbers=none,frame=tlrb,label={lst:undeclarederrorclass}]
+public class UnDeclaredError extends LanguageError {
+    private Variable unDeclaredVariable;
+    private Scope scope;
+
+    public UnDeclaredError(Variable unDeclaredVariable, Scope scope, int lineNum) {
+        this.unDeclaredVariable = unDeclaredVariable;
+        this.scope = scope;
+        this.lineNum = lineNum;
+        this.errorType = ErrorType.ERROR;
+    }
+
+    @Override
+    public String toString() {
+        String type = unDeclaredVariable.isFunction() ? "function " : "variable ";
+        return super.toString() + String.format("Undeclared %6$s %1$s%4$s%3$s in scope %2$s%5$s%3$s",
+                ANSI_RED, ANSI_BLUE, ANSI_RESET,
+                unDeclaredVariable, scope, type);
+    }
+}
+\end{lstlisting}
+
+This error is found in the \texttt{CheckIfUndeclared} method in the \texttt{SymbolTableFillVisitor} shown in \myref{lst:CheckIfUndeclared}.
+This method is called whenever a variable or function is invoked, and returns the appropriate information. \todo{Teknisk set returnerer den ikke informationen men sætter det gennem en reference, skal dette skrives eksplicit? Kunne ikke lige formulere det ordenligt.}
+If the variable or function invoked is not declared then an error is added to a global list of errors. 
+\begin{lstlisting}[caption=The CheckIfUndeclared method in the SymbolTableFillVisitor class in the \gls{gamble} compiler,numbers=none,frame=tlrb,label={lst:CheckIfUndeclared}]
+public Void CheckIfUndeclared(Variable variable, StatementNode node) {
+    Symbol tmpSymbol = symbolTable.currentScope().resolve(variable.getId());
+    if (tmpSymbol != null) {
+        /* Sets appropriate information to the 'variable' variable */
+    } else {
+        errors.add(new UnDeclaredError(variable, symbolTable.currentScope(), node.getLineNumber()));
+        symbolTable.currentScope().define(variable);
+    }
+
+    return null;
+}
+\end{lstlisting}
