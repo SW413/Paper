@@ -8,5 +8,5 @@ If constrained by memory, having a single symbol table can be beneficial, howeve
 In \gls{gamble} there exists scopes, and for each of these scopes there is a corresponding symbol table. 
 Scopes inherit from each other so a scope can enclose another. 
 The outermost scope, the global scope, is where functions are declared; every scope is either directly enclosed by this scope or recursively.
-This means that every function can be called from anywhere within the source code - including within its' own function declarations; allowing for recursive functions.
+This means that every function can be called from anywhere within the source code - including within its own function declarations; allowing for recursive functions.
 
