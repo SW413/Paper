@@ -131,7 +131,7 @@ Functions are blocks of code which can be called to do a specific computation, o
 This section will describe \gls{gamble}'s use of functions. 
 Like in many other languages it is possible to declare your own functions in \gls{gamble}.
 This is useful for organising code, and reusing parts of the source code.
-Functions in \gls{gamble} can take input, but are not required to, the inputs can be any of the types the languages support.
+Functions in \gls{gamble} can take input, but are not required to, the inputs can be any of the types the language support.
 Because of high implementation cost in the compiler, it is not possible to use a function as an input for a function.
 
 \gls{gamble} also have certain functions built into the language for varying reasons.
@@ -142,8 +142,9 @@ This is both useful for output and debugging the source code.
 
 Other functions provided by \gls{gamble} are created out of convenience.
 In object-oriented languages subscripting is common and allows for a wide range of useful features, e.g. \texttt{.GetLength} on arrays in C\#.
-Similar to this \gls{gamble} provides \texttt{Rows} and \texttt{Cols} functions for matrix' which returns their amount of rows or columns.
-This can be used in loops to make them iterate of matrices of any size.
+Similar to this \gls{gamble} provides \texttt{Rows} and \texttt{Cols} functions for matrices and vectors which returns their amount of rows or columns.
+If called on a vector one can use either rows or columns, it will give the same result.
+This can be used in loops to make them iterate over matrices of any size.
 
 Another such function is \texttt{MakeIntMatrix}.
 This creates a matrix with int values a similar function exists for float.
