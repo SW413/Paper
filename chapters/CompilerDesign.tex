@@ -1,15 +1,61 @@
 \chapter{Compiler Overview}
-A compiler can be separated into three phases; syntax analysis, contextual analysis and code generation.
-The syntax analysis phase checks whether or not the source code adheres to the rules for the language, such as statement constructs.
-The contextual analysis phase checks whether or not the language is used correctly, such as type checking.
-The code generation translates the source code into the target code once the syntax and contextual analysis phases have accepted the source code.
-This chapter examines each phase of the compiler and what these entail.
-How each phase is constructed for GAMBLE will also be gone over in this chapter. %This may or may not change
-\todo{Mere tekst.}
+
+The compiler for \gls{gamble} is separated into three phases: syntax analysis, contextual analysis and code generation.
+\myref{fig:phases} shows the phases of the compiler.
+Syntax analysis and contextual analysis are sometimes known as the front end of the compiler, it transforms the source code into an intermediate representation, and verifies its correctness.
+When making a compiler an object-oriented language simplifies many tasks, because of encapsulation, polymorphism and inheritance. 
+The paradigm allows for many structural options, and reuse of code when inheriting. 
+The choice of language falls upon Java 1.8, which is also the language the project group have been taught for building compilers in the courses for the semester.
+Java also works across platforms, which is a useful feature.
+
+In the syntax analysis phase the input source code is transformed to an \acrfull{ast}. 
+First the parser parse the source code, and generate a parse tree.
+From the parse tree an \acrshort{ast} is generated, it must contain the same information as the parse tree, h however it is simplified. 
+
+In the contextual analysis phase the \acrshort{ast} is used to generate a symbol table, this is again used for checking scopes and types. 
+The result of this is transforming the \acrshort{ast} into a decorated \acrshort{ast}, meaning that it has more information and/or is simplified. 
+
+In the back end of the compiler optimization and code generation are done.
+Optimization is any process which will make the generated program faster, e.g. eliminating unused code. 
+In the code generation phase the output code is generated from all the information in the decorated \acrshort{ast} and symbol table.
+
+The target language of this compiler is OpenCL C.
+To get this to run on any machine it is necessary to compile the output of the \gls{gamble} compiler, with a compiler for OpenCL C.
+This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using machine code is difficult
+
+
+\begin{figure}[ht!]
+\center
+	\begin{tikzpicture}[node distance = 2.5cm]
+		\node (invi1) 		[invi,draw=none] {GAMBLE Source code};
+		\node (syntax) 		[blockz, below=0.6cm of invi1] {Syntax Analysis};
+		\node (contextual) 	[blockz, below of=syntax] {Contextual Analysis};
+		\node (codegen) 	[blockz, below of=contextual] {Code Generation};
+		\node (opencl) 		[invi,draw=none, below=0.6cm of codegen] {OpenCL C code};
+
+		\node (error1) 		[cloud, right=1cm of syntax] {Error reports};
+		\node (error2) 		[cloud, right=1cm of contextual] {Error reports};
+
+		\node (invi2) 		[invi,draw=none, below=0.4cm of syntax] {};
+		\node (ast) 		[invi,draw=none, right=-0.2cm of invi2] {Abstract Syntax Tree};
+
+		\node (invi3) 		[invi,draw=none, below=0.4cm of contextual] {};
+		\node (dast) 		[invi,draw=none, right=-0.5	cm of invi3] {Decorated Abstract Syntax Tree};
+
+		\draw [arrow] (invi1) -- (syntax);
+		\draw [arrow] (syntax) -- (contextual);
+		\draw [arrow] (contextual) -- (codegen);
+		\draw [arrow] (codegen) -- (opencl);
+		
+		\draw [arrow] (syntax) -- (error1);
+		\draw [arrow] (contextual) -- (error2);
+	\end{tikzpicture}
+	\caption{The phases of the compiler.}
+	\label{fig:phases}
+\end{figure}
+\clearpage
 
 \input{chapters/sections/subsections/SourceCodeAsTrees.tex}
-\input{chapters/sections/subsections/ErrorHandling.tex}
-
 
 \chapter{Syntax Analysis}\label{sec:syntaxAnalysis}
 Syntax analysis is the first phase in compiling a language.
@@ -17,8 +63,8 @@ In this phase it is checked whether the input adheres to the rules of the langua
 These rules are defined in a languages' \acrshort{cfg}.
 The \acrshort{cfg} of \gls{gamble} is further described in \myref{sec:cfg} .
 This analysis can be split up into to further sub phases, lexical analysis and parsing, these are described in this chapter.
+>>>>>>> master
 %Design
-\section{Design}
 \input{chapters/sections/subsections/Scanner.tex}
 \input{chapters/sections/subsections/Parser.tex}
 \input{chapters/sections/subsections/AST.tex}
