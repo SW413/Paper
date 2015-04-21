@@ -1,19 +1,19 @@
 \section{Implementation}
-\todo{More about the implementation}
 
-ANTLR(ANother Tool for Languange Recognition) is a parser generator tool for reading, processing, executing or translating \gls{cfg} into a parse tree.
-ANTLR allows for certain unique features to be present in the \gls{cfg} from which the parse tree is build, features which other parse generators such as SableCC and JavaCup cannot handle. %\todo{det bare ikke rigtigt features tho e.g. left recursion, slight ambiguity, ignored lookahead}
-In this section there will be explained what ANTLR provides and what we gain by using it.
-How the parsing and scanning works is described in \myref{sec:syntaxAnalysis}.
-
-ANTLR is used for the syntax analysis part of the compiler.
-By providing ANTLR with a \gls{cfg} it generates a lexer, then a parser capable of building and walking parse trees for an acceptable token stream in the language.
-Furthermore by running ANTLR on the grammar using the \texttt{--visitor} flag, ANTLR sets up an interface and base implementation of the visitor pattern for the parse tree. 
-ANTLR is a particularly useful tool for this in comparison to other tools, because it uses a newer parsing technology known as Adaptive LL(*) (ALL(*)).
-The idea is that the grammar is analysed dynamically at runtime rather than statically, before executed by the generated parser.
-This allows ANTLR access to input sequences while reading through the grammar, meaning not all possible inputs must be considered.
-Due to this dynamic analysis ANTLR4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
-Furthermore ANTLR also takes care of left-recursion if such is present in the grammar by rewriting it, as such would be the case in \myref{lst:amb}.
+The syntax analysis is implemented through the tool \acrfull{antlr}, this tool provides some advantages over other available tools.
+\acrshort{antlr} is build up around a parser technique called LL(*).
+LL(*) uses an algorithm to have a varying lookahead when needed.
+The LL(*) parser technique allows a bigger class of \acrshort{cfg} than ordinary parser techniques like LL(k).
+In the most recent version of \acrshort{antlr} as time of this publication, \acrshort{antlr} 4, the underlying algorithm have been extended to a parser technique called Adaptive LL(*) (ALL(*)).
+The most important feature of ALL(*) is that it moves grammar analysis to parse time. 
+This lets the parse algorithm accept any non-left-recursive productions.
+The ALL(*) approach accepts a broader class of grammars than most other parsing methods, one way this is done is to rule out ambiguity by using a rule of precedence.
+If a grammar is ambiguous the ALL(*) approach will take the first  available rule in the \acrshort{cfg} and apply it.
+This allows for a less strict \acrshort{cfg} and while most grammars could be rewritten to be unambiguous without applying the precedence rule, this allows the designers of languages grammars to edit existing grammars without rewriting as much a could be required if the precedence rule was not available.	
+The idea with the ALL(*) algorithm is that the grammar is analysed dynamically at runtime rather than statically, before executed by the generated parser.
+This allows \acrshort{antlr} access to input sequences while reading through the grammar, meaning not all possible inputs must be considered.
+Due to this dynamic analysis \acrshort{antlr} 4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
+As mentioned this allows \acrshort{antlr} to take care of left-recursion if such is present in the grammar by rewriting it, as such would be the case in \myref{lst:amb}.
 
 \begin{lstlisting}[caption=An ambiguous rule for expr,frame=tlrb,label={lst:amb}]
 expr : expr '*' expr 	// match expressions with * operator
@@ -21,58 +21,10 @@ expr : expr '*' expr 	// match expressions with * operator
      | INT 		// matches simple integer
      ;
 \end{lstlisting}
-While it may not be obvious from \myref{lst:amb} also implements ANTLRs way of representing operator precedence by simply obeying the first alternative in the rule set, as such the multiplication operator (``*'') will have the higher precedence.
-ANTLR being LL(*) also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.\citep{ANTLR4}
 
-\todo{tænkte at skrive noget omkring labels eftersom vi bruger dem - men der stod ikke rigtigt noget i ANTLR reference så tænkte sass/søren kunne skrive noget}
-
-%The parse tree is build in the syntax analysis phase of the compiler described in \myref{sec:syntaxAnalysis}.
-%The programmer supplies the compiler with some source code that ANTLR then turns into a parse tree.
-%The process of parsing can be broken into two stages, these stages are similar to how the human brain reads languanges.
-%The brain does not read a sentence character by character, instead we see a stream of words this is because the brain subconciously groups together characters to form words
-%First the source code is simpky a stream of symbols, this stream is then turned into appropriate tokens through lexical analysis.
-%The lexer, the part which handles lexical analysis, matches the tokens found in the source code to the grammar rules provided by the languange developers to determine what tokens are present.
-%The lexer provided by ANTLR can group related tokens into token types such as INT, ID and FLOAT.
-%A token contains two pieces of information, the token type and the text matched for the token. 
-
-%The second stage of the parser is the actual parser.
-%The parser is fed a stream of tokens to recognise a sentence structure and in turn outputs the structure to a parse tree.
-%The parse tree records how the parser recognises the structure of the input and its components.
-%The parse tree that ANTLR provides contains information about how the parser have grouped the tokens into more abstract languange definitions such as expressions and statements.
-%Where previous versions of ANTLR have also implemented the AST, it is not contained in ANTLR V4 instead the parse tree provided by ANTLR have been used to generate an AST this is discussed in \myref{sec:AST}.
-%This tree is a trimmed version of the parse tree, where the less informative data have been removed, this makes it easier to read, and thus easier to use throughout development of the rest of the compiler.
-
-%chars/source code ->Lexer ->Tokens->Parser->Parse tree
-%Language is a stream of words
-%The process of grouping characters into words or symbols (tokens) is called lexical analysis or simply tokenizing
-%Program that tokenizes is lexer
-%Creates tokens types such as int, float
-%Token consists of atleast two types of info, Token Type(identifying lexical structure) And text matched for that token
-%2nd stage is the actual parser, feeds of tokens to recognize sentence structure
-%Parse tree records how the parser recognized structure of input and its component phrases
-%Trees provide an easy to walk data structure that will be helpful for the rest of the compiler
-%2.2 Implementing Parser - Recursive descent
-%Recursive-descent parsers are really just a collection of recursive methods, one per rule.
-%Such a rule may look similar to this
-%// assign : ID ``='' expr ``;'' ;
-%void assign() { // method generated from rule assign
-%match(ID); // compare ID to current input symbol then consume
-%match('=');
-%expr(); // match an expression by calling expr()
-%match(';');
-%}
-%Descent refers to the fact we start from the root and go down to the leaves(tokens)
-%Reursive descent is just one form of top-down parsers.					NOTE topdown/bottom up parsing
-%The call graph traaced out by invoking methods, mirrors the interior parse tree nodes
-%To Build a parse tree manually one would insert ``add new subroot note' operations at the start of each rule, and a ``add new leaf node'' operation to match()
-%The assign method checks if all necessary tokens are present and in the right order. When the parser enters assign it doesnt have to choose between more than one alternative. An alternative is one of the choices on the right side of a rule def. A parsing method for such rule would be a switch which looks for what token is present.
-% This is called a parising decision or prediction by examining next token
-%This is where lookahead comes into play , the lookahead token is the next input token, this can be any token the parser "sniffs" before consuming
-%This is one of the places where ANTLR is an especially handy tool to use, because ANTLR allows for more lookahead than other parser generators.
-%Most parsers use a lookahead of one which LL(1) or LR(1), ANTLR tones the lookahead up and down depending on what token stream it is trying to decode, as such the ANTLR has a lookahead of LL(*)
-%ANTLR Solves simple ambiguity simply by using the first mentioned rule.
+While it may not be obvious from \myref{lst:amb} but this CFG also implements \acrshort{antlr}s way of representing operator precedence by simply obeying the first alternative in the rule set, as such the multiplication operator (``*'') will have the higher precedence.
+The ALL(*) algorithm also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.
+\acrshort{antlr} also implements rule element labels in its \acrfull{cfg} which means one can apply label rules to a construct in a grammar, this allows for conditional steps in the grammar based on the source code being parsed.
+Furthermore \acrshort{antlr} can set up an interface and base implementation of the visitor pattern for the parse tree on a given grammar by running \acrshort{antlr} with the \texttt{--visitor} flag.\citep{ALLSTAR, LLSTAR, antlr4_Book}
 
 
-%LL is Top-down parser, LR is Bottom up parser
-%Parse vs AST
-%AST only useful, Parse all artifacts(space, brackets and so on)

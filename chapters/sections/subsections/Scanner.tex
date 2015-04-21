@@ -3,14 +3,14 @@ The first stage of syntax analysis is the scanner, also called the lexer which h
 The primary function of a scanner is to transform a sequence of characters into a sequence of tokens.
 The scanner makes sure that the source code adheres to the grammar rules provided by the CFG.
 An example of this, would be that you could use the notation .1 or 0.1 for a decimal number, both being turned into valid tokens by the scanner.
-The scanner provided by ANTLR groups related tokens into token types such as INT, ID and FLOAT.
-In ANTLR a token contains at least two pieces of information, the token type and the matched text for the token.
+The scanner provided by \acrshort{antlr} groups related tokens into token types such as INT, ID and FLOAT.
+In \acrshort{antlr} a token contains at least two pieces of information, the token type and the matched text for the token.
 
 Some examples of our lexical rules for \gls{gamble} can be seen on \myref{lst:token}.
 The definition of an integer number on line 3 states that an integer is either a zero or an optional negative sign followed by a single digit from one to nine followed by zero or more numbers from zero to nine.
 It is necessary to clearly define tokens for the lexer to read in order to read source code correctly. \citep{Crafting_book}
 
-\begin{lstlisting}[caption=Example of our lexer rules for ANTLR4,frame=tlrb,label={lst:token}]
+\begin{lstlisting}[caption=Example of our lexer rules for \acrshort{antlr}4,frame=tlrb,label={lst:token}]
 // Integers
 INT: 'int' | 'int16' | 'int32' | 'int64' ; // Integers
 INTNUM: '0' | SIGN? [1-9][0-9]* ;
