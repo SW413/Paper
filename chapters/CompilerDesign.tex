@@ -10,7 +10,11 @@ How each phase is constructed for GAMBLE will also be gone over in this chapter.
 \input{chapters/sections/subsections/SourceCodeAsTrees.tex}
 
 \chapter{Syntax Analysis}
-\todo{Meta tekst}
+Syntax analysis is the first phase in compiling a language.
+In this phase it is checked whether the input adheres to the rules of the language.
+These rules are defined in a languages' \acrshort{cfg}.
+The \acrshort{cfg} of \gls{gamble} is further described in \myref{sec:cfg} .
+This analysis can be split up into to further sub phases, lexical analysis and parsing, these are described in this chapter.
 %Design
 \section{Design}
 \input{chapters/sections/subsections/Scanner.tex}
@@ -29,7 +33,8 @@ How each phase is constructed for GAMBLE will also be gone over in this chapter.
 \input{chapters/sections/subsections/SymbolTable.tex}
 
 \section{Scope Checking}
-\todo{Meta}
+As a part of the contextual analysis the compiler must ensure that every reference is valid in their given scope.
+The validity of such reference is specific to the rules of the language, this section describes how the compiler upholds the rules listed in \myref{subsec:Scope}.
 \input{chapters/sections/subsections/ScopeCheck.tex}
 
 \section{Type Checking}
