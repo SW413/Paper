@@ -3,7 +3,7 @@
 %Metatext for design chapter
 In this chapter the design of the language called \gls{gamble} will be presented.\todo{Hvad står Gamble for?}
 First with a brief description of our design philosophy for \gls{gamble} will be introduced to clarify what this language is attempting to achieve and why.
-The design philosophy will address some of the criterias found in \myref{sec:OurCriterias}.
+The design philosophy will address some of the criteria found in \myref{sec:OurCriterias}.
 Furthermore the features and design of \gls{gamble} will be documented later in this chapter.
 
 \input{chapters/sections/Philosophy.tex}
@@ -126,15 +126,30 @@ It is not possible to use operators with matrices or vectors, functions which su
 %While  manual memory handling is a very low level concept, it has some advantages over dynamic memory handling, for instance manual handling gives the users full control over a programs resources and while this can be hard o get right, can both increase the simplicity of the compiler and increase a programs runtime execution speed because garbage collection can be a complex runtime process.\citep{Sebesta, gribble}
 
 \section{Functions}
-\todo{Forklar print funktionen}
 Functions are blocks of code which can be called to do a specific computation, often but not always, a function takes some variables as inputs.
 
 This section will describe \gls{gamble}'s use of functions. 
 Like in many other languages it is possible to declare your own functions in \gls{gamble}.
 This is useful for organising code, and reusing parts of the source code.
-Functions in \gls{gamble} can take input, but are not required to, the inputs can be any of the types the languages support.
+Functions in \gls{gamble} can take input, but are not required to, the inputs can be any of the types the language support.
 Because of high implementation cost in the compiler, it is not possible to use a function as an input for a function.
 
+\gls{gamble} also have certain functions built into the language for varying reasons.
+The most unique function in question here will be the \texttt{print} function.
+This function is unique in the sense that it enables the programmer to use strings as a parameter, a data type otherwise not implemented in the language.
+This is enabled such that the programmer can use this feature to write out messages to the console. 
+This is both useful for output and debugging the source code.
+
+Other functions provided by \gls{gamble} are created out of convenience.
+In object-oriented languages subscripting is common and allows for a wide range of useful features, e.g. \texttt{.GetLength} on arrays in C\#.
+Similar to this \gls{gamble} provides \texttt{Rows} and \texttt{Cols} functions for matrices and vectors which returns their amount of rows or columns.
+If called on a vector one can use either rows or columns, it will give the same result.
+This can be used in loops to make them iterate over matrices of any size.
+
+Another such function is \texttt{MakeIntMatrix}.
+This creates a matrix with int values a similar function exists for float.
+These takes three arguments as input, the amount of rows, amount of columns, and what value to place at every entry.
+While this could be done manually for a small matrix, this allows the programmer to initialise a larger matrix with values, with one function call.
 
 \subsection*{Function identifiers}
 When declaring a \gls{gamble} function it is required to write the body of the function immediately after.
@@ -177,13 +192,12 @@ a = add(4, 3);
 \end{lstlisting}
 
 
-\subsection*{Print function}\todo{rename maybe}
-In \gls{gamble} we have one function that is ready-made. It is a print function.
-The function is special because it can both take variables, numerical values and strings as input parameter.
-Since string is not a valid data type in \gls{gamble} this function is special. 
-With the print function it is possible to give the user a visual representation of the computations result, in the console.
-A simple print function which take string inputs increases both readability and writability.
-Strings in the print function allows the programmer to write easier understandable and readable program output. 
+%\subsection*{Print function}\todo{rename maybe}\todo{skal flyttes op til de andre funktioner?}
+%In \gls{gamble} we have one function that is ready-made. It is a print function.
+%The function is special because it can both take variables, numerical values and strings as input parameter.
+%Since string is not a valid data type in \gls{gamble} this function is special. 
+%With the print function it is possible to give the user a visual representation of the computations result, in the console.
+ 
 %STD LIB EVT?!
 \input{chapters/sections/subsections/controlflow2.tex}
 \input{chapters/sections/subsections/reservedwords.tex}
