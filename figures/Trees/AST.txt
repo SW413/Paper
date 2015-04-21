@@ -3,10 +3,35 @@ digraph G{
 
 digraph G{
 
+
+toplevel->statement
+toplevel->EOF
+statement->declaration
+semi[label=";"];
+statement->semi
+declaration->datatype
+declaration->a;
+
+lig [label="="];
+declaration-> lig
+
+declaration->expression
+datatype->int
+expression->value
+value->constant
+constant->5
+
+
 TopNode->StatementNode
-StatementNode->DeclarationNode [label="Has fields for: Datatype, ID\n and value on the node."]
-
-
+StatementNode->DeclarationNode 
+DeclarationNode->Variable
+DeclarationNode->ConstantExpressionNode
+E [label="int"];
+D [label="a"];
+F [label="5"];
+Variable->E
+Variable->D
+ConstantExpressionNode->F
 }
   
 
