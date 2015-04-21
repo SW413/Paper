@@ -3,7 +3,7 @@
 %Metatext for design chapter
 In this chapter the design of the language called \gls{gamble} will be presented.\todo{Hvad står Gamble for?}
 First with a brief description of our design philosophy for \gls{gamble} will be introduced to clarify what this language is attempting to achieve and why.
-The design philosophy will address some of the criterias found in \myref{sec:OurCriterias}.
+The design philosophy will address some of the criteria found in \myref{sec:OurCriterias}.
 Furthermore the features and design of \gls{gamble} will be documented later in this chapter.
 
 \input{chapters/sections/Philosophy.tex}
@@ -136,19 +136,19 @@ Because of high implementation cost in the compiler, it is not possible to use a
 
 \gls{gamble} also have certain functions built into the language for varying reasons.
 The most unique function in question here will be the \texttt{print} function.
-This function is unique in the sense that it enables the programmer to use strings as a paramater, a data type otherwise not implemented in the language.
+This function is unique in the sense that it enables the programmer to use strings as a parameter, a data type otherwise not implemented in the language.
 This is enabled such that the programmer can use this feature to write out messages to the console. 
-This is both useful for output and for debugging.
+This is both useful for output and debugging the source code.
 
 Other functions provided by \gls{gamble} are created out of convenience.
 In object-oriented languages subscripting is common and allows for a wide range of useful features, e.g. \texttt{.GetLength} on arrays in C\#.
 Similar to this \gls{gamble} provides \texttt{Rows} and \texttt{Cols} functions for matrix' which returns their amount of rows or columns.
 This can be used in loops to make them iterate of matrices of any size.
 
-Another such function is \texttt{MateIntMatrix}.
+Another such function is \texttt{MakeIntMatrix}.
 This creates a matrix with int values a similar function exists for float.
-These takes three arguments as input, the amount of rows and colums wished for, aswell as what value to place at every entry.
-While this could be done manually for a small matrix, this allows the programmer to initialise a larger matrix and fill it any value in just one function call.
+These takes three arguments as input, the amount of rows, amount of columns, and what value to place at every entry.
+While this could be done manually for a small matrix, this allows the programmer to initialise a larger matrix with values, with one function call.
 
 \subsection*{Function identifiers}
 When declaring a \gls{gamble} function it is required to write the body of the function immediately after.
