@@ -19,7 +19,7 @@ This visitor can therefore maintain a state between calls to individual data obj
 This diagram is from a C\# representation, and while the idea is the same the exact implementation is not identical to the one used in the compiler for GAMBLE.
 Take note of are the classes ``ConcreteElement'' and ``ConcreteVisitor'', the ``ConcreteElement'' represents the different kinds of nodes in a given tree.
 The ``ConcreteVisitor'' represent the different kind of visitors implemented.
-A visitor will make sure that the children of the node is traversed in the correct way, and will at the same time also do other computations, e.g. pretty printing or checking the sourcecode for errors.
+A visitor will make sure that the children of the node is traversed in the correct way, and will at the same time also do other computations, e.g. pretty printing or checking the source code for errors.
 A visitor must implement a method to visit every single ``ConcreteElement'' which exist in the tree.
 As can be seen on \myref{image:visitor} ``ConcreteVisitorA'' and ``ConcreteVisitorB'', both implement a visit method for the ``ConcreteElements'' A and B.
 In the next section, the implementation of creating the \acrshort{ast} from the parse tree using the visitor pattern will be presented.
