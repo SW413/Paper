@@ -1,19 +1,16 @@
 \chapter{Compiler Overview}
-%A compiler can be separated into three phases; syntax analysis, contextual analysis and code generation.
-%The syntax analysis phase checks whether or not the source code adheres to the rules for the language, such as statement constructs.
-%The contextual analysis phase checks whether or not the language is used correctly, such as type checking.
-%The code generation translates the source code into the target code once the syntax and contextual analysis phases have accepted the source code.
-%This chapter examines each phase of the compiler and what these entail.
-%How each phase is constructed for GAMBLE will also be gone over in this chapter. %This may or may not change
-%\todo{Mere tekst.}
 
 The compiler for \gls{gamble} is separated into three phases: syntax analysis, contextual analysis and code generation.
 \myref{fig:phases} shows the phases of the compiler.
-The first two of which are sometimes known as the front end of the compiler, it transformes the source code into an intermediate representation, and verifies its correctness. \todo{Er ikke 100\% sikker på at alt verifikation sker her.}
+Syntax analysis and contextual analysis are sometimes known as the front end of the compiler, it transforms the source code into an intermediate representation, and verifies its correctness.
+When making a compiler an object-oriented language simplifies many tasks, because of encapsulation, polymorphism and inheritance. 
+The paradigm allows for many structural options, and reuse of code when inheriting. 
+The choice of language falls upon Java 1.8, which is also the language the project group have been taught for building compilers in the courses for the semester.
+Java also works across platforms, which is a useful feature.
 
 In the syntax analysis phase the input source code is transformed to an \acrfull{ast}. 
-First ANTLR is used to parse the source code, and generate a parse tree.
-From the parse tree a \acrshort{ast} is generated, it must contain the same information however it is simplified. 
+First the parser parse the source code, and generate a parse tree.
+From the parse tree an \acrshort{ast} is generated, it must contain the same information as the parse tree, h however it is simplified. 
 
 In the contextual analysis phase the \acrshort{ast} is used to generate a symbol table, this is again used for checking scopes and types. 
 The result of this is transforming the \acrshort{ast} into a decorated \acrshort{ast}, meaning that it has more information and/or is simplified. 
@@ -24,8 +21,8 @@ In the code generation phase the output code is generated from all the informati
 
 The target language of this compiler is OpenCL C.
 To get this to run on any machine it is necessary to compile the output of the \gls{gamble} compiler, with a compiler for OpenCL C.
-This is an abstraction made by the product group to simplify the process of generating code. \todo{Svagt argument? Men sandheden? Måske også fordi at det ikke er lige til at generere gpu code?} 
-\todo{Kunne evt. skrive lidt om at vælge java som sprog til compileren?}
+This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using machine code is difficult
+
 
 \begin{figure}[ht!]
 \center
