@@ -1,19 +1,19 @@
 \section{Implementation}
 
-The syntax analysis is implemented through the tool ANTLR (ANother Tool for Languange Recognition), this tool provides some different advantages over other available tools.
-ANTLR is build up around a parser technique called LL(*).
+The syntax analysis is implemented through the tool \acrfull{antlr}, this tool provides some advantages over other available tools.
+\acrshort{antlr} is build up around a parser technique called LL(*).
 LL(*) uses an algorithm to have a varying lookahead when needed.
 The LL(*) parser technique allows a bigger class of \acrshort{cfg} than ordinary parser techniques like LL(k).
-In the most recent version of ANTLR as time of this publication, ANTLR 4, the underlying algorithm have been extended to a parser technique called Adaptive LL(*) (ALL(*)).
+In the most recent version of \acrshort{antlr} as time of this publication, \acrshort{antlr} 4, the underlying algorithm have been extended to a parser technique called Adaptive LL(*) (ALL(*)).
 The most important feature of ALL(*) is that it moves grammar analysis to parse time. 
 This lets the parse algorithm accept any non-left-recursive productions.
 The ALL(*) approach accepts a broader class of grammars than most other parsing methods, one way this is done is to rule out ambiguity by using a rule of precedence.
 If a grammar is ambiguous the ALL(*) approach will take the first  available rule in the \acrshort{cfg} and apply it.
-This allows for a less strict \acr{cfg} and while most grammars could be rewritten to be unambiguous without applying the precedence rule, this allows the designers of languages grammars to edit existing grammars without rewriting as much a could be required if the precedence rule was not available.	
+This allows for a less strict \acrshort{cfg} and while most grammars could be rewritten to be unambiguous without applying the precedence rule, this allows the designers of languages grammars to edit existing grammars without rewriting as much a could be required if the precedence rule was not available.	
 The idea with the ALL(*) algorithm is that the grammar is analysed dynamically at runtime rather than statically, before executed by the generated parser.
-This allows ANTLR access to input sequences while reading through the grammar, meaning not all possible inputs must be considered.
-Due to this dynamic analysis ANTLR 4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
-As mentioned this allows ANTLR to take care of left-recursion if such is present in the grammar by rewriting it, as such would be the case in \myref{lst:amb}.
+This allows \acrshort{antlr} access to input sequences while reading through the grammar, meaning not all possible inputs must be considered.
+Due to this dynamic analysis \acrshort{antlr} 4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
+As mentioned this allows \acrshort{antlr} to take care of left-recursion if such is present in the grammar by rewriting it, as such would be the case in \myref{lst:amb}.
 
 \begin{lstlisting}[caption=An ambiguous rule for expr,frame=tlrb,label={lst:amb}]
 expr : expr '*' expr 	// match expressions with * operator
@@ -22,9 +22,9 @@ expr : expr '*' expr 	// match expressions with * operator
      ;
 \end{lstlisting}
 
-While it may not be obvious from \myref{lst:amb} but this CFG also implements ANTLRs way of representing operator precedence by simply obeying the first alternative in the rule set, as such the multiplication operator (``*'') will have the higher precedence.
+While it may not be obvious from \myref{lst:amb} but this CFG also implements \acrshort{antlr}s way of representing operator precedence by simply obeying the first alternative in the rule set, as such the multiplication operator (``*'') will have the higher precedence.
 The ALL(*) algorithm also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.
-ANTLR also implements rule element labels in its \gls{cfg} which means one can apply label rules to a construct in a grammar, this allows for conditional steps in the grammar based on the source code being parsed.
-Furthermore ANTLR can set up an interface and base implementation of the visitor pattern for the parse tree on a given grammar by running ANTLR with the \texttt{--visitor} flag.\citep{ALLSTAR, LLSTAR, ANTLR4_Book}
+\acrshort{antlr} also implements rule element labels in its \acrfull{cfg} which means one can apply label rules to a construct in a grammar, this allows for conditional steps in the grammar based on the source code being parsed.
+Furthermore \acrshort{antlr} can set up an interface and base implementation of the visitor pattern for the parse tree on a given grammar by running \acrshort{antlr} with the \texttt{--visitor} flag.\citep{ALLSTAR, LLSTAR, antlr4_Book}
 
 

@@ -2,14 +2,14 @@
 The parser is based on formal syntax specifications such as a \acrfull{cfg} written in \acrfull{ebnf}, whose alphabet consists of tokens produced by the lexer. 
 The parser reads tokens and groups them into phrases according to the syntax specification.
 The parser verifies the syntax, and if a syntax error is found it provides a corresponding error message. \citep{Crafting_book}
-By using a parser generator like ANTLR or SableCC, handling of syntactic errors and repairs can be done automatically.
+By using a parser generator like \acrshort{antlr} or SableCC, handling of syntactic errors and repairs can be done automatically.
 A parser can also be written manually but doing so can result in syntactic errors that is hard to locate or solve.
-We have chosen to use ANTLR to generate our parser. 
-ANTLR generates a parse tree which contains information about how the parser have grouped the tokens into more abstract languange definitions, such as expressions and statements.
-Where previous versions of ANTLR have also implemented the AST, it is not contained in ANTLR v4, instead the parse tree provided by ANTLR has been used to generate an AST this is discussed in \myref{sec:AST}.
+We have chosen to use \acrshort{antlr} to generate our parser. 
+\acrshort{antlr} generates a parse tree which contains information about how the parser have grouped the tokens into more abstract languange definitions, such as expressions and statements.
+Where previous versions of \acrshort{antlr} have also implemented the AST, it is not contained in \acrshort{antlr} v4, instead the parse tree provided by \acrshort{antlr} has been used to generate an AST this is discussed in \myref{sec:AST}.
 
 There are different kind of parsers, most common are bottom-up and top-down parsers.
-ANTLR makes a top-down parser, more specific a recursive descent parser.
+\acrshort{antlr} makes a top-down parser, more specific a recursive descent parser.
 A recursive descent parser is a subtype of top-down parser build from a set of mutually recursive procedures where each such procedure usually implements one of the productions of the grammar.
 The structure of the resulting program closely mirrors the grammar it recognizes. \citep{Recursive_programming}
 Recursive-descent parsers are really just a collection of recursive methods, one per rule.
@@ -30,8 +30,8 @@ This also verifies if the input is syntactical valid, but not type and scope che
 %The second stage of the parser is the actual parser.
 %The parser is fed a stream of tokens to recognise a sentence structure and in turn outputs the structure to a parse tree.
 %The parse tree records how the parser recognises the structure of the input and its components.
-%The parse tree that ANTLR provides contains information about how the parser have grouped the tokens into more abstract languange definitions such as expressions and statements.
-%Where previous versions of ANTLR have also implemented the AST, it is not contained in ANTLR V4 instead the parse tree provided by ANTLR have been used to generate an AST this is discussed in \myref{sec:AST}.
+%The parse tree that \acrshort{antlr} provides contains information about how the parser have grouped the tokens into more abstract languange definitions such as expressions and statements.
+%Where previous versions of \acrshort{antlr} have also implemented the AST, it is not contained in \acrshort{antlr} V4 instead the parse tree provided by \acrshort{antlr} have been used to generate an AST this is discussed in \myref{sec:AST}.
 %This tree is a trimmed version of the parse tree, where the less informative data have been removed, this makes it easier to read, and thus easier to use throughout development of the rest of the compiler.
 
 %2nd stage is the actual parser, feeds of tokens to recognize sentence structure
@@ -54,8 +54,8 @@ This also verifies if the input is syntactical valid, but not type and scope che
 %The assign method checks if all necessary tokens are present and in the right order. When the parser enters assign it doesnt have to choose between more than one alternative. An alternative is one of the choices on the right side of a rule def. A parsing method for such rule would be a switch which looks for what token is present.
 % This is called a parising decision or prediction by examining next token
 %This is where lookahead comes into play , the lookahead token is the next input token, this can be any token the parser "sniffs" before consuming
-%This is one of the places where ANTLR is an especially handy tool to use, because ANTLR allows for more lookahead than other parser generators.
-%Most parsers use a lookahead of one which LL(1) or LR(1), ANTLR tones the lookahead up and down depending on what token stream it is trying to decode, as such the ANTLR has a lookahead of LL(*)
-%ANTLR Solves simple ambiguity simply by using the first mentioned rule.
+%This is one of the places where \acrshort{antlr} is an especially handy tool to use, because \acrshort{antlr} allows for more lookahead than other parser generators.
+%Most parsers use a lookahead of one which LL(1) or LR(1), \acrshort{antlr} tones the lookahead up and down depending on what token stream it is trying to decode, as such the \acrshort{antlr} has a lookahead of LL(*)
+%\acrshort{antlr} Solves simple ambiguity simply by using the first mentioned rule.
 %AST only useful, Parse all artifacts(space, brackets and so on)
 
