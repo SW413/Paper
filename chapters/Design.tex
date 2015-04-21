@@ -50,7 +50,7 @@ The scope rules of \gls{gamble} are as follows:
 
 A variable is in scope from its declaration until the end of the block it is declared in.
 An inner block such as a control flow structure, see \myref{subsec:control-flow} for more, has access to the variables from the outer scope. 
-It is also not allowed to redeclare a variable which is already declared in the current scope. 
+It is also not allowed to redeclare a variable which is already declared in the current scope or any enclosing scopes. 
 Additionally any function is in scope of any other function including itself, this also allows recursion. 
 - This is static scoping without information hiding. 
 

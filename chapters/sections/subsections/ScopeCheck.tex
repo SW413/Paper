@@ -11,7 +11,7 @@ Furthermore it is important that any usage of an identifier only exists after it
 In the compiler for this project, the symbol table is filled while the compiler is also performing the scope checking.
 This is because it reduces the amount of traversals through the tree, and scope checking and filling the symbol table is also similair in concept, e.g. a declaration creates an entry in the symbol table, while expressions simply make lookups in this table.
 
-The scope checker produces two errors: redeclaration errors and undeclared errors.
+The scope checker produces two errors: redeclaration errors and undeclared errors defined in \myref{subsec:Scope}.
 A redeclaration error is produced when an attempt to declare a variable while it is already declarared in scope is made.
 An undeclared error is produced when an attempt to use a variable which is not declared in the current scope or any enclosing scopes is made. 
 Examples are shown in \myref{lst:scopeErrors}.
@@ -29,17 +29,19 @@ b = foo();       /* Redeclaration error and undeclared error */
 \end{lstlisting}
 
 \subsection*{Implementation}
+\info[inline]{Todo: Listing or/eller figur i denne del.}
 In the \gls{gamble} compiler, the class \texttt{SymbolTable} represents a collection of scopes.
 The core constituent of this class is the ArrayList of the \texttt{Scope} class, called \texttt{allScopes}, meaning that every scope is stored in this ArrayList.
 Every scope contains a hashed map with \texttt{Symbol}s as values and strings as keys.
 Furthermore all scopes contain information about the particular scope such as enclosing scope and a unique id. 
 The key in the hashed maps represents the name of the symbol, and must be unique to the scope and not found in an enclosing scope, as this could cause an ambiguity to arise.
-This ambiguity is not allowed in \gls{gamble} and therefore generates a redeclaration error.
+This ambiguity is not allowed in \gls{gamble} and therefore throws a redeclaration error.
+
 To determine wether or not a declaration is a redeclaration, the compiler looks up the name of the variable in the \texttt{symbolMap} of the current scope.
-If no entry is found, the search continues in the \texttt{symbolMap} of the enclosing scope and outwards.
+If no entry is found, the search continues in the \texttt{symbolMap} of the enclosing scope and so on recursivly.
 The same lookup process is executed when a variable is used e.g in a expression or assignment.
-Hereby all enclosing scopes are checked for the declaration of the variable; making redeclaration of variables in scope, and usage of undeclared variables impossible in \gls{gamble}.
-A symbol is an encapsulation of a variable and relevant peripheral data.
+Hereby all enclosing scopes are checked for the declaration of the variable; making redeclaration of variables in scope, and usage of undeclared variables impossible in \gls{gamble}, as defined in \myref{cha:Design}.
+A \texttt{symbol} is an encapsulation of a variable and relevant peripheral data.
 The peripheral data consists of a boolean, used for checking is a declared variable is used, and an integer with the line number if the declaration of the variable.
 The boolean describing if a declared variable is used, is set to true, if the previously described lookup process for a variable in use, finds a declared variable from the unique id (the name if the variable).
 This boolean also makes it possible for the \gls{gamble} compiler to find unused variables and then prompt the user with a relevant warning.
