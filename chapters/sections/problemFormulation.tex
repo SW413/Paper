@@ -8,7 +8,7 @@ Many linear algebra calculations can be parallelised since it often contains lar
 An example of this could be matrix calcuations where most operations can be split into independent sub calculations.
 Therefore the computation time of these calculations can be significantly improved using the parallel computing capabilities on the \acrshort{gpu}, giving the matrices are of sufficient size.
 
-Writing programs which can be run on a \acrshort{gpu}, can be time consuming using the languages found in \ref{sec:state_of_the_art}.
+Writing programs which can be run on a \acrshort{gpu}, can be time consuming using the languages found in~\ref{sec:state_of_the_art}.
 It is time consuming due to the difficulty of writing code in some of these languages like OpenCL C, and CUDA C.
 Therefore we believe that more abstraction and less boilerplate when writing code to the \acrshort{gpu} would serve well and reduce the workload on the people programming for the \acrshort{gpu}.
 In the rest of this paper, the following problem will be thoroughly investigated, not only in the design of the syntax and the semantics of the language, but also in the design of the compiler.
