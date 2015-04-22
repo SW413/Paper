@@ -11,6 +11,6 @@ An example could be \texttt{value = value1 + value2}, where all types are intege
 
 However statements that do include matrix or vector arithmetics will be performed on the \acrshort{gpu}.
 An example could be matrix multiplication.
-Now it is entirely possible to make a matrix multiplication of a 2x2 matrix, which would be so small that the overhead of data transfer is more expensive than simply computing on the \acrshort{cpu}. % however as mentioned in \myref{sec:phil} a computation containing that little data is not what the languange is designed to compute.
+Now it is entirely possible to make a matrix multiplication of a 2$\times$2 matrix, which would be so small that the overhead of data transfer is more expensive than simply computing on the \acrshort{cpu}.
 Therefore to simplify the code generation it has been chosen that all matrix or vector calculations, are to be done on the \acrshort{gpu}.
 This is not always the best choice, as \myref{sec:comparch} clearly shows, but it does make the code generation easier.
