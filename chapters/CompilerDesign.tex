@@ -25,7 +25,7 @@ This is an abstraction made by the project group to simplify the process of gene
 
 
 \begin{figure}[ht!]
-\center
+	\centering
 	\begin{tikzpicture}[node distance = 2.5cm]
 		\node (invi1) 		[invi,draw=none] {GAMBLE Source code};
 		\node (syntax) 		[blockz, below=0.6cm of invi1] {Syntax Analysis};
@@ -50,8 +50,7 @@ This is an abstraction made by the project group to simplify the process of gene
 		\draw [arrow] (syntax) -- (error1);
 		\draw [arrow] (contextual) -- (error2);
 	\end{tikzpicture}
-	\caption{The phases of the compiler.}
-	\label{fig:phases}
+	\caption{The phases of the compiler.}\label{fig:phases}
 \end{figure}
 \clearpage
 
@@ -61,7 +60,7 @@ This is an abstraction made by the project group to simplify the process of gene
 Syntax analysis is the first phase in compiling a language.
 In this phase it is checked whether the input adheres to the rules of the language.
 These rules are defined in a languages' \acrshort{cfg}.
-The \acrshort{cfg} of \gls{gamble} is further described in \myref{sec:cfg} .
+The \acrshort{cfg} of \gls{gamble} is further described in \myref{sec:cfg}.
 This analysis can be split up into to further sub phases, lexical analysis and parsing, these are described in this chapter.
 \section{Design}
 %Design
