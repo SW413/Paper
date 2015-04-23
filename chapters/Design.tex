@@ -71,7 +71,7 @@ Function declarations
 Statements
 \end{lstlisting}
 
-\section{Types and Variables} \label{sec:Types}
+\section{Types and Variables}\label{sec:Types}
 %http://www.informit.com/articles/article.aspx?p=2103809&seqNum=3
 \gls{gamble} uses three primitive data types; integers (int), floating points (float) and boolean values (bool), as well as two composite data types; matrices and vector. 
 In \gls{gamble} any variable must be initialised when it is declared. 
@@ -88,7 +88,7 @@ An integer is a whole number either positive or negative, represented by the two
 Meaning that it ranges from $-(2^{n-1}) $ to $2^{n-1} - 1 $, where n is the number of bits used.
 A floating point number is an approximation to a real number. 
 It is separated in 3 parts, the sign bit, the mantissa and the exponent. 
-Floats in \gls{gamble} are in base 2, the value of a float is calculated by $ (-1)^{sign bit} \cdot mantissa \cdot 2^{exponent} $. 
+Floats in \gls{gamble} are in base 2, the value of a float is calculated by $ {(-1)}^{sign bit} \cdot mantissa \cdot 2^{exponent} $. 
 Integers and floating point numbers default to 32 bits with the keywords \texttt{int} and \texttt{float}. 
 It is possible to declare 16 and 64 bit integers and floating point numbers by postfixing their size to their respective keywords, e.g. \texttt{float64} or \texttt{int16}. 
 It is useful to be able to specify the size of an integer or a floating point number, as data transfer can cause a lot of overhead particularly when transferring data to and from the \acrshort{gpu}. 
@@ -164,7 +164,7 @@ Other functions are created out of necessity, functions for arithmetics such as 
 \subsection*{Function identifiers}
 When declaring a \gls{gamble} function it is required to write the body of the function immediately after.
 This is to avoid lookahead which function prototypes in C requires.
-A function identifier is exactly like C, with the \texttt{return type} then the \texttt{functionname}, \texttt{(formal parameters)} and finally the \texttt{\{body\}}.
+A function identifier is exactly like C, with the \texttt{return type} then the \texttt{functionname}, \texttt{(formal parameters)} and finally the \texttt{\{body\}}. % chktex 36
 The function body can contain a number of statements and various control flows.
 Furthermore it can contain calls to other functions or calls to the function itself, and hereby recursion is a possibility in \gls{gamble}
 An example of a function identifier can be seen on \myref{lst:functionID}.
