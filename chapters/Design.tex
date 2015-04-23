@@ -104,13 +104,22 @@ The dimension of a vector is immutable, meaning that its dimension cannot be cha
 A matrix is multiple row vectors inside a column vector, each row vector is the same dimension. 
 As for other variables both vectors and matrices must be initialised when they are declared. 
 This is done with the syntax shown in \myref{lst:matrix}.
+As seen there are two ways of declaring a matrix and a vector, one can either provide the values for each entry, or one can provide the dimensions required of a matrix or vector in which case all values are initialised as zero.
+The syntax for the latter does not adhere to the concept of orthogonality mentioned in \myref{chap:criteria} although the use of this syntax should be held to a minimum, as it primarily exists such that functions in the standard library for \gls{gamble} can be created.
+What these functions entail is described in \myref{sec:funcs}.
 Here it is also seen why the use of ``;'' is a smart choice for ending statements.
 
-\begin{lstlisting}[caption={Creating a matrix},label={lst:matrix},numbers=none]
+\begin{lstlisting}[caption={Syntax for creating a matrix or vector},label={lst:matrix},numbers=none]
+//Makes a 2x2 matrix by providing entry values
 matrix<int> m = [1, 0; 
                  0, 1];
+//Makes a 100x100 matrix with all values set to 0
+matrix<int>[100, 100] mm;
 
-rowvector<int> rv = [1, 0];
+//Making a vector by providing values
+vector<int> v = [1, 0];
+//Makes a vector with 100 entries all set to 0
+vecotr<int>[100] vv;
 \end{lstlisting}
 
 \subsection*{Operators}
@@ -125,7 +134,7 @@ It is not possible to use operators with matrices or vectors, functions which su
 %The second approach is dynamic memory handling, often called garbage collection.
 %While  manual memory handling is a very low level concept, it has some advantages over dynamic memory handling, for instance manual handling gives the users full control over a programs resources and while this can be hard o get right, can both increase the simplicity of the compiler and increase a programs runtime execution speed because garbage collection can be a complex runtime process.\citep{Sebesta, gribble}
 
-\section{Functions}
+\section{Functions}\label{sec:funcs}
 Functions are blocks of code which can be called to do a specific computation, often but not always, a function takes some variables as inputs.
 
 This section will describe \gls{gamble}'s use of functions. 
@@ -149,7 +158,8 @@ This can be used in loops to make them iterate over matrices of any size.
 Another such function is \texttt{MakeIntMatrix}.
 This creates a matrix with int values a similar function exists for float.
 These takes three arguments as input, the amount of rows, amount of columns, and what value to place at every entry.
-While this could be done manually for a small matrix, this allows the programmer to initialise a larger matrix with values, with one function call.
+This function builds upon the syntax for initialising a matrix by providing dimensions rather than input, it merely alters the initialised value depending on the argument provided.
+Other functions are created out of necessity, functions for arithmetics such as multiply and addition also exist, as operators between matrices are not a valid expression.
 
 \subsection*{Function identifiers}
 When declaring a \gls{gamble} function it is required to write the body of the function immediately after.
