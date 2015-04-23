@@ -1,6 +1,9 @@
 \section{Source Code as Trees}\label{SourceCodeAsTrees}
-The source code of a program is parsed by the compiler, but should also saved in some way so it is possible to manipulate the source code, and performing the phases of the compiler.
-This is often done by using a tree, as is it in the \gls{gamble} compiler.
+
+
+As mentioned in \myref{Chp:CompilerOverview} the compiler parses the source code into a tree.
+But before this can be done the source code's symbols is seperated into tokens adhering to the \acrshort{cfg} of \gls{gamle}.
+These tokens are then further seperated into 
 
 The tree structure is useful for this purpose because every node of the tree can contains information, and have children which then makes it possible to express the productions of a grammar by following a path on the tree from the root to a leaf.
 A parse tree separates the source code into different productions of the grammar it represents, but also contains all of the syntax from the grammar, such as parenthesis.

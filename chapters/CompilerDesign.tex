@@ -1,27 +1,33 @@
-\chapter{Compiler Overview}
+\chapter{Compiler Overview}\label{Chp:CompilerOverview}
+
+In this chapter the different phases of the compiler and their goals and tasks will be presented, to give an overview for the chapters to come.
 
 The compiler for \gls{gamble} is separated into three phases: syntax analysis, contextual analysis and code generation.
-\myref{fig:phases} shows the phases of the compiler.
-Syntax analysis and contextual analysis are sometimes known as the front end of the compiler, it transforms the source code into an intermediate representation, and verifies its correctness.
+\myref{fig:phases} shows a state diagram of the phases of the compiler.
+Syntax analysis and contextual analysis transforms the source code into an intermediate representation, and verifies the source code according to the specified syntax from the \acrshort{cfg}, and also for type and scope checking.
+The choice of language for writing the compiler falls upon Java 1.8, which is also the language the project group have been taught for building compilers in the courses for the semester.
 When making a compiler an object-oriented language simplifies many tasks, because of encapsulation, polymorphism and inheritance. 
-The paradigm allows for many structural options, and reuse of code when inheriting. 
-The choice of language falls upon Java 1.8, which is also the language the project group have been taught for building compilers in the courses for the semester.
+The paradigm allows for many structural options, and reuse of code when inheriting, which would be impossible using another paradigm like imperative or functional programming.
 Java also works across platforms, which is a useful feature.
 
-In the syntax analysis phase the input source code is transformed to an \acrfull{ast}. 
-First the parser parse the source code, and generate a parse tree.
-From the parse tree an \acrshort{ast} is generated, it must contain the same information as the parse tree, h however it is simplified. 
+In the syntax analysis phase the input source code is parsed and seperated into tokens according to the \acrshort{cfg}.
+This is the scanner's job, the parser structures these tokens into a tree structure, which can be traversed in the order the source code is to be read.
 
-In the contextual analysis phase the \acrshort{ast} is used to generate a symbol table, this is again used for checking scopes and types. 
-The result of this is transforming the \acrshort{ast} into a decorated \acrshort{ast}, meaning that it has more information and/or is simplified. 
+When the source code has been parsed the tree is then simplified to make the traversal of the tree easier for the compiler, and while removing unnecessary information.
 
-In the back end of the compiler optimization and code generation are done.
-Optimization is any process which will make the generated program faster, e.g. eliminating unused code. 
-In the code generation phase the output code is generated from all the information in the decorated \acrshort{ast} and symbol table.
+In the contextual analysis phase the tree is used to generate a table, containing all the variables and functions which is declared in the source code.
+This is called a symbol table, and it is used to check if the variables and functions called and used in the source code are in scope, and also if they are upholding to the type rules of \gls{gamble}.
+This phase results in telling the programmer if a mistake is found in the source code and where the mistake is located, and also what is wrong, but it also results in the tree now containing additional information on the type of the expressions' in the source code.
+
+The last phase of the compiler is code generation and optimizing.
+Optimization is any process which will make the generated program faster, e.g. adding constant numbers before the runtime etc, or changing the order of access to matrices to increase locality. 
+In the code generation phase the output code is generated from all the information in gathered from the previoes phases of the compiler.
 
 The target language of this compiler is OpenCL C.
-To get this to run on any machine it is necessary to compile the output of the \gls{gamble} compiler, with a compiler for OpenCL C.
-This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using machine code is difficult
+To get this to run on any machine it is necessary to compile the output of the \gls{gamble} compiler, with a compiler for OpenCL C, since OpenCL C is not understandable by the computer.
+By compiling the OpenCL C code, it is translated into the computer's instruction set and then further into machine code, which the computer understands.
+This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using the specific instruction set, not only gives problems targetting more types of GPUs but will will take too much time for the project group to learn as it is very advanced.
+Using OpenCL C, the target language is still low level compared to Java or C\#, and C has even been characterised as a portable assembly language.\citep{CPort}
 
 
 \begin{figure}[ht!]
@@ -52,6 +58,7 @@ This is an abstraction made by the project group to simplify the process of gene
 	\end{tikzpicture}
 	\caption{The phases of the compiler.}\label{fig:phases}
 \end{figure}
+\todo{Change into a state Diagram as we were taught in OOA\&D}
 \clearpage
 
 \input{chapters/sections/subsections/SourceCodeAsTrees.tex}
@@ -61,7 +68,7 @@ Syntax analysis is the first phase in compiling a language.
 In this phase it is checked whether the input adheres to the rules of the language.
 These rules are defined in a languages' \acrshort{cfg}.
 The \acrshort{cfg} of \gls{gamble} is further described in \myref{sec:cfg}.
-This analysis can be split up into to further sub phases, lexical analysis and parsing, these are described in this chapter.
+This analysis can be split up into further sub phases, lexical analysis and parsing, these are described in this chapter.
 \section{Design}
 %Design
 \input{chapters/sections/subsections/Scanner.tex}
