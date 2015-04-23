@@ -158,7 +158,8 @@ This can be used in loops to make them iterate over matrices of any size.
 Another such function is \texttt{MakeIntMatrix}.
 This creates a matrix with int values a similar function exists for float.
 These takes three arguments as input, the amount of rows, amount of columns, and what value to place at every entry.
-While this could be done manually for a small matrix, this allows the programmer to initialise a larger matrix with values, with one function call.
+This function builds upon the syntax for initialising a matrix by providing dimensions rather than input, it merely alters the initialised value depending on the argument provided.
+Other functions are created out of necessity, functions for arithmetics such as multiply and addition also exist, as operators between matrices are not a valid expression.
 
 \subsection*{Function identifiers}
 When declaring a \gls{gamble} function it is required to write the body of the function immediately after.
