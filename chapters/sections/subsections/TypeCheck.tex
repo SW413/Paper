@@ -27,22 +27,25 @@ b = foo(1);         /* Argument error (Takes more or fewer arguments) */
 \end{lstlisting}
 
 \subsection*{Implementation}
-The type checker is called right after the \texttt{SymbolTableFillVisitor}.
-Since \gls{gamble} has static typing, the type checker is implemented under the contextual analysis, a type checker could also check on runtime, \gls{gamble} do this with vectors and matrices, but most of the type checking happens in the contextual analysis.
-To implement type checking \gls{gamble} a visitor is used during the contextual analysis.
-The class \texttt{ASTTypeCheckVisitor} visit every node relevant node in the \acrshort{ast} to check for type errors.
-The class collects an array of every type error it finds, these errors is then presented to the user, when a compilation fails.
+The type checker is called right after the symbol table has been filled by the \texttt{SymbolTableFillVisitor}.
+Since \gls{gamble} is static typed, the type checker is implemented under the contextual analysis phase of the compiler, in contrast to a dynamically typed language, such as Python or R, which is checked at runtime. 
+\gls{gamble} does check the if the size of matrices and vectors match for certain operations such as addition and multiplication etc., as well as if they are out of bounds. 
+This is to make it easier for the programmers using \gls{gamble} at a cost of speed. 
+To implement type checking in the \gls{gamble} compiler a visitor is used during the contextual analysis.
+The class \texttt{ASTTypeCheckVisitor} visit every relevant node in the \acrshort{ast} to check for type errors.
+The class collects a list of every type error it finds, these errors is then presented to the user, when a compilation fails.
 Errors and error handling are further described in \myref{subsec:DesignErrorHandling}.
-The class \texttt{ASTTypeCheckVisitor} overrides visitor calls from the \texttt{baseASTVisitor} class.
-The visitor does this in multiple places in the \acrshort{ast} and the visitor uses a class \texttt{TypeChecker}, which through function calls on the variables in the nodes.
-\texttt{TypeChecker} contains a function, \texttt{CombineValueTypes} which takes two values and checks if they are type compatible.
-\texttt{ASTTypeCheckVisitor} visit nodes which contains either one or more variables which could contain type errors.
-An example of this is seen in \myref{lst:typecheck1} where the function \texttt{VisitExpressionNode}
+The class \texttt{ASTTypeCheckVisitor} overrides the visitor calls from the \texttt{baseASTVisitor} class.
+The visitor does this in multiple places in the \acrshort{ast} and the visitor uses a class \texttt{TypeChecker}, which through method calls on the variables in the nodes.
+\texttt{TypeChecker} contains a method, \texttt{CombineValueTypes} which takes two values and checks if they are type compatible.
+\texttt{ASTTypeCheckVisitor} visits nodes which contains either one or more variables meaning that there can be errors which should be found. 
+An example of this is seen in \myref{lst:typecheck1} where the method \texttt{VisitExpressionNode}
  is shown.
-The function visit an \texttt{ExpressionNode} and calls \texttt{CombineValueTypes} with the nodes left and right values if there are any available else it send \texttt{null} as the input value.
-The function returns a variable of the type returned be \texttt{CombineValueTypes} and string which is printed if the visit finds type errors.
+The method visits an \texttt{ExpressionNode} and calls \texttt{CombineValueTypes} with the nodes left and right values if there are any available else it send \texttt{null} as the input value.
+The method visits an \texttt{ExpressionNode} and uses the the \texttt{TypeChecker}s \texttt{CombineValueTypes} method, the method checks the types of the children of the \texttt{ExpressionNode} and if they fits the operator then it returns the type of the expression. 
+The method returns a variable of the type returned \texttt{ValueType} and string which is printed if the visit finds type errors.
 
-\begin{lstlisting}[caption=The VisitExprressionNode function in the ASTTypeChecker class,numbers=none,frame=tlrb,label={lst:typecheck1}]
+\begin{lstlisting}[caption=The VisitExprressionNode method in the ASTTypeChecker class,numbers=none,frame=tlrb,label={lst:typecheck1}]
 public Variable VisitExpressionNode(ExpressionNode node) {
     ValueType valueType = TypeChecker.CombineValueTypes(
             node.getLValue() != null ? visit(node.getLValue()) : null,
@@ -56,4 +59,4 @@ public Variable VisitExpressionNode(ExpressionNode node) {
 }
 \end{lstlisting}
 
-After the type checker have checked every variable in the source code, the compiler scans for unused variables and thereafter prints all the errors in the program, if any.
+After the type checker have checked every expression in the source code, the compiler scans for unused variables and thereafter prints all these as warnings. 
