@@ -1,0 +1,24 @@
+% Please add the following required packages to your document preamble:
+% \usepackage{multirow}
+% \usepackage[table,xcdraw]{xcolor}
+% If you use beamer only pass "xcolor=table" option, i.e. \documentclass[xcolor=table]{beamer}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|l|l|l|}
+\hline
+\textbf{Operator}   & \textbf{Left operand}            & \textbf{Right operand}            & \textbf{Result}                 \\ \hline
+                    & \cellcolor{gray!40}Matrix (m*n)  & \cellcolor{gray!40}Matrix (n*p)   & \cellcolor{gray!40}Matrix (m*p) \\ \cline{2-4} 
+                    & Matrix                           & Numeral                           & Matrix                          \\ \cline{2-4}
+                    & \cellcolor{gray!40}Vector        & \cellcolor{gray!40}Vector         & \cellcolor{gray!40}Vector       \\ \cline{2-4} 
+\multirow{-4}{*}{*} & Vector                           & Numeral                           & Vector                          \\ \hline
+                    & \cellcolor{gray!40}Matrix        & \cellcolor{gray!40}Matrix         & \cellcolor{gray!40}Matrix       \\ \cline{2-4}
+                    & Matrix                           & Numeral                           & Matrix                          \\ \cline{2-4}
+                    & \cellcolor{gray!40}Vector        & \cellcolor{gray!40}vector         & \cellcolor{gray!40}Vector       \\ \cline{2-4} 
+\multirow{-4}{*}{+} & Vector                           & Numeral                           & Vector                          \\ \hline
+                    & \cellcolor{gray!40}Matrix        & \cellcolor{gray!40}Matrix         & \cellcolor{gray!40}Matrix       \\ \cline{2-4}
+                    & Matrix                           & Numaral                           & Matrix                          \\ \cline{2-4}
+                    & \cellcolor{gray!40}Vector        & \cellcolor{gray!40}Vector         & \cellcolor{gray!40}Vector       \\ \cline{2-4} 
+\multirow{-4}{*}{-} & Vector                           & Numeral                           & Vector                          \\ \hline
+\end{tabular}
+\caption{List of operators on complex data types in \gls{gamble}.}\label{tbl:matOps}
+\end{table}
