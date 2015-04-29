@@ -11,22 +11,21 @@ The paradigm allows for many structural options, and reuse of code when inheriti
 Java also works across platforms, which is a useful feature.
 
 In the syntax analysis phase the input source code is parsed and separated into tokens according to the \acrshort{cfg}.
-This is the scanner's job, the parser structures these tokens into a tree structure, which can be traversed in the order the source code is to be read.
-
-When the source code has been parsed the tree is then simplified to make the traversal of the tree easier for the compiler, and while removing unnecessary information.
+This is the scanner's job, the parser structures these tokens into a tree structure, which can be traversed in the order of the source code.
+When the source code has been parsed the tree is then simplified to remove unnecessary information such that a tree with less nodes is to be traversed.
 
 In the contextual analysis phase the tree is used to generate a table, containing all the variables and functions which is declared in the source code.
-This is called a symbol table, and it is used to check if the variables and functions called and used in the source code are in scope, and also if they are upholding to the type rules of \gls{gamble}.
-This phase results in telling the programmer if a mistake is found in the source code and where the mistake is located, and also what is wrong, but it also results in the tree now containing additional information on the type of the expressions' in the source code.
+This is called a symbol table, and it is used to check if the variables and functions called and used in the source code are in scope, and also if they uphold the type rules of \gls{gamble}.
+This phase results in telling the programmer if a mistake is found in the source code and where the mistake is located, and also what is wrong, but it also results in the tree now containing additional information about the type of expressions in the source code.
 
 The last phase of the compiler is code generation and optimizing.
 Optimization is any process which will make the generated program faster, e.g. adding constant numbers before the runtime etc, or changing the order of access to matrices to increase locality. 
 In the code generation phase the output code is generated from all the information in gathered from the previous phases of the compiler.
 
 The target language of this compiler is OpenCL C.
-To get this to run on any machine it is necessary to compile the output of the \gls{gamble} compiler, with a compiler for OpenCL C, since OpenCL C is not understandable by the computer.
+To compile OpenCL C code additional software for the GPU is required, depending on the machine the path to this software may be required when compiling, as such one cannot simply run this on all machines.
 By compiling the OpenCL C code, it is translated into the computer's instruction set and then further into machine code, which the computer understands.
-This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using the specific instruction set, not only gives problems targeting more types of GPUs but will will take too much time for the project group to learn as it is very advanced.
+This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using the specific instruction set, not only gives problems targeting more types of GPUs but is also way too demanding for the project group to understand let alone use in just one semester.
 Using OpenCL C, the target language is still low level compared to Java or C\#, and C has even been characterised as a portable assembly language.\citep{CPort}
 
 \begin{figure}
