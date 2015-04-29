@@ -46,7 +46,7 @@ The peripheral data consists of a boolean, used for checking is a declared varia
 The boolean describing if a declared variable is used, is set to true, if the previously described lookup process for a variable in use, finds a declared variable from the unique id (the name if the variable).
 This boolean also makes it possible for the \gls{gamble} compiler to find unused variables and then prompt the user with a relevant warning.
 
-In order for all of the above to be implemented an instance of the \texttt{SymbolTable} class is passed via the constructor, to a visitor which traverses the \acrfull{ast}.
+In order for all of the above to be implemented an instance of the \texttt{SymbolTable} class is passed via the constructor, to a visitor which traverses the \acrshort{ast}.
 This visitor, the \texttt{SymbolTableFillVisitor} then fill the referenced \texttt{symbolTable} with scopes and their symbols.
 Every time the visitor meets the start of a new scope e.g. the block of statements within a loop construct.
 A new instance of the \texttt{Scope} class is pushed to the \texttt{scopeStack}, hereby making it possible to fill the relevant scope when the block of statements is visited.
