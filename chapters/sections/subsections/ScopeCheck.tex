@@ -3,13 +3,13 @@ In \myref{subsec:Scope} the scope of identifiers, variables and functions, are d
 A variable is in scope from its declaration until the end of the block it is declared in.
 An inner scope inherits the identifiers declared in the outer scopes. 
 
-In the contextual analysis part of the compiler it is important to verify that each variable and function used are in scope, and it should produce a useful error message.
-The error message should indicate which identifier is not in scope, and on what line this identifier is used wrongly.
+During contextual analysis it is important to verify that each variable and function used are in scope and if not it should produce a descriptive error message.
+The error message should indicate which identifier is not in scope, and the line this identifier is introduced.
 
 To check this all references to identifiers must be checked to see if they match an identifier in the symbol table of the current scope, and recursively the scope which encloses it. 
 Furthermore it is important that any usage of an identifier only exists after its declaration.
 In the compiler for this project, the symbol table is filled while the compiler is also performing the scope checking.
-This is because it reduces the amount of traversals through the tree, and scope checking and filling the symbol table is also similair in concept, e.g. a declaration creates an entry in the symbol table, while expressions simply make lookups in this table.
+This is because it reduces the amount of traversals through the tree, and scope checking and filling the symbol table is also similar in concept, e.g. a declaration creates an entry in the symbol table, while expressions simply make lookups in this table.
 
 The scope checker produces two errors: redeclaration errors and undeclared errors defined in \myref{subsec:Scope}.
 A redeclaration error is produced when an attempt to declare a variable while it is already declarared in scope is made.
@@ -37,8 +37,8 @@ Furthermore all scopes contain information about the particular scope such as en
 The key in the hashed maps represents the name of the symbol, and must be unique to the scope and not found in an enclosing scope, as this could cause an ambiguity to arise.
 This ambiguity is not allowed in \gls{gamble} and therefore throws a redeclaration error.
 
-To determine wether or not a declaration is a redeclaration, the compiler looks up the name of the variable in the \texttt{symbolMap} of the current scope.
-If no entry is found, the search continues in the \texttt{symbolMap} of the enclosing scope and so on recursivly.
+To determine whether or not a declaration is a redeclaration, the compiler looks up the name of the variable in the \texttt{symbolMap} of the current scope.
+If no entry is found, the search continues in the \texttt{symbolMap} of the enclosing scope and so on recursively.
 The same lookup process is executed when a variable is used e.g in a expression or assignment.
 Hereby all enclosing scopes are checked for the declaration of the variable; making redeclaration of variables in scope, and usage of undeclared variables impossible in \gls{gamble}, as defined in \myref{cha:Design}.
 A \texttt{symbol} is an encapsulation of a variable and relevant peripheral data.
