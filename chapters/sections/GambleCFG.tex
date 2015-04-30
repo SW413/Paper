@@ -3,6 +3,8 @@ Our grammar is written in \acrfull{ebnf}, and uses \acrfull{regex}s to define te
 In this section there will be a short traversal of a branch from the parse tree.
 The full \acrshort{cfg} of \gls{gamble} can be found on \myref{app:CFG} alongside the lexing rules.
 This section only presents a small selection of the \acrshort{cfg}.
+\gls{gamble}s \acrshort{cfg} is used in the compiler for parsing a program, into a structure which can be manipulated and analysed to produce the target code for the specific program.
+The production rules are used to check for any syntactical errors which might occur.
 
 A production rule from the \acrshort{cfg} of \gls{gamble} is the statement. 
 Looking at \myref{lst:statements} it is seen that a statement can be both an assignment, declaration, functioncall, controlblock or a loop construct. 
@@ -47,7 +49,7 @@ expression
 The value production expands into what is seen on \myref{lst:value}.
 In this production both terminals and non-terminals are included.
 The terminals are elements that have no further production rules, leading to a ``dead end''.
-When a terminal is reached it is used and is as a leaf on a tree, also seen in \myref{sec:AST}.
+When a terminal is reached it is used and put as a leaf on a tree, also seen in \myref{sec:AST}.
 \begin{lstlisting}[caption={\acrshort{cfg} Value},frame=tlrb,label={lst:value},numbers=none]
 value
     : ID                                     #valID
@@ -59,9 +61,4 @@ value
     ;
 \end{lstlisting}
 
-Going through this small part of the \acrshort{cfg} one single branch of the parse tree have been unfolded.
-\gls{gamble}s \acrshort{cfg} is then used in the parser.
-The parser takes the input from a lexical analyzer, the source code in the form of a token stream.
-The parser uses the \acrshort{cfg}s production rules to determine syntax errors in the source code.
-The parser then outputs a parse tree.
-How this is done is described further in \myref{sec:syntaxAnalysis}.
+
