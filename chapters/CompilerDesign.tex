@@ -1,5 +1,8 @@
 \chapter{Compiler Overview}\label{Chp:CompilerOverview}
-
+When creating a compiler there is two basic ways of compilers one can create, a multi-pass compiler or a single-pass compiler.
+Each have their advantages and disadvantages however the most significant difference is that in a single-pass compiler, as the name suggests, only one pass is done.
+This highly limits the information available to the compiler and this decreases the odds of creating efficient programs, which is not wished for in \gls{gamble}.
+As such this compiler will be a multi-pass compiler, such a compiler can be divided into phases.
 In this chapter the different phases of the compiler and their goals and tasks will be presented, to give an overview for the chapters to come.
 
 The compiler for \gls{gamble} is separated into three phases: syntax analysis, contextual analysis and code generation.
@@ -106,4 +109,7 @@ The validity of such reference is specific to the rules of the language, this se
 
 %Phase3
 \input{chapters/sections/CodeGeneration.tex}
+\section{Design}
 \input{chapters/sections/subsections/GPUCode.tex}
+\input{chapters/sections/subsections/Optimisation.tex}
+\section{Implementation}

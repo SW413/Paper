@@ -1,3 +1,6 @@
 \chapter{Code Generation}
-\info[inline]{Subphases of this is yet unknown, multipass and singlepass should be in this.
-MAke subcategories of the language, like imports of libraries, and talk about those with Design first, and then followed by implementation}
+Code generation is the phase in which the object code is generated, the process and considerations this entails are covered in this chapter.
+Once the source code has passed through syntax analysis and contextual analysis without errors it has been validated and the compiler can proceed with generating the object code.
+In the case of this compiler the object code is OpenCL C as a result one or more compilers must use this code as souce code to eventually end up with machine code that can be executed.
+Having the object code be OpenCL C means that tasks such as instruction selection and scheduling as well as register allocation will be handled by the compiler which will compile the OpenCL C code rather than \gls{gamble}.
+Furthermore it is also in the code generation phase that optimisation commonly takes place, for \gls{gamble} this means to create object code which is quickly executed and utilises the \acrshort{GPU} for calculation that benefit from its use.
