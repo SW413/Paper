@@ -3,19 +3,19 @@
 The semantics of statements and declarations both depend on the semantics of arithmetic expressions.
 Arithmetic expressions may contain variables.
 
-\subsubsection{Addition.}
+\subsubsection{Addition}
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }+{ a }_{ 2 }{ \rightarrow  }_{ A }{ v } } , v = { v }_{ 1 }+{ v }_{ 2 }
 \end{equation}
 
 
-\subsubsection{Subtraction.}
+\subsubsection{Subtraction}
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }-{ a }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\quad v={ v }_{ 1 }-{ v }_{ 2 }
 \end{equation}
 
 
-\subsubsection{Multiplication.}
+\subsubsection{Multiplication}
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }\ast { a }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\quad v={ v }_{ 1 }\ast { v }_{ 2 }
 \end{equation}
@@ -33,7 +33,7 @@ Arithmetic expressions may contain variables.
 \end{equation}
 
 
-\subsubsection{Parentheses.}
+\subsubsection{Parentheses}
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v } }{ { e }_{ v },st\vdash { (a }_{ 1 }){ \rightarrow  }_{ A }{ v } }
 \end{equation}
@@ -50,19 +50,19 @@ Any non-empty variable declaration will modify the variable environment since th
 A variable declaration will also modify the store, since the new location will be initialised to contain the initial values of the new variables.
 The transition relation describing variable declarations defines a big-step semantic, since the allocation of new address space for newly declared variables is an invisible operation.
 
-\subsubsection{Transition.}
+\subsubsection{Transition}
 \begin{equation}
 <{ D }_{ v },{ e }_{ v },st>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ i },{ st }^{ i }>
 \end{equation}
 
 
-\subsubsection{Empty Variables.}
+\subsubsection{Empty Variables}
 \begin{equation}
 	<\varepsilon,{ e }_{ v },st>{ \rightarrow  }_{ DV }<{ e }_{ v },st>
 \end{equation}
 
 
-\subsubsection{Variable declaration.}
+\subsubsection{Variable declaration}
 \begin{equation}
 	\frac { <{ D }_{ v },{ e }_{ v }^{ ii },st[\iota \mapsto v]>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ i },{ st }^{ i }> }{ <var\quad x:=a;Dv,{ e }_{ v }st>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ i },{ st }^{ i }> } 
 \end{equation}
@@ -82,56 +82,69 @@ The effect of a statement is that the store may change, since a statement may mo
 A statement should not modify the variable environment.
 We define a BS-semantic for statements (except procedure calls)
 
-\subsubsection{Transitions.}
+\subsubsection{Transitions}
 \begin{equation}
 	{ e }_{ v },{ e }_{ p }\vdash <S,st>\rightarrow { st }^{ i }
 \end{equation}
 
 
-\subsubsection{Transition system.}
+\subsubsection{Transition system}
 \begin{equation}
 	{((Stm\ast  Sto)\cup Sto \rightarrow Sto) }
 \end{equation}
 
 
-\subsubsection{Assignment.}
+\subsubsection{Assignment}
 \begin{align*}
 	&{ e }_{ v },{ e }_{ p }\vdash <x:=a,st>\rightarrow st[\iota \mapsto v]\\
 	where\quad &{ e }_{ v },st\vdash a{ \rightarrow  }_{ A }v\quad and\quad  { e }_{ v }(x)=\iota 
 \end{align*}
 
 
-\subsubsection{Skip.}
+\subsubsection{Skip}
 \begin{equation}
 	{ e }_{ v },{ e }_{ p }\vdash <skip,st>\rightarrow st
 \end{equation}
 
 
-\subsubsection{Compare.}
+\subsubsection{Compare}
 \begin{equation}
 	\frac { { e }_{ v },{ e }_{ p }\vdash <{ s }_{ 1 },st>\rightarrow { st }^{ ii }\quad { e }_{ v }{ ,e }_{ p }\vdash <{ S }_{ 2 },{ st }^{ ii }>\rightarrow { st }^{ i } }{ { e }_{ v },{ e }_{ p }\vdash <{ s }_{ 1 };{ s }_{ 2 },st>\rightarrow { st }^{ i } } 
 \end{equation}
 
 
-\subsubsection{If $\top$.}
+\subsubsection{If $\top$}
 \begin{equation}
 	\frac { { e }_{ v },{ e }_{ p }\vdash <{ s }_{ 1 },st>\rightarrow { st }^{ i } }{ { e }_{ v },{ e }_{ p }\vdash <if\quad b\quad then\quad { S }_{ 1 }\quad else{ \quad S }_{ 2 }>\rightarrow { st }^{ i } } st\vdash b{ \rightarrow  }_{ B }\top 
 \end{equation}
 
-\subsubsection{If $\bot$.}
+\subsubsection{If $\bot$}
 \begin{equation}
 	\frac { { e }_{ v },{ e }_{ p }\vdash <{ s }_{ 1 },st>\rightarrow { st }^{ i } }{ { e }_{ v },{ e }_{ p }\vdash <if\quad b\quad then\quad { S }_{ 1 }\quad else{ \quad S }_{ 2 }>\rightarrow { st }^{ i } } st\vdash b{ \rightarrow  }_{ B }\bot 
 \end{equation}
 
-\begin{comment}
-\subsubsection{While $\top$.}
+
+\subsubsection{While $\top$}
+\begin{align*}
+	&\frac { { e }_{ v },{ e }_{ p }\vdash <{ S }_{ 1 },st>\rightarrow { st }^{ ii }\quad { e }_{ v },{ e }_{ p }\vdash <while\quad b\quad do\quad S,st>\rightarrow { st }^{ i } }{ { e }_{ v },{ e }_{ p }\vdash <while\quad b\quad do\quad S,st>\rightarrow { st }^{ i } }\\
+	&if\quad { e }_{ v },st\vdash b{ \rightarrow  }_{ B }\top 
+\end{align*}
+
+
+\subsubsection{While $\bot$}
+\begin{align*}
+	&{ e }_{ v },{ e }_{ p }\vdash <while\quad b\quad do\quad S,\quad st>\rightarrow st\\
+	&if\quad { e }_{ v },st\vdash b{ \rightarrow  }_{ B }\bot
+\end{align*}
+
+\subsubsection{Blocks}
+\begin{align*}
+&<D,{ e }_{ v },st>{ \rightarrow  }_{ DV }<{ e }_{ v }^{ i },{ st }^{ ii }>\\
+&{ e }_{ v }^{ i }\vdash <{ D }_{ p },{ e }_{ p }>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ i },{ st }^{ ii }>\\
+&\frac { { e }_{ v }^{ i }\vdash <S,{ st }^{ ii }>\rightarrow { st }^{ i } }{ { e }_{ v },{ e }_{ p }\vdash <begin\quad { D }_{ v }\quad { D }_{ p },st>\rightarrow { st }^{ i } } 
+\end{align*}
+
+\subsubsection{return}
 \begin{equation}
-
+	\frac { { e }_{ v },{ e }_{ p }\vdash <{ s },st>{ \rightarrow  }_{ s }v,{ st }^{ i } }{ { e }_{ p }\vdash <(s)|return;,{ e }_{ v },st>{ \rightarrow  }_{ A }v,{ e }_{ v }{ st }^{ i } } 
 \end{equation}
-
-\subsubsection{While $\bot$.}
-\begin{equation}
-
-\end{equation}
-
-\end{comment}
