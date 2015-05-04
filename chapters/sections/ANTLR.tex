@@ -2,11 +2,12 @@
 The syntax analysis is implemented through the tool \acrfull{antlr}, this tool provides some advantages over other available tools.
 \acrshort{antlr} is based upon a parser technique called LL(*).
 LL(*) uses an algorithm to have a varying lookahead when needed.
-The LL(*) parser technique allows a bigger class of \acrshort{cfg} than ordinary parser techniques like LL(k).\todo{Større end hvad? og hvad er en class of CFG?}
+The LL(*) parser technique allows a bigger class of \acrshort{cfg} than ordinary parser techniques like LL(k).
 In the most recent version of \acrshort{antlr} as time of this publication, \acrshort{antlr} 4, the underlying algorithm have been extended to a parser technique called Adaptive LL(*) (ALL(*)).
-The most important feature of ALL(*) is that it moves grammar analysis to parse time.\todo{to parse time? Hvor kommer dette udtryk fra?}
-This lets the parse algorithm accept any non-left-recursive productions.\todo{Men det er jo det modsatte(altså at den kan acceptere left-recursive productioner) som gør den speciel}
-The ALL(*) approach accepts a broader class of grammars than most other parsing methods, one way this is done is to rule out ambiguity by using a rule of precedence.\todo{Class of grammers?}
+An important feature of ALL(*) is it moves grammar analysis to parse time and thereby let the algorithm accept any non-left-recursive productions.
+On top of that \acrshort{antlr} allows simple left recursions by rewriting them before parse time.
+
+The \acrshort{antlr} approach accepts a broader class of grammars than most other parsing methods, one way this is done is to rule out ambiguity by using a rule of precedence.
 If a grammar is ambiguous the ALL(*) approach will take the first  available rule in the \acrshort{cfg} and apply it.
 This allows for a less strict \acrshort{cfg} and while most grammars could be rewritten to be unambiguous without applying the precedence rule, this allows the designers of languages grammars to edit existing grammars without rewriting as much a could be required if the precedence rule was not available.	
 The idea with the ALL(*) algorithm is that the grammar is analysed dynamically at runtime rather than statically, before executed by the generated parser.
