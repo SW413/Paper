@@ -2,12 +2,19 @@
 As code is generated considerations of efficiency can be made such that the object code becomes more efficient than other alternatives.
 Such optimisations consists of considerations like memory allocation, pipelining, parallelisation and other considerations that may have an impact on execution time.
 To do an efficient and complete analysis of how to optimise code, information is required.
-This is where \gls{gamble} is at a disadvantage due to \gls{gamble} promoting its seamless use of the \acrshort{gpu}.
-As this is seamless information is lackluster all computations may will not be fully optimised, this is one of the tradeoffs \gls{gamble} makes.
+This is where \gls{gamble} is at a disadvantage due to \gls{gamble} distances its programmers from controlling where the code is performed and istead does so seamlessly.
+As this is seamless, information is lackluster and therefore all computations may not be fully optimised in terms of where to execute, this is one of the tradeoffs \gls{gamble} makes.
 If \gls{gamble} were to require more information, the simplicity and seamless use of the \acrshort{gpu} would be lost.
 
-As previously mentioned due the object code being OpenCL C certain considerations pertaining to instruction handling are not a point for optimisation for this compiler.
+As previously mentioned due the object code being OpenCL C certain considerations pertaining to instruction handling are not of interest for optimisation for this compiler.
 Instead the optimisation here resides in when to use the \acrshort{gpu}, optimising the generated C code as well as the OpenCL kernals.
+
+As \gls{gamble} is attempting to seamlessly use the \acrshort{gpu} to increase performance, knowing when the use of the \acrshort{gpu} will actually be a benefit is an important point in the code generation process.
+As mentioned to do this effectively would require more information about the computations which are to be done than can be read from the syntax of \gls{gamble}.
+Therefore the project group have decided that it is better to be sure that a computation can benefit from the \acrshort{gpu}, rather than risking moving computations that wont benefit as well as those that will.
+As such only those operations that the project group knows can benefit from the parallel abilities of the \acrshort{gpu} will be executed on the \acrshort{gpu}.
+
+
 
 %Knowing when to use GPU
 
