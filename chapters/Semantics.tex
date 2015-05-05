@@ -52,7 +52,7 @@ The transition relation describing variable declarations defines a big-step sema
 
 \subsubsection{Transition}
 \begin{equation}
-<{ D }_{ v },{ e }_{ v },st>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ i },{ st }^{ i }>
+<{ D }_{ v },{ e }_{ v },st>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ ` },{ st }^{ ` }>
 \end{equation}
 
 
@@ -64,12 +64,12 @@ The transition relation describing variable declarations defines a big-step sema
 
 \subsubsection{Variable declaration}
 \begin{equation}
-	\frac { <{ D }_{ v },{ e }_{ v }^{ ii },st[\iota \mapsto v]>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ i },{ st }^{ i }> }{ <var\quad x:=a;Dv,{ e }_{ v }st>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ i },{ st }^{ i }> } 
+	\frac { <{ D }_{ v },{ e }_{ v }^{ `` },st[\iota \mapsto v]>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ ` },{ st }^{ ` }> }{ <var\quad x:=a;Dv,{ e }_{ v }st>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ ` },{ st }^{ ` }> } 
 \end{equation}
 \begin{align*}
 	where\quad &{ e }_{ v },st\vdash a{ \rightarrow  }_{ A }v \\
 	&\iota {= e }_{ v }(next) \\
-	&{ e }_{ v }^{ ii }={ e }_{ v }[x\mapsto \iota ][next\mapsto new \iota ]
+	&{ e }_{ v }^{ `` }={ e }_{ v }[x\mapsto \iota ][next\mapsto new \iota ]
 \end{align*}
 
 \begin{equation}
@@ -84,7 +84,7 @@ We define a BS-semantic for statements (except procedure calls)
 
 \subsubsection{Transitions}
 \begin{equation}
-	{ e }_{ v },{ e }_{ p }\vdash <S,st>\rightarrow { st }^{ i }
+	{ e }_{ v },{ e }_{ p }\vdash <S,st>\rightarrow { st }^{ ` }
 \end{equation}
 
 
@@ -96,55 +96,89 @@ We define a BS-semantic for statements (except procedure calls)
 
 \subsubsection{Assignment}
 \begin{align*}
-	&{ e }_{ v },{ e }_{ p }\vdash <x:=a,st>\rightarrow st[\iota \mapsto v]\\
+	&{ e }_{ v }\vdash <x=a,st>\rightarrow st[\iota \mapsto v]\\
 	where\quad &{ e }_{ v },st\vdash a{ \rightarrow  }_{ A }v\quad and\quad  { e }_{ v }(x)=\iota 
 \end{align*}
 
 
 \subsubsection{Skip}
 \begin{equation}
-	{ e }_{ v },{ e }_{ p }\vdash <skip,st>\rightarrow st
+	{ e }_{ v }\vdash <skip,st>\rightarrow st
 \end{equation}
 
 
 \subsubsection{Compare}
 \begin{equation}
-	\frac { { e }_{ v },{ e }_{ p }\vdash <{ s }_{ 1 },st>\rightarrow { st }^{ ii }\quad { e }_{ v }{ ,e }_{ p }\vdash <{ S }_{ 2 },{ st }^{ ii }>\rightarrow { st }^{ i } }{ { e }_{ v },{ e }_{ p }\vdash <{ s }_{ 1 };{ s }_{ 2 },st>\rightarrow { st }^{ i } } 
+	\frac { { e }_{ v }\vdash <{ s }_{ 1 },st>\rightarrow { st }^{ `` }\quad { e }_{ v }\vdash <{ S }_{ 2 },{ st }^{ `` }>\rightarrow { st }^{ ` } }{ { e }_{ v },\vdash <{ s }_{ 1 };{ s }_{ 2 },st>\rightarrow { st }^{ ` } } 
 \end{equation}
 
 
 \subsubsection{If $\top$}
 \begin{equation}
-	\frac { { e }_{ v },{ e }_{ p }\vdash <{ s }_{ 1 },st>\rightarrow { st }^{ i } }{ { e }_{ v },{ e }_{ p }\vdash <if\quad b\quad then\quad { S }_{ 1 }\quad else{ \quad S }_{ 2 }>\rightarrow { st }^{ i } } st\vdash b{ \rightarrow  }_{ B }\top 
+	\frac { { e }_{ v }\vdash <{ s }_{ 1 },st>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <if\quad b\quad then\quad { S }_{ 1 }\quad else{ \quad S }_{ 2 }>\rightarrow { st }^{ ` } } st\vdash b{ \rightarrow  }_{ B }\top 
 \end{equation}
 
 \subsubsection{If $\bot$}
 \begin{equation}
-	\frac { { e }_{ v },{ e }_{ p }\vdash <{ s }_{ 1 },st>\rightarrow { st }^{ i } }{ { e }_{ v },{ e }_{ p }\vdash <if\quad b\quad then\quad { S }_{ 1 }\quad else{ \quad S }_{ 2 }>\rightarrow { st }^{ i } } st\vdash b{ \rightarrow  }_{ B }\bot 
+	\frac { { e }_{ v }\vdash <{ s }_{ 1 },st>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <if\quad b\quad then\quad { S }_{ 1 }\quad else{ \quad S }_{ 2 }>\rightarrow { st }^{ ` } } st\vdash b{ \rightarrow  }_{ B }\bot 
 \end{equation}
 
 
 \subsubsection{While $\top$}
 \begin{align*}
-	&\frac { { e }_{ v },{ e }_{ p }\vdash <{ S }_{ 1 },st>\rightarrow { st }^{ ii }\quad { e }_{ v },{ e }_{ p }\vdash <while\quad b\quad do\quad S,st>\rightarrow { st }^{ i } }{ { e }_{ v },{ e }_{ p }\vdash <while\quad b\quad do\quad S,st>\rightarrow { st }^{ i } }\\
+	&\frac { { e }_{ v }\vdash <{ S }_{ 1 },st>\rightarrow { st }^{ `` }\quad { e }_{ v }\vdash <while\quad b\quad do\quad S,st>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <while\quad b\quad do\quad S,st>\rightarrow { st }^{ ` } }\\
 	&if\quad { e }_{ v },st\vdash b{ \rightarrow  }_{ B }\top 
 \end{align*}
 
 
 \subsubsection{While $\bot$}
 \begin{align*}
-	&{ e }_{ v },{ e }_{ p }\vdash <while\quad b\quad do\quad S,\quad st>\rightarrow st\\
+	&{ e }_{ v }\vdash <while\quad b\quad do\quad S,\quad st>\rightarrow st\\
 	&if\quad { e }_{ v },st\vdash b{ \rightarrow  }_{ B }\bot
 \end{align*}
 
 \subsubsection{Blocks}
 \begin{align*}
-&<D,{ e }_{ v },st>{ \rightarrow  }_{ DV }<{ e }_{ v }^{ i },{ st }^{ ii }>\\
-&{ e }_{ v }^{ i }\vdash <{ D }_{ p },{ e }_{ p }>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ i },{ st }^{ ii }>\\
-&\frac { { e }_{ v }^{ i }\vdash <S,{ st }^{ ii }>\rightarrow { st }^{ i } }{ { e }_{ v },{ e }_{ p }\vdash <begin\quad { D }_{ v }\quad { D }_{ p },st>\rightarrow { st }^{ i } } 
+&<D,{ e }_{ v },st>{ \rightarrow  }_{ DV }<{ e }_{ v }^{ ` },{ st }^{ `` }>\\
+&{ e }_{ v }^{ ` }\vdash <{ D }_{ p }>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ ` },{ st }^{ `` }>\\
+&\frac { { e }_{ v }^{ ` }\vdash <S,{ st }^{ `` }>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <begin\quad { D }_{ v }\quad { D }_{ p },st>\rightarrow { st }^{ ` } } 
 \end{align*}
 
-\subsubsection{return}
+\subsubsection{Return}
 \begin{equation}
-	\frac { { e }_{ v },{ e }_{ p }\vdash <{ s },st>{ \rightarrow  }_{ s }v,{ st }^{ i } }{ { e }_{ p }\vdash <(s)|return;,{ e }_{ v },st>{ \rightarrow  }_{ A }v,{ e }_{ v }{ st }^{ i } } 
+	\frac { { e }_{ v }\vdash <{ s },st>{ \rightarrow  }_{ s }v,{ st }^{ ` } }{ { e }_{ v }\vdash <(s)|return;,{ e }_{ v },st>{ \rightarrow  }_{ A }v,{ e }_{ v }{ st }^{ ` } } 
+\end{equation}
+
+
+\subsection*{Matrices}
+\subsubsection{Matrix declaration}
+\begin{equation}
+	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ martix<int|float|bool>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } \begin{matrix} v=\begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix} \\ { a }_{ 1 }=2 \\ { a }_{ 2 }=2 \end{matrix}
+\end{equation}
+
+\subsubsection{Addition}
+\begin{equation}
+	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }+{ m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ v={ v }_{ 1 }+{ v }_{ 2 } \end{matrix}
+\end{equation}
+
+
+\subsubsection{Subtraction}
+\begin{equation}
+	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }-{ m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ v={ v }_{ 1 }-{ v }_{ 2 } \end{matrix}
+\end{equation}
+
+
+\subsubsection{Matrice, Matrice Multiplication}
+\begin{equation}
+	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }\ast { m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
+\end{equation}
+
+\subsubsection{Scalar product}
+\begin{equation}
+	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }\ast { a }_{ 1 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }={ a }_{ 1 } \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
+\end{equation}
+
+\subsubsection{Transposed Matrice}
+\begin{equation}
+	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad  }{ { e }_{ v },st\vdash { m }_{ 1 }\wedge { \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }={ v }_{ 1 }\wedge =matrix<>[{ a }_{ 2 },{ a }_{ 1 }] \end{matrix}
 \end{equation}
