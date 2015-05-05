@@ -35,7 +35,7 @@ Further expanding into the expression production, it can be seen that it has fiv
 An expression has production rules expanding the expression into a construct containing more expressions.
 This is done because an expression can derive to a value, and several values are needed for multiple arithmetic operations.
 This construct also causes left-recursion, something often attempted to be avoided in \acrshort{cfg}.
-The parse generator \acrshort{antlr} can handle left-recursion and as such it is acceptable in the \acrshort{cfg} for \gls{gamble}.
+The parse generator \acrshort{antlr} can handle simple left-recursion as seen on \myref{lst:value} and as such it is acceptable in the \acrshort{cfg} for \gls{gamble}.
 \begin{lstlisting}[caption={\acrshort{cfg} Expression},frame=tlrb,label={lst:expression},numbers=none]
 expression
     : expression ( '*' | '/' | '%' ) expression     #mulExpr
