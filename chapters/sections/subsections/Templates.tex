@@ -1,4 +1,4 @@
-§ubsubsection*{Using SimpleOpenCl}
+\subsubsection*{Using SimpleOpenCl}
 SimpleOpenCL is a library which simplifies the process of setting up and launching a kernel for OpenCL.
 The kernels remain the same, but finding the hardware for executing the kernels and also allocating memory for the hardware is simplified.
 The compiler starts the codegeneration by calling an instance of the class \texttt{CodeGenerator} and invoking the method \texttt{GenerateCodeAndWriteToFile}.
@@ -30,7 +30,7 @@ The file contains the code which can be seen on \myref{lst:OpenCLSetup2}.
 /* END Hardware setup */
 \end{lstlisting}
 
-This code creates the elements needed to launch a kernel. 
+This code creates the elements needed to launch a kernel.
 It finds the fastest hardware according to SimpleOpenCl which means it finds the device with the most number of compute units, no matter the type of device, be it a CPU or a \acrshort{gpu}.
 For the remaining part of this section the fastest device is a \acrshort{gpu}.
 \texttt{global\_size} and \texttt{local\_size} are there to determine the amount of memory needed both globally and locally on the \acrshort{gpu}.
@@ -89,6 +89,6 @@ __kernel void matrixMulScalar(__global §MATRIXTYPE§ *ma, §MATRIXTYPE§ scalar
 \end{lstlisting}
 
 As can be seen the string \texttt{§MATRIXTYPE§} must also be replaced here.
-\todo{Ved ikke om det sidste her måske bare skal slettes ??}This solution with appending templates and then replacing is actually more effective at runtime rather than making functions and calling these functions in the outputCode. 
+\todo{Ved ikke om det sidste her måske bare skal slettes ??}This solution with appending templates and then replacing is actually more effective at runtime rather than making functions and calling these functions in the outputCode.
 Using functions will result in the assembly code using jumps, which results in more instructions, and might also disrupt the pipelining of the CPU.
 Therefore we deem this way of appending the code to be a good solution.
