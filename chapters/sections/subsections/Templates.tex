@@ -31,13 +31,13 @@ The file contains the code which can be seen on \myref{lst:OpenCLSetup2}.
 \end{lstlisting}
 
 This code creates the elements needed to launch a kernel.
-It finds the fastest hardware according to SimpleOpenCl which means it finds the device with the most number of compute units, no matter the type of device, be it a CPU or a \acrshort{gpu}.
+It finds the fastest hardware according to SimpleOpenCl which means it finds the device with the most number of compute units, no matter the type of device, be it a \acrshort{cpu} or a \acrshort{gpu}.
 For the remaining part of this section the fastest device is a \acrshort{gpu}.
 \texttt{global\_size} and \texttt{local\_size} are there to determine the amount of memory needed both globally and locally on the \acrshort{gpu}.
 These arrays are then filled out with different numbers corresponding to the columns and rows of the matrices or vectors being calculated upon.
 This way of appending templates to the outputCode string is used in different places in the code generation when handling the complex datatypes matrices and vectors.
 In fact whenever one of the following operators \texttt{+ , - , * , \# , \^ } are used with matrices or vectors a template is being appended to the outputCode.
-See \todo{indsæt myref} for a description of what each operator will produce in gamble.
+See \myref{tbl:matOps} for a description of what each operator will produce in gamble.
 
 When an assignment's rightside or a declaration's rightside consists of an expression using operators and matrices or vectors, the visitor's check for which operator is used and then inputs a launch kernel template depending on the operator.
 The compiler contains files which have the code for launching the kernel for the specific situation and also for the kernel itself.
@@ -95,6 +95,6 @@ __kernel void matrixMulScalar(__global §MATRIXTYPE§ *ma, §MATRIXTYPE§ scalar
 
 As can be seen the string \texttt{§MATRIXTYPE§} must also be replaced here.
 As mentioned before the kernel is launched for every set, and in this case for every coordinate in the matrix which is then multiplied by the scalar.
-\todo{Ved ikke om det sidste her måske bare skal slettes ??}This solution with appending templates and then replacing is actually more effective at runtime rather than making functions and calling these functions in the outputCode.
-Using functions will result in the assembly code using jumps, which results in more instructions, and might also disrupt the pipelining of the CPU.
-Therefore we deem this way of appending the code to be a good solution.
+%\todo{Ved ikke om det sidste her måske bare skal slettes ??}This solution with appending templates and then replacing is actually more effective at runtime rather than making functions and calling these functions in the outputCode.
+%Using functions will result in the assembly code using jumps, which results in more instructions, and might also disrupt the pipelining of the CPU.
+%Therefore we deem this way of appending the code to be a good solution.
