@@ -150,11 +150,11 @@ We define a BS-semantic for statements (except procedure calls)
 \end{equation}
 
 
-\subsection*{Matrix}
+\subsection*{Matrices and Vectors}
 \subsubsection{Matrix declaration}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ martix<int|float|bool>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } \begin{matrix} v=\begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix} \\ { a }_{ 1 }=2 \\ { a }_{ 2 }=2 \end{matrix}
-\end{equation}
+	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }*{ m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ b }_{ 1 },{ b }_{ 2 }] \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
+	\end{equation}
 
 \subsubsection{Addition}
 \begin{equation}
@@ -175,10 +175,20 @@ We define a BS-semantic for statements (except procedure calls)
 
 \subsubsection{Scalar product}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }\ast { a }_{ 1 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }={ a }_{ 1 } \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
+	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 3 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }\ast { a }_{ 3 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 2 }={ a }_{ 3 } \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
 \end{equation}
 
 \subsubsection{Transposed Matrix}
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad  }{ { e }_{ v },st\vdash { m }_{ 1 }\wedge { \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }={ v }_{ 1 }\wedge =matrix<>[{ a }_{ 2 },{ a }_{ 1 }] \end{matrix}
+\end{equation}
+
+\subsubsection{Mulindex Matrix}
+\begin{equation}
+	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }\#{ m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ b }_{ 1 },{ b }_{ 2 }] \\ v=matrix<>[{ a }_{ 1 }1*{ b }_{ 1 }1 ... { a }_{ 1 }n*{ b }_{ 1 }n,{ a }_{ 2 }1*{ b }_{ 2 }1 ... { a }_{ 2 }n*{ b }_{ 2 }n] \end{matrix}
+\end{equation}
+
+\subsubsection{Vector Dot Product}
+\begin{equation}
+	\frac { { e }_{ v },st\vdash { vec }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 3 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { vec }_{ 1 }\ast { a }_{ 3 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=vector<>[{ a }_{ 1 }] \\ { v }_{ 2 }={ a }_{ 3 } \\ v=({ v }_{ 2 }*{ a }_{ 1 }1+...+{ v }_{ 2 }*{ a }_{ 1 }n) \end{matrix}
 \end{equation}
