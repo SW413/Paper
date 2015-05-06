@@ -14,7 +14,7 @@ A transformation from a parse tree to an \acrshort{ast}, on the declaration: \te
 \end{figure}
 
 The parse tree is generated using a parser produced by compiling the grammar with ANTLR, which means we cannot decide which information is contained on the nodes of the tree.
-The nodes of the \acrshort{ast} can therefore be made to contain information for type and scope checking, which makes those phases a lot easier.
+The nodes of the \acrshort{ast} can therefore be made to contain information for type and scope checking, which helps in the contextual analysis phase.
 All that is needed to make this transformation, is to make classes for all the nodes of the \acrshort{ast}, a way to traverse the parsetree, and creating instances of the \acrshort{ast} nodes as the traversal is ongoing.
 
 
