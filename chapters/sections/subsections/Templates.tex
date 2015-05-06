@@ -58,7 +58,12 @@ sclManageArgsLaunchKernel(hardware, software, global_size, local_size, "%R %a",
 //END MATRIX SCALAR MULTIPLY
 \end{lstlisting}
 
-Before this code is appended any string with a \S is is replaced with the corresponding string depending on the situation.
+\texttt{global\_size} is set to be the size of the matrix, and a kernel is then launched for every set of possibilities of this size.
+This means that the power set excluding the empty set is created for the numbers ranging from 0 to the numbers put in \texttt{global\_size}.
+The software is where the hardware is chosen and also where the kernel being launched is set.
+Then the functions \texttt{sclManageArgsLaunchKernel()} handles the launching itself with the variables needed to launch the kernel.
+Before this code is appended any string with a \S is is replaced by the corresponding string depending on the situation.
+So \texttt{§MATRIX\_A§} is replaced with the id of the left matrix in the expression node.
 The code for replacing the strings can be seen on \myref{lst:replaceString}.
 
 \begin{lstlisting}[caption=Code for replacing strings with the corresponding information to be appended to the outputCode.,numbers=none,frame=tlrb,label={lst:replaceString}]
@@ -89,6 +94,7 @@ __kernel void matrixMulScalar(__global §MATRIXTYPE§ *ma, §MATRIXTYPE§ scalar
 \end{lstlisting}
 
 As can be seen the string \texttt{§MATRIXTYPE§} must also be replaced here.
+As mentioned before the kernel is launched for every set, and in this case for every coordinate in the matrix which is then multiplied by the scalar.
 \todo{Ved ikke om det sidste her måske bare skal slettes ??}This solution with appending templates and then replacing is actually more effective at runtime rather than making functions and calling these functions in the outputCode.
 Using functions will result in the assembly code using jumps, which results in more instructions, and might also disrupt the pipelining of the CPU.
 Therefore we deem this way of appending the code to be a good solution.
