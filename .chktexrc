@@ -1,4 +1,4 @@
-CmdLine { -n6 -n12 -v -q }
+CmdLine { -n6 -n12 -n36 -n13 -v2 -q }
 VerbEnvir
 {
     verbatim comment listing lstlisting verbatimtab rawhtml errexam picture texdraw

@@ -433,11 +433,15 @@
   }
 }
 % Use style: jenor
-\chapterstyle{jenor}
+%\chapterstyle{jenor}
+\usepackage{titlesec, blindtext}
+\definecolor{gray75}{gray}{0.75}
+\newcommand{\hsp}{\hspace{20pt}}
+\titleformat{\chapter}[hang]{\Huge\bfseries\vspace{-40pt}}{\thechapter\vspace{-20pt}\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries\vspace{-20pt}}
 
 %%% Misc stuff %%%
 % Use regular numbers for pages
-\pagenumbering{arabic}
+%\pagenumbering{arabic}
 % Word and letter counts
 \newcommand{\wordcount}{\input{preamble/sums/wordcount.sum}}
 \newcommand{\charcount}{\input{preamble/sums/charcount.sum}}

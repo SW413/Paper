@@ -26,7 +26,7 @@ Ambiguity is a feature of the grammar, not the language.
 
 \subsection{The dangling else problem}
 This section shows an example of how to change grammar's ambiguity problems, some tools can for generating parsers from grammar's, can solve these problems themselves.
-One of these tools \acrshort{antlr} will be discussed later in \todo{ref til \acrshort{antlr}}.
+One of these tools \acrshort{antlr} will be discussed later in \myref{sec:ANTLR}.
 
 A common mistake leading to ambiguous grammar is the dangling else problem. \citep{danglingelse}
 In many programming languages it is possible to have an if statement and an else statement, and inside the body of these also having if- and else statements. 
@@ -65,7 +65,7 @@ closed statement =
     | if clause closed statement else closed statement
 \end{lstlisting}
 
-Another way to resolve this issue is to force statement bodies of if statements, when followed by else statement, to be delimited by explicit blocks, such as \texttt{begin..end} used in Pascal or curly brackets (\texttt{\{...\}}) used in C and derivatives. 
+Another way to resolve this issue is to force statement bodies of if statements, when followed by else statement, to be delimited by explicit blocks, such as \texttt{begin..end} used in Pascal or curly brackets (\texttt{\{\ldots\}}) used in C and derivatives. 
 
 \subsection{Derivations of parse trees}\label{sec:parsetrees}
 A parser is a program which takes a string of symbols, and parses it into segments according to the rules specified in a grammar.
@@ -113,7 +113,7 @@ More powerful means that a grammar following it can produce more languages typic
 \begin{figure}[!ht]
 \centering
  \includegraphics[width=0.5\textwidth]{figures/classesofgrammars.png} % trim=4.85cm 15cm 0.85cm 1cm
-\caption{The hierarchy of \acrlong{cfg}. \citep{NvidiaCUDASeminar} \todo[inline]{TODO: Tikz figur med LL(*) indsat.}}\label{image:hierarchyofgrammars}
+\caption{A venndiagram showing the similarities between the different subclasses of CFGs. \citep{NvidiaCUDASeminar} \todo[inline]{TODO: Tikz figur med LL(*) indsat.}}\label{image:hierarchyofgrammars}
 \vspace{-15pt}
 \end{figure}
 \input{chapters/sections/GambleCFG.tex}

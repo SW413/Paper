@@ -1,12 +1,16 @@
 \section{Symbol Table}
-In a compiler it is useful to store information about the identifiers, variables and functions in a data structure. 
-This information can be useful for scope checking and type checking.
+To conduct scope checking and type checking in the compiler, the compiler need to store data about the identifiers, variables and functions in a data structure.
+An excellent data structure for this is a symbol table.
+Storing all this information in a symbol table makes it possibly for the compiler to conduct the contextual analysis.
 
-There are two common ways of implementing a Symbol Table; either you have one table which contains every identifier or you have a Symbol table for each scope. 
+An symbol table is an table like data structure which contains data regarding which context variable and constants is used in.
+While there exist different ways of implementing symbol tables, there exist no viable alternative to this data structure in our context.
+
+Two common ways of implementing a Symbol Table is as follows; either you have one table which contains every identifier or you have a Symbol table for each scope. 
 If constrained by memory, having a single symbol table can be beneficial, however having multiple symbol tables can simplify the code at a memory cost. 
 
 In \gls{gamble} there exists scopes, and for each of these scopes there is a corresponding symbol table. 
 Scopes inherit from each other so a scope can enclose another. 
 The outermost scope, the global scope, is where functions are declared; every scope is either directly enclosed by this scope or recursively.
-This means that every function can be called from anywhere within the source code - including within its own function declarations; allowing for recursive functions.
+This means that every function can be called from anywhere within the source code --- including within its own function declarations; allowing for recursive functions.
 
