@@ -14,11 +14,26 @@ As mentioned to do this effectively would require more information about the com
 Therefore the project group have decided that it is better to be sure that a computation can benefit from the \acrshort{gpu}, rather than risking moving computations that wont benefit as well as those that will.
 As such only those operations that the project group knows can benefit from the parallel abilities of the \acrshort{gpu} will be executed on the \acrshort{gpu}.
 
-
-
 %Knowing when to use GPU
+Even though a computation can be parallelised, does not neccessarily mean it should as is evident in \myref{image:benchmark}.
+This is an opportune point for optimising the object code to use the \acrshort{gpu} only when it leads to an increase in execution speed.
+A possibility of doing so would be to analyse whether or not an operation is both big enough and compatible with the \acrshort{gpu}.
+Performing such an analysis increases the time it takes to do code generation, and even so in a greater part, because of the lackluster information about the source code in the aspect of whether it be efficient on the \acrshort{gpu}.
+Because of the difficulty in dicerning not only if there will be an actual increase, but also if any custom functions created by the programmer are fit to run on the \acrshort{gpu} this optimisation is not made.
+Instead only vector and matrix operations already defined in the languange will be performed on the \acrshort{gpu}.
 
 %Optimising C code(CPU)
 
 %Optimising OpenCL Kernals
-
+A function that is to be run on the \acrshort{gpu} is in the OpenCL framework called a kernal.
+Since kernal code uses explicit memory handling, one must choose what memory space to allocate ones variables in, in the different kernals the better one untilises this memory the faster a kernal can be executed, as a result of memory higher in the memory hierarchy.
+\begin{figure}[h!]
+\centering
+ \includegraphics[width=1\textwidth]{figures/OpenCLOptimisation.png} % trim=4.85cm 15cm 0.85cm 1cm
+\caption{Execution speed of a matrix multiplication with different optimisation levels. \citep{CUDAOpenCLOptimisation}}\label{image:OpenCLOptCompare}
+\vspace{-15pt}
+\end{figure}
+As seen on \myref{image:OpenCLOptCompare} some possible optimisations include loop unrolling, common subexpression elimination and loop-invariant code mortion. These are taken as specific examples in this comparison because these optimisations are made in the \acrlong{ptx} code that CUDA compiles.
+An OpenCL C compiler also provides the option of doing optimisation upon the code, however it would seem that depending on the \acrshort{gpu} and platform one is working on optimastions must be altered and furthermore the ideal work-group size changes, making universal optimisation a difficult task to take on.
+Furthermore OpenCL uses JIT compilation to generate binary code to the appropriate device it is working with.
+While this allows it to be used on more platforms than one unlike CUDA, it also results in compiler optimisations being quite time-consuming and increases the total execution time.\citep{CUDAOpenCLOptimisation}
