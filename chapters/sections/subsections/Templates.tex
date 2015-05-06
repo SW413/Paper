@@ -81,7 +81,7 @@ private String matrixKernel(String kernelName, String aID, String bID, String re
 However this must also be done for the kernel itself, in the kernels the type is changed depending on the matrix or vector containing integers or floats, which makes it possible to use the same code in the code generator for replacing these strings, since the type is handled dynamically.
 
 The corresponding kernel for \myref{lst:kernelLaunch} can be seen on \myref{lst:kernel}.
-\begin{lstlisting}[caption=Kernel code for multiplying a matrix or vector with a scalar.,numbers=none,frame=tlrb,label={lst:replaceString}]
+\begin{lstlisting}[caption=Kernel code for multiplying a matrix or vector with a scalar.,numbers=none,frame=tlrb,label={lst:kernel}]
 __kernel void matrixMulScalar(__global §MATRIXTYPE§ *ma, §MATRIXTYPE§ scalar){
 	int global_x = get_global_id( 0);
 	ma[ global_x] *=  scalar;
