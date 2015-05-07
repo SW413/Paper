@@ -20,7 +20,7 @@ Another reason being that compiled programs often is compiled to a low level lan
 
 Regarding errors both model can be useful, there are strong cases for both the compiler and the interpreter model.
 A case for an interpreter and a design which catch most errors at runtime would be that design would familiarize developers of \gls{gamble} which this workflow, which would make it easier to develop the language in a direction with full or partial dynamics types, since type errors for dynamics types has to be checked at runtime.
-A wholly different case for the compiler choice would be that since the language is expecting to be untilised for large calculations with a long runtime, it would be laborious for the programmer if errors occurs at runtime, since the program could have run calculations for at long peroid of time.
+A wholly different case for the compiler choice would be that since the language is expecting to be untilised for large calculations with a long runtime, it would be laborious for the programmer if errors occurs at runtime, since the program could have run calculations for at long period of time.
 This case speaks for a compiler with a good error checking system, which could catch most errors a compile time before execution of the program.\citep{Sebesta, Crafting_book}
 
 When deciding between these two options it is also necessary to factor in which option has the best support for accessing the \gls{gpu}.
@@ -29,13 +29,26 @@ Based on the research done during this project, it is the groups impression that
 Based on these considerations it has been chosen that an compiler would be the best choice for \gls{gamble} to achieve the desired goals.
 
 \section{Target language}
-Now that it is chosen \gls{gamble} should be compiled the next chioce the consider is what the target langauge of the compiler should be.
-The target language is the langauge of  the compiler's output.
+Now that it is chosen \gls{gamble} should be compiled the next choice the consider is what the target language of the compiler should be.
+The target language is the language of  the compiler's output.
 
+The starting point for finding a good target language was to go back to the different languages and libraries found during the examination of existing solutions in \myref{sec:state_of_the_art}.
+The two options that stood out the most and most other solutions seemed to be based on was CUDA by NVIDIA and OpenCL by Khronos.
+Therefore it was these two options which was considered as target language for \gls{gamble}.
+Hereafter follows a short comparison of the two options and last a choice to which solution deemed most advantageous for \gls{gamble}.
 
+Firstly it need to be made clear, to use either of these solutions, the host computer needs a framework installed to compile and execute the code.
+Both frameworks are implemented in different existing programming languages like Java, C++ and C.
+We chose to go with a C implementation due the familiarity for the project group.
 
+CUDA is as said developed by NVIDIA and does only support NVIDIA hardware through there exist solutions like GPU Ocelot which let you run CUDA code on an wider variety of platforms like AMD and Intel.\citep{Diamos:2010:ODO:1854273.1854318}
+OpenCL natively supports large variety of hardware as mentioned in \myref{sec:state_of_the_art}.
+Both frameworks utilise the \gls{gpu} by writing special functions which can be run in parallel on either the \gls{gpu} or \gls{cpu}.\todo{wtf should i do here? Har svært ved at argue CL over cuda}
 
-Something about why we chose openCL C. 
- evt. why not cuda.
+While GPU Oclelot exist it is deemed OpenCL would be the broadest and most general solution and it is therefore chosen as the target language for \gls{gamble}.
 
- lidt om hvordan openCL c fungerer (kernels og hetrogen).
+Since initial testing shows it can be hard to manage hardware in OpenCL a library called SimpleOpenCL is used.
+This e.g. allows functions calls which find fastest hardware on a given host, this found among available \gls{gpu}'s and \gls{cpu}'s to a host.\citep{simpecl}
+The main focus of the OpenCL code can therefor be on the kernels which is the functions that's allows parallel computations on the any given hardware.
+
+In the  following chapter a general overview of how the compiler will be designed is presented.
