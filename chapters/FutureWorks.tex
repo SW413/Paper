@@ -1,4 +1,35 @@
-\chapter{Future Works} % (fold)
-\label{cha:future_works}
-\todo{this}
-% chapter future_works (end)
+\chapter{Future Works}\label{cha:future_works}
+While the compiler is complete in the sense of this paper, one can always expand.
+In this chapter some of the possible expansions will be discussed.
+
+\section{Linear Algebra}\label{improve:LIAL}
+%More operations
+%More algortihms
+During development of \gls{gamble} the focus have been upon linear algebra.
+As such incorporating more operations such as matrix transpose or finding the inverse matrix, would remove the neccessity of the programmers themselves having to develop functions to do so.
+Furthermore this would make it easier to implement algorithms which requires such operations to be done.
+Further development could also include some of the most common algorithms such as Gaussian elimination.
+Incorporating these improvements would not allow the programmer to use these operations and functions with ease, it would also allow for optimisation of these.
+As a result of how the \acrshort{gpu} is used, those operations and functions created by the programmer, may well use the \acrshort{gpu} but not as much as it could be used, nor as effectively.
+As such making these improvements would not only increase the writeability of \gls{gamble} but also increase the performance.
+
+\section{GPU usage criteria}
+%A more dynamic use of GPU through analysis
+%Use GPU for more than matrix and vector operations
+As aformentioned \gls{gamble} performs all matrix and vector operations on the \acrshort{gpu}.
+While this should be sufficient for computations on big sets of data as the language has targeted, this is not the optimal solution.
+A possible expansion would be to optimise further to only utilise the \acrshort{gpu} when an increase in performance is to be expected from doing so.
+An analysis of the amount of computations required as well as the hardware available, would help towards gaining the best performance possible.
+Even further development should also look further than only performing matrix and vector operations on the \acrshort{gpu}.
+This was chosen because that all operations currently implemented towards doing matrix and vector operations are parallelisable.
+If implementing new operations and functions one must consider whether these benefit from the use or \acrshort{gpu} or not.
+For further development of \gls{gamble} one should also consider using the \acrshort{gpu} for more than matrix and vector operations. 
+Rather than blindly disregarding loops one could have the compiler check whether or not the loop in question could be parallelised, and perhaps perform some of the optimisations mentioned in \myref{optimisation} upon said loop.
+ 
+%Kernal optimisation
+
+%Platform performance
+
+%Usage of the GPU
+
+%From LIAL to Scientific computing
