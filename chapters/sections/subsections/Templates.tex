@@ -58,9 +58,18 @@ sclManageArgsLaunchKernel(hardware, software, global_size, local_size, "%R %a",
 //END MATRIX SCALAR MULTIPLY
 \end{lstlisting}
 
-\texttt{global\_size} is set to be the size of the matrix, and a kernel is then launched for every set of possibilities of this size.
-This means that the power set excluding the empty set is created for the numbers ranging from 0 to the numbers put in \texttt{global\_size}.
-The software is where the hardware is chosen and also where the kernel being launched is set.
+\texttt{global\_size} is set to be the size of the matrix, and a kernel is then launched for every index in the matrix.
+This is decided by setting the indexes in \texttt{global\_size}.
+If the size of a matrix was 4, a kernel would be launched with 1,2,3 and 4 as the indexes.
+The implementation of multiplying a matrix with a scalar is actually made where the matrix is interpreted as a single vector where each row comes after the other.
+If the matrix form is needed the rows of the matrix would be places in \texttt{global\_size[0]} and the columns in \texttt{global\_size[1]}.
+If the example of a size 4 matrix is still used, the following sets of kernels would be sent:
+\begin{equation}
+\{0,0\}, \{0,1\}, \{1,0\}, \{1,1\}
+\end{equation}
+So a kernel for each index in the matrix.
+This can then be used in the kernel to determine which row and which column the index being sent to the kernel for execution possess.
+The \texttt{software} is where the kernel being launched is set, both the file and the kernel name, the hardware for the execution must also be set.
 Then the functions \texttt{sclManageArgsLaunchKernel()} handles the launching itself with the variables needed to launch the kernel.
 Before this code is appended any string with a \S is is replaced by the corresponding string depending on the situation.
 So \texttt{§MATRIX\_A§} is replaced with the id of the left matrix in the expression node.
@@ -94,7 +103,7 @@ __kernel void matrixMulScalar(__global §MATRIXTYPE§ *ma, §MATRIXTYPE§ scalar
 \end{lstlisting}
 
 As can be seen the string \texttt{§MATRIXTYPE§} must also be replaced here.
-As mentioned before the kernel is launched for every set, and in this case for every coordinate in the matrix which is then multiplied by the scalar.
-%\todo{Ved ikke om det sidste her måske bare skal slettes ??}This solution with appending templates and then replacing is actually more effective at runtime rather than making functions and calling these functions in the outputCode.
-%Using functions will result in the assembly code using jumps, which results in more instructions, and might also disrupt the pipelining of the CPU.
-%Therefore we deem this way of appending the code to be a good solution.
+As mentioned before the kernel is launched for every possible index in the matrix.
+The index is retrieved by calling \texttt{get\_global\_id(0);}.
+and then this index is used to access the matrix at the specific index and multiply the value at the index with the scalar.
+
