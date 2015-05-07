@@ -1,0 +1,15 @@
+\subsubsection*{From OpenCL to execution}
+After the \gls{gamble} compiler have completed the output is OpenCL C code.
+This is compiled by a C-compiler such as GCC to produce code the \acrshort{cpu} and \acrshort{gpu} can execute.
+During the compilation the OpenCL headers must be accessable, this is to provide the functions and types used. 
+Aditionally the \gls{gamble} standard libary, containing functions such as \texttt{matrixToFile} and \texttt{fileToMatrix} must also be included and compiled. 
+This produces an executable for the platform targetted by the compiler, this will most often be the platform running, such as x86-64 on Linux.
+The same executeable is not usable for another platform, e.g. ARM, or on another operating system, e.g. Windows or OS X. 
+However to maintain some crossplatform portability a ``MakeFile'' is used. 
+A MakeFile is a file in the syntax which the make utility can execute. 
+It is a set of rules which ensures that the correct compiler, path, headers, etc. are used during compilation on one of multiple platforms. 
+
+This means that after running the \gls{gamble} compiler, on a configured computer, e.g. has a OpenCL compadable unit, a compiler etc. , the make command can be used to build a binary to execute.
+
+The compilation of the kernels are done at runtime, this is in order to optimise them for the unit used for the execution. 
+This unit might be unknown at the compile-time of the rest. 
