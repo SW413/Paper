@@ -145,7 +145,7 @@ Because of high implementation cost in the compiler, it is not possible to use a
 
 \gls{gamble} also have certain functions built into the language for varying reasons.
 The most unique function in question here will be the \texttt{print} function.
-This function is unique in the sense that it enables the programmer to use strings as a parameter, a data type otherwise not implemented in the language.
+This function is special in the sense that it enables the programmer to use strings as a parameter, a data type otherwise not implemented in the language.
 This is enabled such that the programmer can use this feature to write out messages to the console. 
 This is both useful for output and debugging the source code.
 
@@ -160,6 +160,11 @@ This creates a matrix with int values a similar function exists for float.
 These takes three arguments as input, the amount of rows, amount of columns, and what value to place at every entry.
 This function builds upon the syntax for initialising a matrix by providing dimensions rather than input, it merely alters the initialised value depending on the argument provided.
 Other functions are created out of necessity, functions for arithmetics such as multiply and addition also exist, as operators between matrices are not a valid expression.
+
+In order to allow users of \gls{gamble} to use data dynamicly and save the result, there are a built in \texttt{matrixToFile}--function and a \texttt{fileToMatrix}--function. 
+The files which can be used must be of a fixed format, and the output of \texttt{matrixToFile} must be useable for \texttt{fileToMatrix}.
+One of the parameters are a string which identifies the file to be used, outside from the \texttt{print}--function these are the only places where strings are allowed in \gls{gamble}.
+\todo[inline]{Lav table/listing med special functions/stdlib?} 
 
 \subsection*{Function identifiers}
 When declaring a \gls{gamble} function it is required to write the body of the function immediately after.
