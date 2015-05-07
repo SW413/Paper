@@ -1,0 +1,64 @@
+\chapter{Semantics}
+In this section the semantics for \acrshort{gamble} will be shown and explained.
+Operational semantics is necessary to provide detailed information about the mathematical operations behind the language.
+There exist two way of showing operational semantics for a language.
+Natural semantics (Big-step semantics) and structural operational semantics (small-step semantics), it is deiced to use big-step semantics.
+The semantics is organized as follow:
+
+\begin{align*}
+	\textbf{a} \in  &Arithmetic\quad expression\\
+	\textbf{v} \in  &Variable\\
+	\textbf{m} \in  &Matrix\\
+	\textbf{vec} \in  &Vector\\
+\end{align*}
+
+\textbf{V} is meant to store the result, this can be both a value, a vector or a matrix.
+Every Big-Step semantic showing operations on a matrix, is also possible to perform on a vector, which evaluate to a one-dimension matrix.
+Every big-step semantic showing operations on a vector can not be used on a matrix, since it requires the dimensions to fit those of a one-dimension vector.
+
+A few of the big-step semantics for \acrshort{gamble} will be shown as follow, the rest of the semantics is seen \myref{app:semantics}.
+The most few most important operational semantics there will be explained is, Variable declaration, Statements assignment, Matrix declaration, Matrix- Matrix Multiplication and Scalar product.
+
+
+\subsection*{Declaring Variables}
+Any non-empty variable declaration will modify the variable environment since the new variables will be bound to the new location.
+A variable declaration will also modify the store, since the new location will be initialised to contain the initial values of the new variables.
+The transition relation describing variable declarations defines a big-step semantic, since the allocation of new address space for newly declared variables is an invisible operation.
+
+\subsubsection{Variable declaration}
+\begin{equation}
+	\frac { <{ D }_{ v },{ e }_{ v }^{ `` },st[\iota \mapsto v]>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ ` },{ st }^{ ` }> }{ <var\quad x:=a;Dv,{ e }_{ v }st>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ ` },{ st }^{ ` }> }
+\end{equation}
+
+\subsection*{Statements}
+The effect of a statement is that the store may change, since a statement may modify the values of variables involved through assignments.
+A statement should not modify the variable environment.
+We define a BS-semantic for statements (except procedure calls)
+
+\subsubsection{Assignment}
+\begin{align*}
+	&{ e }_{ v }\vdash <x=a,st>\rightarrow st[\iota \mapsto v]\\
+	where\quad &{ e }_{ v },st\vdash a{ \rightarrow  }_{ A }v\quad and\quad  { e }_{ v }(x)=\iota 
+\end{align*}
+
+\subsection*{Matrices and Vectors}
+A matrix is referred to as seen below, the superscript is referred to as the index of the matrix, while the subscript is the size of the matrix.
+\begin{align*}
+	\begin{bmatrix} { { a }_{ 1,2 }^{ 1,1 } } & . & . & . & { a }_{ 1 }^{ 1,n } \\ . & . &  &  &  \\ . &  & . &  &  \\ . &  &  & . &  \\ { a }_{ 2 }^{ n,1 } &  &  &  & { a }_{ 1,2 }^{ n } \end{bmatrix}
+\end{align*}
+
+\subsubsection{Matrix declaration}
+\begin{equation}
+	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }*{ m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ b }_{ 1 },{ b }_{ 2 }] \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
+	\end{equation}
+
+\subsubsection{Matrix, Matrix Multiplication}
+\begin{equation}
+	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }\ast { m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
+\end{equation}
+
+\subsubsection{Scalar product}
+\begin{equation}
+	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 3 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }\ast { a }_{ 3 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 2 }={ a }_{ 3 } \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
+\end{equation}
+

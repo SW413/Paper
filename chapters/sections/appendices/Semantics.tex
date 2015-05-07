@@ -1,4 +1,4 @@
-\chapter{Semantics}
+\chapter{Semantics}\label{app:semantics}
 \subsection*{Arithmetic}
 The semantics of statements and declarations both depend on the semantics of arithmetic expressions.
 Arithmetic expressions may contain variables.
@@ -81,7 +81,6 @@ The transition relation describing variable declarations defines a big-step sema
 The effect of a statement is that the store may change, since a statement may modify the values of variables involved through assignments.
 A statement should not modify the variable environment.
 We define a BS-semantic for statements (except procedure calls)
-\TODO{Jeg er ikke sikker på om transitions skal med}
 \subsubsection{Transitions}
 \begin{equation}
 	{ e }_{ v },{ e }_{ p }\vdash <S,st>\rightarrow { st }^{ ` }
@@ -185,10 +184,10 @@ We define a BS-semantic for statements (except procedure calls)
 
 \subsubsection{Mulindex Matrix}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }\#{ m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ b }_{ 1 },{ b }_{ 2 }] \\ v=matrix<>[{ a }_{ 1 }1*{ b }_{ 1 }1 ... { a }_{ 1 }n*{ b }_{ 1 }n,{ a }_{ 2 }1*{ b }_{ 2 }1 ... { a }_{ 2 }n*{ b }_{ 2 }n] \end{matrix}
+	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }\#{ m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ b }_{ 1 },{ b }_{ 2 }] \\ v=matrix<>[{ a }_{ 1 }^{ 1,1 }*{ b }_{ 1 }^{ 1,1 }...{ a }_{ 1 }^{ n,n }*{ b }_{ 1 }^{ n,n },{ a }_{ 2 }^{ 1,1 }*{ b }_{ 2 }^{ 1,1 }...{ a }_{ 2 }^{ n,n }*{ b }_{ 2 }^{ n,n }] \end{matrix}
 \end{equation}
 
 \subsubsection{Vector Dot Product}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { vec }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 3 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { vec }_{ 1 }\ast { a }_{ 3 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=vector<>[{ a }_{ 1 }] \\ { v }_{ 2 }={ a }_{ 3 } \\ v=({ v }_{ 2 }*{ a }_{ 1 }1+...+{ v }_{ 2 }*{ a }_{ 1 }n) \end{matrix}
+	\frac { { e }_{ v },st\vdash { vec }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 3 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { vec }_{ 1 }\ast { a }_{ 3 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=vector<>[{ a }_{ 1 }] \\ { v }_{ 2 }={ a }_{ 3 } \\ v=({ v }_{ 2 }*{ a }_{ 1 }^{ 1,1 })+(...)+{ (v }_{ 2 }*{ a }_{ 1 }^{ n,n }) \end{matrix}
 \end{equation}
