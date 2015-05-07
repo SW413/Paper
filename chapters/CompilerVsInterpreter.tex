@@ -8,11 +8,34 @@ When designing an language an important decision is whether a source program in 
 This is a choice thats need to be settled before the design of the compiler or interpreter can begin.
 Both compilers and interpreters has it advantages and disadvantages, it is those that need to be evaluated in the context of the goal of the language.
 The pro's and con's expressed in \myref{tbl:compint} does not reflect every difference between a compiler, but rather those aspect deemed important in respect to \gls{gamble}.
+
 \input{figures/CompilerList.tex}
 
+The aspect of the two options presented in \myref{tbl:compint} is the main concerns in this project when deciding which method \gls{gamble} would benefit most form.
+
+Since, as stated in \myref{sec:problem}, the goal of \gls{gamble} is to perform matrix operations on the GPU, the compiler model has an advantage over interpreters, because an compiled program runs faster than the interpreted. 
+This is especially important considering the reason \gls{gamble} will utilize the \acrshort{gpu} is speed concerns on large sets calculations.
+This speed increase is an effect of the compiler's architecture where it compiles the entire source code rather than interpret the source \acrfull{jit}.
+Another reason being that compiled programs often is compiled to a low level language which often have a more direct way of utilising the hardware better than a virtual environment of an interpreter.
+
+Regarding errors both model can be useful, there are strong cases for both the compiler and the interpreter model.
+A case for an interpreter and a design which catch most errors at runtime would be that design would familiarize developers of \gls{gamble} which this workflow, which would make it easier to develop the language in a direction with full or partial dynamics types, since type errors for dynamics types has to be checked at runtime.
+A wholly different case for the compiler choice would be that since the language is expecting to be untilised for large calculations with a long runtime, it would be laborious for the programmer if errors occurs at runtime, since the program could have run calculations for at long peroid of time.
+This case speaks for a compiler with a good error checking system, which could catch most errors a compile time before execution of the program.\citep{Sebesta, Crafting_book}
+
+When deciding between these two options it is also necessary to factor in which option has the best support for accessing the \gls{gpu}.
+Based on the research done during this project, it is the groups impression that compiled languages has advantage accessing the \gls{gpu} over virtual environments of interpreted languages.
+
+Based on these considerations it has been chosen that an compiler would be the best choice for \gls{gamble} to achieve the desired goals.
 
 \section{Target language}
+Now that it is chosen \gls{gamble} should be compiled the next chioce the consider is what the target langauge of the compiler should be.
+The target language is the langauge of  the compiler's output.
+
+
+
+
 Something about why we chose openCL C. 
  evt. why not cuda.
 
- lidt om hvordan openCL c fungerer (kernels og hetrogen)
+ lidt om hvordan openCL c fungerer (kernels og hetrogen).
