@@ -1,13 +1,13 @@
 \subsection*{Design}\label{subsec:DesignErrorHandling}
 The source code given to the \gls{gamble} compiler may contain errors and warnings, these errors are found and uncovered in various stages of the compiler.   
-In the syntax analysis, all syntactic errors are found, and the compilation is stopped, since it would not be advised to further compile source code, which contains fundamental syntactic errors.
+In the syntax analysis, all syntactic errors are found, and the compilation is stopped if errors are found, since it would not be advised to further compile source code, which contains fundamental syntactic errors.
 However it should be noted that the entire syntax analysis is completed before stopping the compiler, hence all syntactic errors are collected and reported to the user.
 This makes the process of resolving syntactic errors less tedious for the programmer, than if the compiler would stop every time a single error was detected. 
 A core element of error handling is scope and type related errors, these are found in the contextual analysis phase of the compiler.
 As with the syntactic analysis, the compiler collects all errors before stopping the compile of the source code. 
 The following errors and warnings are reported by the \gls{gamble} compiler:
 \begin{description}
-	\item[Arguments error]\hfill\\ 
+	\item[Argument error]\hfill\\ 
 	The arguments required in a function call doesn't match the ones used.
 	\item[Redeclaration error]\hfill\\ 
 	A variable or function with the same name is already declared.
@@ -31,7 +31,7 @@ There is also an integer indicating which line the error is contained on.
 This enhances the error reporting process, making it easier for users to debug. 
 As an example the class for \texttt{UnDeclaredError} is shown in %\myref{lst:undeclarederrorclass}.
 Firstly there are variables which contain information needed to report the error to the programmer. 
-Then there is a constructor which simply assigns all values given to it to the new objects fields.
+Then there is a constructor which simply assigns all values given to it to the new object's fields.
 Lastly there is the \texttt{toString} method which is overridden from the implementation in the \texttt{LanguageError} class. 
 An example of an \texttt{UnDeclaredError} is: \texttt{Error[line   42]-> Undeclared variable towel in scope Local}. %Sneaky H2G2 reference 
 
