@@ -6,7 +6,7 @@ The focus for \gls{gamble} is to use the computational powers of the \acrshort{g
 As described in \myref{sec:state_of_the_art} several libraries and languages allows the programmer to explicitly designate workloads to the \acrshort{gpu} however this often requires explicit memory handling as well.
 Keeping \gls{gamble} familiar to other languages makes it more accessible and reduces the time required for users to familiarize themselves with it.
 This is done by using a C-like syntax, while stripping \gls{gamble} of features we deem not necessary for a language which main focus lies in easy access to \acrshort{gpgpu} programming and linear algebra calculations.
-The C-like syntax is chosen because the top 5 languages on Tiobe's list of most popular programming languages, is C-like, and therefore if \gls{gamble} resembles these languages, it will be easier to start programming in \gls{gamble}.\citep{TIOBE}
+The C-like syntax is chosen because the top 5 languages on Tiobe's list of most popular programming languages, is C-like, and therefore if \gls{gamble} resembles these languages, it will be more familiar to start programming in \gls{gamble} which in turn makes it easier to implement ones algorithms.\citep{TIOBE}
 As the \acrshort{gpu} is the resource being used to achieve more computational power, the data computed must also be applicable to the niche of the GPU, i.e. the data must be parallelisable as explained in \myref{sec:comparch}.
 This basic need will influence how data is represented, and also put focus onto matrices and vector calculations, which as mentioned before can often be parallelised.
 
@@ -27,6 +27,6 @@ This makes \gls{gamble} simpler, and therefore both easier to read and write.
 
 As mentioned the main purpose of \gls{gamble} is to use the \acrshort{gpu} for computations, and is focused on doing computations, not developing new software.
 As such \gls{gamble} would most often be used where this niche is required.
-It may even be likely that it is not used when developing an algorithm to do computations, but first used once the algorithm is complete, and can be applied to bigger sets of data.
+It may even be likely that it is not used when developing an algorithm to do computations, but first used once the algorithm is to be implemented, and can be applied to bigger sets of data.\citep{AlgorithmDesign}
 This is because of the large overhead as explained in \myref{sec:comparch}, it will be faster to perform a test of an algorithm with smaller datasets in other languages, like C.
 Therefore to use the niche that \gls{gamble} proclaims, having the language be familiar makes it easier to use for its pure computational aspect, and improves on the \gls{gamble}'s read- and writability.

@@ -1,0 +1,4 @@
+The compiler developed by the project group implements a pretty printer.
+A pretty printer is used to ensure that no information is lost in the process of converting the source code into a parse tree followed by the conversion to an \acrshort{ast}.
+It does so by traversing the \acrshort{ast} and outputting the original source code execpt for code which is not parsed, e.g. whitespace and comments.
+This output should then be a valid input for the compiler, if this holds true it also serves to prove that the pretty printer indeed working as intended.
