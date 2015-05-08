@@ -28,8 +28,18 @@ In the code generation phase the output code is generated from all the informati
 The target language of this compiler is OpenCL C.
 To compile OpenCL C code additional software for the GPU is required, depending on the machine the path to this software may be required when compiling, as such one cannot simply run this on all machines.
 By compiling the OpenCL C code, it is translated into the computer's instruction set and then further into machine code, which the computer understands.
-This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using the specific instruction set, not only gives problems targeting more types of GPUs but is also way too demanding for the project group to understand let alone use in just one semester.
+This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using its specific instruction set, not only gives problems targeting more types of GPUs but is also way too demanding for the project group to understand let alone use in just one semester.
 Using OpenCL C, the target language is still low level compared to Java or C\#, and C has even been characterised as a portable assembly language.\citep{CPort}
+
+The overall structure of the compiler is also implemented using these phases as seen on figure \myref{fig:compilerOverview}.
+This separation helps give an overview when working with the compiler, all the phases are distinctly separated, which makes it easier to make changes, and find where changes need to be made.
+When adding a feature to the language, it is also simplified since the feature has to be supported in each of the phases, so as a programmer work must be done in each phase.
+\begin{sidewaysfigure}[H]
+\centering
+\includegraphics[width=1\textwidth]{figures/ClassDiagrams/DiagramOfCallsFromMain.pdf}
+\caption{Diagram showing the structure of the compiler by showing the \texttt{main()} class' function calls.}\label{fig:compilerOverview}
+\end{sidewaysfigure}
+
 
 \begin{figure}
 \centering
