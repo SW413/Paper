@@ -149,37 +149,37 @@ We define a BS-semantic for statements (except procedure calls)
 \end{equation}
 
 
-\subsection*{Matrices and Vectors}
+\subsection*{Matrices and vectors}
 \subsubsection{Matrix declaration}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }*{ m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ b }_{ 1 },{ b }_{ 2 }] \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
-	\end{equation}
+	\frac { { e }_{ v },st\vdash j{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash k{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { M }^{ 1 }\quad =\quad martix<int|float|bool>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } ,{ M }^{ 1 }[{ v }_{ 1 },{ v }_{ 2 }]=\begin{bmatrix} { 0 } & \dots  & 0 \\ \vdots  & \ddots  &  \\ 0 &  & 0 \end{bmatrix}
+\end{equation}
 
 \subsubsection{Addition}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }+{ m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ v={ v }_{ 1 }+{ v }_{ 2 } \end{matrix}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }+{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }=matrix<>[j,k] \\ v=\begin{bmatrix} { { m }_{ 1,1 }^{ 1 }+m }_{ 1,1 }^{ 2 } & \dots  & { { m }_{ 1,k }^{ 1 }+m }_{ 1,k }^{ 1 } \\ \vdots  & \ddots  &  \\ { { m }_{ j,1 }^{ 1 }+m }_{ j,1 }^{ 1 } &  & { { m }_{ j,k }^{ 1 }+m }_{ j,k }^{ 1 } \end{bmatrix} \end{matrix}
 \end{equation}
 
 
 \subsubsection{Subtraction}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }-{ m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ v={ v }_{ 1 }-{ v }_{ 2 } \end{matrix}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }-{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }=matrix<>[j,k] \\ v=\begin{bmatrix} { { m }_{ 1,1 }^{ 1 }-m }_{ 1,1 }^{ 2 } & \dots  & { { m }_{ 1,k }^{ 1 }-m }_{ 1,k }^{ 1 } \\ \vdots  & \ddots  &  \\ { { m }_{ j,1 }^{ 1 }-m }_{ j,1 }^{ 1 } &  & { { m }_{ j,k }^{ 1 }-m }_{ j,k }^{ 1 } \end{bmatrix} \end{matrix}
 \end{equation}
 
 
-\subsubsection{Matrix, Matrix Multiplication}
+\subsubsection{Matrix product}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }\ast { m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }*{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }=matrix<>[j,k] \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
 \end{equation}
 
 \subsubsection{Scalar product}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 3 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }\ast { a }_{ 3 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 2 }={ a }_{ 3 } \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }\ast { a }_{ 1 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }={ a }_{ 1 } \\ v=\begin{bmatrix} { { a }_{ 1 }*m }_{ 1,1 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 1,k }^{ 1 } \\ \vdots  & \ddots  &  \\ { { a }_{ 1 }*m }_{ j,1 }^{ 1 } &  & { { a }_{ 1 }*m }_{ j,k }^{ 1 } \end{bmatrix} \end{matrix}
 \end{equation}
 
 \subsubsection{Transposed Matrix}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad  }{ { e }_{ v },st\vdash { m }_{ 1 }\wedge { \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }={ v }_{ 1 }\wedge =matrix<>[{ a }_{ 2 },{ a }_{ 1 }] \end{matrix}
+	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad  }{ { e }_{ v },st\vdash { m }_{ 1 }\wedge { \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[n,m] \\ { v }={ v }_{ 1 }\wedge =matrix<>[n,m] \end{matrix}
 \end{equation}
 
 \subsubsection{Mulindex Matrix}

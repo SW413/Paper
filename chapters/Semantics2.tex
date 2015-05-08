@@ -44,12 +44,12 @@ We define a BS-semantic for statements (except procedure calls)
 \subsection*{Matrices and Vectors}
 A matrix is referred to as seen below, the superscript is referred to as the index of the matrix, while the subscript is the size of the matrix.
 \begin{align*}
-	\begin{bmatrix} { { a }_{ 1,2 }^{ 1,1 } } & . & . & . & { a }_{ 1 }^{ 1,n } \\ . & . &  &  &  \\ . &  & . &  &  \\ . &  &  & . &  \\ { a }_{ 2 }^{ n,1 } &  &  &  & { a }_{ 1,2 }^{ n } \end{bmatrix}
+	\begin{bmatrix} { { m }_{ 1,1 }^{ n } } & \dots  & { m }_{ 1,k }^{ n } \\ \vdots  & \ddots  &  \\ { m }_{ j,1 }^{ n } &  & { m }_{ j,k }^{ n } \end{bmatrix}
 \end{align*}
 
 \subsubsection{Matrix declaration}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }*{ m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ b }_{ 1 },{ b }_{ 2 }] \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
+	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ martix<int|float|bool>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } \begin{matrix} v=\begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix} \\ { a }_{ 1 }=2 \\ { a }_{ 2 }=2 \end{matrix}
 	\end{equation}
 
 \subsubsection{Matrix product}
