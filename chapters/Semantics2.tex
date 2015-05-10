@@ -16,6 +16,9 @@ The semantics is organized as follow:
 Every big-step semantic showing operations on a matrix, is also possible to perform on a vector, which evaluate to a one-dimension matrix.
 Every big-step semantic showing operations on a vector can not be used on a matrix, since it requires the dimensions to fit those of a one-dimension vector.
 
+The variable environment(${ e }_{ v }$) is a function that for each variable tells us to which storage location it is bound. In other words, a variable environment corresponds to a symbol table.
+The store ($st$) is a function that for each storage location tells us which value is found at the location. In other words, a store corresponds to a complete description of the contents of the memory.\citep{EnvSt_Semantics}
+
 A few of the big-step semantics for \gls{gamble} is included in this chapter, semantics for the rest of the language is seen \myref{app:semantics}.
 %The most few most important operational semantics there will be explained is, Variable declaration, Statements assignment, Matrix declaration, Matrix- Matrix Multiplication and Scalar product.
 A few of the most important and interesting operational semantics there will be explained is, variable declaration, statements assignment, matrix declaration, , matrix product and scalar product.
@@ -49,16 +52,16 @@ A matrix is referred to as seen below, the superscript is referred to as the ind
 
 \subsubsection{Matrix declaration}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ martix<int|float|bool>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } \begin{matrix} v=\begin{bmatrix} 0 & 0 \\ 0 & 0 \end{bmatrix} \\ { a }_{ 1 }=2 \\ { a }_{ 2 }=2 \end{matrix}
+	\frac { { e }_{ v },st\vdash j{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash k{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { M }^{ 1 }\quad =\quad martix<int|float|bool>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } ,{ M }^{ 1 }[{ v }_{ 1 },{ v }_{ 2 }]=\begin{bmatrix} { 0 } & \dots  & 0 \\ \vdots  & \ddots  &  \\ 0 &  & 0 \end{bmatrix}
 	\end{equation}
 
 \subsubsection{Matrix product}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { m }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }\ast { m }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 2 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }*{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }=matrix<>[j,k] \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
 \end{equation}
 
 \subsubsection{Scalar product}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 3 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { m }_{ 1 }\ast { a }_{ 3 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[{ a }_{ 1 },{ a }_{ 2 }] \\ { v }_{ 2 }={ a }_{ 3 } \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }\ast { a }_{ 1 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }={ a }_{ 1 } \\ v=\begin{bmatrix} { { a }_{ 1 }*m }_{ 1,1 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ j,1 }^{ 1 } \\ \vdots  & \ddots  &  \\ { { a }_{ 1 }*m }_{ 1,k }^{ 1 } &  & { { a }_{ 1 }*m }_{ j,k }^{ 1 } \end{bmatrix} \end{matrix}
 \end{equation}
 
