@@ -16,8 +16,8 @@ The semantics is organized as follow:
 Every big-step semantic showing operations on a matrix, is also possible to perform on a vector, which evaluate to a one-dimension matrix.
 Every big-step semantic showing operations on a vector can not be used on a matrix, since it requires the dimensions to fit those of a one-dimension vector.
 
-The variable environment(${ e }_{ v }$) is a function that for each variable tells us to which storage location it is bound. In other words, a variable environment corresponds to a symbol table.
-The store ($st$) is a function that for each storage location tells us which value is found at the location. In other words, a store corresponds to a complete description of the contents of the memory.\citep{EnvSt_Semantics}
+The variable environment(${ e }_{ v }$) is a function that for each variable define to which storage location it is bound to. A variable environment corresponds to a symbol table.
+The store ($st$) is a function that for each storage location tells us which value is stored in the location. A store corresponds to a complete description of the contents of the memory.\citep{EnvSt_Semantics}
 
 A few of the big-step semantics for \gls{gamble} is included in this chapter, semantics for the rest of the language is seen \myref{app:semantics}.
 %The most few most important operational semantics there will be explained is, Variable declaration, Statements assignment, Matrix declaration, Matrix- Matrix Multiplication and Scalar product.
