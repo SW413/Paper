@@ -1,3 +1,4 @@
+\info[inline]{Metatekst? - Troels}
 \subsection*{Design}\label{subsec:DesignErrorHandling}
 The source code given to the \gls{gamble} compiler may contain errors and warnings, these errors are found and uncovered in various stages of the compiler.   
 In the syntax analysis, all syntactic errors are found, and the compilation is stopped if errors are found, since it would not be advised to further compile source code, which contains fundamental syntactic errors.
@@ -19,7 +20,7 @@ The following errors and warnings are reported by the \gls{gamble} compiler:
 	A warning signalling that a variable or function is declared but never used.
 \end{description} 
 The errors in the compiler should give useful information about: Where the error is located in the source code and what variable(s) or function(s) was wrongly used.
-This include line numbers which then have to be carried over from the parse tree to the abstract syntax tree, this is expanded in \myref{sec:AST}.\todo{denne myref er forkert når jeg compiler - morten}
+This include line numbers which then have to be carried over from the parse tree to the abstract syntax tree, this is expanded in \myref{sec:AST}.
 
 \subsection*{Implementation}\label{subsec:ImplementationErrorHandling}
 In the \gls{gamble} compiler this error handling is implemented by having a class \texttt{LanguageError} of which each specific error type inherits from.
@@ -29,7 +30,7 @@ Compared to simply printing any error when it was discovered and stopping compil
 It also unifies how errors are printed and shown to the user.
 There is also an integer indicating which line the error is contained on.
 This enhances the error reporting process, making it easier for users to debug. 
-As an example the class for \texttt{UnDeclaredError} is shown in %\myref{lst:undeclarederrorclass}.
+As an example the class for \texttt{UnDeclaredError} is shown in \myref{lst:undeclarederrorclass}.
 Firstly there are variables which contain information needed to report the error to the programmer. 
 Then there is a constructor which simply assigns all values given to it to the new object's fields.
 Lastly there is the \texttt{toString} method which is overridden from the implementation in the \texttt{LanguageError} class. 
