@@ -45,12 +45,12 @@ We define a BS-semantic for statements (except procedure calls)
 \end{align*}
 
 \subsection*{Matrices and Vectors}
-A matrix is referred to as seen below, the superscript is referred to as the index of the matrix, while the subscript is the size of the matrix.
+A matrix is referred to as seen below, the superscript refers to name of the matrix, while the subscript is the entry in the matrix.
 \begin{align*}
-	\begin{bmatrix} { { m }_{ 1,1 }^{ n } } & { { m }_{ 1,2 }^{ n } } & \dots  & { m }_{ j,1 }^{ n } \\
-{ { m }_{ 2,1 }^{ n } }  &  { { m }_{ 2,2 }^{ n } } & \dots & \vdots
+	M^{n}= \begin{bmatrix} { { m }_{ 1,1 }^{ n } } & { { m }_{ 1,2 }^{ n } } & \dots  & { m }_{ 1,k }^{ n } \\
+{ { m }_{ 2,1 }^{ n } }  &  { { m }_{ 2,2 }^{ n } } & \dots & { m }_{ 2,k }^{ n }
 \\ \vdots  & \vdots & \ddots  & \vdots \\
- { m }_{ 1,k }^{ n } & \dots & \dots & { m }_{ j,k }^{ n } \end{bmatrix}
+ { m }_{ j,1 }^{ n } & { m }_{ j,2 }^{ n } & \dots & { m }_{ j,k }^{ n } \end{bmatrix}
 \end{align*}
 
 \subsubsection{Matrix declaration}
@@ -59,12 +59,34 @@ A matrix is referred to as seen below, the superscript is referred to as the ind
 	\end{equation}
 
 \subsubsection{Matrix product}
+\begin{minipage}{1.0\textwidth}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }*{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }=matrix<>[k,l] \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
+\begin{aligned}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }*{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }=matrix<>[k,l] \\
+	 v=\begin{bmatrix} { { m }_{ 1,1 }^{ 3 } } & { { m }_{ 2,1 }^{ 3 } } & \dots  & { m }_{ 1,l }^{ 3 }\\
+{ { m }_{ 2,1 }^{ 3 } } &   +{ { m }_{ 2,2 }^{ 3 } } & \dots & { { m }_{ 2,l }^{ 3 } }
+\\ \vdots  & \vdots & \ddots  & \vdots  \\
+ { m }_{ j,1 }^{ 3 }& { { m }_{ j,2 }^{ 3 } } & \dots & { m }_{ j,l }^{ 3 } \end{bmatrix} where
+\\ \end{matrix}
+\end{aligned}
 \end{equation}
+\begin{equation*}
+\begin{aligned}
+{ { m }_{ 1,1 }^{ 3 } }  = { { m }_{ 1,1 }^{ 1 } } *{ { m }_{ 1,1 }^{ 2 } }+ { { m }_{ 1,2 }^{ 1 } } *{ { m }_{ 2,1 }^{ 2 } }+\dots+ { { m }_{ 1,k }^{ 1 } } *{ { m }_{ k,1 }^{ 2 } }\\
+{ { m }_{ 1,2 }^{ 3 } }  = { { m }_{ 1,1 }^{ 1 } } *{ { m }_{ 1,2 }^{ 2 } }+ { { m }_{ 1,2 }^{ 1 } } *{ { m }_{ 2,2 }^{ 2 } }+\dots+ { { m }_{ 1,k }^{ 1 } } *{ { m }_{ k,2 }^{ 2 } }\\
+{ { m }_{ 1,k }^{ 3 } }  = { { m }_{ 1,1 }^{ 1 } } *{ { m }_{ 1,k }^{ 2 } }+ { { m }_{ 1,2 }^{ 1 } } *{ { m }_{ 2,k }^{ 2 } }+\dots+ { { m }_{ 1,j }^{ 1 } } *{ { m }_{ j,l }^{ 2 } }\\
+{ { m }_{ 2,1 }^{ 3 } }  = { { m }_{ 2,1 }^{ 1 } } *{ { m }_{ 1,1 }^{ 2 } }+ { { m }_{ 2,2 }^{ 1 } } *{ { m }_{ 2,1 }^{ 2 } }+\dots+ { { m }_{ 2,k }^{ 1 } } *{ { m }_{ k,1 }^{ 2 } }\\
+{ { m }_{ 2,2 }^{ 3 } }  = { { m }_{ 2,1 }^{ 1 } } *{ { m }_{ 1,l }^{ 2 } }+ { { m }_{ 2,2 }^{ 1 } } *{ { m }_{ 2,2 }^{ 2 } }+\dots+ { { m }_{ 2,k }^{ 1 } } *{ { m }_{ k,2 }^{ 2 } }\\
+{ { m }_{ 2,l }^{ 3 } }  = { { m }_{ 2,1 }^{ 1 } } *{ { m }_{ 1,l }^{ 2 } }+ { { m }_{ 2,2 }^{ 1 } } *{ { m }_{ 2,l }^{ 2 } }+\dots+ { { m }_{ 2,k }^{ 1 } } *{ { m }_{ k,l }^{ 2 } }\\
+{ { m }_{ j,1 }^{ 3 } }  = { { m }_{ j,1 }^{ 1 } } *{ { m }_{ 1,1 }^{ 2 } }+ { { m }_{ j,2 }^{ 1 } } *{ { m }_{ 2,1 }^{ 2 } }+\dots+ { { m }_{ j,k }^{ 1 } } *{ { m }_{ k,1 }^{ 2 } }\\
+{ { m }_{ j,2 }^{ 3 } }  = { { m }_{ j,1 }^{ 1 } } *{ { m }_{ 1,2 }^{ 2 } }+ { { m }_{ j,2 }^{ 1 } } *{ { m }_{ 2,2 }^{ 2 } }+\dots+ { { m }_{ j,k }^{ 1 } } *{ { m }_{ k,2 }^{ 2 } }\\
+{ { m }_{ j,l }^{ 3 } }  = { { m }_{ j,1 }^{ 1 } } *{ { m }_{ 1,l }^{ 2 } }+ { { m }_{ j,2 }^{ 1 } } *{ { m }_{ 2,l }^{ 2 } }+\dots+ { { m }_{ j,k }^{ 1 } } *{ { m }_{ k,l }^{ 2 } }
+\end{aligned}
+\end{equation*}
+\end{minipage}
 
 \subsubsection{Scalar product}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }\ast { a }_{ 1 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }={ a }_{ 1 } \\ v=\begin{bmatrix} { { a }_{ 1 }*m }_{ 1,1 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ j,1 }^{ 1 } \\ \vdots  & \ddots  &  \\ { { a }_{ 1 }*m }_{ 1,k }^{ 1 } &  & { { a }_{ 1 }*m }_{ j,k }^{ 1 } \end{bmatrix} \end{matrix}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }\ast { a }_{ 1 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }={ a }_{ 1 } \\ v=\begin{bmatrix} { { a }_{ 1 }*m }_{ 1,1 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 1,k }^{ 1 } \\ \vdots  & \ddots  &  \\ { { a }_{ 1 }*m }_{ k,1 }^{ 1 } &  & { { a }_{ 1 }*m }_{ j,k }^{ 1 } \end{bmatrix} \end{matrix}
 \end{equation}
 
