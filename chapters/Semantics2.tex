@@ -54,13 +54,18 @@ A matrix is referred to as seen below, the superscript refers to name of the mat
 \end{align*}
 
 \subsubsection{Matrix declaration}
+Declaring a matrix, a matrix of a given available type is generated with the size of $v_{1}*v_{2}$.
+If nothing else is assigned to the entries in the matrix, it will be filled with $0$'s.
 \begin{equation}
 	\frac { { e }_{ v },st\vdash j{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash k{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { M }^{ 1 }\quad =\quad martix<int|float|bool>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } ,{ M }^{ 1 }[{ v }_{ 1 },{ v }_{ 2 }]=\begin{bmatrix} { { 0 }_{ 1,1 } } & \dots  & { 0 }_{ { 1,{ v }_{ 2 } } } \\ \vdots  & \ddots  &  \\ { 0 }_{ { v }_{ 1 },1 } &  & { 0 }_{ { v }_{ 1 },{ v }_{ 2 } } \end{bmatrix}
 \end{equation}
 
 \subsubsection{Matrix product}
+Matrix product also called matrix multiplication takes two matrices of same type, where the size of $m^{1}$ and $m^{2}$satisfy $m^{1}[j,k]*m^{2}[k,l]$.
+The operation returns a matrix of size $j*l$ based on the rules in \myref{hypeproduct}.
+
 \begin{minipage}{1.0\textwidth}
-\begin{equation}
+\begin{equation}\label{hypeproduct}
 \begin{aligned}
 	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }*{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }=matrix<>[k,l] \\
 	 v=\begin{bmatrix} { { m }_{ 1,1 }^{ 3 } } & { { m }_{ 2,1 }^{ 3 } } & \dots  & { m }_{ 1,l }^{ 3 }\\
