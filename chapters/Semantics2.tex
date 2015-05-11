@@ -47,7 +47,10 @@ We define a BS-semantic for statements (except procedure calls)
 \subsection*{Matrices and Vectors}
 A matrix is referred to as seen below, the superscript is referred to as the index of the matrix, while the subscript is the size of the matrix.
 \begin{align*}
-	\begin{bmatrix} { { m }_{ 1,1 }^{ n } } & \dots  & { m }_{ j,1 }^{ n } \\ \vdots  & \ddots  &  \\ { m }_{ 1,k }^{ n } &  & { m }_{ j,k }^{ n } \end{bmatrix}
+	\begin{bmatrix} { { m }_{ 1,1 }^{ n } } & { { m }_{ 1,2 }^{ n } } & \dots  & { m }_{ j,1 }^{ n } \\
+{ { m }_{ 2,1 }^{ n } }  &  { { m }_{ 2,2 }^{ n } } & \dots & \vdots
+\\ \vdots  & \vdots & \ddots  & \vdots \\
+ { m }_{ 1,k }^{ n } & \dots & \dots & { m }_{ j,k }^{ n } \end{bmatrix}
 \end{align*}
 
 \subsubsection{Matrix declaration}
@@ -57,7 +60,7 @@ A matrix is referred to as seen below, the superscript is referred to as the ind
 
 \subsubsection{Matrix product}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }*{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }=matrix<>[j,k] \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }*{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }=matrix<>[k,l] \\ v={ v }_{ 1 }*{ v }_{ 2 } \end{matrix}
 \end{equation}
 
 \subsubsection{Scalar product}
