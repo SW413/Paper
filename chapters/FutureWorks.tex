@@ -1,50 +1,49 @@
 \chapter{Future Works}\label{cha:future_works}
-While the compiler is complete in the sense of this paper, one can always expand.
-In this chapter some of the possible expansions will be discussed.
+While the compiler functionality is complete in the sense of this paper, one can always expand.
+In this chapter some of the possible expansions, i.e. new features and optimisations, will be discussed.
 
 \section{Linear Algebra}\label{improve:LIAL}
 %More operations
 %More algortihms
-During development of \gls{gamble} the focus have been upon linear algebra.
-As such incorporating more operations such as matrix transpose or finding the inverse matrix, would remove the neccessity of the programmers themselves having to develop functions to do so.
-Furthermore this would make it easier to implement algorithms which requires such operations to be done.
-Further development could also include some of the most common algorithms such as Gaussian elimination.
-Incorporating these improvements would not allow the programmer to use these operations and functions with ease, it would also allow for optimisation of these.
-As a result of how the \acrshort{gpu} is used, those operations and functions created by the programmer, may well use the \acrshort{gpu} but not as much as it could be used, nor as effectively.
-As such making these improvements would not only increase the writeability of \gls{gamble} but also increase the performance.
+During development of \gls{gamble} the focus have laid upon linear algebra.
+As such incorporating more operations such as finding the inverse matrix, would remove the necessity of the programmers themselves having to develop functions to do so.
+Moreover this would make it easier to implement algorithms which makes use of such operations.
+Further development could also include some of the most common algorithms e.g. Gaussian elimination.
+As a result of how the \acrshort{gpu} is used in the current version of \gls{gamble}, the operations and functions created by the programmer, may very well use the \acrshort{gpu} but not as much, nor as effectively as it could.
+Therefore making these improvements to the core language, would not only increase the writability of \gls{gamble} but also increase the overall performance on run-time.
 
 \section{GPU Usage Criteria}
 %A more dynamic use of GPU through analysis
 %Use GPU for more than matrix and vector operations
-As aformentioned \gls{gamble} performs all matrix and vector operations on the \acrshort{gpu}.
+As aforementioned \gls{gamble} performs all matrix and vector operations on the \acrshort{gpu}.
 While this should be sufficient for computations on big sets of data as the language has targeted, this is not the optimal solution.
 A possible expansion would be to optimise further to only utilise the \acrshort{gpu} when an increase in performance is to be expected from doing so.
 An analysis of the amount of computations required as well as the hardware available, would help towards gaining the best performance possible.
 Even further development should also look further than only performing matrix and vector operations on the \acrshort{gpu}.
 This was chosen because that all operations currently implemented towards doing matrix and vector operations are parallelisable.
 If implementing new operations and functions one must consider whether these benefit from the use or \acrshort{gpu} or not.
-For further development of \gls{gamble} one should also consider using the \acrshort{gpu} for more than matrix and vector operations. 
+For further development of \gls{gamble} one should also consider using the \acrshort{gpu} for more than matrix and vector operations and hereby developing the language to use general purpose GPU computing. 
 Rather than blindly disregarding loops one could have the compiler check whether or not the loop in question could be parallelised, and perhaps perform some of the optimisations mentioned in \myref{optimisation} upon said loop.
  
-\section{Kernal Efficiency}
+\section{Kernel Efficiency}
 %Kernal optimisation
-When creating kernals one must allocate memory within the memory hierarchy established in the OpenCL framework.
-In this compiler all memory is allocated in global memory as it significantly reduces the in depth knowledge of the \acrshort{gpu} hardware and its memory hierarchy required to write kernals.
-With a deeper understanding of how the different memory sections communicate as well as their differences, beyond speed, it is possible to use the faster memory and thus increasing performance.
+When creating kernels one must allocate memory within the memory hierarchy established in the OpenCL framework.
+In this compiler all memory is allocated in global memory as it significantly reduces the in-depth knowledge of the \acrshort{gpu} hardware and its memory hierarchy required to write kernels.
+With a deeper understanding of how the different memory sections communicate, it is possible to increase performance by using the best suited part of the memory hierarchy.
 
 \section{Platform Specifications}
 %Platform performance
 While OpenCL is not machine dependant, which machine one is working on does change what version of OpenCL is supported, as well as how different work sizes and data types are handled.
-An example would be that while AMD \acrshort{gpu}s have hardware to support both integer and float calculations Nvidia only uses floats.
-Due to these discrepencies the same program and kernal may perform different on \acrshort{gpu}s with the same specifications but from different developers.
-As such, different implementations depending on developer and OpenCL support may increase performance depending on the specific hardware.
+An example would be that while AMD \acrshort{gpu}s have hardware to support both integer and float calculations, Nvidia \acrshort{gpu}s only uses floats.
+Due to these discrepancies the same program and kernel may perform differently on \acrshort{gpu}s with the same specifications but from different vendors.
+As such, different implementations depending on manufacturer and OpenCL support may increase performance depending on the specific hardware.
 
 \section{Scientific Computing}
 %From LIAL to Scientific computing
 While making it possible to perform linear algebra operations have been the focus of this compiler, this is not the only field of computing that can benefit from the computational powers of the \acrshort{gpu}.
 Graph theory, molecular dynamics, computational chemistry and many other fields all include compute intensive simulations and number crunching.
-Further developing the languange to fit yet another field would significantly increase the use for such a languange in the scientific community.
-As long as one can ensure that the computations required can in some form be parallelised such that the \acrshort{gpu} can be of use, this is a possible and large addition to the languange.
+Further developing the language to fit yet another field would significantly increase the use for such a language in the scientific community.
+As long as one can ensure that the computations required can in some form be parallelised such that the \acrshort{gpu} can be of use, this is a possible and large addition to the language.
 Alternatively one could be content with adding new data types and operations for other fields and implement the field specific methods as libraries.
-This would make the languange usable by other fields before the libraries are done, as the users would be able to implement these methods themselves.
+This would make the language usable by other fields, as the users would be able to implement the needed methods themselves.
 %Er ikke helt vild med formulering af line 47 og 49, men synes ikke lige jeg kan formulere det anderledes at the time of writing dis.
