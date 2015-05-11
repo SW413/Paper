@@ -2,12 +2,12 @@
 \subsection*{Arithmetic}
 The semantics of statements and declarations both depend on the semantics of arithmetic expressions.
 Arithmetic expressions may contain variables.
-
+\todo{skal vi ikke have noget med hvordan en et tal i sproget passer til en value ? }
 \subsubsection{Addition}
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }+{ a }_{ 2 }{ \rightarrow  }_{ A }{ v } } , v = { v }_{ 1 }+{ v }_{ 2 }
 \end{equation}
-
+\todo{Det er vel ikke expressions her ? Skal vi ikke starte med at sige en value plus en anden value, før der kommer expression?}
 
 \subsubsection{Subtraction}
 \begin{equation}
@@ -20,7 +20,7 @@ Arithmetic expressions may contain variables.
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }\ast { a }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\quad v={ v }_{ 1 }\ast { v }_{ 2 }
 \end{equation}
 
-\subsubsection{Exponentiation}
+\subsubsection{Exponents}
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }^{ { a }_{ 2 } }{ \rightarrow  }_{ A }{ v } } ,\quad v=\underset { { v }_{ 2 } }{ \underbrace { v_{ 1 }*\dots *v_{ 1 } }  }
 \end{equation}
@@ -53,13 +53,13 @@ Arithmetic expressions may contain variables.
 \subsection*{Declaring Variables}
 Any non-empty variable declaration will modify the variable environment since the new variables will be bound to the new location.
 A variable declaration will also modify the store, since the new location will be initialised to contain the initial values of the new variables.
-The transition relation describing variable declarations defines a big-step semantic, since the allocation of new address space for newly declared variables is an invisible operation.
+The transition relation describing variable declarations defines a big-step semantic, since the allocation of new address space for a newly declared variables is an invisible operation.\todo{igen, invisible?}
 
 \subsubsection{Transition}
 \begin{equation}
 <{ D }_{ v },{ e }_{ v },st>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ ` },{ st }^{ ` }>
 \end{equation}
-
+\todo{Hvad er Dv ?}
 
 \subsubsection{Empty Variables}
 \begin{equation}
@@ -85,7 +85,7 @@ The transition relation describing variable declarations defines a big-step sema
 \subsection*{Statements}
 The effect of a statement is that the store may change, since a statement may modify the values of variables involved through assignments.
 A statement should not modify the variable environment.
-We define a BS-semantic for statements (except procedure calls)
+We define a BS-semantic for statements (except procedure calls)\todo{hvorfor ikke procedure calls ??}
 \subsubsection{Transitions}
 \begin{equation}
 	{ e }_{ v },{ e }_{ p }\vdash <S,st>\rightarrow { st }^{ ` }
@@ -126,6 +126,7 @@ We define a BS-semantic for statements (except procedure calls)
 \begin{equation}
 	\frac { { e }_{ v }\vdash <{ s }_{ 1 },st>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <if\quad b\quad then\quad { S }_{ 1 }\quad else{ \quad S }_{ 2 }>\rightarrow { st }^{ ` } } st\vdash b{ \rightarrow  }_{ B }\bot 
 \end{equation}
+\todo{Vi bruger altså ikke if b then ? Vi har blokke \{ \}}
 
 
 \subsubsection{While $\top$}
@@ -154,7 +155,7 @@ We define a BS-semantic for statements (except procedure calls)
 \end{equation}
 
 
-\subsection*{Matrices and vectors}
+\subsection*{Matrices and vectors} \todo{skal der være noget tekst her :P ?}
 \subsubsection{Matrix declaration}
 \begin{equation}
 	\frac { { e }_{ v },st\vdash j{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash k{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { M }^{ 1 }\quad =\quad martix<int|float|bool>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } ,{ M }^{ 1 }[{ v }_{ 1 },{ v }_{ 2 }]=\begin{bmatrix} { { 0 }_{ 1,1 } } & \dots  & { 0 }_{ { 1,{ v }_{ 2 } } } \\ \vdots  & \ddots  &  \\ { 0 }_{ { v }_{ 1 },1 } &  & { 0 }_{ { v }_{ 1 },{ v }_{ 2 } } \end{bmatrix}
@@ -207,7 +208,7 @@ We define a BS-semantic for statements (except procedure calls)
 \end{equation*}
 \end{minipage}
 
-\subsubsection{Scalar product}
+\subsubsection{Scalar multiplication}
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }\ast { a }_{ 1 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }={ a }_{ 1 } \\ v=\begin{bmatrix} { { a }_{ 1 }*m }_{ 1,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 1,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 1,k }^{ 1 } \\
  { { a }_{ 1 }*m }_{ 2,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 2,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 2,k }^{ 1 }  \\ \vdots & \vdots & \ddots & \vdots \\ { { a }_{ 1 }*m }_{ j,1 }^{ 1 } & { { a }_{ 1 }*m }_{ j,2 }^{ 1 } & \dots & { { a }_{ 1 }*m }_{ j,k }^{ 1 } \end{bmatrix} \end{matrix}
@@ -233,4 +234,6 @@ We define a BS-semantic for statements (except procedure calls)
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { { vec } }^{ 1 }{ \rightarrow  }_{ A }{ v }^{ 1 }\quad { e }_{ v },st\vdash { { { vec } }^{ 2 } }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { { vec } }^{ 1 }\ast { { vec } }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=vector<>[{ n }] \\ { v }_{ 2 }=vector<>[{ n }] \\ v={ vec }_{ 1 }^{ 1 }*{ vec }_{ 1 }^{ 2 }+\dots +{ vec }_{ n }^{ 1 }*{ vec }_{ n }^{ 2 } \\  \end{matrix}
 \end{equation}
+
+\todo{ Skal vi ikke skrive noget inde i <> ? f.eks. skrive type  eller noget ? bare for at vise at det ikke er tomt ?}
 
