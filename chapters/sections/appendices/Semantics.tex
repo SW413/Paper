@@ -226,5 +226,5 @@ We define a BS-semantic for statements (except procedure calls)
 
 \subsubsection{Vector Dot Product}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { vec }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { vec }_{ 1 }\ast { a }_{ 1 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=vector<>[{ m }^{ 1 }] \\ { v }_{ 2 }={ a }_{ 1 } \\ v=\begin{bmatrix} { { a }_{ 1 }*m }_{ 1 }^{ 1 } \\ \vdots  \\ { { a }_{ 1 }*m }_{ n }^{ 1 } \end{bmatrix} \end{matrix}
+	\frac { { e }_{ v },st\vdash { { vec } }^{ 1 }{ \rightarrow  }_{ A }{ v }^{ 1 }\quad { e }_{ v },st\vdash { { { vec } }^{ 2 } }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { { vec } }^{ 1 }\ast { { vec } }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=vector<>[{ n }] \\ { v }_{ 2 }=vector<>[{ n }] \\ v={ vec }_{ 1 }^{ 1 }*{ vec }_{ 1 }^{ 2 }+\dots +{ vec }_{ n }^{ 1 }*{ vec }_{ n }^{ 2 } \\  \end{matrix}
 \end{equation}
