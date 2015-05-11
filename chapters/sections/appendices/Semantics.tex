@@ -152,7 +152,7 @@ We define a BS-semantic for statements (except procedure calls)
 \subsection*{Matrices and vectors}
 \subsubsection{Matrix declaration}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash j{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash k{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { M }^{ 1 }\quad =\quad martix<int|float|bool>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } ,{ M }^{ 1 }[{ v }_{ 1 },{ v }_{ 2 }]=\begin{bmatrix} { 0 } & \dots  & 0 \\ \vdots  & \ddots  &  \\ 0 &  & 0 \end{bmatrix}
+	\frac { { e }_{ v },st\vdash j{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash k{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { M }^{ 1 }\quad =\quad martix<int|float|bool>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } ,{ M }^{ 1 }[{ v }_{ 1 },{ v }_{ 2 }]=\begin{bmatrix} { { 0 }_{ 1,1 } } & \dots  & { 0 }_{ { 1,{ v }_{ 2 } } } \\ \vdots  & \ddots  &  \\ { 0 }_{ { v }_{ 1 },1 } &  & { 0 }_{ { v }_{ 1 },{ v }_{ 2 } } \end{bmatrix}
 \end{equation}
 
 \subsubsection{Addition}
@@ -224,7 +224,7 @@ We define a BS-semantic for statements (except procedure calls)
  { m }_{ j,1 }^{ 1 } * { { m }_{ j,1 }^{ 2 } } & { { m }_{ j,2 }^{ 1 } } * { { m }_{ j,2 }^{ 2 } }  & \dots & { m }_{ j,k }^{ 1 } * { { m }_{ j,k }^{ 2 } } \end{bmatrix} \end{matrix}
 \end{equation}
 
-\subsubsection{Vector Dot Product}\todo{fix denne}
+\subsubsection{Vector Dot Product}
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { vec }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 3 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { vec }_{ 1 }\ast { a }_{ 3 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=vector<>[{ a }_{ 1 }] \\ { v }_{ 2 }={ a }_{ 3 } \\ v=({ v }_{ 2 }*{ a }_{ 1 }^{ 1,1 })+(...)+{ (v }_{ 2 }*{ a }_{ 1 }^{ n,n }) \end{matrix}
+	\frac { { e }_{ v },st\vdash { vec }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { vec }_{ 1 }\ast { a }_{ 1 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=vector<>[{ m }^{ 1 }] \\ { v }_{ 2 }={ a }_{ 1 } \\ v=\begin{bmatrix} { { a }_{ 1 }*m }_{ 1 }^{ 1 } \\ \vdots  \\ { { a }_{ 1 }*m }_{ n }^{ 1 } \end{bmatrix} \end{matrix}
 \end{equation}
