@@ -1,0 +1,55 @@
+\chapter{Language runtime}
+This chapter analyses whether the source code should be compiled or interpreted.
+Thereafter the target language is determined.
+
+\section{Compiler or Interpreter}
+When designing a language an important decision is whether a program in the source code in the language should be compiled to become an executable or if it should be interpreted and run without compilation.
+This is a choice that needs to be settled before the design of the compiler or interpreter can begin.
+Both compilers and interpreters have advantages and disadvantages, which needs to be to be evaluated according to the goal of the language.
+The advantages and disadvantages expressed in \myref{tbl:compint} does not reflect every difference between a compiler, but rather those aspects deemed important in respect to \gls{gamble}.
+
+\input{figures/CompilerList.tex}
+
+The aspect of the two options presented in \myref{tbl:compint} is the main concerns in this project when deciding which method \gls{gamble} would benefit most form.
+
+As stated in \myref{sec:problem}, the goal of \gls{gamble} is to perform matrix operations on the \acrshort{gpu}, the compiler model has an advantage over interpreters, because a compiled program runs faster than an interpreted. \todo{This is partly invalided by the fact that we use online compilation of kernels (JITing them) instead of pre-compiling (offline) them}
+This is especially important considering that \gls{gamble} will utilize the \acrshort{gpu}'s speed on large matrices. 
+This speed increase is an effect of the compiler's architecture where it compiles the entire source code rather than interpreting  the source code. \todo{See above todo.}
+Another reason being that compiled programs are often compiled to a low level language which often have a more direct way of utilizing the hardware better than a virtual environment in an interpreter.
+
+Regarding error reporting both models can be useful, there are strong cases for both the compiled and the interpreted model.
+A case for an interpreter and a design which catch most errors at runtime would be that design would familiarize developers of \gls{gamble} which this workflow, which would make it easier to develop the language in a direction with full or partial dynamics types, since type errors for dynamics types has to be checked at runtime.
+A wholly different case for the compiler choice would be that since the language is expecting to be utilized for large calculations with a long runtime.
+It would be laborious for the programmer if errors occurs at runtime, since the program could have run calculations for at long period of time before the error occurs, thus it could invalidate the results of the calculation.
+A compiler with a good error checking system, which could catch most errors at compile time before execution of the program. \citep{Sebesta, Crafting_book}
+
+Based on these considerations it has been chosen that a compiler would be the best choice for \gls{gamble} to achieve the desired goals.
+
+\section{Target language}
+Now that it is chosen \gls{gamble} should be compiled the next choice to consider is what the target language of the compiler should be.
+The target language is the which the compiler will translate the source code into.
+Some mature languages such as C or C++, translates into machine code, however to do this while accessing the \gls{gpu} is very complicated so the project group choose to target a higher level language with a library which could access the \gls{gpu}.
+
+The starting point for finding a good target language was to go back to the different languages and libraries found during the research of existing solutions in \myref{sec:state_of_the_art}.
+The two options that stood out the most and also what most other solutions seemed to be based upon was CUDA by NVIDIA and OpenCL by Khronos.
+Therefore it was these two options which was considered as a target language for \gls{gamble}.
+Hereafter follows a short comparison of the two options and lastly a choice to which solution deemed most advantageous for \gls{gamble}.
+
+First it needs to be made clear, to use either of these solutions, the host computer needs a framework installed to compile and another to run it. 
+Both frameworks to compile are implemented in different existing programming languages like Java, C++ and C.
+C was chosen as it compiles to machine code, are low level meaning that there are a high level of control, and the product group are already familiar with it. 
+
+CUDA is developed by NVIDIA and only supports NVIDIA hardware.
+There exists solutions like GPU Ocelot which let you run CUDA code on an wider variety of platforms like AMD and Intel, but is discontinued since 2011. \citep{Diamos:2010:ODO:1854273.1854318}
+OpenCL natively supports a large variety of hardware, both \gls{gpu} and \gls{cpu} included, as mentioned in \myref{sec:state_of_the_art}.
+Both frameworks utilize the \gls{gpu} by writing special functions which can be run in parallel, these are called kernels.
+A kernel is commonly a C function which can be sent to the \acrshort{gpu} for execution.
+
+While GPU Oclelot exists it is deemed OpenCL would be the broadest and most general solution and it is therefore chosen as the target language for \gls{gamble}.
+
+Since initial testing shows it can be hard to manage hardware in OpenCL a library called SimpleOpenCL is used.
+SimpleOpenCl has function calls which find the fastest hardware on the computer.
+It searches among available \gls{gpu}'s and \gls{cpu}'s in the system for OpenCL capable hardware. \citep{simpeCL}
+The main focus of the OpenCL code can therefore be on the kernels which is the functions that allows parallel computations on the then chosen hardware.
+
+In the following chapter a general overview of the compiler will be presented.

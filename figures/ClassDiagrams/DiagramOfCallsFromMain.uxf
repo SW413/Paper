@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>310</x>
+      <y>430</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>Main
+--
+--
++void main(String[] args);</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>800</x>
+      <y>440</y>
+      <w>610</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>PrettyPrintTester
+--
+--
++void PrettyTest(String[] args, BaseASTNode abstractSyntaxTree);</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>800</x>
+      <y>190</y>
+      <w>610</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>Parser
+--
++_ourLangLexer : ourLangLexer
++ _ourLangParser : ourLangParser
+--
++CommonTokenStream generateTokenStream(FileInputStream file);
++ParseTree GenerateParseTreeFromSourceCode(inputFile);</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>200</y>
+      <w>310</w>
+      <h>290</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+GenerateParseTreeFromSourceCode()</panel_attributes>
+    <additional_attributes>290.0;20.0;10.0;20.0;10.0;270.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>460</y>
+      <w>310</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+PrettyTest()</panel_attributes>
+    <additional_attributes>290.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>460</y>
+      <w>310</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+GenerateCodeAndWriteToFile()</panel_attributes>
+    <additional_attributes>290.0;180.0;10.0;180.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>800</x>
+      <y>300</y>
+      <w>610</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>Analyser
+--
++inputFile : String
++errors : ArrayList&lt;LanguageError&gt;
+--
++GenerateDecoratedASTFromParseTree(tree);
++void handleImports(BaseASTNode abstractSyntaxTree);
++void scopeCheck(BaseASTNode abstractSyntaxTree, SymbolTable symbolTable);
++void typeCheck(BaseASTNode abstractSyntaxTree, SymbolTable symbolTable);</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>800</x>
+      <y>520</y>
+      <w>610</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>ErrorReporter
+--
+--
++void HandleErrors(ArrayList&lt;LanguageError&gt; errors, ErrorType errorType);</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>460</y>
+      <w>310</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+HandleErrors()</panel_attributes>
+    <additional_attributes>290.0;100.0;10.0;100.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>510</x>
+      <y>310</y>
+      <w>310</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+GenerateDecoratedASTFromParseTree()</panel_attributes>
+    <additional_attributes>290.0;20.0;10.0;20.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>800</x>
+      <y>610</y>
+      <w>610</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>CodeGenerator
+--
+--
++void GenerateCodeAndWriteToFile(BaseASTNode abstractSyntaxTree);
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
