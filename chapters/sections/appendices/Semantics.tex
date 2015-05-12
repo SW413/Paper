@@ -145,17 +145,17 @@ The transition relation describing variable declarations defines a big-step sema
 
 \subsubsection{Transitions rules for function declarations}
 \begin{equation}
-	\frac { { e }_{ v }\vdash { <F }_{ d },{ e }_{ f }[ID\rightarrow S]{ >\rightarrow  }_{ Fd }e_{ p }^{ i } }{ { e }_{ v }\vdash <{ functiondatatype\quad ID(parameterlist)\quad functionbody;\quad { F }_{ D },{ e }_{ f }>\rightarrow  }_{ Fd }e_{ p }^{ i } } 
+	\frac { { e }_{ v }\vdash { <F }_{ d },{ e }_{ f }[ID\rightarrow S]{ >\rightarrow  }_{ Fd }e_{ p }^{ ` } }{ { e }_{ v }\vdash <{ functiondatatype\quad ID(parameterlist)\quad functionbody;\quad { F }_{ D },{ e }_{ f }>\rightarrow  }_{ Fd }e_{ p }^{ ` } } 
 \end{equation}
 
 \subsubsection{Transitions rules for function calls}
 \begin{equation}
-	\frac { { e }_{ v }^{ i }\vdash [{ argumentlist\rightarrow l] }[next\rightarrow l],{ e }_{ f }^{ i }\vdash <S,st>\rightarrow { st }^{ i } }{ { e }_{ v },{ e }_{ f }\vdash <ID(argumentlist),st>\rightarrow { st }^{ i } } ,{ e }_{ f }(ID(argumentlist))=<S,{ e }_{ v }^{ i }>
+	\frac { { e }_{ v }^{ ` }\vdash [{ argumentlist\rightarrow l] }[next\rightarrow l],{ e }_{ f }^{ ` }\vdash <S,st>\rightarrow { st }^{ ` } }{ { e }_{ v },{ e }_{ f }\vdash <ID(argumentlist),st>\rightarrow { st }^{ ` } } ,{ e }_{ f }(ID(argumentlist))=<S,{ e }_{ v }^{ ` }>
 \end{equation}
 \begin{align*}
-where\quad &{ e }_{ f }(ID)=<S,parameterlist,{ e }_{ v }^{ i }>
+where\quad &{ e }_{ f }(ID)=<S,parameterlist,{ e }_{ v }^{ ` }>
 \\ &l={ e }_{ v }(argumentlist)
-\\ &{ l }^{ i }={ e }_{ v }(next)
+\\ &{ l }^{ ` }={ e }_{ v }(next)
 \end{align*}
 
 \section*{Statements}
@@ -282,4 +282,4 @@ We define a BS-semantic for statements. \todo{...}
 	\frac { { e }_{ v },st\vdash { { vec } }^{ 1 }{ \rightarrow  }_{ A }{ v }^{ 1 }\quad { e }_{ v },st\vdash { { { vec } }^{ 2 } }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { { vec } }^{ 1 }\ast { { vec } }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=vector<>[{ n }] \\ { v }_{ 2 }=vector<>[{ n }] \\ v={ vec }_{ 1 }^{ 1 }*{ vec }_{ 1 }^{ 2 }+\dots +{ vec }_{ n }^{ 1 }*{ vec }_{ n }^{ 2 } \\  \end{matrix}
 \end{equation}
 
-\todo{ Skal vi ikke skrive noget inde i <> ? f.eks. skrive type  eller noget ? bare for at vise at det ikke er tomt ?}
+\todo{ Skal vi ikke skrive noget inde ` <> ? f.eks. skrive type  eller noget ? bare for at vise at det ikke er tomt ?}
