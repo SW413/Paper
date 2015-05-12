@@ -13,8 +13,8 @@ The semantics is organised as follow:
 \end{align*}
 
 \textbf{v} is meant to store the result, this can be both a value, a vector or a matrix.
-Every big-step semantic showing operations on a matrix, is also possible to perform on a vector, which evaluates to a one-dimensional matrix.
-Every big-step semantic showing operations on a vector can not be used on a matrix, since it requires the dimensions to fit those of a one-dimension vector.\todo{Det her er vist ikke helt rigtigt? Snak om det på gruppen}
+Every big-step semantic showing operations on a matrix, is also possible to perform on a vector, which evaluates to a matrix with one column.
+Every big-step semantic showing operations on a vector can not be used on a matrix, since it requires the dimensions to fit those of a matrix with one columns.
 
 The variable environment(${ e }_{ v }$) is a function that for each variable defines to which storage location it is bound to. A variable environment corresponds to a table containing symbols which are in that environment.
 The store ($st$) is a function that for each storage location in the computer tells us which value is stored in the location. A store corresponds to a complete description of the contents of the memory.\citep{EnvSt_Semantics}
@@ -26,14 +26,13 @@ A few of the most important and interesting operational semantics which will be 
 \subsection*{Declaring Variables}
 Any non-empty variable declaration will modify the variable environment since the new variables will be bound to the new location.
 A variable declaration will also modify the store, since the new location will be initialised to contain the initial values of the new variables.
-The transition relation describing variable declarations defines a big-step semantic, since the allocation of new address space for newly declared variables is an invisible operation.\todo{Det her forstår jeg altså ikke helt ? Hvad betyder det overhovedet?}
 
 \subsubsection{Variable declaration}
 \begin{equation}
 	\frac { <{ D }_{ v },{ e }_{ v }^{ `` },st[\iota \mapsto v]>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ ` },{ st }^{ ` }> }{ <var\quad x:=a;Dv,{ e }_{ v }st>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ ` },{ st }^{ ` }> }
 \end{equation}
 
-\subsection*{Statements}
+\section*{Statements}
 The effect of a statement is that the store may change, since a statement may modify the values of variables involved through assignments.
 A statement should not modify the variable environment.
 We define a BS-semantic for statements (except procedure calls) \todo{Jeg er mega forvirret over opdelingen her ? Hører assignment under Statements her ? Eller hvad sker der ? Når man kigger i rapporten er jeg lidt forvirret.}
