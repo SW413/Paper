@@ -8,7 +8,7 @@ In this chapter the different phases of the compiler and their goals and tasks w
 The compiler for \gls{gamble} is separated into three phases: syntax analysis, contextual analysis and code generation.
 \myref{fig:phases} shows a state diagram of the phases of the compiler.
 Syntax analysis and contextual analysis transforms the source code into an intermediate representation, and verifies the source code according to the specified syntax from the \acrshort{cfg}, and also for type and scope checking.
-The choice of language for writing the compiler falls upon Java 1.8, which is also the language the project group have been taught for building compilers in the courses for the semester.
+The choice of language for writing the compiler falls upon Java 1.8, which is used in the language and compiler course.
 When making a compiler an object-oriented language simplifies many tasks, because of encapsulation, polymorphism and inheritance. 
 The paradigm allows for many structural options, and reuse of code when inheriting, which would be impossible using another paradigm like imperative or functional programming.
 Java also works across platforms, which is a useful feature.
@@ -27,14 +27,30 @@ In the code generation phase the output code is generated from all the informati
 
 The target language of this compiler is OpenCL C.
 To compile OpenCL C code additional software for the GPU is required, depending on the machine the path to this software may be required when compiling, as such one cannot simply run this on all machines.
-By compiling the OpenCL C code, it is translated into the computer's instruction set and then further into machine code, which the computer understands.
-This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using the specific instruction set, not only gives problems targeting more types of GPUs but is also way too demanding for the project group to understand let alone use in just one semester.
-Using OpenCL C, the target language is still low level compared to Java or C\#, and C has even been characterised as a portable assembly language.\citep{CPort}
+By compiling the OpenCL C code, it is translated into machine code and linked with libaries, which the computer then understands.
+This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using its specific instruction set, not only gives problems targeting more types of GPUs but is also way too demanding for the project group to understand let alone use in just one semester.
+OpenCL C is low level compared to Java or C\#, and C has even been characterised as a portable assembly language, as many features of the language translates closely to assembly. \citep{CPort}
 
-\begin{figure}
+The overall structure of the compiler is also implemented using these phases as seen on figure \myref{fig:compilerOverview}.
+This separation helps give an overview when working with the compiler, all the phases are distinctly separated, which makes it easier to make changes, and find where changes need to be made.
+%When adding a feature to the language, it is also simplified since the feature has to be supported in each of the phases, so as a programmer work must be done in each phase.
+
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{figures/ClassDiagrams/CompilerDiagram.pdf}
 \caption{State diagram showing the phases of the compiler when it takes \gls{gamble} source code and compiles it into machine code.}\label{fig:phases}
+\end{figure}
+
+\begin{figure}[t]
+	\begin{sideways}
+	%\fbox{
+		\begin{minipage}{22.5cm}
+			\includegraphics[height=0.42\textheight]{figures/ClassDiagrams/DiagramOfCallsFromMain.pdf}
+		\end{minipage}
+	%	}
+	\end{sideways}
+	\centering
+	\caption{Diagram showing the structure of the compiler by showing the \texttt{main()} method's method calls.}\label{fig:compilerOverview}
 \end{figure}
 
 
