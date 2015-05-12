@@ -42,7 +42,7 @@ These are taken as specific examples in this comparison because these methods ar
 An OpenCL C compiler will also optimize the source code if given the instruction to, however its impact depends on the \gls{gpu} and platform in use.
 The value of any optimization is situational, i.e. changing the work-group size can yield improvements of up to 5 times. \citep{ocl_lecture3}
 OpenCL can use just-in-time compilation to generate binary code to the appropriate device it is working with at runtime.
-This allows OpenCL to optimize for the \gpu{gpu} used, however this is also a constant overhead for each execution of the program. 
+This allows OpenCL to optimize for the \gls{gpu} used, however this is also a constant overhead for each execution of the program. 
 OpenCL can also compile the kernels before runtime, this is known as an offline compilation as opposed to the just-in-time compilation known as online. 
 The CUDA compiler \texttt{nvcc} is a two step process, which first generates \acrshort{ptx} bytecode and then either JITs on runtime or compiles a so called ``fat binary'' at compile time, which contains multiple programs for different \gls{gpu}s. \citep{nvidia_cude_fat_bin}
 
