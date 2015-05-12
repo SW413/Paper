@@ -13,6 +13,7 @@ The semantics is organised as follow:
 	\textbf{type} \in &Int | Float | Bool
 	\textbf{S}	\in &Statement
 	\textbf{mtype} \in &Int | Float
+	\textbf{Fd}		\in &Function Declaration
 \end{align*}
 
 \textbf{v} is meant to store the result, this can be both a value, a vector or a matrix.
@@ -35,6 +36,11 @@ A variable declaration will also modify the store, since the new location will b
 \begin{equation}
 	\frac { <S,{ e }_{ v }^{ `` },st[\iota \mapsto v]>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> }{ <type\quad x=a;S,{ e }_{ v }st>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> } 
 \end{equation}
+\begin{align*}
+	where\quad &{ e }_{ v },st\vdash a{ \rightarrow  }_{ A }v \\
+	&\iota {= e }_{ v }(next) \\
+	&{ e }_{ v }^{ `` }={ e }_{ v }[x\mapsto \iota ][next\mapsto new \iota ]
+\end{align*}
 
 \section*{Statements}
 The effect of a statement is that the store may change, since a statement may modify the values of variables involved through assignments.
