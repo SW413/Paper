@@ -26,21 +26,23 @@ A few of the big-step semantics for \gls{gamble} is included in this chapter, wh
 %The most few most important operational semantics there will be explained is, Variable declaration, Statements assignment, Matrix declaration, Matrix- Matrix Multiplication and Scalar product.
 A few of the most important and interesting operational semantics which will be explained are, variable declaration, assignment, matrix declaration, matrix multiplication and scalar product.
 
-\subsection*{Declaring Variables}\TODO{Skal skrives om - er det samme som fra bogen}
+\subsection*{Declaring Variables}
+\todo{Skal skrives om - er det samme som fra bogen}
 Any non-empty variable declaration will modify the variable environment since the new variables will be bound to the new location.
 A variable declaration will also modify the store, since the new location will be initialised to contain the initial values of the new variables.
 
 \subsubsection{Variable declaration}
 \begin{equation}
-	\frac { <S,{ e }_{ v }^{ `` },st[\iota \mapsto v]>{ \rightarrow  }_{<{ e }_{ v }^{ ` },{ st }^{ ` }> }{ <type\quad x=a;S,{ e }_{ v }st>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> }
+	\frac { <S,{ e }_{ v }^{ `` },st[\iota \mapsto v]>{ \rightarrow  }_{<{ e }_{ v }^{ ` },{ st }^{ ` }> }{ <type\quad x=a;S,{ e }_{ v }st>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> }}
 \end{equation}
 
 \section*{Statements}
 The effect of a statement is that the store may change, since a statement may modify the values of variables involved through assignments.
 A statement should not modify the variable environment.
-We define a BS-semantic for statements (except procedure calls)
+We define a BS-semantic for statements (except procedure calls).
 
 \subsubsection{Assignment}
+
 \begin{align*}
 	&{ e }_{ v }\vdash <x=a,st>\rightarrow st[\iota \mapsto v]\\
 	where\quad &{ e }_{ v },st\vdash a{ \rightarrow  }_{ A }v\quad and\quad  { e }_{ v }(x)=\iota 
