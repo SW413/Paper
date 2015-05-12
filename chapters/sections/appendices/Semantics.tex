@@ -24,9 +24,14 @@ constant\rightarrow v,\quad V[constant]=v
 \end{equation}
 
 \subsubsection{Increment}
+\begin{equation}
+\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 } }{ { e }_{ v },st\vdash { a }_{ 1 }++{ \rightarrow  }_{ A }{ v } } ,\quad v={ v }_{ 1 }+1
+\end{equation}
 
 \subsubsection{Decrement}
-
+\begin{equation}
+	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 } }{ { e }_{ v },st\vdash { a }_{ 1 }--{ \rightarrow  }_{ A }{ v } } ,\quad v={ v }_{ 1 }-1
+\end{equation}
 
 \subsubsection{Multiplication}
 \begin{equation}
@@ -160,38 +165,36 @@ We define a BS-semantic for statements. \todo{...}
 
 \subsubsection{Assignment}
 \begin{align*}
-	&{ e }_{ v }\vdash <x=a,st>\rightarrow st[\iota \mapsto v]\\
+	&{ e }_{ p },{ e }_{ v }\vdash <x=a,st>\rightarrow st[\iota \mapsto v]\\
 	where\quad &{ e }_{ v },st\vdash a{ \rightarrow  }_{ A }v\quad and\quad  { e }_{ v }(x)=\iota 
 \end{align*}
 
 \subsubsection{If $\top$}
 \begin{equation}
-	\frac { { e }_{ v }\vdash <{ S }_{ 1 },st>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <if\quad (b)\quad \quad \{{ S }_{ 1 }\}\quad else \quad \{{ S }_{ 2 }\}>\rightarrow { st }^{ ` } } st\vdash b{ \rightarrow  }_{ B }\top 
+	\frac { { e }_{ p },{ e }_{ v }\vdash <{ S }_{ 1 },st>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <if\quad (b)\quad \quad \{{ S }_{ 1 }\}\quad else \quad \{{ S }_{ 2 }\}>\rightarrow { st }^{ ` } } st\vdash b{ \rightarrow  }_{ B }\top 
 \end{equation}
 
 \subsubsection{If $\bot$}
 \begin{equation}
-	\frac { { e }_{ v }\vdash <{ S }_{ 2 },st>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <if\quad (b)\quad \quad \{{ S }_{ 1 }\}\quad else \quad \{{ S }_{ 2 }\}>\rightarrow { st }^{ ` } } st\vdash b{ \rightarrow  }_{ B }\bot 
+	\frac { { e }_{ p },{ e }_{ v }\vdash <{ S }_{ 2 },st>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <if\quad (b)\quad \quad \{{ S }_{ 1 }\}\quad else \quad \{{ S }_{ 2 }\}>\rightarrow { st }^{ ` } } st\vdash b{ \rightarrow  }_{ B }\bot 
 \end{equation}
-\todo{Vi bruger altså ikke if b then ? Vi har blokke \{ \}}
-
 
 \subsubsection{While $\top$}
 \begin{align*}
-	&\frac { { e }_{ v }\vdash <{ S }_{ 1 },st>\rightarrow { st }^{ `` }\quad { e }_{ v }\vdash <while\quad (b)\quad \{S\},{ st }^{ `` }>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <while\quad (b)\quad \{S\},st>\rightarrow { st }^{ ` } }\\
+	&\frac { { e }_{ p },{ e }_{ v }\vdash <{ S }_{ 1 },st>\rightarrow { st }^{ `` }\quad { e }_{ v }\vdash <while\quad (b)\quad \{S\},{ st }^{ `` }>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <while\quad (b)\quad \{S\},st>\rightarrow { st }^{ ` } }\\
 	&if\quad { e }_{ v },st\vdash b{ \rightarrow  }_{ B }\top 
 \end{align*}
 
 
 \subsubsection{While $\bot$}
 \begin{align*}
-	&{ e }_{ v }\vdash <while\quad (b)\quad \{S\},\quad st>\rightarrow st\\
+	&{ e }_{ p },{ e }_{ v }\vdash <while\quad (b)\quad \{S\},\quad st>\rightarrow st\\
 	&if\quad { e }_{ v },st\vdash b{ \rightarrow  }_{ B }\bot
 \end{align*}
 
 \subsubsection{Return}
 \begin{equation}
-	\frac { { e }_{ v }\vdash <{ S },st>{ \rightarrow  }_{ S }v,{ st }^{ ` } }{ { e }_{ v }\vdash <(s)|return;,{ e }_{ v },st>{ \rightarrow  }_{ A }v,{ e }_{ v }{ st }^{ ` } } 
+	\frac { { e }_{ p },{ e }_{ v }\vdash <{ S },st>{ \rightarrow  }_{ S }v,{ st }^{ ` } }{ { e }_{ v }\vdash <(s)|return;,{ e }_{ v },st>{ \rightarrow  }_{ A }v,{ e }_{ v }{ st }^{ ` } } 
 \end{equation}
 
 
