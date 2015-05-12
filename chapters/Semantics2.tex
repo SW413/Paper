@@ -10,6 +10,9 @@ The semantics is organised as follow:
 	\textbf{v} \in  &Variable\\
 	\textbf{m} \in  &Matrix\\
 	\textbf{vec} \in  &Vector\\
+	\textbf{type} \in &Int | Float | Bool
+	\textbf{S}	\in &Statement
+	\textbf{mtype} \in &Int | Float
 \end{align*}
 
 \textbf{v} is meant to store the result, this can be both a value, a vector or a matrix.
@@ -23,19 +26,19 @@ A few of the big-step semantics for \gls{gamble} is included in this chapter, wh
 %The most few most important operational semantics there will be explained is, Variable declaration, Statements assignment, Matrix declaration, Matrix- Matrix Multiplication and Scalar product.
 A few of the most important and interesting operational semantics which will be explained are, variable declaration, assignment, matrix declaration, matrix multiplication and scalar product.
 
-\subsection*{Declaring Variables}
+\subsection*{Declaring Variables}\TODO{Skal skrives om - er det samme som fra bogen}
 Any non-empty variable declaration will modify the variable environment since the new variables will be bound to the new location.
 A variable declaration will also modify the store, since the new location will be initialised to contain the initial values of the new variables.
 
 \subsubsection{Variable declaration}
 \begin{equation}
-	\frac { <{ D }_{ v },{ e }_{ v }^{ `` },st[\iota \mapsto v]>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ ` },{ st }^{ ` }> }{ <var\quad x:=a;Dv,{ e }_{ v }st>{ \rightarrow  }_{ Dv }<{ e }_{ v }^{ ` },{ st }^{ ` }> }
+	\frac { <S,{ e }_{ v }^{ `` },st[\iota \mapsto v]>{ \rightarrow  }_{<{ e }_{ v }^{ ` },{ st }^{ ` }> }{ <type\quad x=a;S,{ e }_{ v }st>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> }
 \end{equation}
 
 \section*{Statements}
 The effect of a statement is that the store may change, since a statement may modify the values of variables involved through assignments.
 A statement should not modify the variable environment.
-We define a BS-semantic for statements (except procedure calls) \todo{Jeg er mega forvirret over opdelingen her ? Hører assignment under Statements her ? Eller hvad sker der ? Når man kigger i rapporten er jeg lidt forvirret.}
+We define a BS-semantic for statements (except procedure calls)
 
 \subsubsection{Assignment}
 \begin{align*}
@@ -43,7 +46,20 @@ We define a BS-semantic for statements (except procedure calls) \todo{Jeg er meg
 	where\quad &{ e }_{ v },st\vdash a{ \rightarrow  }_{ A }v\quad and\quad  { e }_{ v }(x)=\iota 
 \end{align*}
 
-\subsection*{Matrices and Vectors}
+\subsubsection{While $\top$}
+\begin{align*}
+	&\frac { { e }_{ v }\vdash <{ S }_{ 1 },st>\rightarrow { st }^{ `` }\quad { e }_{ v }\vdash <while\quad b\quad do\quad S,st>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <while\quad b\quad do\quad S,st>\rightarrow { st }^{ ` } }\\
+	&if\quad { e }_{ v },st\vdash b{ \rightarrow  }_{ B }\top 
+\end{align*}
+
+
+\subsubsection{While $\bot$}
+\begin{align*}
+	&{ e }_{ v }\vdash <while\quad b\quad do\quad S,\quad st>\rightarrow st\\
+	&if\quad { e }_{ v },st\vdash b{ \rightarrow  }_{ B }\bot
+\end{align*}
+
+\section*{Matrices and Vectors}
 A matrix is referred to as seen below, the superscript refers to name of the matrix, while the subscript is the entry in the matrix.
 \begin{align*}
 	M^{n}= \begin{bmatrix} { { m }_{ 1,1 }^{ n } } & { { m }_{ 1,2 }^{ n } } & \dots  & { m }_{ 1,k }^{ n } \\
@@ -53,10 +69,10 @@ A matrix is referred to as seen below, the superscript refers to name of the mat
 \end{align*}
 
 \subsubsection{Matrix declaration}
-Declaring a matrix of a given type is generated with the size of $v_{1}*v_{2}$. \todo{Hvorfor * ??}
+Declaring a matrix of a given type is generated with ${ v }_{ 1 }$ number of rows and ${ v }_{ 2 }$ number of columns. \todo{Hvorfor * ??}
 If nothing else is assigned to the entries in the matrix, it will be filled with $0$'s.
 \begin{equation}
-	\frac { { e }_{ v },st\vdash j{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash k{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { M }^{ 1 }\quad =\quad martix<int|float|bool>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } ,{ M }^{ 1 }[{ v }_{ 1 },{ v }_{ 2 }]=\begin{bmatrix} { { 0 }_{ 1,1 } } & \dots  & { 0 }_{ { 1,{ v }_{ 2 } } } \\ \vdots  & \ddots  &  \\ { 0 }_{ { v }_{ 1 },1 } &  & { 0 }_{ { v }_{ 1 },{ v }_{ 2 } } \end{bmatrix}
+	\frac { { e }_{ v },st\vdash j{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash k{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { M }^{ 1 }\quad =\quad martix<mtype>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } ,{ M }^{ 1 }[{ v }_{ 1 },{ v }_{ 2 }]=\begin{bmatrix} { { 0 }_{ 1,1 } } & \dots  & { 0 }_{ { 1,{ v }_{ 2 } } } \\ \vdots  & \ddots  &  \\ { 0 }_{ { v }_{ 1 },1 } &  & { 0 }_{ { v }_{ 1 },{ v }_{ 2 } } \end{bmatrix}
 \end{equation}
 
 \subsubsection{Matrix multiplication}
@@ -66,12 +82,7 @@ The operation returns a matrix of size $j*l$ based on the rules in \myref{hypepr
 \begin{minipage}{1.0\textwidth}
 \begin{equation}\label{hypeproduct}
 \begin{aligned}
-	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }*{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }=matrix<>[k,l] \\
-	 v=\begin{bmatrix} { { m }_{ 1,1 }^{ 3 } } & { { m }_{ 2,1 }^{ 3 } } & \dots  & { m }_{ 1,l }^{ 3 }\\
-{ { m }_{ 2,1 }^{ 3 } } &   +{ { m }_{ 2,2 }^{ 3 } } & \dots & { { m }_{ 2,l }^{ 3 } }
-\\ \vdots  & \vdots & \ddots  & \vdots  \\
- { m }_{ j,1 }^{ 3 }& { { m }_{ j,2 }^{ 3 } } & \dots & { m }_{ j,l }^{ 3 } \end{bmatrix} where
-\\ \end{matrix}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }*{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<mtype>[j,k] \\ { v }_{ 2 }=matrix<mtype>[k,l] \\ v=\begin{bmatrix} { { m }_{ 1,1 }^{ 3 } } & { { m }_{ 1,1 }^{ 3 } } & \dots  & { m }_{ 1,l }^{ 3 } \\ { { m }_{ 2,1 }^{ 3 } } & +{ { m }_{ 2,2 }^{ 3 } } & \dots  & { { m }_{ 2,l }^{ 3 } } \\ \vdots  & \vdots  & \ddots  & \vdots  \\ { m }_{ j,1 }^{ 3 } & { { m }_{ j,2 }^{ 3 } } & \dots  & { m }_{ j,l }^{ 3 } \end{bmatrix}where \\  \end{matrix}
 \end{aligned}
 \end{equation}
 \begin{equation*}
@@ -96,8 +107,8 @@ The operation returns a matrix of size $j*l$ based on the rules in \myref{hypepr
 A scalar multiplication is a simple operation on a matrix, where every element in the $j,k$ matrix is multiplayed with an Arithmetic expression $a$. 
 
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }\ast { a }_{ 1 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<>[j,k] \\ { v }_{ 2 }={ a }_{ 1 } \\ v=\begin{bmatrix} { { a }_{ 1 }*m }_{ 1,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 1,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 1,k }^{ 1 } \\
- { { a }_{ 1 }*m }_{ 2,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 2,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 2,k }^{ 1 }  \\ \vdots & \vdots & \ddots & \vdots \\ { { a }_{ 1 }*m }_{ j,1 }^{ 1 } & { { a }_{ 1 }*m }_{ j,2 }^{ 1 } & \dots & { { a }_{ 1 }*m }_{ j,k }^{ 1 } \end{bmatrix} \end{matrix}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }\ast { a }_{ 1 }{ \rightarrow_{ A }}{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<mtype>[j,k] \\ { v }_{ 2 }={ a }_{ 1 } \\ v=\begin{bmatrix} { { a }_{ 1 }*m }_{ 1,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 1,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 1,k }^{ 1 } \\
+ { { a }_{ 1 }*m }_{ 2,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 2,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 2,k }^{ 1 }  \\ \vdots & \vdots & \ddots & \vdots \\ { { a }_{ 1 }*m }_{ j,1 }^{ 1 } & { a 1*m }_{ j,2 }^{ 1 } & \dots & {a *m }_{ j,k }^{ 1 } \end{bmatrix} \end{matrix}
 \end{equation}
 
 \todo{Skal man ikke skrive at a =>a v ? Altså at man kan evaluere expression til en value?}
