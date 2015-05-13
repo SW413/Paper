@@ -14,7 +14,7 @@ The JIT compilation, called online compilation under OpenCL, allows the system t
 If the kernel is compiled at compile-time, called offline compilation under OpenCL, then it might support fewer devices, or will take a long time and increase the size of the executable as it has to contain versions for each hardware for which support is requested. \citep{openclbookjit}
 For \gls{gamble} the online compilation is chosen for its simplicity as it lets the driver of the running system compile the kernel. 
 
-A typical compilation on Ubuntu 14.04 configured with OpenCL headers located at \texttt{/opt/opencl-headers/include/} will look like \myref{lst:makecommands}, where \texttt{code.c} is the output of the \gls{gamble} compiler.
+A typical compilation on Ubuntu 14.04 configured with OpenCL headers located at \path{/opt/opencl-headers/include/} will look like \myref{lst:makecommands}, where \texttt{code.c} is the output of the \gls{gamble} compiler.
 After the execution of these, an output file called \texttt{run} is made and can be executed with the command \texttt{./run}. 
 
 \begin{lstlisting}[caption=The commands executed by the make command according to the rules of the MakeFile,numbers=none,frame=tlrb,label={lst:makecommands}]
