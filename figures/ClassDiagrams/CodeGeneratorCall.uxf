@@ -4,8 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>400</x>
-      <y>450</y>
+      <x>130</x>
+      <y>120</y>
       <w>210</w>
       <h>70</h>
     </coordinates>
@@ -19,8 +19,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>920</x>
-      <y>450</y>
+      <x>380</x>
+      <y>120</y>
       <w>610</w>
       <h>410</h>
     </coordinates>
@@ -49,20 +49,22 @@
 +String applyBoundsCheck(Variable variable, String code);
 +String applySameSizeCheck(Variable matrixA, Variable matrixB, String code);
 +String makeFillArray(Strind id, String, simpletype, String size, String expression);
-+String makeFullLoop(String id, String simpleType);
++String makeFillLoop(String id, String simpleType);
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>600</x>
-      <y>470</y>
-      <w>340</w>
-      <h>40</h>
+      <x>130</x>
+      <y>180</y>
+      <w>350</w>
+      <h>260</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-Accept ( new CodeGeneratorVisitor())</panel_attributes>
-    <additional_attributes>320.0;20.0;10.0;20.0</additional_attributes>
+
+
+Accept ( new CodeGeneratorVisitor())                      . </panel_attributes>
+    <additional_attributes>250.0;220.0;90.0;220.0;90.0;10.0</additional_attributes>
   </element>
 </diagram>

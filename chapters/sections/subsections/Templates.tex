@@ -1,9 +1,6 @@
 \subsubsection*{Using SimpleOpenCl}
 SimpleOpenCL is a library for C which simplifies the process of setting up and launching a kernel for OpenCL.
 The kernels remain the same, but finding the hardware for executing the kernels and also allocating memory for the hardware is simplified.
-The compiler starts the codegeneration by calling an instance of the class \texttt{CodeGenerator} and invoking the method \texttt{GenerateCodeAndWriteToFile}.
-This method then makes the \acrshort{ast} accept a CodeGeneratorVisitor, and writes its output to a file while also exporting the outputcode to a certain directory along with other files needed like the OpenCL kernels used in the program.
-The \texttt{outputCode} is a string which starts as an empty string, and every visitor then either appends or returns substrings to be appended containing different information to the string as the traversal of the \acrshort{ast} is ongoing.
 The codegeneraterVisitor starts at the root of the AST and here the code on \myref{lst:OpenCLSetup} is run.
 
 \begin{lstlisting}[caption=Call to setup SimpleOpenCL in the compiler,numbers=none,frame=tlrb,label={lst:OpenCLSetup}]
