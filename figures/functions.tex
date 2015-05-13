@@ -2,17 +2,17 @@
     \centering
     \colorlet{shadecolor}{gray!40}
     \rowcolors{1}{white}{shadecolor}
-    \begin{tabular}{|c|p{6cm}|p{7cm}|}
+    \begin{tabular}{|l|p{8.5cm}|}
     \hline
-    \textbf{Function}  & \textbf{Parameters}                                & \textbf{Description}            \\ \hline
-    \texttt{print()}            & Every datatype plus strings, variable number of parameters. & Takes the parameter(s) and print it in the console on runtime.                     \\ \hline 
-    \texttt{rows()}    & Subtraction (infix)            &         \\ \hline 
-    \texttt{cols()}             & Increment (unary,pre-, postfix)&       \\ \hline    
-    \texttt{matrixToFile()}     & Decrement (unary,pre-, postfix)&       \\ \hline
-    \texttt{fileToMatrix()}     & Multiplication (infix)         &       \\ \hline
-    \texttt{MakeIntMatrix()}    & Multiplication (infix)         &       \\ \hline
-    \texttt{MakefloatMatrix()}  & Multiplication (infix)         &       \\ \hline
+    \textbf{Function}                                               &\textbf{Description}                                                                               \\ \hline
+    \texttt{print(\textit{any*})}                                   &Takes the parameter(s) and print it in the console.                                                 \\ \hline 
+    \parbox[t]{5cm}{\texttt{rows(matrix m)}\\\texttt{rows(vector v)}} &Return the number of rows for the given vector or matrix.                                          \\ \hline
+    \parbox[t]{5cm}{\texttt{cols(matrix m)}\\\texttt{cols(vector v)}} &Return the number of cols for the given vector or matrix.                                          \\ \hline    
+    \texttt{fileToMatrix(string s)}                                 &Reads the input file of \texttt{s} and return it as a matrix.                                        \\ \hline
+    \texttt{matrixToFile(matrix m , string s)}                      &Takes matrix and saves it in the given path.                                                       \\ \hline  
+    %\texttt{MakeIntMatrix(int r, int c, int[] vals)}                &Creates an int matrix with the specified rows and columns and the value desired at each entry.     \\ \hline
+    %\texttt{MakefloatMatrix(int r, int c, float[] vals)}            &Creates an float matrix with the specified rows and columns and the value desired at each entry.   \\ \hline
     \end{tabular}
-    \caption{Available functions in GAMBLE, their input parameters and a short description for each.}\label{tbl:funcs}
+    \caption{Available functions in GAMBLE, their input parameters and a short description for each. *the print function takes any parameter including strings.}\label{tbl:funcs}
 \end{table}
 %\vspace{-20pt}

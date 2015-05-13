@@ -159,16 +159,18 @@ Similar to this \gls{gamble} provides \texttt{Rows} and \texttt{Cols} functions 
 If called on a vector one can use either rows or columns, it will give the same result.
 This can be used in loops to make them iterate over matrices of any size.
 
-Another such function is \texttt{MakeIntMatrix}.
-This creates a matrix with int values a similar function exists for float.
-These takes three arguments as input, the amount of rows, amount of columns, and what value to place at every entry.
-This function builds upon the syntax for initialising a matrix by providing dimensions rather than input, it merely alters the initialised value depending on the argument provided.
-Other functions are created out of necessity, functions for arithmetics such as multiply and addition also exist, as operators between matrices are not a valid expression.
+%Another such function is \texttt{MakeIntMatrix}.
+%This creates a matrix with int values a similar function exists for float.
+%These takes three arguments as input, the amount of rows, amount of columns, and what value to place at every entry.
+%This function builds upon the syntax for initialising a matrix by providing dimensions rather than input, it merely alters the initialised value depending on the argument provided.
+%Other functions are created out of necessity, functions for arithmetics such as multiply and addition also exist, as operators between matrices are not a valid expression.
 
-In order to allow users of \gls{gamble} to use data dynamicly and save the result, there are a built in \texttt{matrixToFile}--function and a \texttt{fileToMatrix}--function. 
-The files which can be used must be of a fixed format, and the output of \texttt{matrixToFile} must be useable for \texttt{fileToMatrix}.
-One of the parameters are a string which identifies the file to be used, outside from the \texttt{print}--function these are the only places where strings are allowed in \gls{gamble}.
-\todo[inline]{Lav table/listing med special functions/stdlib?} 
+In order to allow users of \gls{gamble} to use data dynamically and save the result, there are a built in \texttt{matrixToFile}--function and a \texttt{fileToMatrix}--function. 
+The files which can be used must be of a fixed format, and the output of \texttt{matrixToFile} must be usable for \texttt{fileToMatrix}.
+One of the parameters are a string which identifies the file to be used, besides from the \texttt{print}--function these are the only places where strings are allowed in \gls{gamble}.
+The other parameter of \texttt{MatrixToFile} specifies which matrix the function should write to file.
+
+A complete list of all available standard functions can be seen on \myref{tbl:fucs} together with a desperation of each function.
 \input{figures/functions.tex}
 
 \subsection*{Function identifiers}
