@@ -55,6 +55,9 @@ constant\rightarrow v,\quad V[constant]=v
 \end{equation}
 
 \section*{Boolean}
+Booleans are used in the language for control structures of the programs. 
+In the grammar of \gls{gamble} 6 operators can be used as boolean operators, and the semantics for both the true and false case is given.
+
 [${EqualBool\top}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }=={ a }_{ 2 }{ \rightarrow  }true } ,{ v }_{ 1 }={ v }_{ 2 }\rightarrow true
@@ -118,9 +121,8 @@ constant\rightarrow v,\quad V[constant]=v
 \section*{Declarations}
 Variables declarations are also statements according to \gls{gamble}'s grammar.
 Declarations have an effect on the variable environment which is why it has it's own section.
-Any non-empty variable declaration will modify the variable environment since the new variables will be bound to the new location.
-A variable declaration will also modify the store, since the new location will be initialised to contain the initial values of the new variables.
-The transition relation describing variable declarations defines a big-step semantic.
+A variable declaration modifies the store and the variable environment, the new location in the store will be initialised to contain the values of the new variables and the new variable will exist in the variable environment.
+The transitions for function declarations affect the function environment since a new functions is now available and can be called.
 
 [$Transition$]
 \begin{equation}
@@ -153,9 +155,8 @@ where\quad &{ e }_{ f }(ID)=<S,parameterlist,{ e }_{ v }^{ ` }>
 \end{align*}
 
 \section*{Statements}
-The effect of a statement is that the store may change, since a statement may modify the values of variables involved through assignments.
-A statement should not modify the variable environment.
-We define a BS-semantic for statements. \todo{...}
+A statement may affect the store, since a statement may modify the values of the variables involved through assignments.
+A statement if not a declaration, should not modify the variable environment as no new variables will be created.
 
 [${Assignment}_{BSS}$]
 \begin{align*}
@@ -202,7 +203,9 @@ We define a BS-semantic for statements. \todo{...}
 \end{equation}
 
 
-\subsection*{Matrices and vectors} \todo{skal der være noget tekst her :P ?}
+\subsection*{Matrices and vectors}
+\gls{gamble} has some matrix and vector operators and the BS semantics will be defined here.
+
 [${MatrixDeclaration}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ f },{ e }_{ v },st\vdash j{ \rightarrow  }_{ A }{ v }_{ 1 },\quad { e }_{ f },{ e }_{ v },st\vdash k{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { M }^{ 1 }\quad =\quad matrix<int|float>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } ,{ M }^{ 1 }[{ v }_{ 1 },{ v }_{ 2 }]=\begin{bmatrix} { { 0 }_{ 1,1 } } & 0_{ 1,2 } & \dots  & { 0 }_{ { 1,{ v }_{ 2 } } } \\ 0_{ 2,1 } & 0_{ 2,2 } & \dots  & 0_{ 2,v_{ 2 } } \\ \vdots  & \vdots  & \ddots  & \vdots  \\ { 0 }_{ { v }_{ 1 },1 } & 0_{ v_{ 1 },2 } & \dots  & { 0 }_{ { v }_{ 1 },{ v }_{ 2 } } \end{bmatrix}
