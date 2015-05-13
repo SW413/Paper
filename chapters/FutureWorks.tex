@@ -15,7 +15,7 @@ Therefore making these improvements to the core language, would not only increas
 \section{GPU Usage Criteria}
 %A more dynamic use of GPU through analysis
 %Use GPU for more than matrix and vector operations
-As aforementioned \gls{gamble} performs all matrix and vector operations on the \acrshort{gpu}. \todo{Ikke helt sandt fx \texttt{a[1,1] = 2;} sker ikke på gpu.}
+As aforementioned \gls{gamble} performs all operations between matrix and vector on the \acrshort{gpu}.
 While this should be sufficient for computations on big sets of data as the language has targeted, this is not the optimal solution.
 A possible expansion would be to optimize further to only utilize the \acrshort{gpu} when an increase in performance is to be expected from doing so.
 An analysis of the amount of computations required as well as the hardware available, would help towards gaining the best performance possible.
@@ -29,12 +29,12 @@ Rather than blindly disregarding loops one could have the compiler check whether
 %Kernal optimisation
 When creating kernels one must allocate memory within the memory hierarchy established in the OpenCL framework.
 In this compiler all memory is allocated in global memory as it significantly simplifies the knowledge of the \acrshort{gpu} hardware and its memory hierarchy required to write kernels.
-With a deeper understanding of how the different memory sections communicate, it is possible to increase performance by using the best suited part of the memory hierarchy. \todo{Evt source?}
+With a deeper understanding of how the different memory sections communicate, it is possible to increase performance by using the best suited part of the memory hierarchy. \citep{ocl_lecture3}
 
 \section{Platform Specifications}
 %Platform performance
 While OpenCL is not machine dependant, which machine one is working on does change what version of OpenCL is supported, as well as how different work sizes and data types are handled.
-An example would be that while AMD \acrshort{gpu}s have hardware to support both integer and float calculations, Nvidia \acrshort{gpu}s only uses floats. \todo{kilde? Er det ikke bare STOR performance forskel, til fordel for float, hvor det på cpu er modsat.}
+An example would be that while AMD \acrshort{gpu}s have hardware to support both integer and float calculations, Nvidia \acrshort{gpu}s only uses floats. \citep{CUDAOpenCLOptimisation}
 Due to these discrepancies the same program and kernel may perform differently on \acrshort{gpu}s with the same specifications but from different vendors.
 As such, different implementations depending on manufacturer and OpenCL support may increase performance depending on the specific hardware.
 
