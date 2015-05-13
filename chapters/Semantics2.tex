@@ -24,7 +24,6 @@ The variable environment(${ e }_{ v }$) is a function that for each variable def
 The store ($st$) is a function that for each storage location in the computer tells us which value is stored in the location. A store corresponds to a complete description of the contents of the memory.\citep{EnvSt_Semantics}
 
 A few of the big-step semantics for \gls{gamble} is included in this chapter, while the rest of the semantics for the rest of the \gls{gamble} is seen in \myref{app:semantics}.
-%The most few most important operational semantics there will be explained is, Variable declaration, Statements assignment, Matrix declaration, Matrix- Matrix Multiplication and Scalar product.
 A few of the most important and interesting operational semantics which will be explained are, variable declaration, assignment, matrix declaration, matrix multiplication and scalar product.
 
 \subsection*{Declaring Variables}
@@ -32,7 +31,7 @@ A few of the most important and interesting operational semantics which will be 
 Any non-empty variable declaration will modify the variable environment since the new variables will be bound to the new location.
 A variable declaration will also modify the store, since the new location will be initialised to contain the initial values of the new variables.
 
-\subsubsection{Variable declaration}
+[${VariableDeclaration}_{BSS}$]
 \begin{equation}
 	\frac { <S,{ e }_{ v }^{ `` },st[\iota \mapsto v]>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> }{ <type\quad x=a;S,{ e }_{ v }st>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> } 
 \end{equation}
@@ -47,23 +46,22 @@ The effect of a statement is that the store may change, since a statement may mo
 A statement should not modify the variable environment.
 We define a BS-semantic for statements (except procedure calls).
 
-\subsubsection{Assignment}
-
+[${Assignment}_{BSS}$]
 \begin{align*}
-	&{ e }_{ v }\vdash <x=a,st>\rightarrow st[\iota \mapsto v]\\
+	&{ e }_{ f },{ e }_{ v }\vdash <x=a,st>\rightarrow st[\iota \mapsto v]\\
 	where\quad &{ e }_{ v },st\vdash a{ \rightarrow  }_{ A }v\quad and\quad  { e }_{ v }(x)=\iota 
 \end{align*}
 
-\subsubsection{While $\top$}
+[${While\top}_{BSS}$]
 \begin{align*}
-	&\frac { { e }_{ v }\vdash <{ S }_{ 1 },st>\rightarrow { st }^{ `` }\quad { e }_{ v }\vdash <while\quad b\quad do\quad S,st>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <while\quad b\quad do\quad S,st>\rightarrow { st }^{ ` } }\\
+	&\frac { { e }_{ f },{ e }_{ v }\vdash <{ S }_{ 1 },st>\rightarrow { st }^{ `` },\quad { e }_{ v }\vdash <while\quad (b)\quad \{S\},{ st }^{ `` }>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <while\quad (b)\quad \{S\},st>\rightarrow { st }^{ ` } }\\
 	&if\quad { e }_{ v },st\vdash b{ \rightarrow  }_{ B }\top 
 \end{align*}
 
 
-\subsubsection{While $\bot$}
+[${While\bot}_{BSS}$]
 \begin{align*}
-	&{ e }_{ v }\vdash <while\quad b\quad do\quad S,\quad st>\rightarrow st\\
+	&{ e }_{ f },{ e }_{ v }\vdash <while\quad (b)\quad \{S\},\quad st>\rightarrow st\\
 	&if\quad { e }_{ v },st\vdash b{ \rightarrow  }_{ B }\bot
 \end{align*}
 
@@ -76,21 +74,29 @@ A matrix is referred to as seen below, the superscript refers to name of the mat
  { m }_{ j,1 }^{ n } & { m }_{ j,2 }^{ n } & \dots & { m }_{ j,k }^{ n } \end{bmatrix}
 \end{align*}
 
-\subsubsection{Matrix declaration}
-Declaring a matrix of a given type is generated with ${ v }_{ 1 }$ number of rows and ${ v }_{ 2 }$ number of columns.
-If nothing else is assigned to the entries in the matrix, it will be filled with $0$'s.
+[${MatrixDeclaration}_{BSS}$]
 \begin{equation}
-	\frac { { e }_{ v },st\vdash j{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash k{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { M }^{ 1 }\quad =\quad martix<mtype>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } ,{ M }^{ 1 }[{ v }_{ 1 },{ v }_{ 2 }]=\begin{bmatrix} { { 0 }_{ 1,1 } }& 0_{1,2} & \dots  & { 0 }_{ { 1,{ v }_{ 2 } } } \\ 0_{2,1} & 0_{2,2} & \dots  & 0_{2,v_{2}}  \\ \vdots & \vdots & \ddots & \vdots \\ { 0 }_{ { v }_{ 1 },1 } & 0_{v_1,2} & \dots & { 0 }_{ { v }_{ 1 },{ v }_{ 2 } } \end{bmatrix}
+	\frac { { e }_{ f },{ e }_{ v },st\vdash j{ \rightarrow  }_{ A }{ v }_{ 1 },\quad { e }_{ f },{ e }_{ v },st\vdash k{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { M }^{ 1 }\quad =\quad matrix<int|float>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } ,{ M }^{ 1 }[{ v }_{ 1 },{ v }_{ 2 }]=\begin{bmatrix} { { 0 }_{ 1,1 } } & 0_{ 1,2 } & \dots  & { 0 }_{ { 1,{ v }_{ 2 } } } \\ 0_{ 2,1 } & 0_{ 2,2 } & \dots  & 0_{ 2,v_{ 2 } } \\ \vdots  & \vdots  & \ddots  & \vdots  \\ { 0 }_{ { v }_{ 1 },1 } & 0_{ v_{ 1 },2 } & \dots  & { 0 }_{ { v }_{ 1 },{ v }_{ 2 } } \end{bmatrix}
 \end{equation}
 
-\subsubsection{Matrix multiplication}
+
+
+
+[${MatrixMultiplication}_{BSS}$]
+
 Matrix multiplication takes two matrices of the same type, where the size of $m^{1}$ and $m^{2}$satisfy $m^{1}[j,k]*m^{2}[k,l]$.
 The operation returns a matrix of with $j$ columns and $l$ rows based on the rules in \myref{hypeproduct}.
 
+
 \begin{minipage}{1.0\textwidth}
-\begin{equation}\label{hypeproduct}
+\begin{equation}
 \begin{aligned}
-	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }*{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<mtype>[j,k] \\ { v }_{ 2 }=matrix<mtype>[k,l] \\ v=\begin{bmatrix} { { m }_{ 1,1 }^{ 3 } } & { { m }_{ 1,1 }^{ 3 } } & \dots  & { m }_{ 1,l }^{ 3 } \\ { { m }_{ 2,1 }^{ 3 } } & +{ { m }_{ 2,2 }^{ 3 } } & \dots  & { { m }_{ 2,l }^{ 3 } } \\ \vdots  & \vdots  & \ddots  & \vdots  \\ { m }_{ j,1 }^{ 3 } & { { m }_{ j,2 }^{ 3 } } & \dots  & { m }_{ j,l }^{ 3 } \end{bmatrix}where \\  \end{matrix}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }*{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<int|float>[j,k] \\ { v }_{ 2 }=matrix<int|float>[k,l] \\
+	 v=\begin{bmatrix} { { m }_{ 1,1 }^{ 3 } } & { { m }_{ 1,2 }^{ 3 } } & \dots  & { m }_{ 1,l }^{ 3 }\\
+{ { m }_{ 2,1 }^{ 3 } } &   +{ { m }_{ 2,2 }^{ 3 } } & \dots & { { m }_{ 2,l }^{ 3 } }
+\\ \vdots  & \vdots & \ddots  & \vdots  \\
+ { m }_{ j,1 }^{ 3 }& { { m }_{ j,2 }^{ 3 } } & \dots & { m }_{ j,l }^{ 3 } \end{bmatrix} where
+\\ \end{matrix}
 \end{aligned}
 \end{equation}
 \begin{equation*}
@@ -111,10 +117,13 @@ The operation returns a matrix of with $j$ columns and $l$ rows based on the rul
 \end{aligned}
 \end{equation*}
 \end{minipage}
-\subsubsection{Scalar multiplication}
+
+
+
+
+[${ScalarMultiplication}_{BSS}$]
 A scalar multiplication is a simple operation on a matrix, where every element in the $j,k$ matrix is multiplayed with an Arithmetic expression $a$. 
 
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }\ast { a }_{ 1 }{ \rightarrow_{ A }}{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<mtype>[j,k] \\ { v }_{ 2 }={ a }_{ 1 } \\ v=\begin{bmatrix} { { a }_{ 1 }*m }_{ 1,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 1,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 1,k }^{ 1 } \\
- { { a }_{ 1 }*m }_{ 2,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 2,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 2,k }^{ 1 }  \\ \vdots & \vdots & \ddots & \vdots \\ { { a }_{ 1 }*m }_{ j,1 }^{ 1 } & { a 1*m }_{ j,2 }^{ 1 } & \dots & {a *m }_{ j,k }^{ 1 } \end{bmatrix} \end{matrix}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }\ast { a }_{ 1 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<int|float>[j,k] \\  \\ v=\begin{bmatrix} { { a }_{ 1 }*m }_{ 1,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 1,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 1,k }^{ 1 } \\ { { a }_{ 1 }*m }_{ 2,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 2,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 2,k }^{ 1 } \\ \vdots  & \vdots  & \ddots  & \vdots  \\ { { a }_{ 1 }*m }_{ j,1 }^{ 1 } & { { a }_{ 1 }*m }_{ j,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ j,k }^{ 1 } \end{bmatrix} \end{matrix}
 \end{equation}
