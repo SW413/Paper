@@ -3,7 +3,7 @@ After the \gls{gamble} compiler have completed the output is OpenCL C code.
 The OpenCL C code must be compiled by a C-compiler such as the GCC (GNU Compiler Collection) compiler to produce code the \acrshort{cpu} and \acrshort{gpu} can execute.
 During the compilation the OpenCL C headers must be accessable, to provide the functions and types used. 
 Aditionally the \gls{gamble} standard libary, containing functions such as \texttt{matrixToFile} and \texttt{fileToMatrix} must also be included and compiled. 
-This produces an executable for the platform targetted by the compiler, this will most often be the platform running, such as x86-64 on Linux.
+This produces an executable for the platform targetted by the compiler, this will most often be the platform running, such as x86--64 on Linux.
 The same executeable is not usable for another platform, e.g. ARM, or on another operating system, e.g. Windows or OS X. 
 However to maintain portability a ``MakeFile'' is used. 
 A MakeFile is a file in the syntax which the make utility can execute. 
