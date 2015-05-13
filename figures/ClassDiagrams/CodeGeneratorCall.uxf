@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>130</x>
+      <y>120</y>
+      <w>210</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>CodeGenerator
+--
+--
++GenerateCodeAndWriteToFile
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>380</x>
+      <y>120</y>
+      <w>610</w>
+      <h>410</h>
+    </coordinates>
+    <panel_attributes>CodeGeneratorVisitor
+--
++outputCode : StringBuilder
++indentationLevel : int
++filesNstuff : Filehandling
++resultVarStack : Stack&lt;Variable&gt;
++astack : Stack&lt;Variable&gt;
++bstack : Stack&lt;Variable&gt;
++unique : int
+--
++String visit(BaseASTNode node);
+..
++Void visit(ConstantExpressionNode node);
++String inden(String txt);
++String functionWithArgs(Variable func);
++String commaSepExprList(ArrayList&lt;ExpressionNode&gt; items);
++String statementBody(ArrayList&lt;BaseASTNode&gt; statements);
++String printFunction(Variable func) ;
++String matrixKernel(String kernelName, String aID, String bID, String resID, String simpleType);
++String makeMatrix(String rows, String cols);
++String makeVector(String rows);
++String complexEntrance(Variable variable);
++String applyBoundsCheck(Variable variable, String code);
++String applySameSizeCheck(Variable matrixA, Variable matrixB, String code);
++String makeFillArray(Strind id, String, simpletype, String size, String expression);
++String makeFillLoop(String id, String simpleType);
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>130</x>
+      <y>180</y>
+      <w>350</w>
+      <h>260</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+
+
+Accept ( new CodeGeneratorVisitor())                      . </panel_attributes>
+    <additional_attributes>250.0;220.0;90.0;220.0;90.0;10.0</additional_attributes>
+  </element>
+</diagram>

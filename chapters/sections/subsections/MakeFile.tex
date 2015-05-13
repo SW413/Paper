@@ -1,0 +1,24 @@
+\subsubsection*{From OpenCL to execution}\label{makefile}
+After the \gls{gamble} compiler have compiled the source code; the compiler outputs OpenCL C code as its object code.
+The OpenCL C code must be compiled by a C-compiler such as the GCC (GNU Compiler Collection) compiler to produce code the \acrshort{cpu} and \acrshort{gpu} can execute.
+During the compilation the OpenCL C headers must be accessable, to provide the functions and types used. 
+Aditionally the \gls{gamble} standard libary, containing functions such as \texttt{matrixToFile} and \texttt{fileToMatrix} must also be included and compiled. 
+This produces an executable file for the platform targetted by the compiler, this will most often be the platform running, such as x86--64 on Linux.
+The same executeable file is not usable for another platform, e.g. ARM, nor on another operating system, e.g. Windows or OS X. 
+To maintain portability a ``MakeFile'' is used; a MakeFile is a file in the syntax which the GNU make utility can execute. 
+The make utiliry is a set of rules which ensures that the correct compiler, path, headers, etc. are used during compilation on one of multiple platforms. 
+This means that after running the \gls{gamble} compiler, on a configured computer, e.g. has OpenCL C headers, libary, a compiler etc., the make command can be used to build a binary file to be executed.\todo{der skal nok et kilde på det her}
+
+The kernel can either be compiled at compile-time or Just-In-Time (JIT) compiled at runtime.
+The JIT compilation, called online compilation under OpenCL, allows the system to adapt with platform specific optimisations for the running platform.
+If the kernel is compiled at compile-time, called offline compilation under OpenCL, then it might support fewer devices, or will take a long time and increase the size of the executable as it has to contain versions for each hardware for which support is requested. \citep{openclbookjit}
+For \gls{gamble} the online compilation is chosen for its simplicity as it lets the driver of the running system compile the kernel. 
+
+A typical compilation on Ubuntu 14.04 configured with OpenCL headers located at \texttt{/opt/opencl-headers/include/} will look like \myref{lst:makecommands}, where \texttt{code.c} is the output of the \gls{gamble} compiler.
+After the execution of these, an output file called \texttt{run} is made and can be executed with the command \texttt{./run}. 
+
+\begin{lstlisting}[caption=The commands executed by the make command according to the rules of the MakeFile,numbers=none,frame=tlrb,label={lst:makecommands}]
+gcc -Wall -Wextra -pedantic -O3 -std=c99 -I/opt/opencl-headers/include/ -c code.c simpleCL.c gambleStdlib.c
+gcc -Wall -Wextra -pedantic -O3 -std=c99 *.o -o run -lm -lOpenCL -lrt
+rm -f *.o
+\end{lstlisting}

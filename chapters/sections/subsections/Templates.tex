@@ -1,0 +1,106 @@
+\subsubsection*{Using SimpleOpenCl}
+SimpleOpenCL is a library for C which simplifies the process of setting up and launching a kernel for OpenCL.
+The kernels remain the same, but finding the hardware for executing the kernels and also allocating memory for the hardware is simplified.
+The codegeneraterVisitor starts at the root of the AST and here the code on \myref{lst:OpenCLSetup} is run.
+
+\begin{lstlisting}[caption=Call to setup SimpleOpenCL in the compiler,numbers=none,frame=tlrb,label={lst:OpenCLSetup}]
+outputCode.append(filesNstuff.
+	 ImportStringFromResource("codesnippets/simpleCLsetup.c") + "\n\n");
+\end{lstlisting}
+
+The file simpleCLsetup.c is apended to the code right as the main method of the output file is started.
+The file contains the code which can be seen on \myref{lst:OpenCLSetup2}.
+
+\begin{lstlisting}[caption=SimpleOpenCL setup in the compiler,numbers=none,frame=tlrb,label={lst:OpenCLSetup2}]
+/* Simple-OpenCL Hardware setup  */
+	sclHard* allHardware;
+	sclHard hardware;
+	sclSoft software;
+	int found = 0;
+	allHardware = sclGetAllHardware( &found );
+	hardware = sclGetFastestDevice(allHardware, found);
+
+    size_t local_size[2];
+    size_t global_size[2];
+
+    printf("\n");
+/* END Hardware setup */
+\end{lstlisting}
+
+This code creates the elements needed to launch a kernel.
+It finds the fastest hardware according to SimpleOpenCl which means it finds the device with the most number of compute units, no matter the type of device, be it a \acrshort{cpu} or a \acrshort{gpu}.
+For the remaining part of this section the fastest device is a \acrshort{gpu}.
+\texttt{global\_size} and \texttt{local\_size} are there to determine the amount of memory needed both globally and locally on the \acrshort{gpu}.
+These arrays are then filled out with different numbers corresponding to the columns and rows of the matrices or vectors being calculated upon.
+This way of appending templates to the outputCode string is used in different places in the code generation when handling the complex datatypes matrices and vectors.
+In fact whenever one of the following operators \texttt{+, -, *, \#, \^{} } are used with matrices or vectors a template is being appended to the outputCode.
+See \myref{tbl:matOps} for a description of what each operator will produce in gamble.
+
+When an assignment's rightside or a declaration's rightside consists of an expression using operators and matrices or vectors, the visitor's check for which operator is used and then inputs a launch kernel template depending on the operator.
+The compiler contains files which have the code for launching the kernel for the specific situation and also for the kernel itself.
+If a kernel is used the kernelfile is added to the codeout directory along with the outputCode itself.
+
+\myref{lst:kernelLaunch} shows one of the kernels being appended to the outputCode.
+
+\begin{lstlisting}[caption=SimpleOpenCL launch of a kernel calculating a matrix or vector multiplied with a scalar.,numbers=none,frame=tlrb,label={lst:kernelLaunch}]
+//MATRIX §MATRIX_A§ MULTIPLIED WITH A SCALAR §MATRIX_B§
+global_size[0] = §MATRIX_A§.rows*§MATRIX_A§.cols;
+local_size[0] = 1;
+global_size[1] = 1;
+local_size[1] = 1;
+software = sclGetCLSoftware("matrixMulScalar.cl", "matrixMulScalar", hardware);
+§MATRIXTYPE§ scl_scalar_mul§NUM§ = §MATRIX_B§;
+sclManageArgsLaunchKernel(hardware, software, global_size, local_size, "%R %a",
+    §MATRIX_A§.dataSize, §MATRIX_A§.dataStart, sizeof(§MATRIXTYPE§), &scl_scalar_mul§NUM§);
+//END MATRIX SCALAR MULTIPLY
+\end{lstlisting}
+
+\texttt{global\_size} is set to be the size of the matrix, and a kernel is then launched for every index in the matrix.
+This is decided by setting the indexes in \texttt{global\_size}.
+If the size of a matrix was 4, a kernel would be launched with 1,2,3 and 4 as the indexes.
+The implementation of multiplying a matrix with a scalar is actually made where the matrix is interpreted as a single vector where each row comes after the other.
+If the matrix form is needed the rows of the matrix would be places in \texttt{global\_size[0]} and the columns in \texttt{global\_size[1]}.
+If the example of a size 4 matrix is still used, the following sets of kernels would be sent:
+\begin{equation}
+\{0,0\}, \{0,1\}, \{1,0\}, \{1,1\}
+\end{equation}
+So a kernel for each index in the matrix.
+This can then be used in the kernel to determine which row and which column the index being sent to the kernel for execution possess.
+The \texttt{software} is where the kernel being launched is set, both the file and the kernel name, the hardware for the execution must also be set.
+Then the functions \texttt{sclManageArgsLaunchKernel()} handles the launching itself with the variables needed to launch the kernel.
+Before this code is appended any string with a \S is is replaced by the corresponding string depending on the situation.
+So \texttt{§MATRIX\_A§} is replaced with the id of the left matrix in the expression node.
+The code for replacing the strings can be seen on \myref{lst:replaceString}.
+
+\begin{lstlisting}[caption=Code for replacing strings with the corresponding information to be appended to the outputCode.,numbers=none,frame=tlrb,label={lst:replaceString}]
+private String matrixKernel(String kernelName, String aID, String bID, String resID, String simpleType) {
+    String kernel = filesNstuff.ImportStringFromResource("kernels/" + kernelName + ".cl");
+    kernel = kernel.replaceAll("§MATRIXTYPE§", simpleType);
+    filesNstuff.WriteToFile(new File("../../../codeout/" + kernelName + ".cl"), kernel);
+
+    String argsNlauch = filesNstuff.ImportStringFromResource("kernelLaunch/" + kernelName + ".c");
+    argsNlauch = argsNlauch.replaceAll("§MATRIX_A§", aID);
+    argsNlauch = argsNlauch.replaceAll("§MATRIX_B§", bID);
+    argsNlauch = argsNlauch.replaceAll("§MATRIX_RES§", resID);
+    argsNlauch = argsNlauch.replaceAll("§MATRIXTYPE§", simpleType);
+    argsNlauch = argsNlauch.replaceAll("§NUM§", Integer.toString(this.scalarNum));
+    argsNlauch = argsNlauch.replaceAll("\\n", "\n" + indent(""));
+    return argsNlauch;
+}
+\end{lstlisting}
+
+However this must also be done for the kernel itself, in the kernels the type is changed depending on the matrix or vector containing integers or floats, which makes it possible to use the same code in the code generator for replacing these strings, since the type is handled dynamically.
+
+The corresponding kernel for \myref{lst:kernelLaunch} can be seen on \myref{lst:kernel}.
+\begin{lstlisting}[caption=Kernel code for multiplying a matrix or vector with a scalar.,numbers=none,frame=tlrb,label={lst:kernel}]
+__kernel void matrixMulScalar(__global §MATRIXTYPE§ *ma, §MATRIXTYPE§ scalar){
+	int global_x = get_global_id( 0);
+	ma[ global_x] *=  scalar;
+}
+\end{lstlisting}
+
+As can be seen the string \texttt{§MATRIXTYPE§} must also be replaced here.
+As mentioned before the kernel is launched for every possible index in the matrix.
+The index is retrieved by calling \texttt{get\_global\_id(0);}.
+and then this index is used to access the matrix at the specific index and multiply the value at the index with the scalar.
+
