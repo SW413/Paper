@@ -13,105 +13,104 @@ It takes in a constant string represented as either a float or integer and gives
 constant\rightarrow v,\quad V[constant]=v
 \end{equation}
 
-\subsubsection{Addition}
+[${Addition}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }+{ a }_{ 2 }{ \rightarrow  }_{ A }{ v } } , v = { v }_{ 1 }+{ v }_{ 2 }
 \end{equation}
 
-\subsubsection{Subtraction}
+[${Subtraction}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }-{ a }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\quad v={ v }_{ 1 }-{ v }_{ 2 }
 \end{equation}
 
-\subsubsection{Increment}
+[${Increment}_{BSS}$]
 \begin{equation}
 \frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 } }{ { e }_{ v },st\vdash { a }_{ 1 }++{ \rightarrow  }_{ A }{ v } } ,\quad v={ v }_{ 1 }+1
 \end{equation}
 
-\subsubsection{Decrement}
+[${Decrement}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 } }{ { e }_{ v },st\vdash { a }_{ 1 }--{ \rightarrow  }_{ A }{ v } } ,\quad v={ v }_{ 1 }-1
 \end{equation}
 
-\subsubsection{Multiplication}
+[${Multiplication}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }\ast { a }_{ 2 }{ \rightarrow  }_{ A }{ v } } ,\quad v={ v }_{ 1 }\ast { v }_{ 2 }
 \end{equation}
 
-\subsubsection{Exponents}
+[${Exponents}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }^{ { a }_{ 2 } }{ \rightarrow  }_{ A }{ v } } ,\quad v=\underset { { v }_{ 2 } }{ \underbrace { v_{ 1 }*\dots *v_{ 1 } }  }
 \end{equation}
 
-
-\subsubsection{Parentheses}
+[${Parantheses}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v } }{ { e }_{ v },st\vdash { (a }_{ 1 }){ \rightarrow  }_{ A }{ v } }
 \end{equation}
 
 
-\subsubsection{Variables}
+[${Variables}_{BSS}$]
 \begin{equation}
 	{ e }_{ v },st\vdash n{ \rightarrow  }_{ a }v, { e }_{ v }(x)=\iota\quad and\quad st(\iota )=v
 \end{equation}
 
 \section*{Boolean}
-\subsubsection{Equal Boolean $\top$}
+[${EqualBool\top}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }=={ a }_{ 2 }{ \rightarrow  }true } ,{ v }_{ 1 }={ v }_{ 2 }\rightarrow true
 \end{equation}
 
-\subsubsection{Equal Boolean $\bot$}
+[${EqualBool\bot}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }=={ a }_{ 2 }{ \rightarrow  }false } ,{ v }_{ 1 }={ v }_{ 2 }\rightarrow false
 \end{equation}
 
-\subsubsection{Not Equal Boolean $\top$}
+[${NotEqualBool\top}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }!={ a }_{ 2 }{ \rightarrow  }true } ,{ v }_{ 1 }={ v }_{ 2 }\rightarrow false
 \end{equation}
 
-\subsubsection{Not Equal Boolean $\bot$}
+[${NotEqualBool\bot}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }!={ a }_{ 2 }{ \rightarrow  }false } ,{ v }_{ 1 }={ v }_{ 2 }\rightarrow true
 \end{equation}
 
-\subsubsection{Less or Equal Boolean $\top$}
+[${LessOrEqualBool\top}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }<={ a }_{ 2 }{ \rightarrow  }true } ,{ v }_{ 1 }\le{ v }_{ 2 }\rightarrow true
 \end{equation}
 
-\subsubsection{Less or equal Boolean $\bot$}
+[${LessOrEqualBool\bot}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }<={ a }_{ 2 }{ \rightarrow  }false } ,{ v }_{ 1 }\le{ v }_{ 2 }\rightarrow false
 \end{equation}
 
-\subsubsection{Greater or Equal Boolean $\top$}
+[${GreaterOrEqualBool\top}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }>={ a }_{ 2 }{ \rightarrow  }true } ,{ v }_{ 1 }\ge{ v }_{ 2 }\rightarrow true
 \end{equation}
 
-\subsubsection{Greater or equal Boolean $\bot$}
+[${GreaterOrEqualBool\bot}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }>={ a }_{ 2 }{ \rightarrow  }false } ,{ v }_{ 1 }\ge{ v }_{ 2 }\rightarrow false
 \end{equation}
 
-\subsubsection{Less Boolean $\top$}
+[${LessBool\top}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }<{ a }_{ 2 }{ \rightarrow  }true } ,{ v }_{ 1 }<{ v }_{ 2 }\rightarrow true
 \end{equation}
 
-\subsubsection{Less Boolean $\bot$}
+[${LessBool\bot}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }<{ a }_{ 2 }{ \rightarrow  }false } ,{ v }_{ 1 }<{ v }_{ 2 }\rightarrow false
 \end{equation}
 
-\subsubsection{Greater Boolean $\top$}
+[${GreaterBool\top}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }>{ a }_{ 2 }{ \rightarrow  }true } ,{ v }_{ 1 }>{ v }_{ 2 }\rightarrow true
 \end{equation}
 
-\subsubsection{Greater Boolean $\bot$}
+[${GreaterBool\bot}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { a }_{ 1 }>{ a }_{ 2 }{ \rightarrow  }false } ,{ v }_{ 1 }>{ v }_{ 2 }\rightarrow false
 \end{equation}
@@ -123,17 +122,12 @@ Any non-empty variable declaration will modify the variable environment since th
 A variable declaration will also modify the store, since the new location will be initialised to contain the initial values of the new variables.
 The transition relation describing variable declarations defines a big-step semantic.
 
-\subsubsection{Transition}
+[$Transition$]
 \begin{equation}
 <{ S },{ e }_{ v },st>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }>
 \end{equation}
 
-\subsubsection{Empty Variables}
-\begin{equation}
-	<\varepsilon,{ e }_{ v },st>{ \rightarrow  }_{ DV }<{ e }_{ v },st>
-\end{equation}
-
-\subsubsection{Variable declaration}
+[${VariableDeclaration}_{BSS}$]
 \begin{equation}
 	\frac { <S,{ e }_{ v }^{ `` },st[\iota \mapsto v]>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> }{ <type\quad x=a;S,{ e }_{ v }st>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> } 
 \end{equation}
@@ -143,12 +137,12 @@ The transition relation describing variable declarations defines a big-step sema
 	&{ e }_{ v }^{ `` }={ e }_{ v }[x\mapsto \iota ][next\mapsto new \iota ]
 \end{align*}
 
-\subsubsection{Transitions rules for function declarations}
+[Transitions rules for function declarations]
 \begin{equation}
-	\frac { { e }_{ v }\vdash { <F }_{ d },{ e }_{ f }[ID\rightarrow S]{ >\rightarrow  }_{ Fd }e_{ f }^{ ` } }{ { e }_{ v }\vdash <{ functiondatatype\quad ID(parameterlist)\quad functionbody;\quad { F }_{ D },{ e }_{ f }>\rightarrow  }_{ Fd }e_{ f }^{ ` } } 
+	\frac { { e }_{ v }\vdash { <F }_{ d },{ e }_{ f }[ID\rightarrow <S,parameterlist>]{ >\rightarrow  }_{ Fd }e_{ f }^{ ` } }{ { e }_{ v }\vdash <{ functiondatatype\quad ID(parameterlist)\quad functionbody;\quad { F }_{ D },{ e }_{ f }>\rightarrow  }_{ Fd }e_{ f }^{ ` } } 
 \end{equation}
 
-\subsubsection{Transitions rules for function calls}
+[Transitions rules for function calls]
 \begin{equation}
 	\frac { { e }_{ v }^{ ` }\vdash [{ argumentlist\rightarrow l] }[next\rightarrow l],{ e }_{ f }^{ ` }\vdash <S,st>\rightarrow { st }^{ ` } }{ { e }_{ v },{ e }_{ f }\vdash <ID(argumentlist),st>\rightarrow { st }^{ ` } } ,{ e }_{ f }(ID(argumentlist))=<S,{ e }_{ v }^{ ` }>
 \end{equation}
@@ -163,70 +157,68 @@ The effect of a statement is that the store may change, since a statement may mo
 A statement should not modify the variable environment.
 We define a BS-semantic for statements. \todo{...}
 
-\subsubsection{Assignment}
+[${Assignment}_{BSS}$]
 \begin{align*}
 	&{ e }_{ f },{ e }_{ v }\vdash <x=a,st>\rightarrow st[\iota \mapsto v]\\
 	where\quad &{ e }_{ v },st\vdash a{ \rightarrow  }_{ A }v\quad and\quad  { e }_{ v }(x)=\iota 
 \end{align*}
 
-\subsubsection{If $\top$}
+[${if\top}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ f },{ e }_{ v }\vdash <{ S }_{ 1 },st>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <if\quad (b)\quad \quad \{{ S }_{ 1 }\}\quad else \quad \{{ S }_{ 2 }\}>\rightarrow { st }^{ ` } } st\vdash b{ \rightarrow  }_{ B }\top 
 \end{equation}
 
-\subsubsection{If $\bot$}
+[${if\bot}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ f },{ e }_{ v }\vdash <{ S }_{ 2 },st>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <if\quad (b)\quad \quad \{{ S }_{ 1 }\}\quad else \quad \{{ S }_{ 2 }\}>\rightarrow { st }^{ ` } } st\vdash b{ \rightarrow  }_{ B }\bot 
 \end{equation}
 
-\subsubsection{While $\top$}
+[${While\top}_{BSS}$]
 \begin{align*}
 	&\frac { { e }_{ f },{ e }_{ v }\vdash <{ S }_{ 1 },st>\rightarrow { st }^{ `` },\quad { e }_{ v }\vdash <while\quad (b)\quad \{S\},{ st }^{ `` }>\rightarrow { st }^{ ` } }{ { e }_{ v }\vdash <while\quad (b)\quad \{S\},st>\rightarrow { st }^{ ` } }\\
 	&if\quad { e }_{ v },st\vdash b{ \rightarrow  }_{ B }\top 
 \end{align*}
 
 
-\subsubsection{While $\bot$}
+[${While\bot}_{BSS}$]
 \begin{align*}
 	&{ e }_{ f },{ e }_{ v }\vdash <while\quad (b)\quad \{S\},\quad st>\rightarrow st\\
 	&if\quad { e }_{ v },st\vdash b{ \rightarrow  }_{ B }\bot
 \end{align*}
 
-\subsubsection{For $\top$}
+[${For\top}_{BSS}$]
 \begin{align*}
 	\frac { \quad \begin{matrix} { { e }_{ v }{ ,e }_{ f }\vdash <declaration,{ st }>\rightarrow { st }^{ ```` },\quad e }_{ f },{ e }_{ v }\vdash <{ S },{ st }^{ ```` }>\rightarrow { st }^{ ``` }, \\ { e }_{ v }{ ,e }_{ f }\vdash <expression,{ st }^{ ``` }>\rightarrow { st }^{ `` }\quad { { e }_{ f },e }_{ v }\vdash <for\quad (\varepsilon ;b;expression)\{ S\} ,{ st }^{ `` }>\rightarrow { st }^{ ` } \end{matrix} }{ { e }_{ f },{ e }_{ v }\vdash <for\quad (declaration;b;expression)\{ S\} ,st>\rightarrow { st }^{ ` } } \\ if\quad { e }_{ v },st\vdash b{ \rightarrow  }_{ B }\top  
 \end{align*}
 
-
-\subsubsection{For $\bot$}
+[${For\bot}_{BSS}$]
 \begin{align*}
 	{ e }_{ f },{ e }_{ v }\vdash <for\quad (declaration;b;expression)\{ S\} ,\quad st>\rightarrow st\\ if\quad { e }_{ v },st\vdash b{ \rightarrow  }_{ B }\bot 
 \end{align*}
 
-\subsubsection{Return}
+[${Return}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ f },{ e }_{ v }\vdash <{ S },st>{ \rightarrow  }_{ S }v,{ st }^{ ` } }{ { e }_{ v }\vdash <(s)|return;,{ e }_{ v },st>{ \rightarrow  }_{ A }v,{ e }_{ v }{ st }^{ ` } } 
 \end{equation}
 
 
 \subsection*{Matrices and vectors} \todo{skal der være noget tekst her :P ?}
-\subsubsection{Matrix declaration}
+[${MatrixDeclaration}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ f },{ e }_{ v },st\vdash j{ \rightarrow  }_{ A }{ v }_{ 1 },\quad { e }_{ f },{ e }_{ v },st\vdash k{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { M }^{ 1 }\quad =\quad matrix<int|float>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } ,{ M }^{ 1 }[{ v }_{ 1 },{ v }_{ 2 }]=\begin{bmatrix} { { 0 }_{ 1,1 } } & 0_{ 1,2 } & \dots  & { 0 }_{ { 1,{ v }_{ 2 } } } \\ 0_{ 2,1 } & 0_{ 2,2 } & \dots  & 0_{ 2,v_{ 2 } } \\ \vdots  & \vdots  & \ddots  & \vdots  \\ { 0 }_{ { v }_{ 1 },1 } & 0_{ v_{ 1 },2 } & \dots  & { 0 }_{ { v }_{ 1 },{ v }_{ 2 } } \end{bmatrix}
 \end{equation}
 
-\subsubsection{Addition}
+[${Addition}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }+{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<int|float>[j,k] \\ { v }_{ 2 }=matrix<int|float>[j,k] \\ v=\begin{bmatrix} { { m }_{ 1,1 }^{ 1 } } +{ { m }_{ 1,1 }^{ 2 } } & { { m }_{ 1,2 }^{ 1 } } + { { m }_{ 1,2 }^{ 2 } } & \dots  & { m }_{ 1,k }^{ 1 }+{ { m }_{ 1,k }^{ 2} } \\
-{ { m }_{ 2,1 }^{ 1 } } + { { m }_{ 2,1 }^{ 2 } } &  { { m }_{ 2,2 }^{ 1 } } +{ { m }_{ 2,2 }^{ 2 } } & \dots & { { m }_{ 2,k }^{ 1 } } + { { m }_{ 2,k }^{ 2 } }
-\\ \vdots  & \vdots & \ddots  & \vdots \\
- { m }_{ j,1 }^{ 1 } +{ { m }_{ j,1 }^{ 2 } } & { { m }_{ j,2 }^{ 1 } } +{ { m }_{ j,2 }^{ 2 } }  & \dots & { m }_{ j,k }^{ 1 }+{ { m }_{ j,k }^{ 2 } } \end{bmatrix}
-
+	{ { m }_{ 2,1 }^{ 1 } } + { { m }_{ 2,1 }^{ 2 } } &  { { m }_{ 2,2 }^{ 1 } } +{ { m }_{ 2,2 }^{ 2 } } & \dots & { { m }_{ 2,k }^{ 1 } } + { { m }_{ 2,k }^{ 2 } }
+	\\ \vdots  & \vdots & \ddots  & \vdots \\
+ 	{ m }_{ j,1 }^{ 1 } +{ { m }_{ j,1 }^{ 2 } } & { { m }_{ j,2 }^{ 1 } } +{ { m }_{ j,2 }^{ 2 } }  & \dots & { m }_{ j,k }^{ 1 }+{ { m }_{ j,k }^{ 2 } } \end{bmatrix}
  \end{matrix}
 \end{equation}
 
 
-\subsubsection{Subtraction}
+[${Subtraction}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }-{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<int|float>[j,k] \\ { v }_{ 2 }=matrix<int|float>[j,k] \\ v=\begin{bmatrix} { { m }_{ 1,1 }^{ 1 } } - { { m }_{ 1,1 }^{ 2 } } & { { m }_{ 1,2 }^{ 1 } } - { { m }_{ 1,2 }^{ 2 } } & \dots  & { m }_{ 1,k }^{ 1 } - { { m }_{ 1,k }^{ 2} } \\
 { { m }_{ 2,1 }^{ 1 } } - { { m }_{ 2,1 }^{ 2 } } &  { { m }_{ 2,2 }^{ 1 } } - { { m }_{ 2,2 }^{ 2 } } & \dots & { { m }_{ 2,k }^{ 1 } }  - { { m }_{ 2,k }^{ 2 } }
@@ -235,7 +227,8 @@ We define a BS-semantic for statements. \todo{...}
 \end{equation}
 
 
-\subsubsection{Matrix product}
+[${MatrixMultiplication}_{BSS}$]
+
 \begin{minipage}{1.0\textwidth}
 \begin{equation}
 \begin{aligned}
@@ -266,29 +259,22 @@ We define a BS-semantic for statements. \todo{...}
 \end{equation*}
 \end{minipage}
 
-\subsubsection{Scalar multiplication}
+[${ScalarMultiplication}_{BSS}$]
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }\ast { a }_{ 1 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<int|float>[j,k] \\ { v }_{ 2 }={ a }_{ 1 } \\ v=\begin{bmatrix} { { a }_{ 1 }*m }_{ 1,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 1,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 1,k }^{ 1 } \\
- { { a }_{ 1 }*m }_{ 2,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 2,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 2,k }^{ 1 }  \\ \vdots & \vdots & \ddots & \vdots \\ { { a }_{ 1 }*m }_{ j,1 }^{ 1 } & { { a }_{ 1 }*m }_{ j,2 }^{ 1 } & \dots & { { a }_{ 1 }*m }_{ j,k }^{ 1 } \end{bmatrix} \end{matrix}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }\ast { a }_{ 1 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<int|float>[j,k] \\  \\ v=\begin{bmatrix} { { a }_{ 1 }*m }_{ 1,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 1,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 1,k }^{ 1 } \\ { { a }_{ 1 }*m }_{ 2,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 2,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 2,k }^{ 1 } \\ \vdots  & \vdots  & \ddots  & \vdots  \\ { { a }_{ 1 }*m }_{ j,1 }^{ 1 } & { { a }_{ 1 }*m }_{ j,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ j,k }^{ 1 } \end{bmatrix} \end{matrix}
 \end{equation}
 
-\subsubsection{Transposed Matrix}
+[${TransposedMatrix}_{BSS}$]
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad  }{ { e }_{ v },st\vdash { m }_{ 1 }\wedge { \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<int|float>[j,k] \\ { v }={ v }_{ 1 }\wedge[k,j] =\begin{bmatrix} { { m }_{ 1,1 }^{ 1 } } & { { m }_{ 2,1 }^{ 1 } } & \dots  & { m }_{ j,1 }^{ 1 } \\
-{ { m }_{ 1,2 }^{ 1 } }  &  { { m }_{ 2,2 }^{ 1 } } & \dots & { m }_{ j,2 }^{ 1 }
-\\ \vdots  & \vdots & \ddots  & \vdots \\
- { m }_{ 1,k }^{ 1 } & { m }_{ 2,k }^{ 1 } & \dots & { m }_{ k,j }^{ 1 } \end{bmatrix} \end{matrix}
+	\frac { { e }_{ v },st\vdash { m }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad  }{ { e }_{ v },st\vdash { m }_{ 1 }\wedge { \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<int|float>[j,k] \\ { v }={ v }_{ 1 }^{ T }=\begin{bmatrix} { { m }_{ 1,1 }^{ 1 } } & { { m }_{ 2,1 }^{ 1 } } & \dots  & { m }_{ j,1 }^{ 1 } \\ { { m }_{ 1,2 }^{ 1 } } & { { m }_{ 2,2 }^{ 1 } } & \dots  & { m }_{ j,2 }^{ 1 } \\ \vdots  & \vdots  & \ddots  & \vdots  \\ { m }_{ 1,k }^{ 1 } & { m }_{ 2,k }^{ 1 } & \dots  & { m }_{ k,j }^{ 1 } \end{bmatrix} \\  \end{matrix}
 \end{equation}
 
-\subsubsection{Mulindex Matrix}
+[${MulindexMatrix}_{BSS}$]
 \begin{equation}
-	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }\ast { M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<int|float>[j,k] \\ { { v }_{ 2 } }=matrix<int|float>[j,k] \\ v=\begin{bmatrix} { { m }_{ 1,1 }^{ 1 } } * { { m }_{ 1,1 }^{ 2 } } & { { m }_{ 2,1 }^{ 1 } } * { { m }_{ 2,1 }^{ 2 } } & \dots  & { m }_{ 1,k }^{ 1 } * { { m }_{ 1,k }^{ 2} } \\
-{ { m }_{ 2,1 }^{ 1 } } * { { m }_{ 2,1 }^{ 2 } } &  { { m }_{ 2,2 }^{ 1 } } * { { m }_{ 2,2 }^{ 2 } } & \dots & { { m }_{ 2,k }^{ 1 } }  * { { m }_{ 2,k }^{ 2 } }
-\\ \vdots  & \vdots & \ddots  & \vdots \\
- { m }_{ j,1 }^{ 1 } * { { m }_{ j,1 }^{ 2 } } & { { m }_{ j,2 }^{ 1 } } * { { m }_{ j,2 }^{ 2 } }  & \dots & { m }_{ j,k }^{ 1 } * { { m }_{ j,k }^{ 2 } } \end{bmatrix} \end{matrix}
+	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }\#{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<int|float>[j,k] \\ { { v }_{ 2 } }=matrix<int|float>[j,k] \\ v=\begin{bmatrix} { { m }_{ 1,1 }^{ 1 } }*{ { m }_{ 1,1 }^{ 2 } } & { { m }_{ 2,1 }^{ 1 } }*{ { m }_{ 2,1 }^{ 2 } } & \dots  & { m }_{ 1,k }^{ 1 }*{ { m }_{ 1,k }^{ 2 } } \\ { { m }_{ 2,1 }^{ 1 } }*{ { m }_{ 2,1 }^{ 2 } } & { { m }_{ 2,2 }^{ 1 } }*{ { m }_{ 2,2 }^{ 2 } } & \dots  & { { m }_{ 2,k }^{ 1 } }*{ { m }_{ 2,k }^{ 2 } } \\ \vdots  & \vdots  & \ddots  & \vdots  \\ { m }_{ j,1 }^{ 1 }*{ { m }_{ j,1 }^{ 2 } } & { { m }_{ j,2 }^{ 1 } }*{ { m }_{ j,2 }^{ 2 } } & \dots  & { m }_{ j,k }^{ 1 }*{ { m }_{ j,k }^{ 2 } } \end{bmatrix} \end{matrix}
 \end{equation}
 
-\subsubsection{Vector Dot Product}
+[${VectroDorProcut}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { { vec } }^{ 1 }{ \rightarrow  }_{ A }{ v }^{ 1 }\quad { e }_{ v },st\vdash { { { vec } }^{ 2 } }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { { vec } }^{ 1 }\ast { { vec } }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=vector<>[{ n }] \\ { v }_{ 2 }=vector<>[{ n }] \\ v={ vec }_{ 1 }^{ 1 }*{ vec }_{ 1 }^{ 2 }+\dots +{ vec }_{ n }^{ 1 }*{ vec }_{ n }^{ 2 } \\  \end{matrix}
 \end{equation}
