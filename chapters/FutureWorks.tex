@@ -23,7 +23,7 @@ Even further development should also look further than only performing matrix an
 This was chosen because that all operations currently implemented towards doing matrix and vector operations are parallelizeable.
 If implementing new operations and functions one must consider whether these benefit from the use or \acrshort{gpu} or not.
 For further development of \gls{gamble} one should also consider using the \acrshort{gpu} for more than matrix and vector operations and hereby developing the language to do \gls{gpgpu}. 
-Rather than blindly disregarding loops one could have the compiler check whether or not the loop in question could be parallelised, and perhaps perform some of the optimizations mentioned in \myref{optimisation} upon said loop.
+Rather than blindly disregarding loops one could have the compiler check whether or not the loop in question could be parallelised, and perhaps perform some of the optimisations mentioned in \myref{subsec:runtime} upon said loop.
  
 \section{Kernel Efficiency}
 %Kernal optimisation
