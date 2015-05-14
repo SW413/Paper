@@ -7,11 +7,29 @@ The significant factor that made the choice fall upon OpenCL was its cross platf
 While indeed OpenCL can run cross platform, this feature is not without its faults.
 This especially became evident as the different \acrshort{gpu}s support different versions of OpenCL, thus having different features implemented.
 Furthermore, as mentioned in \myref{subsec:runtime} different processor platforms also perform different on the same code, even if the platforms have different specifications.
-This as a result means that to really
+This as a result means that to really benefit from each individual platform, an implementation for each platform should be available; having to alter the implementation of kernels to each platform does make the cross platform feature less useful than initially thought.
+While the project group have not made any specifications towards a specific platform, if done so, it may be worthwhile to consider using CUDA for an Nvidia implementation, and OpenCL for other \acrshort{gpu}s.
 
-One of these faults the project group encountered quite early was that Windows is not the most cooperative operating system when it comes to linking the required libraries for OpenCL to run.
-Throgh Visual Studio the project group was able to run OpenCL C example programs, thus proving that it could work on the Windows operating system, however doing so through a terminal and a GCC compiler proved to be quite difficult.
+%This may be the best place for this, but i do believe it necessary to be in the paper
+Another problem the project group encountered quite early was that Windows is not the most cooperative operating system when it comes to linking the required libraries for OpenCL to run.
+Through Visual Studio the project group was able to run OpenCL C example programs, thus proving that it could work on the Windows operating system, however doing so through a terminal and a GCC compiler proved to be quite difficult.
 In an attempt to solve this issue two things also became clear to the project group, just about all help available was aimed at the OS X and Linux operating systems, as a result the project group proceeded development using these operating systems rather than windows.
+Whether this problem also exists using CUDA is unknown, as the project group has not been using CUDA.
+%
 
-Another thing realised by the project group while learning about OpenCL was that help and web ressources for OpenCL was represented by a small margin of what was available for CUDA.
-As a result this led to many a trial and error testing to figure out the workings of OpenCL and debugging, where as if CUDA had been the platform worked on, it may have been easier
+Another thing realised by the project group while learning about OpenCL was that help and web resources for OpenCL was represented by a small margin of what was available for CUDA.
+As a result this led to many a trial and error tests to figure out the workings of OpenCL and debugging of encountered errors, where as if CUDA had been the parallel computing platform worked used, it may have been easier to acquire help through web resources.
+
+In \myref{image:OpenCLOptCompare} a significant performance difference from between the native implementations of CUDA and OpenCL can also be seen.
+While OpenCL and CUDA can reach a somewhat similar performance, the naive implementation in OpenCL with no attempt to increase runtime efficiency is about seven times slower than the naive implementation in CUDA due to the CUDA compiler altering the \acrshort{PTX} code to increase runtime efficiency.
+As a result, to gain performance with the limited experience with \acrshort{gpu} computing in the project group CUDA would have been the better choice, even if the same performance is obtainable in OpenCL.
+
+OpenCL was chosen as the parallel computing platform due to it being cross platform as the members of the project group also work on different hardware.
+While it does work cross platform, an ideal implementation would still be different per platform, with CUDA definitely being the better choice for Nvidia hardware.
+Furthermore has been mentioned the OpenCL C compiler requires the programmers to perform runtime efficiency improvements to achieve the performance native to the CUDA alternative.
+This would have made using CUDA more beneficial in terms of performance, as attempting to do so in OpenCL C through compiler optimisations requires intricate knowledge of compiler creation and \acrshort{gpu} computing.
+
+Should \gls{gamble} be further developed or a similar language developed, the opinion of the project group is to first develop an implementation for a target platform, if Nvidia is the target use CUDA and if AMD or Intel are the targets use OpenCL; Both OpenCL and CUDA can reach good performance, but each is better suited for the aforementioned platforms.
+As for \gls{gamble} it may have made it easier to target Nvidia \acrshort{gpu}s by using CUDA and ignore AMD and Intel \acrshort{gpu}s. 
+This could possibly have led to greater performance from \acrshort{gamble} for the cost of who could use \gls{gamble}
+However both parallel computing platforms can be used to create viable \acrshort{gpu} code.
