@@ -33,7 +33,8 @@ OpenCL C is low level compared to Java or C\#, and C has even been characterised
 
 \myref{fig:tombstone} shows a tombstone diagram of the translation of \gls{gamble} for this compiler.
 The compiler takes the \gls{gamble} source code as input and translates it into OpenCL C using a compiler written in Java, the OpenCL C code is then compiled using a C compiler written in C, and outputs machine code which can be run by the computer.
-\begin{figure}
+\begin{figure}[!ht]
+\centering
 \begin{tikzpicture}
 \matrix (m) [matrix of nodes,%nodes={minimum width=1em,minimum height=1.7em}
             ]
