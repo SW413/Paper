@@ -28,6 +28,6 @@ The reason this is done at run-time instead of compile-time is because the sizes
 
 When the string is complete it is printed into a file called code.c, along with all the other files needed for running the code, e.g. the kernels used for performing computations on the \acrshort{gpu}.
 The code.c file is structured so that it is a valid C program.
-First off are the libraries included that C uses, then follows a list of prototypes which are all the gamble functions translated into C code, both the user made and libraries.
-After the prototypes the main function is made which consists of all the statements in the gamble sourcecode translated into C.
+First off are the libraries included that C uses, then follows a list of prototypes which are all the \gls{gamble} functions translated into C code, both the user made and libraries.
+After the prototypes the main function is made which consists of all the statements in the \gls{gamble} sourcecode translated into C.
 After the main method all the implementations of the prototypes are made.

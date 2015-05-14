@@ -107,7 +107,6 @@ This is done with the syntax shown in \myref{lst:matrix}.
 As seen there are two ways of declaring a matrix and a vector, one can either provide the values for each entry, or one can provide the dimensions required of a matrix or vector in which case all values are initialised as zero.
 The syntax for the latter does not adhere to the concept of orthogonality mentioned in \myref{cha:language_criteria} although the use of this syntax should be held to a minimum, as it primarily exists such that functions in the standard library for \gls{gamble} can be created.
 What these functions entail is described in \myref{sec:funcs}.
-Here it is also seen why the use of ``;'' is a smart choice for ending statements.\todo{what does this mean?}
 
 \begin{lstlisting}[caption={Syntax for creating a matrix or vector},label={lst:matrix},numbers=none]
 //Makes a 2x2 matrix by providing entry values
@@ -130,6 +129,8 @@ Available operators for simple data types in the language can be found on \myref
 Some operators will work work with vectors and matrices.
 Since the elements in vectors and matrices are one of the simple types of \gls{gamble}, the operands on both sides of an infix operators must adhere to the rules of type compatibility.
 The list of possible operands on these complex data types can be seen on \myref{tbl:matOps}.
+ It is not shown in the table but the $+$ and $-$ operations in \myref{tbl:matOps} requires the matrices and vectors to have the same dimensions.
+ The $*$ operation requires one matrices to have the same row size as the other matrices columns size. Ex. a matrices [j,k] and a matrices [k,h] can be multiplied because they have the same size k.
 \input{figures/matrixOperators.tex}
 %\subsection*{Memory handling}
 %Locally declared and small and simple variables will be written to the stack, while large quantities of data must be written to the heap. 

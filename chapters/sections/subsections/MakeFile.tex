@@ -7,7 +7,7 @@ This produces an executable file for the platform targetted by the compiler, thi
 The same executeable file is not usable for another platform, e.g. ARM, nor on another operating system, e.g. Windows or OS X. 
 To maintain portability a ``MakeFile'' is used; a MakeFile is a file in the syntax which the GNU make utility can execute. 
 The make utiliry is a set of rules which ensures that the correct compiler, path, headers, etc. are used during compilation on one of multiple platforms. 
-This means that after running the \gls{gamble} compiler, on a configured computer, e.g. has OpenCL C headers, libary, a compiler etc., the make command can be used to build a binary file to be executed.\todo{der skal nok et kilde på det her}
+This means that after running the \gls{gamble} compiler, on a configured computer, e.g. has OpenCL C headers, libary, a compiler etc., the make command can be used to build a binary file to be executed.
 
 The kernel can either be compiled at compile-time or Just-In-Time (JIT) compiled at runtime.
 The JIT compilation, called online compilation under OpenCL, allows the system to adapt with platform specific optimisations for the running platform.
