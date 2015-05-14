@@ -21,7 +21,7 @@ Another thing realised by the project group while learning about OpenCL was that
 As a result this led to many a trial and error tests to figure out the workings of OpenCL and debugging of encountered errors, where as if CUDA had been the parallel computing platform worked used, it may have been easier to acquire help through web resources.
 
 In \myref{image:OpenCLOptCompare} a significant performance difference from between the native implementations of CUDA and OpenCL can also be seen.
-While OpenCL and CUDA can reach a somewhat similar performance, the naive implementation in OpenCL with no attempt to increase runtime efficiency is about seven times slower than the naive implementation in CUDA due to the CUDA compiler altering the \acrshort{PTX} code to increase runtime efficiency.
+While OpenCL and CUDA can reach a somewhat similar performance, the naive implementation in OpenCL with no attempt to increase runtime efficiency is about seven times slower than the naive implementation in CUDA due to the CUDA compiler altering the \acrshort{ptx} code to increase runtime efficiency.
 As a result, to gain performance with the limited experience with \acrshort{gpu} computing in the project group CUDA would have been the better choice, even if the same performance is obtainable in OpenCL.
 
 OpenCL was chosen as the parallel computing platform due to it being cross platform as the members of the project group also work on different hardware.
