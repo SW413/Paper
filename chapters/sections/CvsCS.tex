@@ -1,0 +1,7 @@
+\section{Choice of target language}
+In \myref{CUDAvsOpenCL} we choose the target language for the compiler to be OpenCL C.
+OpenCL C is very low level so we choose to use a library called Simple OpenCL, which simplifies parts of OpenCL C, such as memory handling and kernel launch at the cost of explicit control. 
+However using OpenCL C came at a cost of development time, as there were many nuances which were hard to comprehend and understand. 
+Using another target language, which was more high level, could potentially have taken less time, which would free up time to implement more language features, suggestions to such features can be found in \myref{cha:future_works}. 
+
+A choice for this new target language could be one of the languages discussed in \myref{sec:state_of_the_art}.
