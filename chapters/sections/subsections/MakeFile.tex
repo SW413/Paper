@@ -9,7 +9,7 @@ To maintain portability a ``MakeFile'' is used; a MakeFile is a file in the synt
 The make utiliry is a set of rules which ensures that the correct compiler, path, headers, etc. are used during compilation on one of multiple platforms. 
 This means that after running the \gls{gamble} compiler, on a configured computer, e.g. has OpenCL C headers, libary, a compiler etc., the make command can be used to build a binary file to be executed.
 
-The kernel can either be compiled at compile-time or Just-In-Time (JIT) compiled at runtime.
+The kernel can either be compiled at compile-time or \acrshort{jit} compiled at runtime.
 The JIT compilation, called online compilation under OpenCL, allows the system to adapt with platform specific optimisations for the running platform.
 If the kernel is compiled at compile-time, called offline compilation under OpenCL, then it might support fewer devices, or will take a long time and increase the size of the executable as it has to contain versions for each hardware for which support is requested. \citep{openclbookjit}
 For \gls{gamble} the online compilation is chosen for its simplicity as it lets the driver of the running system compile the kernel. 
