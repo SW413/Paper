@@ -6,6 +6,7 @@ In this section we will discuss how this choice affected the project, whether or
 The significant factor that made the choice fall upon OpenCL was its cross platform abilities; once the OpenCL code generation started complications in its cross platform abilities was met.
 While indeed OpenCL can run cross platform, this feature is not without its faults.
 This especially became evident as the different \acrshort{gpu}s support different versions of OpenCL, thus having different features implemented.
+It became even more clear that while OpenCL is a standard for cross platform, it does not mean the same code will work across hardware, this was experienced by the project group when Nvidias hardware became troublesome and produced errors, for code which runs perfectly on AMD hardware.
 Furthermore, as mentioned in \myref{subsec:runtime} different \acrshort{gpu}s also perform different on the same code, even if the \acrshort{gpu}s have near identical specifications.
 This as a result means that to achieve the utmost benefit from each individual platform, an implementation for each platform should be available; having to alter the implementation of kernels to each platform makes the cross platform feature less useful than initially thought.
 While the project group have not made any specifications towards a specific platform, if done so, it may be worthwhile to consider using CUDA for an Nvidia implementation, and OpenCL for other \acrshort{gpu}s or processing units in general.
