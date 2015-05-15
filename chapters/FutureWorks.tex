@@ -23,7 +23,7 @@ Even further development should also look further than only performing matrix an
 This was chosen because that all operations currently implemented towards doing matrix and vector operations are parallelizeable.
 If implementing new operations and functions one must consider whether these benefit from the use or \acrshort{gpu} or not.
 For further development of \gls{gamble} one should also consider using the \acrshort{gpu} for more than matrix and vector operations and hereby developing the language to do \gls{gpgpu}. 
-Rather than blindly disregarding loops one could have the compiler check whether or not the loop in question could be parallelised, and perhaps perform some of the optimizations mentioned in \myref{optimisation} upon said loop.
+Rather than blindly disregarding loops one could have the compiler check whether or not the loop in question could be parallelised, and perhaps perform some of the optimisations mentioned in \myref{subsec:runtime} upon said loop.
  
 \section{Kernel Efficiency}
 %Kernal optimisation
@@ -34,7 +34,7 @@ With a deeper understanding of how the different memory sections communicate, it
 \section{Platform Specifications}
 %Platform performance
 While OpenCL is not machine dependant, which machine one is working on does change what version of OpenCL is supported, as well as how different work sizes and data types are handled.
-An example would be that while AMD \acrshort{gpu}s have hardware to support both integer and float calculations, Nvidia \acrshort{gpu}s only uses floats. \citep{CUDAOpenCLOptimisation}
+An example would be that while AMD \acrshort{gpu}s have hardware to support both integer and float calculations, NVIDIA \acrshort{gpu}s only uses floats. \citep{CUDAOpenCLOptimisation}
 Due to these discrepancies the same program and kernel may perform differently on \acrshort{gpu}s with the same specifications but from different vendors.
 As such, different implementations depending on manufacturer and OpenCL support may increase performance depending on the specific hardware.
 
@@ -48,8 +48,24 @@ Alternatively one could be content with adding new data types and operations for
 This would make the language usable by other fields, as the users would be able to implement the needed methods themselves.
 %Er ikke helt vild med formulering af line 47 og 49, men synes ikke lige jeg kan formulere det anderledes at the time of writing dis.
 
-\section{Expand \gls{gamble} to be more general purpose}
-\gls{gamble} don't have a proper collection of different type such as a \texttt{struct}. 
-This could simplify the use of the language as well as provide a way to make linked lists or trees etc.
-Another common element not found in \gls{gamble} is strings, including this with a better print method would significantly make the language easier to get output from. 
-\info[inline]{Maybe more content here?}
+\section{Expand GAMBLE to be more general purpose}
+At this point \gls{gamble} is rather narrowly focused on certain areas like matrix and vector operations, the language could benefit from being expanded to become a more general purpose language.
+In the following paragraphs some of the key aspects to expand the language are discussed.
+
+\gls{gamble} does not have general collection types which could benefit many program types.
+Examples of such collection types could be \texttt{struct}, \texttt{list} or \texttt{array}.
+These additions would allow the programmer to implement abstract data structures such as trees.
+
+A full implementation of strings would also be beneficial for a more general purpose language.
+In extension to proper strings a reassessed print method could be rewritten to allow the programmer to format the printing of variables to the like of other languages such as C.
+
+Making \gls{gamble} object oriented with common features like inheritance and polymorphism would allow many programmers to write programs similar to what they are used to.
+This would make it easier to write large programs.
+
+Libraries for the language could also be beneficial and increase the expressibility of \gls{gamble}.
+An example of a library could be a math library to allow different mathematical constructs and expressions currently not supported by the language.
+Such a library could include operations like square root, cosine and sine among others.
+A more complex mathematical library could allow more complex operations of the complex data types vectors and matrices.
+
+Another way of expanding the language would be to utilise the similarity between matrices and graphics and therefore implement libraries to perform image processing of graphics.
+These libraries could therefore use similar ways of using the \acrshort{gpu} as matrices already do.

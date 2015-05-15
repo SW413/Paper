@@ -17,6 +17,8 @@ Therefore having the programmer control the runtime architecture seems an unnece
 \gls{gamble} takes care of designating the computations to the right processor, whether it be the \acrshort{gpu} or the CPU, as such any inconvenience in that process is removed from the programmer whose focus can be solely on the mathematics.
 This abstraction therefore results in better writability.
 
+\info[inline]{Maybe we should add automatic memory managementt here, it is *HARD* in OpenCL, CUDA etc. so it would make a nice point? -- Troels}
+
 \textbf{Avoid implementing unnecessary data types and features}
 
 As the purpose of \gls{gamble} is to use the \acrshort{gpu} for calculations which can be parallelised implementing features or data types, that do not hold any regard to this aspect would clutter the language.
