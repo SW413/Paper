@@ -31,6 +31,28 @@ By compiling the OpenCL C code, it is translated into machine code and linked wi
 This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using its specific instruction set, not only gives problems targeting more types of GPUs but is also way too demanding for the project group to understand let alone use in just one semester.
 OpenCL C is low level compared to Java or C\#, and C has even been characterised as a portable assembly language, as many features of the language translates closely to assembly. \citep{CPort}
 
+\myref{fig:tombstone} shows a tombstone diagram of the translation of \gls{gamble} for this compiler.
+The compiler takes the \gls{gamble} source code as input and translates it into OpenCL C using a compiler written in Java, the OpenCL C code is then compiled using a C compiler written in C, and outputs machine code which can be run by the computer.
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}
+\matrix (m) [matrix of nodes,%nodes={minimum width=1em,minimum height=1.7em}
+            ]
+{
+ \gls{gamble}  & $\to$ &  OpenCL C  \\
+    &  Java    & OpenCL C & $\to$ & \hspace{1 em} M \hspace{2 em}  \\
+    &       &   & C  &         \\
+    &       &               \\
+  };
+ \draw (m-1-1.south west) |- (m-1-3.north east) |- (m-2-2.north east) |- (m-2-2.south west) |- (m-1-1.south west);
+\draw (m-2-2.south east) |- (m-2-5.north east) --(m-2-5.south east) -- (m-2-5.south west) |- (m-3-4.south west) |- (m-2-2.south east);
+
+\end{tikzpicture}
+\caption{Tombstone diagram for the compiler.}
+\label{fig:tombstone}
+\end{figure}
+
+
 The overall structure of the compiler is also implemented using these phases as seen on figure \myref{fig:compilerOverview}.
 This separation helps give an overview when working with the compiler, all the phases are distinctly separated, which makes it easier to make changes, and find where changes need to be made.
 %When adding a feature to the language, it is also simplified since the feature has to be supported in each of the phases, so as a programmer work must be done in each phase.

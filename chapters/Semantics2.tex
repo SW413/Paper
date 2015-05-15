@@ -10,9 +10,9 @@ The semantics is organised as follow:
 	\textbf{v} \in  &Variable\\
 	\textbf{m} \in  &Matrix\\
 	\textbf{vec} \in  &Vector\\
-	\textbf{type} \in &Int | Float | Bool
-	\textbf{S}	\in &Statement
-	\textbf{mtype} \in &Int | Float
+	\textbf{type} \in &Int | Float | Bool\\
+	\textbf{S}	\in &Statement\\
+	\textbf{mtype} \in &Int | Float\\
 	\textbf{Fd}		\in &Function Declaration
 \end{align*}
 
@@ -27,8 +27,10 @@ A few of the big-step semantics for \gls{gamble} is included in this chapter, wh
 A few of the most important and interesting operational semantics which will be explained are, variable declaration, assignment, matrix declaration, matrix multiplication and scalar product.
 
 \subsection*{Declaring Variables}
-Any non-empty variable declaration will modify the variable environment since the new variables will be bound to the new location.
-A variable declaration will also modify the store, since the new location will be initialised to contain the initial values of the new variables.
+Variables declarations are also statements according to \gls{gamble}'s grammar.
+Declarations have an effect on the variable environment which is why it has it's own section.
+A variable declaration modifies the store and the variable environment, the new location in the store will be initialised to contain the values of the new variables and the new variable will exist in the variable environment.
+
 
 [${VariableDeclaration}_{BSS}$]
 \begin{equation}
@@ -114,6 +116,7 @@ The operation returns a matrix of with $j$ columns and $l$ rows based on the rul
 &\vdots\\
 { { m }_{ j,l }^{ 3 } }  &= { { m }_{ j,1 }^{ 1 } } *{ { m }_{ 1,l }^{ 2 } }+ { { m }_{ j,2 }^{ 1 } } *{ { m }_{ 2,l }^{ 2 } }+\dots+ { { m }_{ j,k }^{ 1 } } *{ { m }_{ k,l }^{ 2 } }
 \end{aligned}
+\label{hypeproduct}
 \end{equation*}
 \end{minipage}
 
