@@ -10,9 +10,9 @@ The semantics is organised as follow:
 	\textbf{v} \in  &Variable\\
 	\textbf{m} \in  &Matrix\\
 	\textbf{vec} \in  &Vector\\
-	\textbf{type} \in &Int | Float | Bool
-	\textbf{S}	\in &Statement
-	\textbf{mtype} \in &Int | Float
+	\textbf{type} \in &Int | Float | Bool\\
+	\textbf{S}	\in &Statement\\
+	\textbf{mtype} \in &Int | Float\\
 	\textbf{Fd}		\in &Function Declaration
 \end{align*}
 
@@ -30,6 +30,7 @@ A few of the most important and interesting operational semantics which will be 
 Variables declarations are also statements according to \gls{gamble}'s grammar.
 Declarations have an effect on the variable environment which is why it has it's own section.
 A variable declaration modifies the store and the variable environment, the new location in the store will be initialised to contain the values of the new variables and the new variable will exist in the variable environment.
+
 
 [${VariableDeclaration}_{BSS}$]
 \begin{equation}

@@ -16,7 +16,7 @@ This allows the ability of adding new operations without changing the original d
 Another benefit is that a single visitor object is used to visit all the classes in the tree.
 This visitor can therefore maintain a state between calls to individual data objects, which can be used to save information in an outer scope from the different visit calls.
 \myref{image:visitor} shows a UML diagram of the visitor pattern.
-This diagram is from a C\# representation, and while the idea is the same the exact implementation is not identical to the one used in the compiler for GAMBLE.
+This diagram is from a C\# representation, and while the idea is the same the exact implementation is not identical to the one used in the compiler for \gls{gamble}.
 Take note of are the classes ``ConcreteElement'' and ``ConcreteVisitor'', the ``ConcreteElement'' represents the different kinds of nodes in a given tree.
 The ``ConcreteVisitor'' represent the different kind of visitors implemented.
 A visitor will make sure that the children of the node is traversed in the correct way, and will at the same time also do other computations, e.g. pretty printing or checking the source code for errors.
