@@ -106,14 +106,15 @@ A parser also has a lookahead which is the maximum numbers of tokens which are n
 A lookahead of k means that there is a constant lookahead of a maximum of k tokens for the given parser. 
 There also exists the LL(*) which can dynamically change the number of tokens needed to parse by recognizing if they follow a \acrshort{regex}.
 An LL parser is called an LL(*) parser if it is not limited to finite k tokens of lookahead, but can make parsing decisions by recognizing whether the following tokens belong to a regular language.
-Combining this with the fact that any LL grammar is a special case of a LR grammar and the different cases of lookahead constructs a hierarchy. 
-This hierarchy is shown in \myref{image:hierarchyofgrammars}, LL(*) is not included.
+Combining this with the fact that any LL grammar is a special case of a LR grammar and the different cases of lookahead constructs a diagram. 
+This Venn diagram is shown in \myref{fig:hierarchyofgrammars}\todo{compiler til section istedet for figure hos mig - morten}, LL(*) is not included.
 This figure is also contains the Simple LR which is more powerful than a LR(0) grammar, but less than a LR(1), and the LALR(1) which is more powerful than Simple LR and less than LR(1).
 More powerful means that a grammar following it can produce more languages typically a superset of another. 
 \begin{figure}[!ht]
 \centering
  \includegraphics[width=0.5\textwidth]{figures/classesofgrammars.png} % trim=4.85cm 15cm 0.85cm 1cm
-\caption{A Cenn diagram showing the similarities between the different subclasses of CFGs. Where LL(*) is marked with a light blue colour. }\citep{NvidiaCUDASeminar} 
+\caption{A Cenn diagram showing the similarities between the different subclasses of CFGs. Where LL(*) is marked with a light blue colour. \citep{Lecture5}}
+\label{fig:hierarchyofgrammars}
 \vspace{-15pt}
 \end{figure}
 \input{chapters/sections/GambleCFG.tex}
