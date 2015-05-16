@@ -3,7 +3,7 @@ Since \gls{gamble} distances its programmers from directly controlling which com
 To make this decision the compiler must know what kind of code performs faster on a \acrshort{gpu} than a \acrshort{cpu}.
 
 From \myref{sec:comparch} it is clear that for it to make sense moving any computation to the \acrshort{gpu} it must be of significant size to make up for the overhead of moving data, and be executable in parallel.
-If a computation is reliant on the outcome of other computations, the Fibonacci function as an example, moving it to the \acrshort{gpu} would be a significant decrease in performance compared to on a \acrshort{cpu}.
+If a computation is reliant on the outcome of other computations, the Fibonacci function as an example, moving it to the \acrshort{gpu} would be a significant decrease in performance compared to on a \acrshort{cpu}.\todo{On the other hand a function blabla can be made parallel}
 
 Any code written in a recursive format will not be run on the \acrshort{gpu}. 
 Furthermore due to the overhead in data transfer, only computations requiring a significant amount of operations to be performed should be executed on the \acrshort{gpu} as \myref{image:benchmark} shows.
@@ -13,7 +13,7 @@ An example could be \texttt{value = value1 + value2}, where all types are intege
 
 However statements that do include matrix or vector arithmetics will be performed on the \acrshort{gpu}.
 An example could be matrix multiplication.
-Now it is entirely possible to make a matrix multiplication of a 2$\times$2 matrix, which would be so small that the overhead of data transfer is more expensive than simply computing on the \acrshort{cpu}.
+Now it is entirely possible to make a matrix multiplication of a 2$\times$2 matrix, which would be so small that the overhead of data transfer is more expensive than simply computing on the \acrshort{cpu}.\todo{Skriv hvor stort vi skal op før det giver mening}
 However to simplify the code generation it has been chosen that all matrix or vector calculations, are to be done on the \acrshort{gpu}.
 This is not always the best choice, as \myref{sec:comparch} clearly shows, but it requires less analysis of the code given, furthermore as mentioned in \myref{sec:phil} \gls{gamble} uses the \acrshort{gpu} to gain computational power for performing already developed algorithms on data sets big enough to see an improvement in execution time.
 
