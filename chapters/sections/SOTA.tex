@@ -1,7 +1,7 @@
 \section{Existing solutions} % (fold)
 \label{sec:state_of_the_art}
 In this section different approaches to \acrshort{gpgpu} using existing programming languages and libraries will be presented.
-Each language and library will be running with either the OpenCL or the CUDA framework.
+Each language and library will be running with either the OpenCL or the CUDA framework.\todo{Vi ved ikke hvad Cuda eller openCL er på nuværende tidspunkt, vi kunne have det i det forhenværende afsnit som en introduktion til hvordan sprog kan skrive til gpu'en? - Søren}
 Every language and library described in this section can be found on \myref{tbl:sota} for an overview of their comparisons.
       
 \subsection{Libraries} 
@@ -17,13 +17,13 @@ Jcuda requires many imports and the user needs to allocate a memory block for ea
 C has libraries such as CUDA C, OpenCL C and others.
 These C libraries have the same problem as with the Java library as one needs to allocate memory for almost everything, and there is a lot of redundancy which creates a lot of boilerplate.
 The abstraction level is therefore deemed low as one must keep in mind what is where and what can be done with each specific element. \citep{C_CUDA} 
-There is also different libraries for the R language, one of which is called rpud.
+There are also different libraries for the R language, one of which is called rpud.
 It provides many functions from the R language, which can be performed on the \acrshort{gpu}, and it is based on CUDA.
 We deem that it has a high level of abstractions, since it is just function calls, without any memory allocation or direct \acrshort{gpu} calls from the source code. \citep{Rcuda} 
 
 \subsection{Theano (Python)}
 Theano is a Python library that allows one to define, optimise, and evaluate mathematical expressions involving multi-dimensional arrays, while utilising the \acrshort{gpu}.
-The library has two ways of using the \acrshort{gpu}; one with CUDA as back-end, and the other that should support any OpenCL compatible device as well NVIDIA cards.
+The library has two ways of using the \acrshort{gpu}; one with CUDA as back-end, and the other that should support any OpenCL compatible device as well as NVIDIA cards.
 The OpenCL implementation however does not support all the options available in the library due to an incomplete port of an old back-end.
 While Theano supports CUDA and OpenCL, there is quite a bit of boilerplate and one must write different code in order to use either.	
 The scoping rules for Python which Theano uses are quite special where the compiler looks for a variable in four different scopes.
@@ -57,8 +57,8 @@ Julia uses similar scoping rules as MATLAB.\citep{Julia_Git, Julia_scope,Julia}
 
 \subsection{Conclusion}  
 
-The different languages mentioned in this section all have some way of communicating with the \acrshort{gpu} using both CUDA and OpenCL, which also can be seen on \myref{tbl:sota}.
-They all require the user to specify when to use the \acrshort{gpu} instead of the CPU, and the level of abstraction varies, where some require a lot of control of the programmer, and others require specific function calls to \acrshort{gpu} functions.
+The different languages mentioned in this section all have some way of communicating with the \acrshort{gpu} using both CUDA and OpenCL, which can also be seen on \myref{tbl:sota}.
+They all require the user to specify when to use the \acrshort{gpu} instead of the \acrshort{cpu}, and the level of abstraction varies, where some require a lot of control of the programmer, and others require specific function calls to \acrshort{gpu} functions.
 
 This explicit processor targeting seems inconvenient, and it takes away focus from the calculations done in the program.
 On the other hand, it gives the programmer more control of where the code is executed.
@@ -70,4 +70,6 @@ For scientific computing, especially oriented towards matrices and vector calcul
 The control of memory on the CPU and the \acrshort{gpu} is different, so allocating memory is more difficult when you transfer the calculations to the \acrshort{gpu}.
 Therefore languages that require the programmer to allocate memory themselves, takes away focus from the computations that need to be done.
 We deem that allocating memory for arrays and matrices is unnecessary.
+
+The next section will discuss the research which has been done so far and will also construct a problem statement which the remaining portion of the paper will answer.
                      
