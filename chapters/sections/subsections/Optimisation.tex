@@ -11,7 +11,7 @@ The seamless use of the \acrshort{gpu} means that information is nonexisting and
 If \gls{gamble} were to require more information, e.g. whether or not something is paralleliseable or ask the programmer to determine what type of \acrshort{gpu} memory should be used for each variable, the simplicity and seamless use of the \acrshort{gpu} would be lost.
 
 As previously mentioned due the object code being OpenCL C certain considerations pertaining to instruction handling and register allocation etc. are not of interest for this compiler.
-This is handled by using another compiler to compile the OpenCL C code into machine code, see \myref{makefile}. 
+This is handled by using another compiler to compile the OpenCL C code into machine code, see \myref{ssub:makefile}. 
 Instead to increase runtime efficiency the considerations concern when the \acrshort{gpu} should be used.
 
 As \gls{gamble} is attempting to seamlessly use the \acrshort{gpu} to increase performance, knowing when the use of the \acrshort{gpu} will actually be beneficial is an important point in the code generation process.

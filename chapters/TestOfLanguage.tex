@@ -1,21 +1,56 @@
-\chapter{Test of Language}
+\chapter{Test of Language} % (fold)
 \label{cha:test_of_language}
-In order to evaluate the language there is performed a test. 
-As performance is in focus in the project the project group has chosen to only test the language by comparing its performance when using the \gls{gpu} compared to when using the \gls{cpu}.
-Priviously handwritten C code for the \gls{cpu} has been compared to handwritten CUDA C code running on the \gls{gpu}, see \myref{subsec:gpuvscpuv1}.
+In order to evaluate upon the capabilities of \gls{gamble} a test is run. 
+As performance of mathematical operations is in focus the project group has chosen to only test the language by comparing the execution time of using the \gls{gpu} with the execution time of using the \gls{cpu} sequentially.
 
+Previously handwritten C code for the \gls{cpu} has been compared to handwritten CUDA C code running on the \gls{gpu}, see \myref{subsec:gpuvscpuv1}.
 The results of this test can within reason be expected to have a similar output, meaning that at low data sizes the \gls{cpu} is faster than the \gls{gpu}, however as the size of the data gets better the \gls{gpu} is faster.
-The reason the \gls{gpu} is slow for low data sizes is that memory needs to be allocated on the \gls{gpu}, the input data must be moved to the \gls{gpu}, the calculation must be done, and then the data can be transfered back to the \gls{cpu}. 
-From which it can be further processed, written to a file, output to stdout etc. 
-This in total means that a relatively high amount of time will be used not doing calculations. 
+The reason for \gls{gpu} being slow for low data sizes is that memory needs to be allocated on the \gls{gpu}, the input data must be copied to the \gls{gpu}, the calculation must be done, and then the data can be copied back to the main memory. 
+Once in main memory the data can be further processed e.g. written to a file. 
+This means that a relatively high amount of time will not be used for calculations, but for moving data back and forth from main memory to the memory of the \gls{gpu}.
 
-It is to be noted that neither the code for the \gls{cpu} nor the \gls{gpu} is optimized by anything other than the gcc-compiler, as explained in \todo{ref til makefile afsnit}. 
-This means that the code could be optimized, for example by loop-unrolling, multi-core use with threading, SIMD instructions etc. for the \gls{cpu}. \todo{Evt. kunne vi forsøge os med forskellige optimeringer}
-And by varying the size of the work group, offline kernel compilation, advanced memory use i.e. local memory, for the \gls{gpu}.  
+It is to be noted that neither the code for the \gls{cpu} nor the \gls{gpu} is optimised by anything other than the gcc-compiler, as explained in \myref{ssub:makefile}. 
+This means that the code could be optimised, for example by loop-unrolling, multi-core use with threading etc. for the \gls{cpu}, and by varying the size of the work group, offline kernel compilation, advanced memory use i.e. local and private memory, for the \gls{gpu}.  
 
-\section{The test}
-The test performed will be a matrix multiplication, in gamble this is used with the syntax \texttt{matrixA * matrixB}. 
-This compiles to a kernel which is invoked for each index in the result matrix, the kernel each calculate just one index of the result, and has an inner loop of the size of the columns of the first matrix, which is equal to the rows of the second matrix. 
+\section{The Test} % (fold)
+\label{sec:the_test}
+The performed test is a simple matrix multiplication with non square matrices.
+For the \gls{gpu} the built-in matrix operation in \gls{gamble} for matrix multiplication is used. The syntax for this operation is: \texttt{matrixA * matrixB}. 
+This construction is compiled to a kernel which is invoked for each index in the result matrix, the kernels each calculate just one index of the result, and has an inner loop of the size of the columns of the first matrix, which is equal to the rows of the second matrix.
+To replicate this for the \gls{cpu}, a construct with three nested for-loops is used, where the inner most loop is similar of the one found in the dedicated kernel, and the two outer loops are used to execute the inner loop for each index in the result matrix.
+Hence the \gls{cpu} and \gls{gpu} targeted code does the same number of calculations.
+ 
+As an example, with square matrices, of size $n$ as input the amount of calculations is $2*n^3 = O(n^3)$ operations. 
+And there are $3*n^2 = O(n^2)$ numbers in matrices which will be operated on, $2/3$ will be read from and $1/3$ will be written to.
 
-With square matrices, of size $n$ as input the amount of calculations is $2*n^3 = O(n^3)$ operations. 
-And there are $3*n^2 = O(n^2)$ numbers in matrices which will be operated on, $2/3$ will be read from and $1/3$ will be written to. 
+When testing execution time, especially on \gls{cpu} intensive programs, there is a lot of different variables in the equation. 
+The scheduler of the operating system and IO-requests can slow down the execution while caching and cache hits can speed up the computations because of faster memory access. 
+These factors will in this test be regarded as the benefits and disadvantages that follows when using the \gls{cpu} for compute intensive tasks and pay no bigger role than the similar factors when computing on the \gls{gpu}.
+Because of this, trend lines will be used to visualise the data points along with the raw plots. 
+
+\subsection{Test Environment} % (fold)
+\label{sub:test_environment}
+When writing the specific test code, \gls{gamble} will be used for both sides of the test.
+This approach may seem odd, since the performance of \gls{gamble} essentially is what is being tested, and the main purpose of \gls{gamble} is utilising the \gls{gpu} for matrix related operations, but because of the way \gls{gamble} handles for-loops, it is possible to target both the \gls{cpu} and \gls{gpu}.
+As previously mentioned the \gls{gpu} focused side of the test, will be using the built-in matrix multiplication of \gls{gamble}, and the \gls{cpu} side, the three nested for-loops.
+By writing both programs in \gls{gamble} the test and its results are more comparable, since any overhead or advantage created by the \gls{gamble}-compiler will be found in both instances.
+Furthermore it is possible to utilise the matrix types in \gls{gamble} and the ability to load said matrix types into the executing program from a file.
+This also makes it easier to script the test, since all the dimensions of the matrices can be defined in simple text files and therefor easily changed between executions.
+
+The test will be executed on a machine running Ubuntu 14.04.2 LTS, with a Intel Core i5-4670K overclocked to 4.5 GHz as the \gls{cpu} and an AMD R9 280x with 3GB of GDDR5 ram and a clock of 1070 MHz as the \gls{gpu}.
+As the main memory 8 GB of DDR3 ram is available for the programs.
+For running the test on a range of different matrix sizes, a bash script will be used to alter the dimensions though the previously mentioned text files, which will then be loaded by the \gls{gamble} program as matrices.
+Sourcecode for both \gls{gamble} programs along with the script used for testing, can be found in \todo{tilføj til apen(dicks)}.
+
+\subsection{Results} % (fold)
+\label{sub:results}
+
+\begin{figure}[h!]
+    \centering
+    \input{figures/tests/graph.tikz}
+    \caption{Execution time of matrix multiplication, with sequential \gls{cpu} and heterogenous \gls{gpu} approach}\label{fig:test_results}
+\end{figure}
+% subsection results (end)
+% section the_test (end)
+
+% chapter test_of_language (end) 
