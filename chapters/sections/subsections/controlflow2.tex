@@ -24,7 +24,7 @@ C, C\#, Java etc. contain some or all of these elements to control the flow of a
     \item \texttt{do..while}
 \end{itemize}
 
-From the elements if, goto and label the other constructs above can be made.
+From the elements if, goto and label the other constructs above can be made.\todo{label er ikke med på listen, skal det være under goto? - Søren}
 For example a \texttt{while} loop can be translated to a combination of the if and goto statements, this is shown in \myref{ifgotowhile1} and \myref{ifgotowhile2} written in C. 
 
 \noindent\begin{minipage}{.45\textwidth}
@@ -50,18 +50,18 @@ The same can be done with the \texttt{for} and \texttt{do..while} loops.
 This means that the only needed control structures should be \texttt{if} and \texttt{goto}. 
 However the use of goto is considered harmful in many cases, because it is easy to make mistakes when using it. \citep{DijkstraGoto}
 Even though \texttt{for} and \texttt{while} are similar, they are often used in different contexts.
-Therefor \texttt{loop} is useful for iterating over a collection or knowing exactly how many time the code is executed. 
+The \texttt{for} is useful for iterating over a collection or knowing exactly how many times the code is executed. 
 Therefore we have decided to include both \texttt{for} and \texttt{while} in \gls{gamble}, but not \texttt{foreach} and \texttt{do..while}, this is to simplify the number of control structures.
 
 \subsection{Choice structure}
 We have decided to implement the traditional \texttt{if} and \texttt{if-else} constructs. 
-These are useful, and can achieve the same as a \texttt{switch}, by chaining if-else statements, therefore we have excluded the switch construct to simplify the implement. 
+These are useful, and can achieve the same as a \texttt{switch}, by chaining if-else statements, therefore we have excluded the switch construct to simplify the implementation. 
 The ternary operator, also known as the inline if, is useful for compacting code to make it more readable, however this is not implemented in \gls{gamble}, because the functionality is redundant with the if-else structure and it is not important for the goal of this project.
 
-Examples of if/if-else \gls{gamble} are shown in \myref{iflst} and \myref{ifelselst}. 
+Examples of if/if-else in \gls{gamble} are shown in \myref{iflst} and \myref{ifelselst}. 
 The condition is enclosed in a parenthesis this is to make the if construct similar to the function call, in which the parameters are in a parenthesis. 
 All the conditional code must be enclosed in a curly bracket, this is to make the code more readable. 
-The use of curly brackets is to make them similar to functions and the explicit declaring the scope if the choice structure.
+The use of curly brackets is to make them similar to functions and the explicit declaring the scope of the choice structure.
 
 \noindent\begin{minipage}{.45\textwidth}
 \begin{lstlisting}[caption=An if construct in \gls{gamble}.,frame=tlrb, label=iflst, numbers=none]{Name}
@@ -85,7 +85,7 @@ if ( condition )
 
 \subsection{while loop}
 An example of the while loop in \gls{gamble} is shown in \myref{whilelst}. 
-The syntax is identical to the if statement, which also makes it look like a function in certain ways and explicit express the scope.
+The syntax is identical to the if statement, which also makes it look like a function and explicitly express the scope.
 
 \vspace{10pt}
 \noindent\begin{minipage}{.40\textwidth}
