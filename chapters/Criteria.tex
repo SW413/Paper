@@ -1,8 +1,8 @@
 %\gls{gamble} is used to refer to our languange   
 \chapter{Language Criteria} % (fold)
 \label{cha:language_criteria}
-When evaluating programming languages one must first agree on the goals of a given language's characteristics.
-Robert W. Sebesta has given some criteria which can be evaluated from, we will use these criteria to design our language and to state which criteria are important to the language we are designing.\citep{Sebesta}
+When evaluating programming languages one must first agree on the goals of the characteristics of a  given language.
+Robert W. Sebesta has given some criteria which can be evaluated from, these will be used these criteria to design the language and to state which criteria are important to the language.\citep{Sebesta}
 The criteria can be seen on \myref{tbl:concepts}.
 First a brief description of the criteria will be given, followed by how we rate these criteria for our language according to the information found in \myref{cha:introduction}.
 \begin{table}[h]
@@ -31,18 +31,18 @@ Our language must adhere to the concept of simplicity, which means that the numb
 This results in high levels of both readability and writability as can be seen on \myref{tbl:concepts}.
 The language supports abstraction over the programmer's hardware, by not having to specify where the computations must be run, or having to allocate memory.
 
-To get an idea of what each criterion expressed, we will in the following text, describe our thoughts and goals in respect to the several of the  concepts in \myref{tbl:concepts} deemed important to \gls{gamble}.
+To get an idea of what each criterion expressed, we will in the following text, describe our thoughts and goals in respect to several of the concepts in \myref{tbl:concepts} deemed important to \gls{gamble}.
 Simplicity is important in the language of \gls{gamble}.
 It is so because of the goals stated in \myref{sec:problem} and based on the other languages examined in \myref{sec:state_of_the_art}, simplicity is important when designing a language where the focus lies in writing code fast and easy, which can take advantage of the \acrshort{gpu}.
-It is so because this goal does not require a large language.
-Syntax design is also deemed an important criterion, it is so because the language should be familiar and easy to learn for beth experienced but especially newer programmers.
-Data types is another important criterion for \gls{gamble}, as stated in \myref{sec:problem} the language should be able to handle a matrix data structure and furthermore is at stated in the problem statement should the language utilise the \acrshort{gpu} without the programmer specifically stating it, in that respect a high level of abstraction is important too. 
+It is so because this goal does not require a large language. \todo{What ? - Søren}
+Syntax design is also deemed an important criterion, because the language should be familiar and easy to learn for both experienced but especially newer programmers.\todo{Hvorfor newer? Det kommer lidt ud af det blå - Søren}
+Data types is another important criterion for \gls{gamble}, as stated in \myref{sec:problem} the language should be able to handle a matrix data structure and furthermore is as stated in \myref{sec:problem} able to utilise the \acrshort{gpu} without the programmer specifically stating so, in that respect a high level of abstraction is important too. 
 
-Based on the earlier discussions, exception handling is seen as a way of making the language more complex, therefore a goal in \gls{gamble} is to catch errors like type mismatch on compile time, which strongly eliminates the need for exception handling.
+Based on the earlier discussions, exception handling is seen as a way of making the language more complex, therefore a goal in \gls{gamble} is to catch errors like type mismatch on compile time and also out-of-bounds memory access on run-time, which strongly eliminates the need for exception handling.
 
 
 \section{Success criteria}\label{sec:OurCriterias}
-We deem our language and compiler to be a good solution for our problem statement if it upholds to the following criteria:
+We deem our language and compiler to be a good solution for our problem statement if it upholds to the following criteria:\todo{Igen compiler? - Søren}
 
 \begin{itemize}
 	\item Calculating matrix and vector calculations on the GPU, without the programmer specifically specifying it to do so.
