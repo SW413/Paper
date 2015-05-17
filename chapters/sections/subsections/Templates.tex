@@ -1,9 +1,6 @@
 \subsubsection*{Using SimpleOpenCl}
 SimpleOpenCL is a library for C which simplifies the process of setting up and launching a kernel for OpenCL.
 The kernels remain the same, but finding the hardware for executing the kernels and also allocating memory for the hardware is simplified.
-The compiler starts the codegeneration by calling an instance of the class \texttt{CodeGenerator} and invoking the method \texttt{GenerateCodeAndWriteToFile}.
-This method then makes the \acrshort{ast} accept a CodeGeneratorVisitor, and writes its output to a file while also exporting the outputcode to a certain directory along with other files needed like the OpenCL kernels used in the program.
-The \texttt{outputCode} is a string which starts as an empty string, and every visitor then either appends or returns substrings to be appended containing different information to the string as the traversal of the \acrshort{ast} is ongoing.
 The codegeneraterVisitor starts at the root of the AST and here the code on \myref{lst:OpenCLSetup} is run.
 
 \begin{lstlisting}[caption=Call to setup SimpleOpenCL in the compiler,numbers=none,frame=tlrb,label={lst:OpenCLSetup}]
@@ -37,7 +34,7 @@ For the remaining part of this section the fastest device is a \acrshort{gpu}.
 These arrays are then filled out with different numbers corresponding to the columns and rows of the matrices or vectors being calculated upon.
 This way of appending templates to the outputCode string is used in different places in the code generation when handling the complex datatypes matrices and vectors.
 In fact whenever one of the following operators \texttt{+, -, *, \#, \^{} } are used with matrices or vectors a template is being appended to the outputCode.
-See \myref{tbl:matOps} for a description of what each operator will produce in gamble.
+See \myref{tbl:matOps} for a description of what each operator will produce in \gls{gamble}.
 
 When an assignment's rightside or a declaration's rightside consists of an expression using operators and matrices or vectors, the visitor's check for which operator is used and then inputs a launch kernel template depending on the operator.
 The compiler contains files which have the code for launching the kernel for the specific situation and also for the kernel itself.

@@ -8,7 +8,7 @@ In this chapter the different phases of the compiler and their goals and tasks w
 The compiler for \gls{gamble} is separated into three phases: syntax analysis, contextual analysis and code generation.
 \myref{fig:phases} shows a state diagram of the phases of the compiler.
 Syntax analysis and contextual analysis transforms the source code into an intermediate representation, and verifies the source code according to the specified syntax from the \acrshort{cfg}, and also for type and scope checking.
-The choice of language for writing the compiler falls upon Java 1.8, which is also the language the project group have been taught for building compilers in the courses for the semester.
+The choice of language for writing the compiler falls upon Java 1.8, which is used in the language and compiler course.
 When making a compiler an object-oriented language simplifies many tasks, because of encapsulation, polymorphism and inheritance. 
 The paradigm allows for many structural options, and reuse of code when inheriting, which would be impossible using another paradigm like imperative or functional programming.
 Java also works across platforms, which is a useful feature.
@@ -27,14 +27,52 @@ In the code generation phase the output code is generated from all the informati
 
 The target language of this compiler is OpenCL C.
 To compile OpenCL C code additional software for the GPU is required, depending on the machine the path to this software may be required when compiling, as such one cannot simply run this on all machines.
-By compiling the OpenCL C code, it is translated into the computer's instruction set and then further into machine code, which the computer understands.
-This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using the specific instruction set, not only gives problems targeting more types of GPUs but is also way too demanding for the project group to understand let alone use in just one semester.
-Using OpenCL C, the target language is still low level compared to Java or C\#, and C has even been characterised as a portable assembly language.\citep{CPort}
+By compiling the OpenCL C code, it is translated into machine code and linked with libaries, which the computer then understands.
+This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using its specific instruction set, not only gives problems targeting more types of GPUs but is also way too demanding for the project group to understand let alone use in just one semester.
+OpenCL C is low level compared to Java or C\#, and C has even been characterised as a portable assembly language, as many features of the language translates closely to assembly. \citep{CPort}
 
-\begin{figure}
+\myref{fig:tombstone} shows a tombstone diagram of the translation of \gls{gamble} for this compiler.
+The compiler takes the \gls{gamble} source code as input and translates it into OpenCL C using a compiler written in Java, the OpenCL C code is then compiled using a C compiler written in C, and outputs machine code which can be run by the computer.
+\begin{figure}[!ht]
+\centering
+\begin{tikzpicture}
+\matrix (m) [matrix of nodes,%nodes={minimum width=1em,minimum height=1.7em}
+            ]
+{
+ \gls{gamble}  & $\to$ &  OpenCL C  \\
+    &  Java    & OpenCL C & $\to$ & \hspace{1 em} M \hspace{2 em}  \\
+    &       &   & C  &         \\
+    &       &               \\
+  };
+ \draw (m-1-1.south west) |- (m-1-3.north east) |- (m-2-2.north east) |- (m-2-2.south west) |- (m-1-1.south west);
+\draw (m-2-2.south east) |- (m-2-5.north east) --(m-2-5.south east) -- (m-2-5.south west) |- (m-3-4.south west) |- (m-2-2.south east);
+
+\end{tikzpicture}
+\caption{Tombstone diagram for the compiler.}
+\label{fig:tombstone}
+\end{figure}
+
+
+The overall structure of the compiler is also implemented using these phases as seen on figure \myref{fig:compilerOverview}.
+This separation helps give an overview when working with the compiler, all the phases are distinctly separated, which makes it easier to make changes, and find where changes need to be made.
+%When adding a feature to the language, it is also simplified since the feature has to be supported in each of the phases, so as a programmer work must be done in each phase.
+
+\begin{figure}[ht]
 \centering
 \includegraphics[width=0.5\textwidth]{figures/ClassDiagrams/CompilerDiagram.pdf}
 \caption{State diagram showing the phases of the compiler when it takes \gls{gamble} source code and compiles it into machine code.}\label{fig:phases}
+\end{figure}
+
+\begin{figure}[t]
+	\begin{sideways}
+	%\fbox{
+		\begin{minipage}{22.5cm}
+			\includegraphics[height=0.42\textheight]{figures/ClassDiagrams/DiagramOfCallsFromMain.pdf}
+		\end{minipage}
+	%	}
+	\end{sideways}
+	\centering
+	\caption{Diagram showing the structure of the compiler by showing the \texttt{main()} method's method calls. Arguments are omitted for simplicity}\label{fig:compilerOverview}
 \end{figure}
 
 
@@ -94,6 +132,16 @@ Once the source code has passed through the syntax analysis, and thereby is vali
 In the contextual analysis phase semantic errors are the ones being checked for, this includes type errors such as type mismatch, e.g. adding a boolean to a float, which may well be using the correct grammar, but is not a valid arithmetic expression.
 In the contextual analysis there is also checked in which scopes the different variables is available and if there is errors of this type.
 The design and implementation of the contextual analysis as well as how such errors are handled are described in this chapter.
+
+The contextual analysis phase has sub-phases for scope- and type-checking and error handling.
+An illustration of the design for this can be seen on \myref{fig:Contextual}
+
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.48\textwidth]{figures/ClassDiagrams/ContextualAnalyser.pdf}
+  \caption{The function calls and returns in the Contextual Analysis phase.}
+  \label{fig:Contextual}
+\end{figure}
 %\input{chapters/sections/ContextualAnalysis.tex}
 \input{chapters/sections/subsections/SymbolTable.tex}
 
@@ -111,10 +159,22 @@ The validity of such reference is specific to the rules of the language, this se
 %Phase3
 \input{chapters/sections/CodeGeneration.tex}
 \section{Design}
+This section will cover the design of the code generator in the compiler, both the overall structure of the code generator and its goals, and also when and how the \acrshort{gpu} is used.
+Lastly it will present how the runtime of the programs could be made more efficient.
+\input{chapters/sections/subsections/DesignofCodeGen.tex}
 \input{chapters/sections/subsections/GPUCode.tex}
 \input{chapters/sections/subsections/Optimisation.tex}
 \section{Implementation}
-This section will show examples from the code which generates the output code from the files written in \gls{gamble}.
-This will give a greater understanding of how some of the design choices made in the previous section are implemented in the compiler.
-In the following text an introduction of a library called SimpleOpenCL will take place.
+This section will show examples from the compiler code which generates the object code from the source code in \gls{gamble}.
+This will show an implementation of several design choices made in the previous chapters.
+First an example of how a \texttt{DeclarationNode} is translated into C code will be provided; afterwards the implementation of using the \acrshort{gpu} using OpenCL will be presented.
+The compiler starts the codegeneration by calling an instance of the class \texttt{CodeGenerator} and invoking the method \texttt{GenerateCodeAndWriteToFile}.
+This method then makes the \acrshort{ast} accept a CodeGeneratorVisitor and writes its output to a file; while also exporting the object code to a certain directory along with other files needed; the OpenCL kernels used in the program.
+The \texttt{outputCode} is a string which starts as an empty string; every visitor then either appends or returns substrings to be appended.
+These substrings add different information to the \texttt{outputCode} string as the traversal is ongoing.
+\input{chapters/sections/subsections/CodeGenImpl.tex}
+
+
+In the following section an introduction of a library called SimpleOpenCL will take place.
 \input{chapters/sections/subsections/Templates.tex}
+\input{chapters/sections/subsections/MakeFile.tex}
