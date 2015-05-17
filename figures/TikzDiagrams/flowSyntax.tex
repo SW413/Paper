@@ -1,0 +1,22 @@
+\vspace{10pt}
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[node distance = 3cm, auto]
+        \node (start) [lille] {Source code};
+        \node (scanner) [lille, right=0.7cm of start] {Scanner};
+        \node (parser) [lille, right=0.7cm of scanner] {Parser};
+        \node (pt) [lille, right=0.7cm of parser] {Parse--Tree};
+        \node (ast) [lille, right=0.7cm of pt] {Abstract Syntax Tree};
+        \node (error) [cloud, above=1cm of parser] {Error report};
+
+        \draw [arrow] (start) -- (scanner);
+        \draw [arrow] (scanner) -- (parser);
+        \draw [arrow] (parser) -- (pt);
+        \draw [arrow] (pt) -- (ast);
+        \draw [arrow,dashed] (parser) -- (error);
+
+    \end{tikzpicture}
+    \caption{Diagram showing the modules of the syntax analysis. } 
+    \label{fig:flowSyntax}
+\end{figure}
+\vspace{-20pt}
