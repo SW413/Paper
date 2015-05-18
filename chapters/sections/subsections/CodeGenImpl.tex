@@ -32,7 +32,7 @@ public String VisitDeclarationNode(DeclarationNode node) {
     (node.getVariable().toCcode() + " = " + expr + ";");
 }
 \end{lstlisting}
-Since the example \texttt{int a = 5;} is not of a complex data type like a matrix or vector the body of the second and third if statements are hidden.
+Since the example \texttt{int a = 5;} is not of a complex data type like a matrix or vector the body of the second and third if statements are hidden.\todo{Måske vise den i billag hvor den ikke er hidden?}
 A method is called on the node to check whether the expression that assigned the declared variable, exists. 
 Syntactically a matrix or vector may appear to be uninitialised but this actually creates a vector or matrix filled with zeroes.
 In \myref{lst:DeclarationNodeCodeGen} the expression is not null so it enters the body of the \texttt{if} statement on line 5.

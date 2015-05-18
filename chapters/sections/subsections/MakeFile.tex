@@ -4,7 +4,7 @@ The OpenCL C code must be compiled by a C-compiler such as the GCC (GNU Compiler
 During the compilation the OpenCL C headers must be accessable, to provide the functions and types used. 
 Aditionally the \gls{gamble} standard libary, containing functions such as \texttt{matrixToFile} and \texttt{fileToMatrix} must also be included and compiled. 
 This produces an executable file for the platform targetted by the compiler, this will most often be the platform running, such as x86--64 on Linux.
-The same executeable file is not usable for another platform, e.g. ARM, nor on another operating system, e.g. Windows or OS X. 
+The same executeable file is not usable for another platform, e.g. ARM, nor on another operating system, e.g. Windows or OS X.\todo{Skal vi ændre dette til OS X only med gamble?}
 To maintain portability a ``MakeFile'' is used; a MakeFile is a file in the syntax which the GNU make utility can execute. 
 The make utiliry is a set of rules which ensures that the correct compiler, path, headers, etc. are used during compilation on one of multiple platforms. 
 This means that after running the \gls{gamble} compiler, on a configured computer, e.g. has OpenCL C headers, libary, a compiler etc., the make command can be used to build a binary file to be executed.

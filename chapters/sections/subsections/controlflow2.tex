@@ -2,7 +2,7 @@
 Control flow is any part of the language in which a branch occurs. 
 A branch is in this case a place in the code where multiple codepaths are possible. 
 These come in three variations: primitives, choice and loops.
-C, C\#, Java etc. contain some or all of these elements to control the flow of a program:
+C, C\#, Java etc. contain some or all of these constructions to control the flow of a program:
 
 \textbf{Primitive:}
 \begin{itemize}[noitemsep,topsep=-5pt] %removes whitespace before and between points.
@@ -24,7 +24,7 @@ C, C\#, Java etc. contain some or all of these elements to control the flow of a
     \item \texttt{do..while}
 \end{itemize}
 
-From the elements if, goto and label the other constructs above can be made.\todo{label er ikke med på listen, skal det være under goto? - Søren}
+From the constructions if, goto and label the other constructs above can be made.\todo{label er ikke med på listen, skal det være under goto? - Søren}
 For example a \texttt{while} loop can be translated to a combination of the if and goto statements, this is shown in \myref{ifgotowhile1} and \myref{ifgotowhile2} written in C. 
 
 \noindent\begin{minipage}{.45\textwidth}
@@ -85,7 +85,7 @@ if ( condition )
 
 \subsection{while loop}
 An example of the while loop in \gls{gamble} is shown in \myref{whilelst}. 
-The syntax is identical to the if statement, which also makes it look like a function and explicitly express the scope.
+The syntax is identical to the if statement, which also makes it look like a function and explicitly expresses the scope.
 
 \vspace{10pt}
 \noindent\begin{minipage}{.40\textwidth}
@@ -108,7 +108,7 @@ for ( initialize; condition; update )
 \subsection{for loop}
 An example of the \texttt{for} loop in \gls{gamble} is shown in \myref{forlst}.
 An alternative to this syntax is one which allows an iteration over a collection such as a foreach or one that iterates over a range.
-Examples of how such a syntax should be is shown in \myref{forextlst}.
+Examples of how such a syntax should be are shown in \myref{forextlst}.
 
 \begin{lstlisting}[caption=Alternative syntaxes for the for loop.,frame=tlrb, label=forextlst, numbers=none, language=C]{Name}
 // iterates over every int in the range.
