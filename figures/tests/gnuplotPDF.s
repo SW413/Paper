@@ -1,5 +1,5 @@
-set term pngcairo
-set output 'graph.png'
+set term pdfcairo
+set output 'graph.pdf'
 set xlabel 'Number of entries in result matrix'
 set ylabel 'Time in seconds'
 set title 'Execution Time Test'
