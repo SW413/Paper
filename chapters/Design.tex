@@ -11,10 +11,10 @@ Furthermore the features and design of \gls{gamble} will be documented later in 
 In the following sections different parts of \gls{gamble} will be investigated.
 
 \section{Core syntax choices}
-The source code must be encoded in UTF-8, but only the ASCII alphabet and numbers are allowed for identifiers and values, this is to simplify the parsing. 
+The source code must be encoded in UTF-8, but only the ASCII alphabet and numbers are allowed for identifiers and values, this is to simplify the parsing. \todo{Really?? - Søren}
 The language is case sensitive, because the most used languages seen on TIOBEs index\citep{TIOBE} are also case sensitive.
-When a language is case sensitive it is possible for the programmer to name different parts of the code like he pleases, resulting in higher readability.
-Some languages, such as Python, uses whitespace and indentation to indicate scope, in our language scope is indicated by curly brackets like many existing languages\texttt{\{\}}.  
+When a language is case sensitive it is possible for the programmer to name different parts of the code like he pleases, resulting in higher readability. \todo{Måske noget med at kunne bruge standarder indenfor programmering med lokale variabler er med små bogstaver osv?}
+Some languages, such as Python, uses whitespace and indentation to indicate scope, in \gls{gamble} scope is indicated by curly brackets like many existing languages\texttt{\{\}}.  
 
 \subsection*{Comments}
 It is useful to be able to write comments in code to annotate the meaning of some code.
@@ -25,27 +25,27 @@ Therefore both single line and multi line comments can be used in \gls{gamble}.
 ``/* */'' is used for multi line comments, meaning that everything between ``/*'' and ``*/'' is ignored by the compiler, also known as C style comments. 
 
 \subsection*{End of statement terminator}
-When choosing an end of state terminator there are two main choices.
+When choosing an end of statement terminator there are two main choices.
 The newline character as a terminator or another symbol, often semicolon (;).
 The use of newline is often used in simple languages e.g. MATLAB or other mathematical oriented languages. 
 We deem the main value of using the newline are simplicity and a decrease in errors due to forgotten semicolons.
 Semicolon is as mentioned the other main choice, this choice has been used through many programming languages throughout the history. 
-The main advantage of a end of statement terminator  like semicolon is that it allows freeform code. 
+The main advantage of an end of statement terminator like semicolon is that it allows freeform code. 
 This freeform allows to have multiple statements in one line or allows long statements to span across multiple lines.
 We deem this to enhance the readability of the code.
-Furthermore the semicolon terminator allows for a simpler syntax and compiler design.
-As mentioned before forgotten semicolons can result in compiler errors, we deem this as the biggest disadvantages of this end of statement terminator.
+Furthermore the semicolon terminator allows for a simpler syntax and compiler design. \todo{Compiluur igen}
+As mentioned before forgotten semicolons can result in compile errors, we deem this as the biggest disadvantages of this end of statement terminator.
 
-Based on this analysis we have chosen to use the semicolon as end of statement terminator, for easier parsing.
+Based on this analysis we have chosen to use the semicolon as end of statement terminator, for easier parsing and the multi-line statements.
 
 \subsection*{Scope}\label{subsec:Scope}
-If a programming language contain no implementation of scoping rules, then one must assume that all the source code in a given program would be in the same scope.
+If a programming language contains no implementation of scoping rules, then one must assume that all the source code in a given program would be in the same scope.
 Such a single scope would mean that any variable can be used form any place in the code. 
 Mostly, as briefly described in \myref{sec:state_of_the_art}, a programming language implements some kind of scoping rules.
 There are several reasons for this, the main reason being it gives the programmer more control of the code and reduces the chance of changing variables by accident.
 There exist two main methods of scoping, static and dynamic scoping.
-As seen in \myref{sec:state_of_the_art} most of the languages examined in this section used a form of static scope. 
-\gls{gamble} will use this form of scoping because we find it to be the easiest to work with and less prone to errors than dynamic scoping.
+Most of the languages examined in \myref{sec:state_of_the_art} used a form of static scope rules. \todo{Det står der da vist ikke noget om :P?  - søren}
+\gls{gamble} will use this form of scoping because we find it to be the easiest to work with and less prone to errors than dynamic scoping.\todo{Iflg. de scope regler vi lærte af Radu så har vores sprog faktisk dynamic scoping for functions. - Søren}
 The scope rules of \gls{gamble} are as follows:
 
 A variable is in scope from its declaration until the end of the block it is declared in.
@@ -56,12 +56,12 @@ Additionally any function is in scope of any other function including itself, th
 
 \subsection*{Structure}\label{subsec:Struc}
 The structure of the source code to a \gls{gamble} program is shown in \myref{lst:Structure}.
-For a high level of readability we have decided  to split the source code up in segments.
+To increase readability the source codehave is split up in segments.
 A single segment contains only a small part of source code.
 Including of other files are, like in many other languages, written in the top segment, this is to make it easy to get an overview of any and all included libraries. 
 All function declarations are written in the next segment followed by the main statements which is the last segment.
 This collects the main statements, which makes it easier for a programmer to get an overview over the order of execution, compared to if the main statements were allowed between the function declarations.
-This sectioning also makes it easier to write a context free grammar for the language.
+This sectioning also makes it easier to write a context free grammar for the language. \todo{Det er ikke nævnt før nu. Måske tilføje: "A context free grammar is essentially the grammar which specifies what is and what is not an acceptable statement in a language. This will further be explained in ref" - Søren}
 
 \begin{lstlisting}[caption={Source code file layout in \gls{gamble}},frame=tlrb,label={lst:Structure}, numbers=none]
 Libary inclusions
@@ -73,24 +73,23 @@ Statements
 
 \section{Types and Variables}\label{sec:Types}
 %http://www.informit.com/articles/article.aspx?p=2103809&seqNum=3
-\gls{gamble} uses three primitive data types; integers (int), floating points (float) and boolean values (bool), as well as two composite data types; matrices and vector. 
+\gls{gamble} uses three primitive data types; integers (int), floating points (float) and boolean values (bool), as well as two complex data types; matrices and vector. 
 In \gls{gamble} any variable must be initialised when it is declared. 
 This avoids any null reference which can cause runtime errors in many languages such as C, C\# and Java.
-In \gls{gamble} all variables are statically stored, there are several reasons for this and therefore the language does not implement neither explicit or dynamic memory handling.
+In \gls{gamble} all variables are statically stored, there are several reasons for this and therefore the language does not implement neither explicit or dynamic memory handling. \todo{Det er ikke dynamic at vi skriver matrix[a,b] hvor a og b er variabler som bestemmes på baggrund af alt muligt ?? - Søren}
 The first reason for this is that the purpose of the language is to perform arithmetic operations on the \acrshort{gpu}, so by excluding this the language's simplicity increases, and therefore its read- and writability increases.
 A second reason being that the size of every variable in \gls{gamble} is unchangeable.
-Any vector and matrix will be allocated on the heap by the compiler.
-Manual memory handling could increase the number of possible programs in the language and is therefore seen as a viable extension to future versions of \gls{gamble}.
-
+Any vector and matrix will be allocated on the heap by the compiler. \todo{Compiler igen. - Søren}
+Manual memory handling could increase the number of possible programs in the language and is therefore seen as a viable extension to future versions of \gls{gamble}. \todo{Er det relevant ?? - Søren}
 
 \subsection*{Integers and floating points}
-An integer is a whole number either positive or negative, represented by the two's compliment method. 
+An integer is a whole number either positive or negative, represented by the two's complement method. 
 Meaning that it ranges from $-(2^{n-1}) $ to $2^{n-1} - 1 $, where n is the number of bits used.
 A floating point number is an approximation to a real number. 
 It is separated in 3 parts, the sign bit, the mantissa and the exponent. 
 Floats in \gls{gamble} are in base 2, the value of a float is calculated by $ {(-1)}^{sign bit} \cdot mantissa \cdot 2^{exponent} $. 
 Integers and floating point numbers default to 32 bits with the keywords \texttt{int} and \texttt{float}. 
-It is possible to declare 16 and 64 bit integers and floating point numbers by postfixing their size to their respective keywords, e.g. \texttt{float64} or \texttt{int16}. 
+It is possible to declare 16 and 64 bit integers and floating point numbers by postfixing their size to their respective keywords, e.g. \texttt{float64} or \texttt{int16}. \todo{Skal det med i semantikken at man kan skrive 16 og 64 ? Det skal det vel ? - Søren}
 It is useful to be able to specify the size of an integer or a floating point number, as data transfer can cause a lot of overhead particularly when transferring data to and from the \acrshort{gpu}. 
 
 \subsection*{Boolean}
@@ -98,14 +97,14 @@ A boolean value is either true or false.
 These are used for control structures in \gls{gamble} which takes a boolean value as a parameter. 
 But can also be used for any means which the programmer finds useful. 
 
-\subsection*{Vectors and Matrices}
+\subsection*{Vectors and Matrices}\todo{Hvordan tilgås matricer?}
 A vector in \gls{gamble} is a sequence of entries which are each the same primitive data type. 
 The dimension of a vector is immutable, meaning that its dimension cannot be changed after its declaration. 
-A matrix is multiple row vectors inside a column vector, each row vector is the same dimension. 
+A matrix is essentially a number of row vectors inside a column vector, each row vector is the same dimension. 
 As for other variables both vectors and matrices must be initialised when they are declared. 
 This is done with the syntax shown in \myref{lst:matrix}.
 As seen there are two ways of declaring a matrix and a vector, one can either provide the values for each entry, or one can provide the dimensions required of a matrix or vector in which case all values are initialised as zero.
-The syntax for the latter does not adhere to the concept of orthogonality mentioned in \myref{cha:language_criteria} although the use of this syntax should be held to a minimum, as it primarily exists such that functions in the standard library for \gls{gamble} can be created.
+The syntax for the latter does not adhere to the concept of orthogonality mentioned in \myref{cha:language_criteria} although the use of this syntax should be held to a minimum, as it primarily exists such that functions in the standard library for \gls{gamble} can be created.\todo{Det har vi ikke lavet ? Har vi - Søren}
 What these functions entail is described in \myref{sec:funcs}.
 
 \begin{lstlisting}[caption={Syntax for creating a matrix or vector},label={lst:matrix},numbers=none]
@@ -129,9 +128,10 @@ Available operators for simple data types in the language can be found on \myref
 Some operators will work work with vectors and matrices.
 Since the elements in vectors and matrices are one of the simple types of \gls{gamble}, the operands on both sides of an infix operators must adhere to the rules of type compatibility.
 The list of possible operands on these complex data types can be seen on \myref{tbl:matOps}.
- It is not shown in the table but the $+$ and $-$ operations in \myref{tbl:matOps} requires the matrices and vectors to have the same dimensions.
- The $*$ operation requires one matrix to have the same row size as the other matrix columns size. Ex. a matrix [j,k] and a matrix [k,h] can be multiplied because they have the same size k.
- This will result in a [j,h] sized matrix.
+It is not shown in the table but the $+$ and $-$ operations in \myref{tbl:matOps} requires the matrices and vectors to have the same dimensions.
+The $*$ operation requires one matrix to have the same row size as the other matrix' column size. Ex. a matrix [j,k] and a matrix [k,h] can be multiplied because they have the same size k.
+This will result in a [j,h] sized matrix.
+The use of operators between matrix and vector instances is influenced by matlab which uses the same concept with great success.
 \input{figures/matrixOperators.tex}
 %\subsection*{Memory handling}
 %Locally declared and small and simple variables will be written to the stack, while large quantities of data must be written to the heap. 
@@ -146,10 +146,10 @@ Functions are blocks of code which can be called to do a specific computation, o
 This section will describe \gls{gamble}'s use of functions. 
 Like in many other languages it is possible to declare your own functions in \gls{gamble}.
 This is useful for organising code, and reusing parts of the source code.
-Functions in \gls{gamble} can take input, but are not required to, the inputs can be any of the types the language support.
-Because of high implementation cost in the compiler, it is not possible to use a function as an input for a function.
+Functions in \gls{gamble} can take input, but are not required to, the inputs can be any of the types the language supports.
+Because of high implementation cost in the compiler, it is not possible to use a function as an input for a function.\todo{Compiler - Søren}
 
-\gls{gamble} also have certain functions built into the language for varying reasons.
+\gls{gamble} also has certain functions built into the language for varying reasons.
 The most unique function in question here will be the \texttt{print} function.
 This function is special in the sense that it enables the programmer to use strings as a parameter, a data type otherwise not implemented in the language.
 This is enabled such that the programmer can use this feature to write out messages to the console. 
@@ -157,9 +157,9 @@ This is both useful for output and debugging the source code.
 
 Other functions provided by \gls{gamble} are created out of convenience.
 In object-oriented languages subscripting is common and allows for a wide range of useful features, e.g. \texttt{.GetLength} on arrays in C\#.
-Similar to this \gls{gamble} provides \texttt{Rows} and \texttt{Cols} functions for matrices and vectors which returns their amount of rows or columns.
+Similar to this \gls{gamble} provides the functions \texttt{Rows} and \texttt{Cols} for matrices and vectors which returns their amount of rows or columns.
 If called on a vector one can use either rows or columns, it will give the same result.
-This can be used in loops to make them iterate over matrices of any size.
+This can be used in loops to make them iterate over matrices of varying sizes.
 
 %Another such function is \texttt{MakeIntMatrix}.
 %This creates a matrix with int values a similar function exists for float.
@@ -167,22 +167,18 @@ This can be used in loops to make them iterate over matrices of any size.
 %This function builds upon the syntax for initialising a matrix by providing dimensions rather than input, it merely alters the initialised value depending on the argument provided.
 %Other functions are created out of necessity, functions for arithmetics such as multiply and addition also exist, as operators between matrices are not a valid expression.
 
-In order to allow users of \gls{gamble} to use data dynamically and save the result, there are a built in \texttt{matrixToFile}--function and a \texttt{fileToMatrix}--function. 
+In order to allow users of \gls{gamble} to use data dynamically and save the result, there exists the functions \texttt{matrixToFile} and  \texttt{fileToMatrix}. 
 The files which can be used must be of a fixed format, and the output of \texttt{matrixToFile} must be usable for \texttt{fileToMatrix}.
 One of the parameters are a string which identifies the file to be used, besides from the \texttt{print}--function these are the only places where strings are allowed in \gls{gamble}.
 The other parameter of \texttt{MatrixToFile} specifies which matrix the function should write to file.
 
-A complete list of all available standard functions can be seen on \myref{tbl:funcs} together with a desperation of each function.
+A complete list of all available standard functions can be seen on \myref{tbl:funcs} together with a description of each function.
 \input{figures/functions.tex}
-
-In order to allow users of \gls{gamble} to use data dynamicly and save the result, there is a built in \texttt{matrixToFile}--function and a \texttt{fileToMatrix}--function. 
-The files which can be used must be of a fixed format, and the output of \texttt{matrixToFile} must be useable for \texttt{fileToMatrix}.
-One of the parameters are a string which identifies the file to be used, together with the \texttt{print}--function these are the only places where strings are allowed in \gls{gamble}.
 
 \subsection*{Function identifiers}
 When declaring a \gls{gamble} function it is required to write the body of the function immediately after.
-This is to avoid lookahead which function prototypes in C requires.
-A function identifier is exactly like C, with the \texttt{return type} then the \texttt{functionname}, \texttt{(formal parameters)} and finally the \texttt{\{body\}}. % chktex 36
+This is to avoid lookahead which e.g. function prototypes in C requires.
+A function identifier is exactly like in C, with the \texttt{return type} then the \texttt{functionname}, \texttt{(formal parameters)} and finally the \texttt{\{body\}}. % chktex 36
 The function body can contain a number of statements and various control flows.
 Furthermore it can contain calls to other functions or calls to the function itself, and hereby recursion is a possibility in \gls{gamble}
 An example of a function identifier can be seen on \myref{lst:functionID}.
@@ -207,9 +203,9 @@ add(4, 3);
 
 \subsection*{Return value}
 Functions have a return value which can be seen on \myref{lst:functionID}.
-The return values are all the types in \gls{gamble} mentioned in \myref{sec:Types} and void. 
+The return values can be all the types in \gls{gamble} mentioned in \myref{sec:Types} and also void. 
 A void function will not return anything, but instead can be seen as a procedure.
-This choice was made because \gls{gamble} should be able to return all the different types in the language from a function, but also be able to perform these procedures which a void function may do.
+This choice was made because \gls{gamble} should be able to return all the different types in the language from a function, but also be able to perform certain procedures without returning anything, which a void function may do.
 The value or type to be returned is preceded by the keyword \texttt{return}, just like it is in C and other C-like languages.
 An example can be seen on \myref{lst:returnFunction}.
 
