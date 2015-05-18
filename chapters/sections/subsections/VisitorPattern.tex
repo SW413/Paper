@@ -16,7 +16,7 @@ This allows the ability of adding new operations without changing the original d
 Another benefit is that a single visitor object is used to visit all the classes in the tree.
 This visitor can therefore maintain a state between calls to individual data objects, which can be used to save information in an outer scope from the different visit calls.
 \myref{image:visitor} shows a UML diagram of the visitor pattern.
-This diagram is from a C\# representation, and while the idea is the same the exact implementation is not identical to the one used in the compiler for GAMBLE.
+This diagram is from a C\# representation, and while the idea is the same the exact implementation is not identical to the one used in the compiler for \gls{gamble}.
 Take note of are the classes ``ConcreteElement'' and ``ConcreteVisitor'', the ``ConcreteElement'' represents the different kinds of nodes in a given tree.
 The ``ConcreteVisitor'' represent the different kind of visitors implemented.
 A visitor will make sure that the children of the node is traversed in the correct way, and will at the same time also do other computations, e.g. pretty printing or checking the source code for errors.
@@ -61,3 +61,14 @@ The full class diagram can be seen in \myref{ASTNodes}.
 
 The classes have made it more intuitive to perform a traversal of the tree based upon the names of the fields on the classes.
 E.g. the \texttt{ForLoopNode} has fields named \texttt{Body}, \texttt{Initialize}, \texttt{Update}, and \texttt{Conditional}, these names have meaning instead of just being children on the node which will be helpful when implementing the rest of the compiler.
+
+The syntax analysis phase returns the \acrshort{ast} so it can be used in the next phase. 
+The design of the phase and the call from main can be seen on \myref{fig:syntaxphase}.
+As can be seen the \texttt{ASTGeneratorVisitor} makes use of the classes shown in \myref{ASTNodes}.
+
+\begin{figure}[ht]
+  \centering
+    \includegraphics[width=0.48\textwidth]{figures/ClassDiagrams/SyntaxAnalyser.pdf}
+  \caption{The function calls and returns in the Syntax Analysis phase.}
+  \label{fig:syntaxphase}
+\end{figure}

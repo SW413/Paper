@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>160</y>
+      <w>250</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>CodeGenerator
+--
+--
++GenerateCodeAndWriteToFile
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>270</y>
+      <w>250</w>
+      <h>410</h>
+    </coordinates>
+    <panel_attributes>CodeGeneratorVisitor
+--
++outputCode : StringBuilder
++indentationLevel : int
++filesNstuff : Filehandling
++resultVarStack : Stack&lt;Variable&gt;
++astack : Stack&lt;Variable&gt;
++bstack : Stack&lt;Variable&gt;
++unique : int
+--
++String visitBaseASTNode();
+..
++Void visitConstantExpressionNode();
++String inden();
++String functionWithArgs();
++String commaSepExprList();
++String statementBody();
++String printFunction() ;
++String matrixKernel();
++String makeMatrix();
++String makeVector();
++String complexEntrance();
++String applyBoundsCheck();
++String applySameSizeCheck();
++String makeFillArray();
++String makeFillLoop();
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>380</x>
+      <y>220</y>
+      <w>350</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+Accept ( new CodeGeneratorVisitor())                      . </panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>210</x>
+      <y>70</y>
+      <w>250</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>Main
+--
+--
++void main(String[] args);</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>310</x>
+      <y>110</y>
+      <w>290</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+GenerateCodeAndWriteToFile                  . </panel_attributes>
+    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>210</x>
+      <y>220</y>
+      <w>280</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+StringBuilder OutputCode                      . </panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;50.0</additional_attributes>
+  </element>
+</diagram>
