@@ -1,8 +1,10 @@
 \chapter{Semantics}
 In this section the semantics for \gls{gamble} will be shown and explained.
-Operational semantics is necessary to provide detailed information about the mathematical operations behind the language.
-There exists two ways of showing operational semantics for a language.
-Natural semantics (big-step semantics) and structural operational semantics (small-step semantics), it is decided to use big-step semantics.
+Operational semantics is provided to formalise information about the mathematical operations behind the language.
+There exists two ways of showing operational semantics natural semantics and structural operational semantics.
+Natural semantics often called big-step semantics and structural operational semantics often referred to as small-step semantics both shows the mathematical rules of a language. 
+In this chapter there is used big-step semantics which, as implied by it's name, describe execution of operations through overall results.
+
 The semantics is organised as follow:
 
 \begin{align*}
@@ -21,10 +23,10 @@ Every big-step semantic showing operations on a matrix, is also possible to perf
 Every big-step semantic showing operations on a vector can not be used on a matrix, since it requires the dimensions to fit those of a matrix with one columns.
 
 The variable environment(${ e }_{ v }$) is a function that for each variable defines to which storage location it is bound to. A variable environment corresponds to a table containing symbols which are in that environment.
-The store ($st$) is a function that for each storage location in the computer tells us which value is stored in the location. A store corresponds to a complete description of the contents of the memory.\citep{EnvSt_Semantics}
+The store ($st$) is a function that for each storage location in the memory tells us which value is stored in the location. A store corresponds to a complete description of the contents of the memory.\citep{EnvSt_Semantics}
 
 A few of the big-step semantics for \gls{gamble} is included in this chapter, while the rest of the semantics for the rest of the \gls{gamble} is seen in \myref{app:semantics}.
-A few of the most important and interesting operational semantics which will be explained are, variable declaration, assignment, matrix declaration, matrix multiplication and scalar product.
+Some of the operational semantics which are covered in this chapter are variable declaration, assignment, matrix declaration, matrix multiplication and scalar product.
 
 \subsection*{Declaring Variables}
 Variables declarations are also statements according to \gls{gamble}'s grammar.
@@ -45,7 +47,7 @@ A variable declaration modifies the store and the variable environment, the new 
 \section*{Statements}
 The effect of a statement is that the store may change, since a statement may modify the values of variables involved through assignments.
 A statement should not modify the variable environment.
-We define a BS-semantic for statements (except procedure calls).
+We define a big-step semantic for statements (except procedure calls).
 
 [${Assignment}_{BSS}$]
 \begin{align*}
