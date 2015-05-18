@@ -17,7 +17,7 @@ Instead to increase runtime efficiency the considerations concern when the \acrs
 As \gls{gamble} is attempting to seamlessly use the \acrshort{gpu} to increase performance, knowing when the use of the \acrshort{gpu} will actually be beneficial is an important point in the code generation process.
 As mentioned to do this efficiently, the compiler would require more information about the computations in a \gls{gamble} program than can be read from the syntax of \gls{gamble}.
 Therefore it is decided that it is better to be sure that a computation can benefit from the \acrshort{gpu}, rather than risking moving computations that wont benefit with those that will.
-As such only those operations that the project group knows have a possibility of benefiting from the parallel abilities of the \acrshort{gpu} will be executed on the \acrshort{gpu}.\todo{Det her har vi skrevet lige før i GPU Usage} 
+As such only those operations that the project group knows have a possibility of benefiting from the parallel abilities of the \acrshort{gpu} will be executed on the \acrshort{gpu}.
 
 %Knowing when to use GPU
 Even though a computation can be parallelised, it does not necessarily mean it should be moved to the \acrshort{gpu}, as is evident in \myref{image:benchmark}.
