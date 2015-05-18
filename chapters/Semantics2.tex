@@ -88,11 +88,11 @@ A matrix is referred to as seen below, the superscript refers to name of the mat
 [${MatrixMultiplication}_{BSS}$]
 
 Matrix multiplication takes two matrices of the same type, where the size of $m^{1}$ and $m^{2}$satisfy $m^{1}[j,k]*m^{2}[k,l]$.
-The operation returns a matrix of with $j$ columns and $l$ rows based on the rules in \myref{hypeproduct}.
+The operation returns a matrix of with $j$ columns and $l$ rows based on the rules in equation \ref{equ:matrix_multiplicatial}.
 
 
 \begin{minipage}{1.0\textwidth}
-\begin{equation}
+\begin{equation} \label{equ:matrix_multiplicatial} 
 \begin{aligned}
 	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { M }^{ 2 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }*{ M }^{ 2 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<int|float>[j,k] \\ { v }_{ 2 }=matrix<int|float>[k,l] \\
 	 v=\begin{bmatrix} { { m }_{ 1,1 }^{ 3 } } & { { m }_{ 1,2 }^{ 3 } } & \dots  & { m }_{ 1,l }^{ 3 }\\
@@ -118,7 +118,6 @@ The operation returns a matrix of with $j$ columns and $l$ rows based on the rul
 &\vdots\\
 { { m }_{ j,l }^{ 3 } }  &= { { m }_{ j,1 }^{ 1 } } *{ { m }_{ 1,l }^{ 2 } }+ { { m }_{ j,2 }^{ 1 } } *{ { m }_{ 2,l }^{ 2 } }+\dots+ { { m }_{ j,k }^{ 1 } } *{ { m }_{ k,l }^{ 2 } }
 \end{aligned}
-\label{hypeproduct}
 \end{equation*}
 \end{minipage}
 
