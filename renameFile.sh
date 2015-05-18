@@ -1,4 +1,4 @@
-#!/usr/bin/env bash    
+#!/opt/local/bin/bash    
 echo "File to rename"
 read org 
 echo "Rename to..."
@@ -7,6 +7,8 @@ dir=$(dirname $(find . -name $org))
 mv $dir/$org $dir/$new
 for use in $(grep -r --exclude-dir=.git -l "$org" .)
 do
-    echo $use
-    sed 's/$org/$new/g' $use > $use
+    file=$(echo $use | cut -c 3-)
+    sedstring="s/\/$org/\/$new/g"
+    echo $file 
+    sed -i '' $sedstring $file
 done
