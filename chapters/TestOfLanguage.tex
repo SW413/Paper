@@ -3,12 +3,12 @@
 In order to evaluate upon the capabilities of \gls{gamble} a test is run. 
 As performance of mathematical operations is in focus, the project group has chosen to only test the language by comparing the execution time of using the \acrshort{gpu} with the execution time of using the \acrshort{cpu} sequentially.
 
-Previously handwritten C code for the \acrshort{cpu} has been compared to handwritten CUDA C code running on the \acrshort{gpu}, see \myref{subsec:gpuvscpuv1}.
+Previously handwritten C code for the \acrshort{cpu} has been compared to handwritten CUDA C code running on the \acrshort{gpu}, see \myref{sub:gpubenchmark}.
 The results of this test can within reason be expected to have a similar output, meaning that at low data sizes the \acrshort{cpu} is faster than the \acrshort{gpu}, however as the size of the data gets bigger the \acrshort{gpu} is faster.
 The reason for the \acrshort{gpu} being slow for low data sizes is that memory needs to be allocated on the \acrshort{gpu}, the input data must be copied to the \acrshort{gpu}, the calculation must be done, and then the data can be copied back to main memory. 
 Once in main memory the data can be further processed e.g. written to a file. 
 This means that a relatively high amount of time will not be used for calculations, but for moving data back and forth from main memory to the memory of the \acrshort{gpu}.
-The hypothesis from the previous test in \myref{subsec:gpuvscpuv1} was that a more computation heavy test would be faster on the \acrshort{gpu} on smaller sizes, so the intersection of the 2 lines would be for a smaller value on the x-axis. 
+The hypothesis from the previous test in \myref{sub:gpubenchmark} was that a more computation heavy test would be faster on the \acrshort{gpu} on smaller sizes, so the intersection of the 2 lines would be for a smaller value on the x-axis. 
 The reason for this hypothesis is that because of the large overhead cost the more computations done with the data once it is available in the \acrshort{gpu} will increase the speed of execution compared to the sequential implementation on a \acrshort{cpu}.
 
 It is to be noted that neither the code for the \acrshort{cpu} nor the \acrshort{gpu} is optimised by anything other than the gcc-compiler, as explained in \myref{ssub:makefile}. 
@@ -54,7 +54,7 @@ In the graph below (\myref{fig:test_results}), we see that the line representing
 It should however be noted that in the beginning of the graph (the leftmost side), the two lines are very close to each other since time measurements are less precise at such low numbers, and the overhead of initialising and allocating memory for the matrices can well exceed the raw computation time of the multiplication.     
 Furthermore the line representing the \acrshort{cpu} is very jagged, which indicates that the aforementioned caching are influencing the execution time.
 Be that as is may, the \acrshort{gpu} is always faster in execution time at performing matrix multiplication compared to the \acrshort{cpu} especially when the number of entries in the result matrix exceeds $5*10^6$.
-If doing other operations like adding or multiplying a scalar, the results might have been different and looked more like the results from \myref{subsec:gpuvscpuv1}
+If doing other operations like adding or multiplying a scalar, the results might have been different and looked more like the results from \myref{sub:gpubenchmark}
 
 % subsection results (end)
 % section the_test (end)

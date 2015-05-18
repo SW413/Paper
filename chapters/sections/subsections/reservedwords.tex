@@ -2,11 +2,12 @@
 % (fold)
 \label{sec:reserved_words}
 In \gls{gamble} there exists a number of reserved words used for types and language constructs among others.
-These reserved words, also known as language keywords, cannot be used as identifiers in the language. However, keywords are not always reserved words.
-This is because keywords such as \texttt{if} and \texttt{for} often are followed by a specific construct.
-In fact most cases of keyword usage require some sort of special construct, hereby rendering the keyword unambiguous.
-As en example, this makes it possible to use \texttt{if}, along with all other keywords, as identifiers in FORTRAN, but this is not the case in \gls{gamble}.\citep{fortran_identifiers}
-Keywords in \gls{gamble} are considered reserved, because it minimises the lookahead needed, and therefore simplifying the lexing process.
+These reserved words, also known as language keywords, cannot be used as identifiers in the language. 
+However, not all keywords are reserved words.
+This is because keywords such as \texttt{if} and \texttt{for} are often followed by a specific construct.
+In fact most cases of keyword usage require some sort of special construct, hereby rendering the keyword unambiguous.\todo{Det ved vi vist ikke hvad er på det her tidspunkt?  - Søren, Nu er unambigious jo ikke noget fagterm så det kan vi sagtens bruge - Marc}
+As an example, this makes it possible to use \texttt{if}, along with all other keywords, as identifiers in FORTRAN, but this is not the case in \gls{gamble}.\citep{fortran_identifiers}
+Keywords in \gls{gamble} are considered reserved, because it minimises the lookahead needed, and therefore simplifying the lexing process while also increasing readability.
 All the reserved words of \gls{gamble} can be seen in \myref{res:words}.
 \begin{table}[h!]
 	\centering
@@ -23,7 +24,7 @@ All the reserved words of \gls{gamble} can be seen in \myref{res:words}.
 \end{table}
 
 Besides the reserved words \gls{gamble} contains literals, which also cannot be used as identifiers.
-The literals in \gls{gamble} are \texttt{true} and \texttt{false}.
+The literals in \gls{gamble} are \texttt{true} and \texttt{false}.\todo{Er tal ikke også literals :p ?}
 If \gls{gamble} were to provide a \texttt{null} value, this would be a literal as well.
 
 % section reserved_words (end)
