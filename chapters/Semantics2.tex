@@ -1,11 +1,11 @@
-\chapter{Semantics}
-In this section the semantics for \gls{gamble} will be shown and explained.
-Operational semantics is provided to formalise information about the mathematical operations behind the language.
-There exists two ways of showing operational semantics natural semantics and structural operational semantics.
+\chapter{Semantics}\todo{Der skal eventuelt skrives noget omkring hvad det semantic der er sat ind repræsentere og hvordan det foregår? - Marc}
+In this section some of the semantics for \gls{gamble} will be shown and explained.
+Operational semantics are provided to formalise information about the mathematical operations behind the language.
+There is two ways of showing operational semantics natural semantics and structural operational semantics.
 Natural semantics often called big-step semantics and structural operational semantics often referred to as small-step semantics both shows the mathematical rules of a language. 
-In this chapter there is used big-step semantics which, as implied by it's name, describe execution of operations through overall results.
+In this chapter big-step semantics are shown which, as implied by it's name, describe execution of operations through overall results.
 
-The semantics is organised as follow:
+The semantics are organised as follow:
 
 \begin{align*}
 	\textbf{a} \in  &Arithmetic\quad expression\\
@@ -19,13 +19,13 @@ The semantics is organised as follow:
 \end{align*}
 
 \textbf{v} is meant to store the result, this can be both a value, a vector or a matrix.
-Every big-step semantic showing operations on a matrix, is also possible to perform on a vector, which evaluates to a matrix with one column.
-Every big-step semantic showing operations on a vector can not be used on a matrix, since it requires the dimensions to fit those of a matrix with one columns.
+The big-step semantic operations for a matrix, also shows the semantics for a vector, which evaluates to a matrix with one column.
+On the other hand, big-step semantic operations for a vector are not applicable to a matrix, since it requires the dimensions to fit those of a matrix with one column.
 
-The variable environment(${ e }_{ v }$) is a function that for each variable defines to which storage location it is bound to. A variable environment corresponds to a table containing symbols which are in that environment.
+The variable environment(${ e }_{ v }$) is a function that for each variable defines which storage location it is bound to. A variable environment corresponds to a table containing symbols which are in that environment.
 The store ($st$) is a function that for each storage location in the memory tells us which value is stored in the location. A store corresponds to a complete description of the contents of the memory.\citep{EnvSt_Semantics}
 
-A few of the big-step semantics for \gls{gamble} is included in this chapter, while the rest of the semantics for the rest of the \gls{gamble} is seen in \myref{app:semantics}.
+A few of the big-step semantics for \gls{gamble} is included in this chapter, while the rest of the semantics for \gls{gamble} can be found in \myref{app:semantics}.
 Some of the operational semantics which are covered in this chapter are variable declaration, assignment, matrix declaration, matrix multiplication and scalar product.
 
 \subsection*{Declaring Variables}
@@ -33,7 +33,7 @@ Variables declarations are also statements according to \gls{gamble}'s grammar.
 Declarations have an effect on the variable environment which is why it has it's own section.
 A variable declaration modifies the store and the variable environment, the new location in the store will be initialised to contain the values of the new variables and the new variable will exist in the variable environment.
 
-
+\todo{der mangler da vidst et komma heri}
 [${VariableDeclaration}_{BSS}$]
 \begin{equation}
 	\frac { <S,{ e }_{ v }^{ `` },st[\iota \mapsto v]>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> }{ <type\quad x=a;S,{ e }_{ v }st>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> } 
@@ -46,8 +46,8 @@ A variable declaration modifies the store and the variable environment, the new 
 
 \section*{Statements}
 The effect of a statement is that the store may change, since a statement may modify the values of variables involved through assignments.
-A statement should not modify the variable environment.
-We define a big-step semantic for statements (except procedure calls).
+A statement should not modify the variable environment.\todo{why? - Marc}
+We define a big-step semantic for statements, except for procedure calls.
 
 [${Assignment}_{BSS}$]
 \begin{align*}
@@ -69,7 +69,7 @@ We define a big-step semantic for statements (except procedure calls).
 \end{align*}
 
 \section*{Matrices and Vectors}
-A matrix is referred to as seen below, the superscript refers to name of the matrix, while the subscript is the entry in the matrix.
+A matrix is referred to as seen below, the superscript refers to name of the matrix, while the subscript refers to the entry in the matrix.
 \begin{align*}
 	M^{n}= \begin{bmatrix} { { m }_{ 1,1 }^{ n } } & { { m }_{ 1,2 }^{ n } } & \dots  & { m }_{ 1,k }^{ n } \\
 { { m }_{ 2,1 }^{ n } }  &  { { m }_{ 2,2 }^{ n } } & \dots & { m }_{ 2,k }^{ n }
