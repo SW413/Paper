@@ -2,9 +2,9 @@
 \chapter{Language Criteria} % (fold)
 \label{cha:language_criteria}
 When evaluating programming languages one must first agree on the goals of the characteristics of a  given language.
-Robert W. Sebesta has given some criteria which can be evaluated from, these will be used these criteria to design the language and to state which criteria are important to the language.\citep{Sebesta}
+In Robert W. Sebesta's book some criteria which can be evaluated from are written, these criteria will be used to design the language and to state which criteria are important to the language.\citep{Sebesta}
 The criteria can be seen on \myref{tbl:concepts}.
-First a brief description of the criteria will be given, followed by how we rate these criteria for our language according to the information found in \myref{cha:introduction}.
+First a brief description of the criteria will be given, followed by how important these criteria are for our language according to the information found in \myref{cha:introduction}.
 \begin{table}[h]
 	\centering
 	\colorlet{shadecolor}{gray!40}
@@ -25,13 +25,13 @@ First a brief description of the criteria will be given, followed by how we rate
 	\caption{Language evaluation criteria and the characteristics that affect them.}\label{tbl:concepts}
 \end{table}
 
-We want it to be easy for programmers and mathematicians alike to write and read programs in our language.
-The focus should be on calculating the problem at hand, without having to conform to low level language specifics, controlling memory etc.
-Our language must adhere to the concept of simplicity, which means that the number of basic constructs is kept low. 
+It is important that the language be easy for programmers and mathematicians alike to write and read programs in.
+The focus should be on calculating the problem at hand, without having to conform to low level language specifications such as controlling memory etc.
+The language must adhere to the concept of simplicity, which means that the number of basic constructs is kept low. 
 This results in high levels of both readability and writability as can be seen on \myref{tbl:concepts}.
 The language supports abstraction over the programmer's hardware, by not having to specify where the computations must be run, or having to allocate memory.
 
-To get an idea of what each criterion expressed, we will in the following text, describe our thoughts and goals in respect to several of the concepts in \myref{tbl:concepts} deemed important to \gls{gamble}.
+To get an idea of what each criterion expressed, we will in the following text, describe our thoughts and goals in respect to several of the concepts in \myref{tbl:concepts} deemed important to \gls{gamble}.\todo{This is the first mention of GAMBLE and there is no explanation of what it means}
 Simplicity is important in the language of \gls{gamble}.
 It is so because of the goals stated in \myref{sec:problem} and based on the other languages examined in \myref{sec:state_of_the_art}, simplicity is important when designing a language where the focus lies in writing code fast and easy, which can take advantage of the \acrshort{gpu}.
 It is so because this goal does not require a large language. \todo{What ? - Søren}
@@ -42,12 +42,12 @@ Based on the earlier discussions, exception handling is seen as a way of making 
 
 
 \section{Success criteria}\label{sec:OurCriterias}
-We deem our language and compiler to be a good solution for our problem statement if it upholds to the following criteria:\todo{Igen compiler? - Søren}
+We deem the language and compiler to be a good solution for our problem statement if it upholds to the following criteria:\todo{Igen compiler? - Søren}
 
 \begin{itemize}
-	\item Calculating matrix and vector calculations on the GPU, without the programmer specifically specifying it to do so.
+	\item Calculating matrix and vector calculations on the GPU, without the programmer  specifying so.
 	\item Can implicitly calculate matrix operations on the \acrshort{gpu} faster than regular C being run on the \acrshort{cpu}, when sufficient large matrices are provided.
-	\item Expresses a high level of read- and writability, by adhering to the concept of simplicity and having a familiar syntax design.
+	\item Express a high level of read- and writability, by adhering to the concept of simplicity and having a familiar syntax design.
 	\item Provides reliability, with type and scope checking.
 	\item Gives descriptive and fulfilling error messages, for easier debugging, resulting in better writability.
 \end{itemize}
