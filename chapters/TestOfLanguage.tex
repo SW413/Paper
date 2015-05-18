@@ -28,22 +28,19 @@ And there are $3*n^2 = O(n^2)$ numbers in the matrices which will be operated on
 
 When testing execution time, especially on \gls{cpu} intensive programs, there is a lot of different variables in the equation. 
 The scheduler of the operating system and IO-requests can slow down the execution while caching and cache hits can speed up the computations because of faster memory access. 
-These factors will in this test be regarded as the benefits and disadvantages that follows when using the \gls{cpu} for compute intensive tasks and pay no bigger role than the similar factors when computing on the \gls{gpu}.
+These factors will in this test be regarded as the benefits and disadvantages that follows when using the \gls{cpu} for compute intensive tasks.
 Because of this, trend lines will be used to visualise the data points along with the raw plots. 
 
 \subsection{Test Environment} % (fold)
 \label{sub:test_environment}
-When writing the specific test code, \gls{gamble} will be used for both sides of the test.
-This approach may seem odd, since the performance of \gls{gamble} essentially is what is being tested, and the main purpose of \gls{gamble} is utilising the \gls{gpu} for matrix related operations, but because of the way \gls{gamble} handles for-loops, it is possible to target both the \gls{cpu} and \gls{gpu}.
+The test for the \acrshort{cpu} is written in C, and the \acrshort{gpu} test is of course written in \gls{gamble}.
 As previously mentioned the \gls{gpu} focused side of the test, will be using the built-in matrix multiplication of \gls{gamble}, and the \gls{cpu} side, the three nested for-loops.
-By writing both programs in \gls{gamble} the test and its results are more comparable, since any overhead or advantage created by the \gls{gamble}-compiler will be found in both instances.
-Furthermore it is possible to utilise the matrix types in \gls{gamble} and the ability to load said matrix types into the executing program from a file.
-This also makes it easier to script the test, since all the dimensions of the matrices can be defined in simple text files and therefor easily changed between executions.
+The sizes of the matrices are changed using a script which starts the programs where the matrices are given different dimensions and the time result is appended to a file.
 
-The test will be executed on a machine running Ubuntu 14.04.2 LTS, with a Intel Core i5-4670K overclocked to 4.5 GHz as the \gls{cpu} and an AMD R9 280x with 3GB of GDDR5 ram and a clock of 1070 MHz as the \gls{gpu}.
+The test will be executed on a machine running Ubuntu 14.04.2 LTS, with an Intel Core i5-4670K overclocked to 4.5 GHz as the \gls{cpu} and an AMD R9 280x with 3GB of GDDR5 ram and a clock of 1070 MHz as the \gls{gpu}.
 As the main memory 8 GB of DDR3 ram is available for the programs.
-For running the test on a range of different matrix sizes, a bash script will be used to alter the dimensions though the previously mentioned text files, which will then be loaded by the \gls{gamble} program as matrices.
-Sourcecode for both \gls{gamble} programs along with the script used for testing, can be found in \todo{tilføj til apen(dicks)}.
+For running the test on a range of different matrix sizes, a bash script will be used to alter the dimensions through the previously mentioned text files, which will then be loaded by the programs as matrices.
+Sourcecode for both programs along with the script used for testing, can be found in \todo{tilføj til apen(dicks)}.
 
 \subsection{Results} % (fold)
 \label{sub:results}
@@ -51,7 +48,7 @@ Sourcecode for both \gls{gamble} programs along with the script used for testing
 \begin{figure}[h!]
     \centering
     \includegraphics{figures/tests/graph.pdf}
-    \caption{Execution time of matrix multiplication, with sequential \gls{cpu} and heterogenous \gls{gpu} approach}\label{fig:test_results}
+    \caption{Execution time of matrix multiplication, with sequential \gls{cpu} and heterogeneous \gls{gpu} approach}\label{fig:test_results}
 \end{figure}
 % subsection results (end)
 % section the_test (end)
