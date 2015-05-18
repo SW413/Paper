@@ -2,7 +2,7 @@
 \section{Problem statement}
 \label{sec:problem}
 
-\myref{subsec:gputest} shows that calculations on matrices, when sufficiently large, can take a long time to compute sequentially. 
+\myref{sub:gpubenchmark} shows that calculations on matrices, when sufficiently large, can take a long time to compute sequentially. 
 Therefore it is smarter to parallelise these computations, and even better to do so on a \acrshort{gpu} compared to a \acrshort{cpu}, due to its internal architecture.
 Many linear algebra calculations can be parallelised since it often contains large datasets where operations on the data does not depend on previous calculations. \todo{LIAL er nævnt meget pludseligt, et afsnit omkring scientific computing eller blot GPU egnede emner drejet ind på LIAL ville løse problemet før her i problem statement er det kun brugt en enkelt gang som eksempel}
 An example of this could be matrix calculations where most operations can be split into independent sub calculations.

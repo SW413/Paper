@@ -570,9 +570,11 @@
 
 \usepackage[english]{cleveref}
 \crefname{exa}{eksempel}{eksempler}
-\newcommand{\myref}[1]{\autoref{#1}}
-\newcommand{\Myref}[1]{\Autoref{#1}}
+\newcommand{\myref}[1]{\Cref{#1}}
+\newcommand{\Myref}[1]{\Cref{#1}}
+\newcommand{\lowercaseref}[1]{\cref{#1}}
 
+\def\sectionautorefname{Section}
 
 % GLOSARIEIASI
 \usepackage[acronym]{glossaries}
