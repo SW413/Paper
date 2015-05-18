@@ -114,7 +114,7 @@ In this phase it is checked whether the input adheres to the rules of the langua
 These rules are defined in a languages' \acrshort{cfg}.
 The \acrshort{cfg} of \gls{gamble} is further described in \myref{sec:cfg}.
 This analysis can be split up into further sub phases, lexical analysis and parsing, these are described in this chapter.
-
+A diagram of the part of compiler responsibly for the syntax analysis is shown is in \myref{fig:flowSyntax}
 \input{figures/TikzDiagrams/flowSyntax.tex}
 
 \section{Design}
@@ -139,12 +139,12 @@ The design and implementation of the contextual analysis as well as how such err
 The contextual analysis phase has sub-phases for scope- and type-checking and error handling.
 An illustration of the design for this can be seen on \myref{fig:flowContextual}
 
-\begin{figure}[ht]
-  \centering
-    \includegraphics[width=0.48\textwidth]{figures/ClassDiagrams/ContextualAnalyser.pdf}
-  \caption{The function calls and returns in the Contextual Analysis phase. \todo[inline]{Delete this, replaced by flowchart? -- Troels}}
-  \label{fig:Contextual}
-\end{figure}
+%\begin{figure}[ht]
+%  \centering
+%    \includegraphics[width=0.48\textwidth]{figures/ClassDiagrams/ContextualAnalyser.pdf}
+%  \caption{The function calls and returns in the Contextual Analysis phase.}
+%  \label{fig:Contextual}
+%\end{figure}
 
 \input{figures/TikzDiagrams/flowContextual.tex}
 
