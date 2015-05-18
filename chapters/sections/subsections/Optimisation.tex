@@ -41,9 +41,9 @@ As seen on \myref{image:OpenCLOptCompare} some possible methods of increasing ru
 These are taken as specific examples in this comparison because these methods are performed in the \acrfull{ptx} code that CUDA compiles to. %ENDING A SENTENCE WITH A PROPOSITION OMG!!!
 An OpenCL C compiler will also optimize the source code if given the instruction to, however its impact depends on the \acrshort{gpu} and platform in use.
 The value of any optimization is situational, i.e. changing the work-group size can yield improvements of up to 5 times. \citep{ocl_lecture3}
-OpenCL can use just-in-time compilation to generate binary code to the appropriate device it is working with at runtime.
+OpenCL can use \acrshort{jit} to generate binary code to the appropriate device it is working with at runtime.
 This allows OpenCL to optimize for the \acrshort{gpu} used, however this is also a constant overhead for each execution of the program. 
-OpenCL can also compile the kernels before runtime, this is known as an offline compilation as opposed to the just-in-time compilation known as online. 
+OpenCL can also compile the kernels before runtime, this is known as an offline compilation as opposed to the \acrshort{jit} compilation known as online. 
 The CUDA compiler \texttt{nvcc} is a two step process, which first generates \acrshort{ptx} bytecode and then either \acrshort{jit} compile on runtime or compiles a so called ``fat binary'' at compile time, which contains multiple programs for different \acrshort{gpu}s. \citep{nvidia_cude_fat_bin}
 
 %Optimising C code(CPU)

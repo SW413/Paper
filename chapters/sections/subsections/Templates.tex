@@ -34,7 +34,7 @@ For the remaining part of this section the fastest device is a \acrshort{gpu}.
 These arrays are then filled out with different numbers corresponding to the columns and rows of the matrices or vectors being calculated upon.
 This way of appending templates to the outputCode string is used in different places in the code generation when handling the complex datatypes matrices and vectors.
 In fact whenever one of the following operators \texttt{+, -, *, \#, \^{} } are used with matrices or vectors a template is being appended to the outputCode.
-See \myref{tbl:matOps} for a description of what each operator will produce in gamble.
+See \myref{tbl:matOps} for a description of what each operator will produce in \gls{gamble}.
 
 When an assignment's rightside or a declaration's rightside consists of an expression using operators and matrices or vectors, the visitor's check for which operator is used and then inputs a launch kernel template depending on the operator.
 The compiler contains files which have the code for launching the kernel for the specific situation and also for the kernel itself.

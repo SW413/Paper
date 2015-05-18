@@ -1,7 +1,6 @@
 %\gls{gamble} is used to refer to our languange
 \section{Design Philosophy}\label{sec:phil}
 
-For complex computations or large datasets one needs to have significant computational power.
 The focus for \gls{gamble} is to use the computational powers of the \acrshort{gpu} to handle such computations without it being inconvenient for the programmer.
 As described in \myref{sec:state_of_the_art} several libraries and languages allows the programmer to explicitly designate workloads to the \acrshort{gpu} however this often requires explicit memory handling as well.
 Keeping \gls{gamble} familiar to other languages makes it more accessible and reduces the time required for users to familiarize themselves with it.
@@ -17,16 +16,19 @@ Therefore having the programmer control the runtime architecture seems an unnece
 \gls{gamble} takes care of designating the computations to the right processor, whether it be the \acrshort{gpu} or the CPU, as such any inconvenience in that process is removed from the programmer whose focus can be solely on the mathematics.
 This abstraction therefore results in better writability.
 
+\info[inline]{Maybe we should add automatic memory management here, it is *HARD* in OpenCL, CUDA etc. so it would make a nice point? -- Troels}
+
 \textbf{Avoid implementing unnecessary data types and features}
 
 As the purpose of \gls{gamble} is to use the \acrshort{gpu} for calculations which can be parallelised implementing features or data types, that do not hold any regard to this aspect would clutter the language.
 Additionally \gls{gamble} should not try to adapt itself towards purposes for which it is not designed, an example of excluding such features is the fact that strings are not part of the language, this choice and others like it are further documented later in this chapter.
 This makes \gls{gamble} simpler, and therefore both easier to read and write.
+\todo{Denne udtalelse gør at vi nok bør lytte til Thomas og helt slette afsnit 14.6 om general purpose Gamble.. - Søren}
 
 \textbf{Let the language be somewhat familiar to read and use}
 
 As mentioned the main purpose of \gls{gamble} is to use the \acrshort{gpu} for computations, and is focused on doing computations, not developing new software.
 As such \gls{gamble} would most often be used where this niche is required.
-It may even be likely that it is not used when developing an algorithm to do computations, but first used once the algorithm is to be implemented, and can be applied to bigger sets of data.\citep{AlgorithmDesign}
+It may even be likely that it is not used when developing an algorithm to do computations, but first used once the algorithm is to be implemented, and can then be applied to bigger sets of data.\citep{AlgorithmDesign}
 This is because of the large overhead as explained in \myref{sec:comparch}, it will be faster to perform a test of an algorithm with smaller datasets in other languages, like C.
-Therefore to use the niche that \gls{gamble} proclaims, having the language be familiar makes it easier to use for its pure computational aspect, and improves on the \gls{gamble}'s read- and writability.
+Therefore to use the niche that \gls{gamble} proclaims, having the language be familiar makes it easier to use for its pure computational aspect, and improves on \gls{gamble}'s read- and writability.

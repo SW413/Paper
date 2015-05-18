@@ -3,7 +3,7 @@ When the code generator is called from the \texttt{main()} class, the \acrshort{
 
 \begin{figure}[!ht]
 \centering
- \includegraphics[width=1\textwidth]{figures/ClassDiagrams/CodeGeneratorCall.pdf} % trim=4.85cm 15cm 0.85cm 1cm
+ \includegraphics[width=0.60\textwidth]{figures/ClassDiagrams/CodeGeneratorCall.pdf} % trim=4.85cm 15cm 0.85cm 1cm
 \caption{A diagram showing the call from the code generator to the visitor which makes the string from the decorated \acrshort{ast}.}\label{fig:CodeGeneratorVisitor}
 \vspace{-15pt}
 \end{figure}
@@ -28,6 +28,6 @@ The reason this is done at run-time instead of compile-time is because the sizes
 
 When the string is complete it is printed into a file called code.c, along with all the other files needed for running the code, e.g. the kernels used for performing computations on the \acrshort{gpu}.
 The code.c file is structured so that it is a valid C program.
-First off are the libraries included that C uses, then follows a list of prototypes which are all the gamble functions translated into C code, both the user made and libraries.
-After the prototypes the main function is made which consists of all the statements in the gamble sourcecode translated into C.
+First off are the libraries included that C uses, then follows a list of prototypes which are all the \gls{gamble} functions translated into C code, both the user made and libraries.
+After the prototypes the main function is made which consists of all the statements in the \gls{gamble} sourcecode translated into C.
 After the main method all the implementations of the prototypes are made.
