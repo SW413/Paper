@@ -4,24 +4,27 @@ In order to evaluate upon the capabilities of \gls{gamble} a test is run.
 As performance of mathematical operations is in focus, the project group has chosen to only test the language by comparing the execution time of using the \gls{gpu} with the execution time of using the \gls{cpu} sequentially.
 
 Previously handwritten C code for the \gls{cpu} has been compared to handwritten CUDA C code running on the \gls{gpu}, see \myref{subsec:gpuvscpuv1}.
-The results of this test can within reason be expected to have a similar output, meaning that at low data sizes the \gls{cpu} is faster than the \gls{gpu}, however as the size of the data gets better the \gls{gpu} is faster.
-The reason for \gls{gpu} being slow for low data sizes is that memory needs to be allocated on the \gls{gpu}, the input data must be copied to the \gls{gpu}, the calculation must be done, and then the data can be copied back to the main memory. 
+The results of this test can within reason be expected to have a similar output, meaning that at low data sizes the \gls{cpu} is faster than the \gls{gpu}, however as the size of the data gets bigger the \gls{gpu} is faster.
+The reason for the \gls{gpu} being slow for low data sizes is that memory needs to be allocated on the \gls{gpu}, the input data must be copied to the \gls{gpu}, the calculation must be done, and then the data can be copied back to main memory. 
 Once in main memory the data can be further processed e.g. written to a file. 
 This means that a relatively high amount of time will not be used for calculations, but for moving data back and forth from main memory to the memory of the \gls{gpu}.
+The hypothesis from the previous test in \myref{subsec:gpuvscpuv1} was that a more computation heavy test would be faster on the \acrshort{gpu} on smaller sizes, so the intersection of the 2 lines would be for a smaller value on the x-axis. 
+The reason for this hypothesis is that because of the large overhead cost the more computations done with the data once it is available in the \acrshort{gpu} will increase the speed of execution compared to the sequential implementation on a \acrshort{cpu}.
 
 It is to be noted that neither the code for the \gls{cpu} nor the \gls{gpu} is optimised by anything other than the gcc-compiler, as explained in \myref{ssub:makefile}. 
-This means that the code could be optimised, for example by loop-unrolling, multi-core use with threading etc. for the \gls{cpu}, and by varying the size of the work group, offline kernel compilation, advanced memory use i.e. local and private memory, for the \gls{gpu}.  
+This means that the code could be made faster at execution time, for example by loop-unrolling, multi-core use with threading etc. for the \gls{cpu}, and by varying the size of the work group, offline kernel compilation, advanced memory use i.e. local and private memory, for the \gls{gpu}.  
 
 \section{The Test} % (fold)
 \label{sec:the_test}
 The performed test is a simple matrix multiplication with non square matrices.
-For the \gls{gpu} the built-in matrix operation in \gls{gamble} for matrix multiplication is used. The syntax for this operation is: \texttt{matrixA * matrixB}. 
-This construction is compiled to a kernel which is invoked for each index in the result matrix, the kernels each calculate just one index of the result, and has an inner loop of the size of the columns of the first matrix, which is equal to the rows of the second matrix.
-To replicate this for the \gls{cpu}, a construct with three nested for-loops is used, where the inner most loop is similar of the one found in the dedicated kernel, and the two outer loops are used to execute the inner loop for each index in the result matrix.
+For the \gls{gpu} the built-in matrix operation in \gls{gamble} for matrix multiplication is used. 
+The syntax for this operation is: \texttt{matrixA * matrixB}. 
+This construction is compiled to a kernel which is invoked for each index in the result matrix, the kernels each calculate just one index of the resulting matrix, and has an inner loop of the size of the columns of the first matrix, which is equal to the rows of the second matrix.
+To replicate this for the \gls{cpu}, a construct with three nested for-loops is used, where the inner most loop is similar to the one found in the dedicated kernel, and the two outer loops are used to execute the inner loop for each index in the resulting matrix.
 Hence the \gls{cpu} and \gls{gpu} targeted code does the same number of calculations.
  
 As an example, with square matrices, of size $n$ as input the amount of calculations is $2*n^3 = O(n^3)$ operations. 
-And there are $3*n^2 = O(n^2)$ numbers in matrices which will be operated on, $2/3$ will be read from and $1/3$ will be written to.
+And there are $3*n^2 = O(n^2)$ numbers in the matrices which will be operated on, $2/3$ will be read from and $1/3$ will be written to.
 
 When testing execution time, especially on \gls{cpu} intensive programs, there is a lot of different variables in the equation. 
 The scheduler of the operating system and IO-requests can slow down the execution while caching and cache hits can speed up the computations because of faster memory access. 
@@ -47,7 +50,7 @@ Sourcecode for both \gls{gamble} programs along with the script used for testing
 
 \begin{figure}[h!]
     \centering
-    \includegraphics{figure/tests/graph.pdf}
+    \includegraphics{figures/tests/graph.pdf}
     \caption{Execution time of matrix multiplication, with sequential \gls{cpu} and heterogenous \gls{gpu} approach}\label{fig:test_results}
 \end{figure}
 % subsection results (end)

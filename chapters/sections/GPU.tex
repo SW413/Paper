@@ -46,6 +46,8 @@ Further explanation of this test and the full source code of both programs and t
 Both programs have been run with multiple sizes of the matrix.
 The execution times for the two have then been compared to find an estimated threshold for when the \acrshort{gpu} power overtakes the data transfer.
 The test case for the following comparison consists of seven operations on a square matrix of size n.
+As an example, with a square matrix of size $n$ as input the amount of calculations is $7*n^2 = O(n^2)$ operations. 
+And there are $n^2 = O(n^2)$ numbers in the matrix which will be operated on.
 The operations are division, multiplication, addition and subtraction.
 The result can be seen on \myref{image:benchmark}.
 \begin{figure}[h!]
@@ -57,5 +59,5 @@ The result can be seen on \myref{image:benchmark}.
 
 The result show that in this case the \acrshort{gpu} becomes advantageous when n reaches about 7000 as can be seen in \myref{image:benchmark}
 When n is 7000 the size of the matrix represent operations on almost 50 millions elements.
-This is a large amount of data but this is partly due to the simple operations done on the elements in the matrix, we believe that the threshold would happen earlier for a more complex operations in the elements in matrix.
+This is a large amount of data but this is partly due to the simple operations done on the elements in the matrix, we believe that the threshold would happen earlier for a more computation heavy calculation on the elements in the matrix.
 In addition to the threshold, the result also confirms that as the dataset grows the \acrshort{gpu} becomes exponentially more useful for computing the data fast.
