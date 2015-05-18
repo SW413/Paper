@@ -1,0 +1,32 @@
+%Subphases
+\chapter{Contextual Analysis}
+Once the source code has passed through the syntax analysis, and thereby is validated in regard to the \acrshort{cfg}, it must be checked for contextual errors.
+In the contextual analysis phase semantic errors are the ones being checked for, this includes type errors such as type mismatch, e.g. adding a boolean to a float, which may well be using the correct grammar, but is not a valid arithmetic expression.
+In the contextual analysis there is also checked in which scopes the different variables is available and if there is errors of this type.
+The design and implementation of the contextual analysis as well as how such errors are handled are described in this chapter.
+
+The contextual analysis phase has sub-phases for scope- and type-checking and error handling.
+An illustration of the design for this can be seen on \myref{fig:flowContextual}
+
+%\begin{figure}[ht]
+%  \centering
+%    \includegraphics[width=0.48\textwidth]{figures/ClassDiagrams/ContextualAnalyser.pdf}
+%  \caption{The function calls and returns in the Contextual Analysis phase.}
+%  \label{fig:Contextual}
+%\end{figure}
+
+\input{figures/TikzDiagrams/flowContextual.tex}
+
+%\input{chapters/sections/ContextualAnalysis.tex}
+\input{chapters/sections/subsections/SymbolTable.tex}
+
+\section{Scope Checking}
+As a part of the contextual analysis the compiler must ensure that every reference is valid in their given scope.
+The validity of such reference is specific to the rules of the language, this section describes how the compiler upholds the rules listed in \myref{subsec:Scope}.
+\input{chapters/sections/subsections/ScopeCheck.tex}
+
+\section{Type Checking}
+\input{chapters/sections/subsections/TypeCheck.tex}
+
+\section{Error Handling}
+\input{chapters/sections/subsections/ErrorHandling.tex}

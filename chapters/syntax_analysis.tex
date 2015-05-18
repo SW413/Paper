@@ -1,0 +1,20 @@
+\chapter{Syntax Analysis}\label{sec:syntaxAnalysis}
+Syntax analysis is the first phase in compiling a language.
+In this phase it is checked whether the input adheres to the rules of the language.
+These rules are defined in a languages' \acrshort{cfg}.
+The \acrshort{cfg} of \gls{gamble} is further described in \myref{sec:cfg}.
+This analysis can be split up into further sub phases, lexical analysis and parsing, these are described in this chapter.
+A diagram of the part of compiler responsibly for the syntax analysis is shown is in \myref{fig:flowSyntax}
+\input{figures/TikzDiagrams/flowSyntax.tex}
+
+\section{Design}
+%Design
+\input{chapters/sections/subsections/Scanner.tex}
+\input{chapters/sections/subsections/Parser.tex}
+\input{chapters/sections/subsections/AST.tex}
+\input{chapters/sections/subsections/TraversalOfTrees.tex}
+\input{chapters/sections/subsections/VisitorPattern.tex}
+
+%Implementation
+\input{chapters/sections/ANTLR.tex}
+\input{chapters/sections/CreatingtheAST.tex}
