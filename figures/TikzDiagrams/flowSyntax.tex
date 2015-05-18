@@ -1,0 +1,32 @@
+\vspace{10pt}
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[node distance = 3cm, auto]
+        \node (invi1) [invi, draw=none] {};
+
+        \node (snyanal) [lille, above right=0cm and -1.6cm of invi1, minimum width=15.2cm, minimum height=3cm, fill=blue!10, label={[xshift=-6cm, yshift=-1cm]Syntax Analysis}] {};
+        \node (start) [lille, below=-1.8cm of invi1] {Source code};
+        \node (scanner) [lille, right=0.7cm of start] {Scanner};
+        \node (parser) [lille, right=0.7cm of scanner] {Parser};
+        \node (pt) [lille, right=0.7cm of parser] {Parse--Tree};
+        \node (ast) [lille, right=0.7cm of pt] {Abstract Syntax Tree};
+        \node (error) [draw=none, above=22pt of parser, label={[xshift=0cm, yshift=6 pt]Error report}] {};
+
+        \node (contAnal) [lille, fill=blue!10, right=1.1cm of ast, align=left] {Contextual \\ Analysis};
+
+
+        \draw[black,fill=black, above=1cm of parser] (5.5,2.5) circle (1ex);
+        \draw[black, above=1cm of parser] (5.5,2.5) circle (1.3ex); 
+
+        \draw [arrow] (start) -- (scanner);
+        \draw [arrow] (scanner) -- (parser);
+        \draw [arrow] (parser) -- (pt);
+        \draw [arrow] (pt) -- (ast);
+        \draw [arrow,dashed] (parser) -- (error);
+        \draw [arrow] (ast) -- (contAnal);
+
+    \end{tikzpicture}
+    \caption{Diagram showing the modules of the syntax analysis. } 
+    \label{fig:flowSyntax}
+\end{figure}
+\vspace{-20pt}
