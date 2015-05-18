@@ -52,8 +52,9 @@ In the graph below (\myref{fig:test_results}), we see that the line representing
     \caption{Execution time of matrix multiplication, with sequential \gls{cpu} and heterogeneous \gls{gpu} approach}\label{fig:test_results}
 \end{figure} 
 It should however be noted that in the beginning of the graph (the leftmost side), the two lines are very close to each other since time measurements are less precise at such low numbers, and the overhead of initialising and allocating memory for the matrices can well exceed the raw computation time of the multiplication.     
-Furthermore the line representing the \gls{cpu} is very jagged, which indicates that the before mentioned caching are influencing the execution time.
-Be that as is may, the \gls{gpu} is always faster in execution time than the \gls{cpu} especially when the number of entries in the result matrix exceeds $5*10^6$.
+Furthermore the line representing the \gls{cpu} is very jagged, which indicates that the aforementioned caching are influencing the execution time.
+Be that as is may, the \gls{gpu} is always faster in execution time at performing matrix multiplication compared to the \gls{cpu} especially when the number of entries in the result matrix exceeds $5*10^6$.
+If doing other operations like adding or multiplying a scalar, the results might have been different and looked more like the results from \myref{subsec:gpuvscpuv1}
 
 % subsection results (end)
 % section the_test (end)
