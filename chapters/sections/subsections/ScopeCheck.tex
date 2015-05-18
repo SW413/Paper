@@ -40,7 +40,7 @@ This ambiguity is not allowed in \gls{gamble} and therefore throws a redeclarati
 To determine whether or not a declaration is a redeclaration, the compiler looks up the name of the variable in the \texttt{symbolMap} of the current scope.
 If no entry is found, the search continues in the \texttt{symbolMap} of the enclosing scope and so on recursively.
 The same lookup process is executed when a variable is used e.g in a expression or assignment.
-Hereby all enclosing scopes are checked for the declaration of the variable; making redeclaration of variables in scope, and usage of undeclared variables impossible in \gls{gamble}, as defined in \myref{cha:Design}.
+Hereby all enclosing scopes are checked for the declaration of the variable; making redeclaration of variables in scope, and usage of undeclared variables impossible in \gls{gamble}, as defined in \myref{cha:language_design}.
 A \texttt{symbol} is an encapsulation of a variable and relevant peripheral data.
 The peripheral data consists of a boolean, used for checking is a declared variable is used, and an integer with the line number if the declaration of the variable.
 The boolean describing if a declared variable is used, is set to true, if the previously described lookup process for a variable in use, finds a declared variable from the unique id (the name if the variable).
