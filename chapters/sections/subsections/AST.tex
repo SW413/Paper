@@ -2,9 +2,10 @@
 The parser creates a parse tree which contains a node for each production of \gls{gamble}'s grammar.
 This tree contains unneeded information, which makes it difficult to traverse the tree and check for the semantics of \gls{gamble}.
 Therefore the tree will be transformed into what is called an \acrfull{ast}.
-The \acrshort{ast} should be able to express the same source code as the parsetree, and therefore one should be able to make a pretty printer from it.
-\include{chapters/sections/subsections/PrettyPrint.tex}
+An \acrshort{ast} should be able to express the same source code as its parse tree, and therefore one should be able to make a pretty printer from it.
 
+\input{chapters/sections/subsections/PrettyPrint.tex}
+\todo[inline]{Dette prettyprinter er noget sjovt placeret. MP}
 A transformation from a parse tree to an \acrshort{ast}, on the declaration: \texttt{int a = 5;} (using the grammar of \gls{gamble}) can be seen on \myref{image:AST}
 
 \begin{figure}
