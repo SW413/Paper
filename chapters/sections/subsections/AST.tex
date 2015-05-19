@@ -5,7 +5,7 @@ Therefore the tree will be transformed into what is called an \acrfull{ast}.
 An \acrshort{ast} should be able to express the same source code as its parse tree, and therefore one should be able to make a pretty printer from it.
 
 \input{chapters/sections/subsections/PrettyPrint.tex}
-\todo[inline]{Dette prettyprinter er noget sjovt placeret. MP}
+\todo[inline]{Dette prettyprinter er noget sjovt placeret. MP - Sýnes nu det er meget fint, vi nævner at man skal kunne lave en pretty printer lige inden, så bør vi vel også forklare hvad det er :) ? - Søren}
 A transformation from a parse tree to an \acrshort{ast}, on the declaration: \texttt{int a = 5;} (using the grammar of \gls{gamble}) can be seen on \myref{image:AST}
 
 \begin{figure}
@@ -16,7 +16,7 @@ A transformation from a parse tree to an \acrshort{ast}, on the declaration: \te
 
 The parse tree is generated using a parser produced by compiling the grammar with ANTLR, which means we cannot decide which information is contained on the nodes of the tree.
 The nodes of the \acrshort{ast} can therefore be made to contain information for type and scope checking, which helps in the contextual analysis phase.
-All that is needed to make this transformation, is to make classes for all the nodes of the \acrshort{ast}, a way to traverse the parsetree, and creating instances of the \acrshort{ast} nodes as the traversal is ongoing.
+To make this transformation the following is needed: classes for all the nodes of the \acrshort{ast}, a way to traverse the parsetree, and then using the traversal to create instances of the \acrshort{ast} nodes and binding them together to create a structured \acrshort{ast}.
 
 
 
