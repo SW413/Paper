@@ -1,22 +1,22 @@
 \section{Types and Variables}\label{sec:Types}
 %http://www.informit.com/articles/article.aspx?p=2103809&seqNum=3
-\gls{gamble} uses three primitive data types; integers (int), floating points (float) and boolean values (bool), as well as two complex data types; matrices and vector. 
-In \gls{gamble} any variable must be initialised when it is declared. 
+\gls{gamble} has three primitive data types; integers (int), floating points (float) and boolean values (bool), as well as two complex data types; matrices and vector. 
+In \gls{gamble} any variable must be initialised when it is declared. \todo{Er dette stadig sandt? fx matricer -- TK}
 This avoids any null references which could otherwise cause runtime errors.
 In \gls{gamble} all variables are statically stored, there are several reasons for this and therefore the language does not implement neither explicit nor dynamic memory handling. \todo{Det er ikke dynamic at vi skriver matrix[a,b] hvor a og b er variabler som bestemmes på baggrund af alt muligt ?? - Søren}
 The first reason for this is that the purpose of the language is to perform arithmetic operations on the \acrshort{gpu}, so by excluding this the language's simplicity increases, and therefore its read- and writability increases.
 A second reason being that the size of every variable in \gls{gamble} is unchangeable.
-Any vector and matrix will be allocated on the heap by the compiler. \todo{Compiler igen. - Søren}
+Any vector and matrix will be allocated on the heap by the compiler. \todo{Compiler igen. - Søren ... Det er heller ikke noget compileren gør xD Men den sørger for at det sker der. -- TK}
 
 \subsection*{Integers and floating points}
 An \texttt{integer}\todo{texttt{int} eller integer som plantxt MP} in \gls{gamble} is either a positive or negative integer, represented by the two's complement method. 
 Meaning that it ranges from $-(2^{n-1}) $ to $2^{n-1} - 1 $, where n is the number of bits used.
 A floating point number is an approximation to a real number. 
 It is separated in 3 parts, the sign bit, the mantissa and the exponent. 
-Floats in \gls{gamble} are in base 2, the value of a float is calculated by $ {(-1)}^{sign bit} \cdot mantissa \cdot 2^{exponent} $. \todo{alt dette er vel kun på grund af vi codegen'er til c? MP}
+Floats in \gls{gamble} are in base 2, the value of a float is calculated by $ {(-1)}^{sign bit} \cdot mantissa \cdot 2^{exponent} $. \todo{alt dette er vel kun på grund af vi codegen'er til c? MP -- Ikke rigtigt, det skal være sandt for alle gyldige GAMBLE compilers. -- TK}
 Integers and floating point numbers default to 32 bits with the keywords \texttt{int} and \texttt{float}. 
 It is possible to declare 16 and 64 bit integers and floating point numbers by postfixing their size to their respective keywords, e.g. \texttt{float64} or \texttt{int16}. \todo{Skal det med i semantikken at man kan skrive 16 og 64 ? Det skal det vel ? - Søren}
-It is useful to be able to specify the size of an integer or a floating point number, as data transfer can cause a lot of overhead particularly when transferring data to and from the \acrshort{gpu}. 
+It is useful to be able to specify the size of an integer or a floating point number, as data transfer can cause a lot of overhead particularly when transferring data to and from the \acrshort{gpu}. \todo{Evt. og max størrelse ? -- TK}
 
 \subsection*{Boolean}
 A boolean value is either true or false. 
@@ -25,9 +25,9 @@ But can also be used for any means which the programmer finds useful.
 
 \subsection*{Vectors and Matrices}\todo{Hvordan tilgås matricer?}
 A vector in \gls{gamble} is a sequence of entries which are each the same primitive data type. 
-The dimensions of a vectors and matrices are immutable, meaning that its dimensions cannot be changed after its declaration. 
+The dimensions of a vectors and matrices are immutable, meaning that its dimensions cannot be changed after its declaration. \todo{That is not what immutable means? immutable == const -- TK}
 A matrix consists of a number of row vectors inside a column vector, each row vector is the same dimension. 
-As for other variables both vectors and matrices must be initialised when they are declared. 
+As for other variables both vectors and matrices must be initialised when they are declared. \todo{Stadig sandt? ;) -- TK}
 This is done with the syntax shown in \myref{lst:matrix}.
 As seen there are two ways of declaring a matrix and a vector, one can either provide the values for each entry, or one can provide the dimensions required of a matrix or vector in which case all values are initialised as zero.
 The syntax for the latter does not adhere to the concept of orthogonality mentioned in \myref{cha:language_criteria} although the use of this syntax should be held to a minimum, as it primarily exists such that functions in the standard library for \gls{gamble} can be created.\todo{Det har vi ikke lavet ? Har vi - Søren - Dette skulle bruges til MatrixAdd og de funktioner så det er vel egentlig ikke sandt længere, std lib eller ej - Marc}
@@ -43,7 +43,7 @@ matrix<int>[100, 100] mm;
 //Making a vector by providing values
 vector<int> v = [1, 0];
 //Makes a vector with 100 entries all set to 0
-vecotr<int>[100] vv;
+vector<int>[100] vv;
 \end{lstlisting}
 
 \subsection*{Operators}\label{subsec:operators}
