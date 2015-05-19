@@ -1,9 +1,9 @@
 
 \section{Implementation}\label{sec:ANTLR}
 The syntax analysis is implemented through the tool \acrfull{antlr}, this tool provides some advantages over other available tools.
-\acrshort{antlr} is based upon a parser technique called LL(*).\todo{vi har allerede nævnt antlr en del før her. MP}
+\acrshort{antlr} is based upon a parser technique called LL(*).\todo{vi har allerede nævnt antlr en del før her. MP - Dog ikke i denne detalje, ville foreslå forklaringen kommer op til første sted hvor det er nævnt - Marc}
 LL(*) uses an algorithm to have a varying lookahead when needed.
-The LL(*) parsers, which is a parser that can uphold an LL(*) grammar, allows a bigger class of \acrshort{cfg}s than other parsers like LL(k).
+The LL(*) parsers, which is a parser that upholds an LL(*) grammar, allows a bigger class of \acrshort{cfg}s than other parsers like LL(k).
 In the most recent version of \acrshort{antlr} as time of this publication, \acrshort{antlr} 4, the underlying algorithm have been extended to a parser technique called Adaptive LL(*) (ALL(*)).
 An important feature of ALL(*) is it moves grammar analysis to parse time and thereby lets the algorithm accept any non-left-recursive productions.
 On top of that \acrshort{antlr} allows simple left recursions by rewriting them before parse time.
@@ -23,10 +23,10 @@ expr : expr '*' expr 	#MulExpression // match expressions with * operator
      | expr '+' expr 	#AddExpression// match expressions with + operator
      | INT 		// matches simple integer
      ;
-\end{lstlisting}\todo{Hvorfor er denne ambiguous ? Den bruger left recursion, men den er da ikke ambigous er den ? - Søren}
+\end{lstlisting}\todo{Hvorfor er denne ambiguous ? Den bruger left recursion, men den er da ikke ambigous er den ? - Søren - Fordi hvis ikke for prescedence reglen som ANTLR bruger har 2+2*2 2 parse trees - Marc}
 
 %While it may not be obvious from \myref{lst:amb} but this CFG also implements \acrshort{antlr}s way of representing operator precedence by simply obeying the first alternative in the rule set, as such the multiplication operator (``*'') will have the higher precedence. - Dette står allerede tidligere
-The ALL(*) algorithm also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.
+The ALL(*) algorithm also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process of parsing.
 The scanner provided by \acrshort{antlr} groups related tokens into token types such as INT, ID and FLOAT.
 In \acrshort{antlr} a token contains at least two pieces of information, the token type and the matched text for the token.
 \acrshort{antlr} also implements rule element labels in its \acrfull{cfg} which means one can apply label rules to a construct in a grammar, this allows for conditional steps in the grammar based on the source code being parsed.
