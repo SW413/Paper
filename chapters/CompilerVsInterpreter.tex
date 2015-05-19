@@ -1,10 +1,10 @@
 \chapter{Language runtime}
 This chapter analyses whether the source code should be compiled or interpreted.
-Thereafter the target language is determined.
+Thereafter the target language is determined. 
 
 \section{Compiler or Interpreter}
 When designing a language an important decision is whether a program in the source code in the language should be compiled to become an executable or if it should be interpreted and run without compilation.
-This is a choice that needs to be settled before the design of the compiler or interpreter can begin.
+This is a choice that needs to be settled before the design of the compiler or interpreter can begin.\todo{Not really though ? Man er ikke NØDT til det :P - Søren}
 Both compilers and interpreters have advantages and disadvantages, which needs to be to be evaluated according to the goal of the language.
 The advantages and disadvantages expressed in \myref{tbl:compint} does not reflect every difference between a compiler, but rather those aspects deemed important in respect to \gls{gamble}.
 
@@ -18,10 +18,10 @@ This speed increase is an effect of the compiler's architecture where it compile
 Another reason being that compiled programs are often compiled to a low level language which often have a more direct way of utilizing the hardware better than a virtual environment in an interpreter.
 
 Regarding error reporting both models can be useful, there are strong cases for both the compiled and the interpreted model.
-A case for an interpreter and a design which catch most errors at runtime would be that design would familiarize developers of \gls{gamble} which this workflow, which would make it easier to develop the language in a direction with full or partial dynamics types, since type errors for dynamics types has to be checked at runtime.
-A wholly different case for the compiler choice would be that since the language is expecting to be utilized for large calculations with a long runtime.
-It would be laborious for the programmer if errors occurs at runtime, since the program could have run calculations for at long period of time before the error occurs, thus it could invalidate the results of the calculation.
-A compiler with a good error checking system, which could catch most errors at compile time before execution of the program. \citep{Sebesta, Crafting_book}
+A case for an interpreter and a design which catches most errors at runtime would be that, design would familiarise developers of \gls{gamble} with this workflow, which would make it easier to develop the language in a direction with full or partial dynamics types, since type errors for dynamics types has to be checked at runtime. \todo{Forstår virkelig ikke hvad det her prøver at fortælle mig - Søren}
+A wholly different case for the compiler choice would be that since the language is expecting to be utilised for large calculations with a long runtime.
+It would be laborious for the programmer if errors occur at runtime, since the program could have run calculations for a long period of time before the error occured, thus it could invalidate the results of the calculation, and it would this way take longer to debug.
+A compiler with a good error checking system, which could catch most errors at compile time before execution of the program seems like a good solution. \citep{Sebesta, Crafting_book}
 
 Based on these considerations it has been chosen that a compiler would be the best choice for \gls{gamble} to achieve the desired goals.
 
@@ -32,12 +32,12 @@ Some mature languages such as C or C++ commonly translate into machine code, how
 
 When searching for a target language that has the opportunity of using the \acrshort{gpu}, looking at the existing solutions researched in \myref{sec:state_of_the_art} was an opportune place to start.
 The two options that were most prominent and also what most other solutions seemed to be based upon are CUDA by NVIDIA and OpenCL by Khronos.
-Therefore the target language should be able to at least use one of these platforms.
+Therefore the target language should be able to at least use one of these platforms. \todo{Er det en standard eller en platform ? - Søren}
 Hereafter follows a short comparison of the two options and lastly a choice to which solution deemed most advantageous for \gls{gamble}.
 
 First it needs to be made clear, to use either of these solutions, the host computer needs a framework, found in the respective drivers, installed for it to compile and run it. 
 Both CUDA and OpenCL have bindings for different existing programming languages like Java, C++ and C.
-C was chosen as it compiles to machine code, is low level meaning that there is a high level of control, and the product group are already familiar with it. 
+C was chosen as it compiles to machine code, is also low level which means that there is a high level of control, and the project group are already familiar with it. 
 
 CUDA is developed by NVIDIA and only supports NVIDIA hardware.
 There exists solutions like GPU Ocelot which lets you run CUDA code on an wider variety of platforms like AMD and Intel, but is discontinued since 2011. \citep{Diamos:2010:ODO:1854273.1854318}
@@ -45,12 +45,12 @@ OpenCL natively supports a large variety of hardware, including both \acrshort{g
 Both parallel computing platforms utilise the \acrshort{gpu} by writing special functions which can be run in parallel, these are called kernels.
 A kernel is essentially a C function which can be sent to the \acrshort{gpu} for execution.
 
-While GPU Oclelot exists it is deemed OpenCL would be the broadest and most general solution and it is therefore chosen as the target language for \gls{gamble}.
+While GPU Oclelot exists it is deemed OpenCL would be the broadest and most general solution and it is therefore chosen as the target language for \gls{gamble}.\todo{Vi nævner kun standarderne men slet ingenting omkring at vi faktisk også vil bruge deres implementationer i C eller noget, should we not ? - Søren}
 
 Since initial testing shows it can be difficult to manage hardware in OpenCL a library called SimpleOpenCL is used.
 SimpleOpenCl has function calls which find the fastest hardware on the computer.
-It searches amongst available \acrshort{gpu}s and \acrshort{cpu}s in the system for OpenCL compatible hardware. \citep{simpeCL}
+It searches amongst available \acrshort{gpu}s and \acrshort{cpu}s in the system for OpenCL compatible hardware and chooses the one with the most cores. \citep{simpeCL}
 
-The main focus of the OpenCL code can therefore be on the kernels which is the functions that allows parallel computations on the then chosen hardware.
+The main focus of the OpenCL code can therefore be on the kernels which is the functions that allows parallel computations on the then chosen hardware, and not on the overhead of setting the system up for \acrshort{gpu} usage.
 
 In the following chapter a general overview of the compiler will be presented.
