@@ -28,7 +28,7 @@ b = foo(1);         /* Argument error (Takes more or fewer arguments) */
 
 \subsection*{Implementation}
 The type checker is called right after the symbol table has been filled by the \texttt{SymbolTableFillVisitor}.
-Since \gls{gamble} is static typed, the type checker is implemented under the contextual analysis phase of the compiler, in contrast to a dynamically typed language, such as Python or R, which is checked at runtime. 
+Since \gls{gamble} is static typed, the type checker is implemented under the contextual analysis phase of the compiler, in contrast to a dynamically typed language, such as Python or R, which is checked at runtime. \todo{er dette nødvendigt. MP}
 \gls{gamble} validates the size of matrices and vectors match for certain operations as addition and multiplication E.g., as well as if they are out of bounds. 
 This is to make it easier for the programmers using \gls{gamble} at a cost of speed. 
 To implement type checking in the \gls{gamble} compiler a visitor is used during the contextual analysis.
