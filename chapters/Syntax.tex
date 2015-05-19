@@ -5,10 +5,10 @@ This chapter will explain what a \acrshort{cfg} is, and the problems encountered
 After this an explanation of \gls{gamble}'s \acrshort{cfg}, will be presented.
 
 \section{Context-Free Grammar}\label{sec:cfg}
-A \acrshort{cfg} is a set of formal languages which are useful for specifying syntax. \todo{Det er vist ikke helt rigtigt :P ? - Søren}
+A \acrshort{cfg} is a set of formal languages which are useful for specifying syntax. \todo{Det er vist ikke helt rigtigt :P ? - Søren +1 msm}
 A \acrshort{cfg} consists of one or more production rules.
-On the left side of a production rule is a non-terminal and on the right side are terminals and/or non-terminals, additionally there is a start symbol.
-An example of this is written in \myref{lst:cfglst1}, where a definition for multiplication and addition with parenthesis is shown.
+On the left side of a production rule is a non-terminal and on the right side are terminals and/or non-terminals, additionally there is a start symbol.\todo{Ambiguous sentence (cfg reference hype!). Meningen er uklar især den sidste del - msm }
+An example of this is written in \myref{lst:cfglst1}, where a definition for multiplication and addition including parenthesis is shown.
 The expression production on this figure uses left recursion, since an expression has a production which first element is also an expression.
 The grammar is structured such that the multiplication operator have a higher precedence than the addition operator, because \texttt{term} is located before the \texttt{+} symbol.\todo{* symbol? MP}
 
@@ -21,7 +21,7 @@ constant   = [0-9]+
 
 It is possible to generate a parse tree for a string which follows the grammar.\todo{første gang parse tree nævnes - Marc. Foreslår at introducere parse træ her, bare forklare hvad det er da det giver god mening at have det her."A parse tree is a tree which shows the derivation for a string from the start symbol of the \acrshort{cfg} until all the leafs of the tree only contains terminal of the \acrshort{cfg}. In compilers and interpreters this is done using what is called a parser, which is a program that transforms strings into parse trees. This will further be explained in \myref{sec:parsetrees}" - Søren -- God formulering +1 dog står noget ligende senere \myref{sec:parsetrees} -- Troels} 
 If there exists two or more parse trees for any given string then the grammar is ambiguous. 
-Having an ambiguous grammar can be a problem when parsing because the one cannot always decide which grammar rule it should apply. \todo{``the one'' hvad? -- Troels}
+Having an ambiguous grammar can be a problem when parsing because the one cannot always decide which grammar rule it should apply. \todo{``the one'' hvad? -- Troels | måske bare one ?? - msm}
 
 \subsection{The dangling else problem} \todo{Er der nytte af dette afsnit? -- Troels}
 This section shows an example of how to solve the problem of ambiguity for grammars. 
@@ -50,6 +50,7 @@ An open statement is one in which the if statement is not paired with an else, a
 A simple statement is also a closed statement.
 A simple statement is any regular statement, i.e. assignment.
 A grammar resolving the dangling else problem using this method is shown in \myref{lst:danglingelseex2}.
+\todo[inline]{lyder ikke godt med alle de A[a-Z ]* - msm}
 
 \begin{lstlisting}[caption={An example of a \acrshort{cfg} describing an if statement, that is not ambiguous. \citep{danglingelse}},frame=tlrb,label={lst:danglingelseex2},numbers=none]
 statement =
@@ -78,17 +79,17 @@ An LL is a subset of LR, and as such an LR parser can also parse LL languages.
 
 \section{Classes of CFGs}
 As mentioned there are two common strategies for parsing, leftmost and rightmost. 
-A parser has a lookahead which is the maximum numbers of tokens which are needed to determine what rule should be applied, this is denoted in a parenthesis, so i.e. LL(1) means leftmost derivation using a lookahead of 1 token. 
-A lookahead of k means that there is a constant lookahead of a maximum of k tokens for the given parser. 
-LL(*) is also a grammar class, which can dynamically change the number of tokens needed to parse by recognizing if they follow a \acrlong{regex}.
-An LL parser is called an LL(*) parser if it is not limited to finite k tokens of lookahead, but can make parsing decisions by recognizing whether the following tokens belong to a regular language.
+A parser has a lookahead which is the maximum numbers of tokens which are needed to determine what rule should be applied, this is denoted in a parenthesis, so e.g. LL(1) means leftmost derivation using a lookahead of 1 token.\todo{token? måske forklaring - msm}
+A lookahead of \emph{k} means that there is a constant lookahead of a maximum of \emph{k} tokens for the given parser. 
+LL(*) is also a grammar class, which can dynamically change the number of tokens needed to parse by recognising if they follow a \acrlong{regex}.
+An LL parser is called an LL(*) parser if it is not limited to finite \emph{k} tokens of lookahead, but can make parsing decisions by recognising whether the following tokens belong to a regular language.
 Combining this with the fact that any LL grammar is a subset of an LR grammar and the different cases of lookahead constructs a diagram. 
 This Venn diagram is shown in \myref{fig:hierarchyofgrammars}, LL(*) can express the same grammars as LL(k).
-This figure also contains the Simple LR (SLR) which is broader definition of grammar than an LR(0) grammar, but less so than an LR(1), and the LALR(1) which covers more grammars than Simple LR and less than LR(1). \todo{Det her giver mening, men har 0 relevans og lyder rigtig dårligt :P, måske bare stoppe efter " LL(*) can express the same grammars as LL(k)." - Søren}
+This figure also contains the Simple LR (SLR) which is broader definition of grammar than an LR(0) grammar, but less so than an LR(1), and the LALR(1) which covers more grammars than Simple LR and less than LR(1). \todo{Det her giver mening, men har 0 relevans og lyder rigtig dårligt :P, måske bare stoppe efter " LL(*) can express the same grammars as LL(k)." - Søren | måske skal det flyttes til figur tekst, så vi ikke præsenterer en figur med uforklarede forkortelser - msm}
 \begin{figure}[!ht]
 \centering
  \includegraphics[width=0.5\textwidth]{figures/classesofgrammars.png} % trim=4.85cm 15cm 0.85cm 1cm
-\caption{A Venn diagram showing the similarities between the different subclasses of CFGs. Where LL(*) is marked with in light blue. \citep{Lecture5}}
+\caption[A Venn diagram showing the similarities between the different subclasses of CFGs]{A Venn diagram showing the similarities between the different subclasses of CFGs. Where LL(*) is marked with in light blue. \citep{Lecture5}}
 \label{fig:hierarchyofgrammars}
 \vspace{-15pt}
 \end{figure}
