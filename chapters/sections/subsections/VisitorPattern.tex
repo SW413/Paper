@@ -9,20 +9,21 @@ In the tree walk for the parse tree, the visitor should convert the parse tree i
 This entails that each different node in the parse tree must be visited to find the information needed to create the \acrshort{ast}.
 
 Through use of the visitor pattern the functionality is separated from the classes they are performed upon. 
-Instead the functionality is on a visitor class implementing the visitor interface, which means different visitors can be made, which all do different computations while traversing the tree.\todo{måske tasks i stedet for computations. MP}
+Instead the functionality is on a visitor class implementing the visitor interface, which means different visitors can be made, which all perform different tasks while traversing the tree. 
 Each class in the tree have an \texttt{accept()} method that allows them to call the visitor in question with itself as an argument.
-This allows the ability of adding new operations without changing the original data structure, and also without changing other visitors.
-This also serves well when using a iterative development method.
+This provides the ability of adding new operations without changing the original data structure, and also without changing other visitors.
+This also serves well when using an iterative development method.
 Another benefit is that a single visitor object is used to visit all the classes in the tree.
 This visitor can therefore maintain a state between calls to individual data objects, which can be used to save information in an outer scope from the different visit calls.
+
 \myref{image:visitor} shows an UML diagram of the visitor pattern.
 This diagram is from a C\# representation, and while the idea is the same the exact implementation is not identical to the one used in the compiler for \gls{gamble}.
 Take note of the classes ``ConcreteElement'' and ``ConcreteVisitor''.
 The ``ConcreteElement'' represents the different kinds of nodes in a given tree.
 The ``ConcreteVisitor'' represents the different kind of visitors implemented.
-A visitor will make sure that the children of the node is traversed in the correct way, and will at the same time also do other computations, e.g. pretty printing or checking the source code for errors.\todo{Skal vi komme med andre eksempler her ? Såsom, type checking or code generating?}
+A visitor will make sure that the children of the node are traversed in the correct manner, and will at the same time also do other computations, e.g. pretty printing or checking the source code for errors.\todo{Skal vi komme med andre eksempler her ? Såsom, type checking or code generating?}
 A visitor must implement a method to visit every single ``ConcreteElement'' which exist in the tree.
-As can be seen on \myref{image:visitor} ``ConcreteVisitorA'' and ``ConcreteVisitorB'', both implement a visit method for the ``ConcreteElements'' A and B.
+As can be seen on \myref{image:visitor} ``ConcreteVisitorA'' and ``ConcreteVisitorB'', both implements a visit method for the ``ConcreteElements'' A and B.
 In the next section, the implementation of creating the \acrshort{ast} from the parse tree using the visitor pattern will be presented.
 
 \begin{figure}[!ht]
@@ -31,16 +32,16 @@ In the next section, the implementation of creating the \acrshort{ast} from the 
 \caption{An UML diagram for the implementation of the visitor pattern.}\label{image:visitor}
 \vspace{-15pt}
 \end{figure}
-\todo[inline]{har vi selv lavet figuren? MP - Ja den har jeg lavet :) men der skal nok en kilde på så man kan se hvor vi har det fra, Marc found it. - Søren}
+\todo[inline]{har vi selv lavet figuren? MP - Ja den har jeg lavet :) men der skal nok en kilde på så man kan se hvor vi har det fra, Marc found it. - Søren - men du har jo ændret den så ved ikke om kilden skal på? i så fald hedder kilden GOF - Marc}
 
 \subsection{Creating the \acrshort{ast}}\label{CreatingAst}
 
 The goal for the \acrshort{ast} is to decrease the information in the tree.
-The hidden information is then contained in fields created for the respective classes.\todo{Kan ikke finde ud af om det er lidt for groft at sige hidden information? - Søren}
+The hidden information is then contained in fields created for the respective classes.\todo{Kan ikke finde ud af om det er lidt for groft at sige hidden information? - Søren - synes jeg ikke det er, men alternativt kan man bruge Enclosed, Unexposed, Covered, Concealed, Underlying - Marc}
 Rather than having the information as fields one could also choose to have this information as children of the nodes.
 This would mean that to find the information one would have to run through the children of the nodes without knowing what children it has.
 The method chosen for this compiler has the information kept on the fields of a node rather than as children.
-The advantage being that the information is kept together without clustering the tree and increasing the readability of the compiler.
+The advantage being that the information is kept together without cluttering the tree and thus increasing the readability of the compiler.\todo{det er vel træet ikke compileren der er lettere at læse? - Marc}
 All the nodes of the \acrshort{ast} have been designed with this in mind.
 For example on figure \myref{image:ASTDecl} a class structure can be seen, which consists of all the classes needed to express a declaration from the \acrshort{cfg} on the tree.
 A declaration could be \texttt{int a = 5;}.
@@ -62,10 +63,10 @@ Entrance, Size and IsComplex are used when dealing with the complex data types, 
 The full class diagram can be seen in \myref{ASTNodes}.
 
 The classes have made it more intuitive to perform a traversal of the tree based upon the names of the fields on the classes.
-E.g. the \texttt{ForLoopNode} has fields named \texttt{Body}, \texttt{Initialize}, \texttt{Update}, and \texttt{Conditional}, these names have meaning instead of just being children on the node which will increases the readability of the compiler.
+E.g. the \texttt{ForLoopNode} has fields named \texttt{Body}, \texttt{Initialize}, \texttt{Update}, and \texttt{Conditional}, these names have meaning instead of just being children one through four of the node, which in turn increases the readability of the compiler.\todo{igen er det vel readability of each node, ikke compileren som helhed - Marc}
 
 The syntax analysis phase returns the \acrshort{ast} so it can be used in the next phase, the contextual analysis. 
-The design of the phase and the call from main can be seen on \myref{fig:syntaxphase}.\todo{call from main kunne thomas ikke lide. MP - Tror det var fordi han ikke havde set figuren i compiler overview som viser alle kaldene fra main, og dermed var han forvirret over det ? Men ved det self ikke, synes bare ikke det gør noget når man også har set den figur. - Søren}
+The design of the phase\todo{pisse meget pronoun game, er det her syntax eller contextual phase der snakkes om? - Marc} and the call from main can be seen on \myref{fig:syntaxphase}.\todo{call from main kunne thomas ikke lide. MP - Tror det var fordi han ikke havde set figuren i compiler overview som viser alle kaldene fra main, og dermed var han forvirret over det ? Men ved det self ikke, synes bare ikke det gør noget når man også har set den figur. - Søren}
 As can be seen the \texttt{GenerateASTVisitor} makes use of the classes shown in \myref{ASTNodes}.
 
 \begin{figure}[ht]
