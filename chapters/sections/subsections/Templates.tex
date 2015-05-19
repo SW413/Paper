@@ -7,7 +7,7 @@ The codegeneraterVisitor starts at the root of the AST and here the code on \myr
 outputCode.append(filesNstuff.
 	 ImportStringFromResource("codesnippets/simpleCLsetup.c") + "\n\n");
 \end{lstlisting}
-\todo[inline]{maybe refactor 'filesNstuff'? MP}
+\todo[inline]{maybe refactor 'filesNstuff'? MP | NEVER!!! - msm}
 The file simpleCLsetup.c is appended to the code right as the main method of the output file is started.
 The file contains the code which can be seen on \myref{lst:OpenCLSetup2}.
 
@@ -20,8 +20,8 @@ The file contains the code which can be seen on \myref{lst:OpenCLSetup2}.
 	allHardware = sclGetAllHardware( &found );
 	hardware = sclGetFastestDevice(allHardware, found);
 
-    size_t local_size[2];
-    size_t global_size[2];
+    size_t local_size[2] = {1, 1};
+    size_t global_size[2] = {1, 1}; 
 
     printf("\n");
 /* END Hardware setup */
@@ -36,9 +36,9 @@ This way of appending templates to the outputCode string is used in different pl
 In fact whenever one of the following operators \texttt{+, -, *, \#, \^{} } are used with matrices or vectors a template is being appended to the outputCode.
 See \myref{tbl:matOps} for a description of what each operator will produce in \gls{gamble}.
 
-When an assignment's right side or a declaration's right side consists of an expression using operators and matrices or vectors, the visitor checks which operator is used and then inputs a launch kernel template depending on the operator.
+When the right side of a assignment or declaration consists of an expression using operators and matrices or vectors, the visitor checks which operator is used and then inputs a launch kernel template depending on the operator.
 The compiler contains files which have the code for launching the kernel for the specific situation and also for the kernel itself.
-If a kernel is used the kernel file is added to the codeout directory along with the outputCode itself.
+If a kernel is used the kernel file is added to the ``codeout'' directory along with the output code itself.
 
 \myref{lst:kernelLaunch} shows one of the kernels being appended to the outputCode.
 
@@ -53,7 +53,7 @@ software = sclGetCLSoftware("matrixMulScalar.cl", "matrixMulScalar", hardware);
 sclManageArgsLaunchKernel(hardware, software, global_size, local_size, "%R %a",
     §MATRIX_A§.dataSize, §MATRIX_A§.dataStart, sizeof(§MATRIXTYPE§), &scl_scalar_mul§NUM§);
 //END MATRIX SCALAR MULTIPLY
-\end{lstlisting}\todo{kunne det eventuel være smart at lave en liste over hvad de arguementer betyder? altså R, r, w, a osv. ? - Marc}
+\end{lstlisting}\todo{kunne det eventuel være smart at lave en liste over hvad de arguementer betyder? altså R, r, w, a osv. ? - Marc | Måske bare henvise til SimpleCL specifications - msm }
 
 \texttt{global\_size} is set to be the size of the matrix, and a kernel is then launched for every index in the matrix.
 This is decided by setting the indices in \texttt{global\_size}.
