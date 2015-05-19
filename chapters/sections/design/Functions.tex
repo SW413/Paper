@@ -1,7 +1,7 @@
 \section{Functions}\label{sec:funcs}
-Functions are blocks of code which can be called to do a specific computation, a function can take some variables as inputs or require no input.\todo{skal return value nævnes her? MP}
+Functions are blocks of code that can be called to do a specific computation; a function can take some variables as inputs or require no input.\todo{skal return value nævnes her? MP}
 
-This section will describe \gls{gamble}'s use of functions. 
+This section will describe \gls{gamble}'s use of functions.\todo{use eller implementation eller andet - msm} 
 Like in many other languages it is possible to declare your own functions in \gls{gamble}.
 This is useful for organising code, and reusing parts of the source code.
 Functions in \gls{gamble} can take input, but are not required to, the inputs can be any of the types the language supports.
@@ -15,15 +15,9 @@ This is both useful for output and debugging the source code.
 
 Other functions provided by \gls{gamble} are created out of convenience.
 In object-oriented languages subscripting is common and allows for a wide range of useful features, e.g. \texttt{.GetLength} on arrays in C\#.
-Similar to this \gls{gamble} provides the functions \texttt{Rows} and \texttt{Cols} for matrices and vectors which returns their amount of rows or columns.
-If called on a vector one can use either rows or columns, it will give the same result.
+Similar to this \gls{gamble} provides the functions \texttt{rows} and \texttt{cols} for matrices and vectors which returns their amount of rows or columns.
+If called on a vector one can use either rows or columns, it will give the same result.\todo{dette passe måske slet ikke - msm}
 This can be used in loops to make them iterate over matrices of varying sizes.
-
-%Another such function is \texttt{MakeIntMatrix}.
-%This creates a matrix with int values a similar function exists for float.
-%These takes three arguments as input, the amount of rows, amount of columns, and what value to place at every entry.
-%This function builds upon the syntax for initialising a matrix by providing dimensions rather than input, it merely alters the initialised value depending on the argument provided.
-%Other functions are created out of necessity, functions for arithmetics such as multiply and addition also exist, as operators between matrices are not a valid expression.
 
 In order to allow users of \gls{gamble} to use data dynamically and save the result, there exists the functions \texttt{matrixToFile} and \texttt{fileToMatrix}. 
 The files which can be used must be of a fixed format, and the output of \texttt{matrixToFile} must be usable for \texttt{fileToMatrix}.
@@ -40,7 +34,7 @@ A function identifier is exactly like in C, with the \texttt{return type} then t
 The function body can contain a number of statements and various control flows.
 Furthermore it can contain calls to other functions or calls to the function itself, and hereby recursion is a possibility in \gls{gamble}
 An example of a function identifier can be seen on \myref{lst:functionID}.
-Other syntaxes could have been used, but not only is this the way C does it, it is also widely used in many other languages e.g. C\# and Java.\todo{Var det i.e. eller e.g.? - Corlin}
+Other syntaxes could have been used, but not only is this the way C does it, it is also widely used in many other languages e.g. C\# and Java.\todo{Var det i.e. eller e.g.? - Corlin | e.g. - msm}
 
 \begin{lstlisting}[caption={Function Identifier},label={lst:functionID},numbers=none]                                                        
 int add(int a, int b)
@@ -73,8 +67,8 @@ int a = 0;
 a = add(4, 3); 
 \end{lstlisting}
 
-\todo[inline]{Kører vi pass by reference eller pass by value? ref for mat/vec or val ellers? -- TK}
-
+\todo[inline]{Kører vi pass by reference eller pass by value? ref for mat/vec or val ellers? -- TK | korrekt - msm}
+\todo[inline]{Hvorfor er print ikke med mere? Måske det bare er mig der har overset den - msm}
 
 %\subsection*{Print function}\todo{rename maybe}\todo{skal flyttes op til de andre funktioner?}
 %In \gls{gamble} we have one function that is ready-made. It is a print function.
