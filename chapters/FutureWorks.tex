@@ -41,24 +41,24 @@ As such, different implementations depending on manufacturer and OpenCL support 
 \section{Research Fields}
 %From LIAL to Scientific computing
 While making it possible to perform linear algebra operations have been the focus of this compiler, this is not the only field of computing that can benefit from the computational powers of the \acrshort{gpu}.
-Graph theory, molecular dynamics, computational chemistry and many other fields all include compute intensive simulations and number crunching.
+Graph theory, molecular dynamics, computational chemistry and many other fields all include compute intensive simulations and number crunching, all of which use some form of linear algebra.
 Further developing the language to fit yet another field would significantly increase the use for such a language in the scientific community.
 As long as one can ensure that the computations required can in some form be parallelised such that the \acrshort{gpu} can be of use, this is a possible and large addition to the language.
 Alternatively one could be content with adding new data types and operations for other fields and implement the field specific methods as libraries.
 This would make the language usable by other fields, as the users would be able to implement the needed methods themselves.
 
 \section{Expanding \gls{gamble}'s Domains}
-At this point \gls{gamble} is rather narrowly focused on certain areas like matrix and vector operations, the language could utilise its strengths toe expand focus to relevant similar domains.
+At this point \gls{gamble} is rather narrowly focused on certain areas like matrix and vector operations, the language could utilise its strengths to expand focus to relevant similar domains.\todo{Dette er hvad ovenstående afsnit nævner så kan godt ske det skal omformuleres en smule - Marc}
 In the following paragraphs some of the key aspects to expand the language are discussed.
 
 \gls{gamble} does not have general collection types which could benefit certain program types.
 Examples of such collection types could be \texttt{struct}, \texttt{list} or \texttt{array}.
 These additions would allow the programmer to implement abstract data structures such as trees.
 
-A full implementation of strings would also be beneficial for a more general purpose language.\todo{delete this line? MP}
+A full implementation of strings would also be beneficial for a more general purpose language.\todo{delete this line? MP - General purpose, meget fy fy! - Marc}
 In extension to proper strings a reassessed print method could be rewritten to allow the programmer to format the printing of variables to the like of other languages such as C.
 
-Making \gls{gamble} object oriented with common features like inheritance and polymorphism would allow many programmers to write programs similar to what they are used to.
+Making \gls{gamble} object oriented with common features like inheritance and polymorphism would allow many programmers to write programs similar to what they are used to.\todo{der skal virkelig nogle argumenter her ind omkring hvorfor det ville hjælpe et sprog rettet mod linear algebra - Marc}
 This would make it easier to write large programs.
 
 Libraries for the language could also be beneficial and increase the expressibility of \gls{gamble}.
@@ -67,7 +67,7 @@ Such a library could include operations like square root, cosine and sine among 
 A more complex mathematical library could allow more complex operations of the complex data types vectors and matrices.
 
 Another way of expanding the language would be to utilise the similarity between matrices and graphics and therefore implement libraries to perform image processing of graphics.
-These libraries could therefore use similar ways of using the \acrshort{gpu} as matrices already do.
+These libraries could therefore use similar ways of using the \acrshort{gpu} as matrices already do.\todo{Men det går meget væk fra matematik tho, og er allerede et meget veletableret område når det kommer til at bruge GPU'en - det ligger sku endda i navnet - Marc}
 
 \info[inline]{Måske skulle vi nævne map/reduce og pfor? -- TK} 
 \info[inline]{Måske noget med at bootstrap'e compileren? jkjk - msm}
