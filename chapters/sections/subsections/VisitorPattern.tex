@@ -23,7 +23,7 @@ The ``ConcreteElement'' represents the different kinds of nodes in a given tree.
 The ``ConcreteVisitor'' represents the different kind of visitors implemented.
 A visitor will make sure that the children of the node are traversed in the correct manner, and will at the same time also do other computations, e.g. pretty printing or checking the source code for errors.\todo{Skal vi komme med andre eksempler her ? Såsom, type checking or code generating?}
 A visitor must implement a method to visit every single ``ConcreteElement'' which exist in the tree.
-As can be seen on \myref{image:visitor} ``ConcreteVisitorA'' and ``ConcreteVisitorB'', both implements a visit method for the ``ConcreteElements'' A and B.
+As seen on \myref{image:visitor} ``ConcreteVisitorA'' and ``ConcreteVisitorB'', both implements a visit method for the ``ConcreteElements'' A and B.
 In the next section, the implementation of creating the \acrshort{ast} from the parse tree using the visitor pattern will be presented.
 
 \begin{figure}[!ht]
@@ -63,7 +63,7 @@ Entrance, Size and IsComplex are used when dealing with the complex data types, 
 The full class diagram can be seen in \myref{ASTNodes}.
 
 The classes have made it more intuitive to perform a traversal of the tree based upon the names of the fields on the classes.
-E.g. the \texttt{ForLoopNode} has fields named \texttt{Body}, \texttt{Initialize}, \texttt{Update}, and \texttt{Conditional}, these names have meaning instead of just being children one through four of the node, which in turn increases the readability of the compiler.\todo{igen er det vel readability of each node, ikke compileren som helhed - Marc}
+E.g. the \texttt{ForLoopNode} has fields named \texttt{Body}, \texttt{Initialize}, \texttt{Update}, and \texttt{Conditional}, these names have meaning instead of just being children one through four of the node, which in turn increases the readability of the compiler.\todo{igen er det vel readability of each node, ikke compileren som helhed - Marc ... Men det er vel soruce code til compileren der indeholder Initialize ovs, hvilket gør den mere læsbar, således det ikke ikke bliver blandet sammen? - Corlin}
 
 The syntax analysis phase returns the \acrshort{ast} so it can be used in the next phase, the contextual analysis. 
 The design of the phase\todo{pisse meget pronoun game, er det her syntax eller contextual phase der snakkes om? - Marc} and the call from main can be seen on \myref{fig:syntaxphase}.\todo{call from main kunne thomas ikke lide. MP - Tror det var fordi han ikke havde set figuren i compiler overview som viser alle kaldene fra main, og dermed var han forvirret over det ? Men ved det self ikke, synes bare ikke det gør noget når man også har set den figur. - Søren}

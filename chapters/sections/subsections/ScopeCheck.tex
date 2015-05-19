@@ -4,16 +4,16 @@ A variable is in scope from its declaration until the end of the block it is dec
 An inner scope inherits the identifiers declared in the outer scopes. 
 
 During contextual analysis it is important to verify that each variable and function used are in scope and if not it should produce a descriptive error message.
-The error message should indicate which identifier is not in scope, and the line this identifier is introduced.
+The error message should indicate which identifier is not in scope, and the line this identifier is introduced on.
 
 To check this all references to identifiers must be checked to see if they match an identifier in the symbol table of the current scope, and recursively the scope which encloses it. 
 Furthermore it is important that any usage of an identifier only exists after its declaration.
 In the compiler for \gls{gamble}, the symbol table is filled while the compiler is also performing the scope checking.
-This is because it reduces the amount of traversals through the tree, and scope checking and filling the symbol table is also similar in concept, e.g. a declaration creates an entry in the symbol table, while expressions simply make lookups in this table.
+This is because it reduces the amount of traversals through the tree, scope checking and filling the symbol table is also of similar concept, e.g. a declaration creates an entry in the symbol table, while expressions simply use lookups in this table.
 
-The scope checker produces two errors: redeclaration errors and undeclared errors defined in \myref{subsec:Scope}.\todo{reference nødvendig igen? also: can produce. MP}
+The scope checker can produce two errors: redeclaration errors and undeclared errors defined in \myref{subsec:Scope}.\todo{reference nødvendig igen? also: can produce. MP}
 A redeclaration error is produced when an attempt to declare a variable while it is already declared in scope is made.\todo{klumset formulering. MP}
-An undeclared error is produced when an attempt to use a variable which is not declared in the current scope or any enclosing scopes is made. 
+An undeclared error is produced when an attempt to use a variable which is not declared in the current scope or any enclosing scopes are made. 
 Examples are shown in \myref{lst:scopeErrors}.
 
 \begin{lstlisting}[caption=Examples of scope errors in \gls{gamble}, numbers=none,frame=tlrb,label={lst:scopeErrors}]
@@ -40,7 +40,7 @@ This ambiguity is not allowed in \gls{gamble} and therefore throws a redeclarati
 \todo{Meget forvirrende at holde styr på uden en figur tbh. - Søren}
 
 To determine whether or not a declaration is a redeclaration, the compiler looks up the name of the variable in the \texttt{symbolMap} of the current scope.
-If no entry is found, the search continues in the \texttt{symbolMap} of the enclosing scope and so on recursively.\todo{Må man ikke redeclare et variable i et indre scope ??, så hvis jeg bruger tmp ude i global scope, så må jeg ikke bruge den inde i en funktion ?? - Søren}
+If no entry is found, the search continues in the \texttt{symbolMap} of the enclosing scope and so on recursively.\todo{Må man ikke redeclare et variable i et indre scope ??, så hvis jeg bruger tmp ude i global scope, så må jeg ikke bruge den inde i en funktion ?? - Søren - Ikke ifølge hvad der står her - Marc}
 The same lookup process is executed when a variable is used e.g in an expression or assignment.
 Hereby all enclosing scopes are checked for the declaration of the variable; making redeclaration of variables in scope, and usage of undeclared variables impossible in \gls{gamble}, as defined in \myref{cha:language_design}.
 A \texttt{symbol} is an encapsulation of a variable and relevant peripheral data.
