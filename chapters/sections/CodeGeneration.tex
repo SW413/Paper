@@ -2,9 +2,9 @@
 Code generation is the phase in which the object code is generated, the process and considerations this entails are covered in this chapter.
 The object code is the output of the compiler.
 Once the source code has passed through syntax analysis and contextual analysis without errors it has been validated and the compiler can proceed with generating the object code.
-In the case of this compiler the object code is OpenCL C as a result one or more compilers must use this code as source code to eventually end up with machine code that can be executed.
-Since the object code is OpenCL C means that tasks such as instruction selection and scheduling as well as register allocation will be handled by the compiler which will compile the OpenCL C code rather than \gls{gamble}.
-Furthermore in the code generation phase optimisation of the object code also takes place, for \gls{gamble} this means to create object code which is quickly executed and utilises the \acrshort{gpu} for calculation that benefit from its use.
-A diagram showing the phases of the code generation can be seen in \myref{fig:flowCodegen}.
+In the case of this compiler the object code is OpenCL C, as a result one or more compilers must use this code as source code to eventually end up with machine code that can be executed.\todo{more compilers?}
+The object code is OpenCL C this means that tasks such as instruction selection and scheduling as well as register allocation will be handled by the compiler which will compile the OpenCL C code rather than \gls{gamble}.\todo{Håndterer compileren scheduling ????? - Søren}
+Furthermore in the code generation phase optimisation of the object code also takes place, for \gls{gamble} this means to create object code which is quickly executed and utilises the \acrshort{gpu} for calculation that benefit from its use.\todo{er det ok at bruge optimisation her, vi code gen'er jo bare, det er jo ikke rigtig en optimering. ? :) - Søren}
+A state diagram showing the sub-phases of the code generation can be seen in \myref{fig:flowCodegen}.
 
 \input{figures/TikzDiagrams/flowCodegen.tex}
