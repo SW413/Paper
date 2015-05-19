@@ -1,13 +1,13 @@
-Error handling is a descriptive section of how the \gls{gamble} handle errors, and how error handling is implemented.
+Error handling is a descriptive section of how the compiler handles errors, and how error handling is implemented.
 Error handling is referred to as detection and solving of programming errors.
 Both errors at compile time and run time will be handled.
 \subsection*{Design}\label{subsec:DesignErrorHandling}
 The source code given to the \gls{gamble} compiler may contain errors and warnings, these errors are found and uncovered in various stages of the compiler.   
 In the syntax analysis, all syntactic errors are found, and the compilation is stopped if errors are found, since it would not be advised to further compile source code, which contains fundamental syntactic errors.
-However it should be noted that the entire syntax analysis is completed before stopping the compiler, hence all syntactic errors are collected and reported to the user.
+However it should be noted that the entire syntax analysis is completed before stopping the compiler, hence all syntactic errors are collected and reported to the user.\todo{Et andet sted står der at hvis en fejl mødes bliver det abrupted det skal lige rettes så det passer med det her tror jeg :)(det er vist mig der skrev det bliver stoppet, jeg huskede forkert, I R SOWIE) - Søren}
 This makes the process of resolving syntactic errors less tedious for the programmer, than if the compiler would stop every time a single error was detected. 
-A core element of error handling is scope and type related errors, these are found in the contextual analysis phase of the compiler.
-As with the syntactic analysis, the compiler collects all errors before stopping the compile of the source code. 
+A core element of error handling is scope and type related errors, these are found in the previously explained subphases of the contextual analysis: Scope- and typechecking.
+As with the syntactic analysis, the compiler collects all errors before stopping the compilation of the source code. 
 The following errors and warnings are reported by the \gls{gamble} compiler:
 \begin{description}
 	\item[Argument error]\hfill\\ 
@@ -22,11 +22,11 @@ The following errors and warnings are reported by the \gls{gamble} compiler:
 	A warning signalling that a variable or function is declared but never used.
 \end{description} 
 The errors in the compiler should give useful information about: Where the error is located in the source code and what variable(s) or function(s) was wrongly used.
-This include line numbers which then have to be carried over from the parse tree to the abstract syntax tree, this is expanded in \myref{sec:AST}.
+This includes line numbers which then have to be carried over from the parse tree to the \acrshort{ast}.
 
 \subsection*{Implementation}\label{subsec:ImplementationErrorHandling}
-In the \gls{gamble} compiler this error handling is implemented by having a class \texttt{LanguageError} of which each specific error type inherits from.
-The \texttt{LanguageError} superclass has information about what type the error, an enumeration which is either \texttt{Error} or \texttt{Warning}. 
+In the \gls{gamble} compiler the error handling is implemented by having a class \texttt{LanguageError} of which each specific error type inherits from.
+The \texttt{LanguageError} superclass has information about the type of the error, an enumeration which is either \texttt{Error} or \texttt{Warning}. 
 This is so because a program which has warning but no errors, should still compile, however any program with errors should not. 
 Compared to printing any error when it was discovered and stopping compilation, this model allows the compiler to go through the entire \acrshort{ast} and discover every error as described above. 
 It also unifies how errors are printed and shown to the user.
@@ -36,7 +36,7 @@ As an example the class for \texttt{UnDeclaredError} is shown in \myref{lst:unde
 Firstly there are variables which contain information needed to report the error to the programmer. 
 Then there is a constructor which simply assigns all values given to it to the new object's fields.
 Lastly there is the \texttt{toString} method which is overridden from the implementation in the \texttt{LanguageError} class. 
-An example of an \texttt{UnDeclaredError} is: \texttt{Error[line   42]-> Undeclared variable towel in scope Local}. %Sneaky H2G2 reference 
+An example of an \texttt{UnDeclaredError} is: \texttt{Error[line   42]-> Undeclared variable towel in scope Local}, if the variable's ID was \texttt{towel}. %Sneaky H2G2 reference 
 
 \begin{lstlisting}[caption=The UnDeclaredError class in the \gls{gamble} compiler,numbers=none,frame=tlrb,label={lst:undeclarederrorclass}]
 public class UnDeclaredError extends LanguageError {
@@ -75,4 +75,4 @@ public Void CheckIfUndeclared(Variable variable, StatementNode node) {
 
     return null;
 }
-\end{lstlisting}
+\end{lstlisting}\todo{Stemmer det overens med den nye struktur der blev lavet hvor der kaldes en error class i main ?? - Søren}
