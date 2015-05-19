@@ -3,10 +3,10 @@
 Before the invention of the computer, mathematical computations were done by hand which was a tiresome and error-prone process.
 In modern times computers have become the primary tool for doing extensive computations, and their \acrfullpl{cpu} are what the majority of programming languages apply to perform calculations.
 The \acrshort{cpu} architecture is designed to efficiently handle sequential instructions. 
-Modern compilers, such as the Intel C++ compiler, can even exploit the \acrshortpl{cpu}  advanced instructions, such as \acrfull{simd} to speed up certain workloads. \citep{INTEL_SIMD}
+Modern compilers, such as the Intel C++ compiler, can even exploit the advanced instructions of \acrshortpl{cpu}, such as \acrfull{simd} to speed up certain workloads. \citep{INTEL_SIMD}
 As applications and computations grow larger and more complex, programmers and mathematicians find themselves in need of more and more computational power. \citep[pp. 4]{OpenCL_AMD}\todo{hvad betyder en sådan henvisning? MP}
 At the moment this demand is met with faster multi-cored \acrshortpl{cpu} however Moore's law, which predicts an exponential growth in transistor count and in integrated circuit thus resulting in faster computations on said \acrshortpl{cpu}, might come to an end.
-A former engineer from Intel foresees this stagnation of Moore's Law as soon as 2020 or 2022; hence alternatives to using the \acrshort{cpu} architecture needs to be explored.\citep{Moore2013} \todo{Needs er måske lidt for stærkt et ord? -- TK}
+A former engineer from Intel foresees this stagnation of Moore's Law as soon as 2020 or 2022; hence alternatives to using the \acrshort{cpu} architecture needs to be explored in order to maintain the current growth in speed.\citep{Moore2013} \todo{Needs er måske lidt for stærkt et ord? -- TK}
 
 One of the alternative options is the \acrfull{gpu}.
 The \acrshort{gpu} is specialised in performing a vast number of smaller computations in parallel.
@@ -20,9 +20,9 @@ The power provided by the \acrshort{gpu}, is also used in fields where simulatio
 Bill Putman, a NASA research meteorologist in Global Modelling and Assimilation Office, and his team restructured one of their modelling tools to take advantage of the \acrshortpl{gpu} performance. \citep{NvidiaSpotlightNasa}
 Many other areas of research could benefit from the use of \acrshort{gpgpu}.
 
-This relatively newfound interest of using the \acrshort{gpu}, is a result of it becoming increasingly difficult to improve upon the \acrshort{cpu}. \todo{Wat? Skal der stå at "There has been relatively?" - Søren}
+This relatively newfound interest of using the \acrshort{gpu}, is a result of it becoming increasingly difficult to improve upon the \acrshort{cpu}. \todo{Wat? Skal der stå at "There has been relatively?" - Søren | måske bare fjerne relatively? - msm}
 For the past few years, the average Intel \acrshort{cpu} has not increased significantly in regards to clock speed, most are about 3.7GHz. \todo{that's a bold statement MP}
-Even the highest clock speeds, seem to not be improving beyond 9GHz however these clock-speeds produce so much heat, that they require liquid nitrogen for cooling. \todo{Kilde på dette? Er det overhovedet vigtigt? -- TK}
+Even the highest clock speeds, seem to not be improving beyond 9GHz however these clock-speeds produce so much heat, that they require liquid nitrogen for cooling. \todo{Kilde på dette? Er det overhovedet vigtigt? -- TK | sidste to sætninger er ikke relevante - msm}
 Aside from the prediction that Moore's Law will end, another observation of processor development is also no longer available, the Dennard scaling.
 This states that the power density required to run a transistor of a given size will stay constant; thus scaling down the power used, as the transistor decreased in size, e.g. scaling down the transistor's linear size by 2, would scale down its power by 4 essentially halving both voltage and current. \citep{DennardScaling}
 The reason for this no longer being valid, is the fact that the transistor gates are so thin it affects their structural integrity, and currents start to leak. \citep{CPUClockSpeeds}
@@ -31,7 +31,7 @@ The following questions come to mind when thinking of how to use the \acrshort{g
 
 
 \begin{itemize}
-	\item How do \acrshortpl{gpu} do parallel calculations, and why and when is it better at it than the \acrshort{cpu}? \todo{Better? Definer lige hvad der menes, fx ``can process more data in the same time'' eller ``more FLOPS'' etc. -- TK}
+	\item How do \acrshortpl{gpu} do parallel calculations, and why and when is it better at it than the \acrshort{cpu}? \todo{Better? Definer lige hvad der menes, fx ``can process more data in the same time'' eller ``more FLOPS'' etc. -- TK | måske bare skrive ``faster'' - msm}
 	\item How can one utilise the functionality found in the \acrshort{gpu} for a given field, without an extensive knowledge of processor architecture? 
 	\item What factors must be considered when using the \acrshort{gpu} rather than the \acrshort{cpu}? 
 \end{itemize}
