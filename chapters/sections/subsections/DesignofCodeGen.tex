@@ -3,7 +3,7 @@ When the code generator is called, the \acrshort{ast} is used to accept a \textt
 
 \begin{figure}[!ht]
 \centering
- \includegraphics[width=1\textwidth]{figures/ClassDiagrams/CodeGeneratorCall.pdf} % trim=4.85cm 15cm 0.85cm 1cm
+ \includegraphics[width=0.8\textwidth]{figures/ClassDiagrams/CodeGeneratorCall.pdf}%trim=4cm 0cm 0cm 0cm, clip
 \caption{A class diagram of \texttt{CodeGeneratorVisitor} showing the call from the code generator to the visitor which makes the string from the decorated \acrshort{ast}.}\label{fig:CodeGeneratorVisitor}
 \vspace{-15pt}
 \end{figure}
@@ -26,7 +26,7 @@ If performing a matrix index multiplication, where every index is multiplied wit
 These checks will be inserted as a surrounding if statement around the matrix calculations, so they have to pass these checks before the calculation will be done.
 The reason this is done at run-time instead of compile-time is because the sizes of matrices can be dynamic, which results in making it impossible to check for this at compile-time.
 
-When the string is complete it is printed into a file called code.c, along with all the other files needed for running the code, e.g. the kernels used for performing computations on the \acrshort{gpu}.
+When the string is complete it is written to a file called code.c, along with all the other files needed for running the code, e.g. the kernels used for performing computations on the \acrshort{gpu}.
 The code.c file is structured so that it is a valid C program.
 First off are the libraries included that C uses, then follows a list of prototypes which are all the \gls{gamble} functions translated into C code, both the user made and libraries.
 After the prototypes the main function is made which consists of all the statements in the \gls{gamble} sourcecode translated into C.
