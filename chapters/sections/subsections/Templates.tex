@@ -7,8 +7,8 @@ The codegeneraterVisitor starts at the root of the AST and here the code on \myr
 outputCode.append(filesNstuff.
 	 ImportStringFromResource("codesnippets/simpleCLsetup.c") + "\n\n");
 \end{lstlisting}
-
-The file simpleCLsetup.c is apended to the code right as the main method of the output file is started.
+\todo[inline]{maybe refactor 'filesNstuff'? MP}
+The file simpleCLsetup.c is appended to the code right as the main method of the output file is started.
 The file contains the code which can be seen on \myref{lst:OpenCLSetup2}.
 
 \begin{lstlisting}[caption=SimpleOpenCL setup in the compiler,numbers=none,frame=tlrb,label={lst:OpenCLSetup2}]
@@ -36,9 +36,9 @@ This way of appending templates to the outputCode string is used in different pl
 In fact whenever one of the following operators \texttt{+, -, *, \#, \^{} } are used with matrices or vectors a template is being appended to the outputCode.
 See \myref{tbl:matOps} for a description of what each operator will produce in \gls{gamble}.
 
-When an assignment's rightside or a declaration's rightside consists of an expression using operators and matrices or vectors, the visitor's check for which operator is used and then inputs a launch kernel template depending on the operator.
+When an assignment's right side or a declaration's right side consists of an expression using operators and matrices or vectors, the visitor's check for which operator is used and then inputs a launch kernel template depending on the operator.
 The compiler contains files which have the code for launching the kernel for the specific situation and also for the kernel itself.
-If a kernel is used the kernelfile is added to the codeout directory along with the outputCode itself.
+If a kernel is used the kernel file is added to the codeout directory along with the outputCode itself.
 
 \myref{lst:kernelLaunch} shows one of the kernels being appended to the outputCode.
 
@@ -68,7 +68,7 @@ So a kernel for each index in the matrix.
 This can then be used in the kernel to determine which row and which column the index being sent to the kernel for execution possess.
 The \texttt{software} is where the kernel being launched is set, both the file and the kernel name, the hardware for the execution must also be set.
 Then the functions \texttt{sclManageArgsLaunchKernel()} handles the launching itself with the variables needed to launch the kernel.
-Before this code is appended any string with a \S is is replaced by the corresponding string depending on the situation.
+Before this code is appended any string with  \S-signs is is replaced by the corresponding string depending on the situation.
 So \texttt{§MATRIX\_A§} is replaced with the id of the left matrix in the expression node.
 The code for replacing the strings can be seen on \myref{lst:replaceString}.
 
