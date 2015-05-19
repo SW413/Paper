@@ -1,16 +1,16 @@
 \section{Symbol Table}
-To conduct scope checking and type checking in the compiler, the compiler need to store data about the identifiers, variables and functions in a data structure.
+To conduct scope checking and type checking in the compiler, the compiler needs to store data about the identifiers, variables and functions in a data structure.
 An excellent data structure for this is a symbol table.
 Storing all this information in a symbol table makes it possibly for the compiler to conduct the contextual analysis.
 
-An symbol table is an table like data structure which contains data regarding in which context variable and constants is used.
-While there exist different ways of implementing symbol tables, there exist no viable alternative to this data structure in our context.
+A symbol table is a table like data structure which contains data regarding which contexts variables and constants are used in.
+While there exists different ways of implementing symbol tables, there exist no viable alternative to this data structure in our context.\todo{Der blev ellers introduceret en masse i SPO ? Hvorfor er de ikke viable ? -  Søren}
 
-Two common ways of implementing a symbol table is as follows; either you have one table which contains every identifier or you have a symbol table for each scope. \todo{skrives om unden you. MP}
+Two common ways of implementing a symbol table is as follows; either there is one table which contains every identifier or there is a symbol table for each scope in the program.
 If constrained by memory, having a single symbol table can be beneficial, however having multiple symbol tables can simplify the code at a memory cost. 
 
 In \gls{gamble} there exists scopes, and for each of these scopes there is a corresponding symbol table. 
-Scopes inherit from each other so a scope can enclose another. 
+Scopes inherit from each other so a scope can enclose another scope. 
 The outermost scope, the global scope, is where functions are declared; every scope is either directly enclosed by this scope or recursively.
 This means that every function can be called from anywhere within the source code --- including within its own function declarations; allowing for recursive functions.
 
