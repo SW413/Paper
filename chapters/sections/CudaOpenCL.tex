@@ -12,7 +12,7 @@ This as a result means that to achieve the utmost benefit from each individual p
 While the project group have not made any specifications towards a specific platform, if done so, it may be worthwhile to consider using CUDA for an NVIDIA implementation, and OpenCL for other \acrshort{gpu}s or processing units in general.
 
 %This may be the best place for this, but i do believe it necessary to be in the paper
-Another problem the project group encountered quite early was that Windows is not the most cooperative operating system when it comes to linking the required libraries for OpenCL to run.\todo{Can OS'es be cooperative? MP}
+Another problem the project group encountered quite early was that Windows is not the most cooperative operating system when it comes to linking the required libraries for OpenCL to run.\todo{Can OS'es be cooperative? MP - De kan i hvert tilfælde lade være med at være anti co-op(jeg var måske lidt farvet da jeg oprindelig skrev det) - Marc)}
 Through Visual Studio the project group was able to run OpenCL C example programs, thus proving that the code worked on the Windows operating system, however doing so through a terminal and the GCC compiler proved to be quite difficult.
 In an attempt to solve this issue two things also became clear to the project group, just about all help available was aimed at OS X and Linux operating systems, as a result the project group proceeded development using these operating systems rather than Windows.
 Whether this problem also exists using CUDA is unknown, as the project group has not been using CUDA.
@@ -23,7 +23,7 @@ As a result this led to many trial and error tests to figure out the workings of
 
 In \myref{image:OpenCLOptCompare} a significant performance difference between the native implementations of CUDA and OpenCL is shown.
 While OpenCL and CUDA can reach a somewhat similar performance, the naive implementation in OpenCL with no attempt to increase runtime efficiency is about seven times slower than the naive implementation in CUDA due to the CUDA compiler altering the \acrshort{ptx} code to increase runtime efficiency.
-As a result, to gain performance with the limited experience with \acrshort{gpu} computing in the project group CUDA would have been the better choice, even if the same performance is obtainable in OpenCL.\todo{'would have' er meget overbevist, måske 'seems' eller ligende. MP}
+As a result, to gain performance with the limited experience with \acrshort{gpu} computing in the project group, CUDA would have been the better choice, even if the same performance is obtainable in OpenCL.\todo{'would have' er meget overbevist, måske 'seems' eller ligende. MP - Troede vi var i enighed om at det ville have været bedre? diskussionen må jo gerne være farvet af egen mening, faktisk så kræver den det så synes would have er bedre - Marc}
 
 While OpenCL does work cross platform, an ideal implementation would still be different per \acrshort{gpu}, with CUDA definitely being the better choice for NVIDIA hardware.
 Furthermore as has been mentioned, the OpenCL C compiler requires the programmers to perform runtime efficiency improvements to achieve the performance native to the CUDA compiler alternative.
@@ -31,5 +31,5 @@ This would have made using CUDA more beneficial in terms of performance, as atte
 
 Should \gls{gamble} be further developed or a similar language developed, the opinion of the project group is to first develop an implementation for a target platform, if NVIDIA is the target use CUDA and if AMD or Intel are the targets use OpenCL; Both OpenCL and CUDA can reach good performance, but each is better suited for the aforementioned platforms.
 As for \gls{gamble} it may have made it easier to target NVIDIA \acrshort{gpu}s by using CUDA and ignore AMD and Intel \acrshort{gpu}s. 
-This could possibly have led to greater performance from \acrshort{gamble} at the cost of forcing users to have NVIDIA hardware.\todo{limiting to users of NVIDIA hardware. MP}
+This could possibly have led to greater performance from \acrshort{gamble} at the cost of only being of use to users with NVIDIA hardware.
 With the required knowledge however, one should choose the parallel computing platform, depending on what hardware one expects its users to use.
