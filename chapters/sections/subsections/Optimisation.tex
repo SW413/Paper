@@ -6,7 +6,7 @@ Runtime efficiency entails considerations of memory allocation, pipelining, para
 To do an efficient and complete analysis of how to increase runtime efficiency, information of the situation in a given program is required.
 This is where \gls{gamble} is at a disadvantage. 
 \gls{gamble} distances its programmers from controlling where the code is performed and instead does so seamlessly.
-Information about how e.g. a for-loop could be transformed into a kernel does not exist in \gls{gamble} which makes it difficult to do this.
+Information about how e.g. a for-loop could be transformed into a kernel does not exist in \gls{gamble} which makes it difficult to do this.\todo{er ikke helt med her? MP}
 The seamless use of the \acrshort{gpu} means that information is nonexisting and therefore all computations may not be candidates for improving its runtime efficiency, this is one of the trade-offs \gls{gamble} makes, meaning that simplicity of the language is valued over performance.
 If \gls{gamble} were to require more information, e.g. whether or not something is paralleliseable or ask the programmer to determine what type of \acrshort{gpu} memory should be used for each variable, the simplicity and seamless use of the \acrshort{gpu} would be lost.
 
@@ -28,7 +28,7 @@ Because of the difficulty to discern not only if there will be an actual increas
 Instead only vector and matrix operations already defined in the language, by having an operator, will be performed on the \acrshort{gpu}.
 
 %Optimising OpenCL Kernals
-A function that is to be run on the \acrshort{gpu} is in the OpenCL framework called a kernel.
+A function that is to be run on the \acrshort{gpu} is in the OpenCL framework called a kernel.\todo{er nævnt før. MP}
 Since kernel code uses explicit memory handling, one must choose what memory space on the \acrshort{gpu} to allocate ones variables in as well as using the principle of locality.
 This can provide a substantial (more than 3 times) faster runtime. \citep{ocl_lecture3}
 \begin{figure}[h]
@@ -37,6 +37,7 @@ This can provide a substantial (more than 3 times) faster runtime. \citep{ocl_le
 \caption{Execution speed of a matrix multiplication with different optimizations done. \citep{CUDAOpenCLOptimisation}}\label{image:OpenCLOptCompare}
 \vspace{-15pt}
 \end{figure}
+\todo[inline]{dette er plagiat. Det skal tydeligt fremgå det ikke er vores billede. MP}
 As seen on \myref{image:OpenCLOptCompare} some possible methods of increasing runtime efficiency includes loop unrolling, common sub-expression elimination and loop-invariant code motion. 
 These are taken as specific examples in this comparison because these methods are performed in the \acrfull{ptx} code that CUDA compiles to. %ENDING A SENTENCE WITH A PROPOSITION OMG!!!
 An OpenCL C compiler will also optimize the source code if given the instruction to, however its impact depends on the \acrshort{gpu} and platform in use.
