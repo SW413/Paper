@@ -10,7 +10,7 @@ Because of high implementation cost in the compiler, it is not possible to use a
 \gls{gamble} also has certain functions built into the language for varying reasons.
 The most unique function in question here is the \texttt{print} function.
 This function is special in the sense that it enables the programmer to use strings as a parameter, a data type otherwise not implemented in the language.
-This is enabled such that the programmer can use this feature to write out messages to the console.\todo{This is enabled to let programmers write messages to the console. måske? MP}
+This is enabled to let programmers write messages to the console.
 This is both useful for output and debugging the source code.
 
 Other functions provided by \gls{gamble} are created out of convenience.
@@ -25,7 +25,7 @@ This can be used in loops to make them iterate over matrices of varying sizes.
 %This function builds upon the syntax for initialising a matrix by providing dimensions rather than input, it merely alters the initialised value depending on the argument provided.
 %Other functions are created out of necessity, functions for arithmetics such as multiply and addition also exist, as operators between matrices are not a valid expression.
 
-In order to allow users of \gls{gamble} to use data dynamically and save the result, there exists the functions \texttt{matrixToFile} and  \texttt{fileToMatrix}. 
+In order to allow users of \gls{gamble} to use data dynamically and save the result, there exists the functions \texttt{matrixToFile} and \texttt{fileToMatrix}. 
 The files which can be used must be of a fixed format, and the output of \texttt{matrixToFile} must be usable for \texttt{fileToMatrix}.
 One of the parameters is a string which identifies the file to be used, besides from the \texttt{print}--function these are the only places where strings are allowed in \gls{gamble}.
 The other parameter of \texttt{MatrixToFile} specifies which matrix the function should write to file.
@@ -63,7 +63,7 @@ add(4, 3);
 Functions have a return value which can be read in its identifier shown in \myref{lst:functionID}.
 The return values can be all the types in \gls{gamble} mentioned in \myref{sec:Types} and also void. 
 A void function will not return anything, but instead can be seen as a procedure.
-This choice was made because \gls{gamble} should be able to return all the different types in the language from a function, but also be able to perform certain procedures without returning anything, which a void function may do.
+This choice was made because \gls{gamble} should be able to return all the different types in the language from a function, but also be able to perform certain procedures without returning anything, such as printing.
 The value or type to be returned is preceded by the keyword \texttt{return}, just like it is in C and other C-like languages.
 An example can be seen on \myref{lst:returnFunction}.
 
@@ -72,6 +72,8 @@ int a = 0;
 //Add returns an integer
 a = add(4, 3);
 \end{lstlisting}
+
+\todo[inline]{Kører vi pass by reference eller pass by value? ref for mat/vec or val ellers? -- TK}
 
 
 %\subsection*{Print function}\todo{rename maybe}\todo{skal flyttes op til de andre funktioner?}
