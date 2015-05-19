@@ -40,7 +40,7 @@ A function identifier is exactly like in C, with the \texttt{return type} then t
 The function body can contain a number of statements and various control flows.
 Furthermore it can contain calls to other functions or calls to the function itself, and hereby recursion is a possibility in \gls{gamble}
 An example of a function identifier can be seen on \myref{lst:functionID}.
-Other syntaxes could have been used, but not only is this the way C does it, it is also widely used in many other languages e.g. C\# and Java.
+Other syntaxes could have been used, but not only is this the way C does it, it is also widely used in many other languages e.g. C\# and Java.\todo{Var det i.e. eller e.g.? - Corlin}
 
 \begin{lstlisting}[caption={Function Identifier},label={lst:functionID},numbers=none]                                                        
 int add(int a, int b)
@@ -64,13 +64,13 @@ Functions have a return value which can be read in its identifier shown in \myre
 The return values can be all the types in \gls{gamble} mentioned in \myref{sec:Types} and also void. 
 A void function will not return anything, but instead can be seen as a procedure.
 This choice was made because \gls{gamble} should be able to return all the different types in the language from a function, but also be able to perform certain procedures without returning anything, such as printing.
-The value or type to be returned is preceded by the keyword \texttt{return}, just like it is in C and other C-like languages.
+The value or type to be returned is preceded by the keyword \texttt{return}, just like it is in C and other C-like languages.\{Behøver vi sammenligne med C hele tiden? - Corlin}
 An example can be seen on \myref{lst:returnFunction}.
 
 \begin{lstlisting}[caption={Return Function},label={lst:returnFunction},numbers=none]
 int a = 0;
 //Add returns an integer
-a = add(4, 3);
+a = add(4, 3); 
 \end{lstlisting}
 
 \todo[inline]{Kører vi pass by reference eller pass by value? ref for mat/vec or val ellers? -- TK}
