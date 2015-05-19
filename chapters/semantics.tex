@@ -1,9 +1,9 @@
 \chapter{Semantics}\todo{Der skal eventuelt skrives noget omkring hvad det semantic der er sat ind repræsentere og hvordan det foregår? - Marc - Enig, der bør nok være lidt teori egentlig, der viser en dummy rule eller noget - Søren}
 In this section some of the semantics for \gls{gamble} will be shown and explained.
 Operational semantics are provided to formalise information about the mathematical operations behind the language.
-There is two ways of showing operational semantics natural semantics and structural operational semantics.
-Natural semantics often called big-step semantics and structural operational semantics often referred to as small-step semantics both shows the mathematical rules of a language. 
-In this chapter big-step semantics are shown which, as implied by it's name, describe execution of operations through overall results.
+There is two ways of showing operational semantics: Natural semantics and structural operational semantics.
+Natural semantics often called big-step semantics and structural operational semantics referred to as small-step semantics; both shows the mathematical rules of a language. 
+In this chapter big-step semantics are shown which describe execution of operations through overall results.
 
 The names of some production rules of \gls{gamble} are changed to simplify some of the rules as follows:
 
@@ -31,9 +31,9 @@ Some of the operational semantics which are covered in this chapter are variable
 \subsection*{Declaring Variables}
 Variable declarations are also statements according to \gls{gamble}'s grammar.
 Declarations have an effect on the variable environment which is why it has it's own section.
-A variable declaration modifies the store and the variable environment, the new location in the store will be initialised to contain the values of the new variables, and the new variable will exist in the variable environment.
+A variable declaration modifies the store and the variable environment, the new location in the store will be initialised to contain the values of the new variables, and the new variable will exist in the variable environment.\newline
 
-\todo{der mangler da vidst et komma heri}
+\begin{minipage}{1.0\textwidth}
 [${VariableDeclaration}_{BSS}$]
 \begin{equation}
 	\frac { <S,{ e }_{ v }^{ `` },st[\iota \mapsto v]>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> }{ <type\quad x=a;S,{ e }_{ v }st>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> } 
@@ -43,12 +43,13 @@ A variable declaration modifies the store and the variable environment, the new 
 	&\iota {= e }_{ v }(next) \\
 	&{ e }_{ v }^{ `` }={ e }_{ v }[x\mapsto \iota ][next\mapsto new \iota ]
 \end{align*}
+\end{minipage}  
 \todo[inline]{mangler der ikke nogle commaer her? -- Troels}
 
 \section*{Statements}
 The effect of a statement is that the store may change, since a statement may modify the values of variables involved through assignments. 
 A statement should not modify the variable environment. \todo{why? - Marc - Tilføj: "because it creates no new instances of variables" - Søren}
-We define a big-step semantic for statements, except for procedure calls.
+We define a big-step semantic for statements, except for procedure calls.\newline
 
 [${Assignment}_{BSS}$]
 \begin{align*}
@@ -76,12 +77,12 @@ A matrix is referred to as seen below, the superscript refers to name of the mat
 { { m }_{ 2,1 }^{ n } }  &  { { m }_{ 2,2 }^{ n } } & \dots & { m }_{ 2,k }^{ n }
 \\ \vdots  & \vdots & \ddots  & \vdots \\
  { m }_{ j,1 }^{ n } & { m }_{ j,2 }^{ n } & \dots & { m }_{ j,k }^{ n } \end{bmatrix}
-\end{align*}
+\end{align*}\newline
 
 [${MatrixDeclaration}_{BSS}$]
 \begin{equation}
 	\frac { { e }_{ f },{ e }_{ v },st\vdash j{ \rightarrow  }_{ A }{ v }_{ 1 },\quad { e }_{ f },{ e }_{ v },st\vdash k{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { M }^{ 1 }\quad =\quad matrix<int|float>[{ v }_{ 1 },{ v }_{ 2 }]\rightarrow { st }^{ ` },{ e }_{ v } } ,{ M }^{ 1 }[{ v }_{ 1 },{ v }_{ 2 }]=\begin{bmatrix} { { 0 }_{ 1,1 } } & 0_{ 1,2 } & \dots  & { 0 }_{ { 1,{ v }_{ 2 } } } \\ 0_{ 2,1 } & 0_{ 2,2 } & \dots  & 0_{ 2,v_{ 2 } } \\ \vdots  & \vdots  & \ddots  & \vdots  \\ { 0 }_{ { v }_{ 1 },1 } & 0_{ v_{ 1 },2 } & \dots  & { 0 }_{ { v }_{ 1 },{ v }_{ 2 } } \end{bmatrix}
-\end{equation}
+\end{equation}\newline
 \todo[inline]{Skal der indgå et navn i en matrix decl? -- Troels}
 
 
@@ -120,15 +121,16 @@ The operation returns a matrix of with $j$ columns and $l$ rows based on the rul
 { { m }_{ j,l }^{ 3 } }  &= { { m }_{ j,1 }^{ 1 } } *{ { m }_{ 1,l }^{ 2 } }+ { { m }_{ j,2 }^{ 1 } } *{ { m }_{ 2,l }^{ 2 } }+\dots+ { { m }_{ j,k }^{ 1 } } *{ { m }_{ k,l }^{ 2 } }
 \end{aligned}
 \end{equation*}
-\end{minipage}
+\end{minipage}\newline
 
 
 
 
 [${ScalarMultiplication}_{BSS}$]
+
 A scalar multiplication is a simple operation on a matrix, where every element in the $j,k$ matrix is multiplayed with an Arithmetic expression $a$. 
 
 \begin{equation}
 	\frac { { e }_{ v },st\vdash { M }^{ 1 }{ \rightarrow  }_{ A }{ v }_{ 1 }\quad { e }_{ v },st\vdash { a }_{ 1 }{ \rightarrow  }_{ A }{ v }_{ 2 } }{ { e }_{ v },st\vdash { M }^{ 1 }\ast { a }_{ 1 }{ \rightarrow  }_{ A }{ v } } ,\begin{matrix} { v }_{ 1 }=matrix<int|float>[j,k] \\  \\ v=\begin{bmatrix} { { a }_{ 1 }*m }_{ 1,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 1,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 1,k }^{ 1 } \\ { { a }_{ 1 }*m }_{ 2,1 }^{ 1 } & { { a }_{ 1 }*m }_{ 2,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ 2,k }^{ 1 } \\ \vdots  & \vdots  & \ddots  & \vdots  \\ { { a }_{ 1 }*m }_{ j,1 }^{ 1 } & { { a }_{ 1 }*m }_{ j,2 }^{ 1 } & \dots  & { { a }_{ 1 }*m }_{ j,k }^{ 1 } \end{bmatrix} \end{matrix}
 \end{equation}
-\todo[inline]{navne på reglerne sidder helt tilfældigt, det skal vi ha fikset MP}
+\todo[inline]{navne på reglerne sidder helt tilfældigt, det skal vi ha fikset MP ... Jeg tror jeg har fixet det med newline nu - Corlin}

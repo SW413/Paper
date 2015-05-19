@@ -1,14 +1,14 @@
 %Subphases
 \chapter{Contextual Analysis}
-Once the source code has passed through the syntax analysis, and thereby is validated in regard to the \acrshort{cfg}, it must be checked for contextual errors.\todo{Nu er der 2 gange rød tråd, skal vi slette det i det forhenværende eller er det fint at beholde begge? - Søren Det ser fint ud for mig -- MP}
+Once the source code has passed through the syntax analysis, and thereby is validated in regard to the \acrshort{cfg}, it must be checked for contextual errors.\todo{Nu er der 2 gange rød tråd, skal vi slette det i det forhenværende eller er det fint at beholde begge? - Søren Det ser fint ud for mig -- MP - det virker fint som en indledning til afsnittet - Marc}
 
 In the contextual analysis phase semantic errors are the ones being checked for, this includes type errors such as type mismatch, e.g. adding a boolean to a float, which may well be using the correct grammar, but is not a valid arithmetic expression.
-In the contextual analysis there is also checked in which scopes the different variables is available and if there is errors of this type.
+In the contextual analysis it is also checked in which scopes the different variables are available and if there are errors of this type.
 The design and implementation of the contextual analysis as well as how such errors are handled are described in this chapter.
 
 The contextual analysis phase has sub-phases for scope- and type-checking and error handling.
 An illustration of the design for this can be seen on \myref{fig:flowContextual}, both sub-phases scopechecker and typechecker will have its own visitor class implemented.
-The diagram shows if variables out of scope or type mismatches results in errors will stop the compilation, if none of these exists it results in a decorated \acrshort{ast} which is then used in the next phase, Code generation.
+The diagram shows that if variables are out of scope or type mismatches it results in errors will stop the compilation, if no errors occur it results in a decorated \acrshort{ast} which is then used in the next phase, Code generation.
 
 %\begin{figure}[ht]
 %  \centering
@@ -28,7 +28,7 @@ The validity of such reference is specific to the rules of the language, this se
 \input{chapters/sections/subsections/ScopeCheck.tex}
 
 \section{Type Checking}
-The second important part of the contextual analysis phase for the compiler is the type checking, which enforces the type system of \gls{gamble}.
+Another important part of the contextual analysis phase for the compiler is the type checking, which enforces the type system of \gls{gamble}.
 This section will cover the design and implementation of the compiler's type checking.
 \input{chapters/sections/subsections/TypeCheck.tex}
 
