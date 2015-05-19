@@ -28,7 +28,7 @@ This include line numbers which then have to be carried over from the parse tree
 In the \gls{gamble} compiler this error handling is implemented by having a class \texttt{LanguageError} of which each specific error type inherits from.
 The \texttt{LanguageError} superclass has information about what type the error, an enumeration which is either \texttt{Error} or \texttt{Warning}. 
 This is so because a program which has warning but no errors, should still compile, however any program with errors should not. 
-Compared to simply printing any error when it was discovered and stopping compilation, this model allows the compiler to go through the entire \acrshort{ast} and discover every error as described above. 
+Compared to printing any error when it was discovered and stopping compilation, this model allows the compiler to go through the entire \acrshort{ast} and discover every error as described above. 
 It also unifies how errors are printed and shown to the user.
 There is also an integer indicating which line the error is contained on.
 This enhances the error reporting process, making it easier for users to debug. 
