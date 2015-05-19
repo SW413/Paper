@@ -1,18 +1,18 @@
 \subsection*{Parser}\label{subsec:parser}
-The parser is based on the \acrfull{cfg} of \gls{gamble} written in \acrfull{ebnf}, whose alphabet consists of tokens produced by the scanner.
-The parser reads tokens and groups them into phrases according to the \acrshort{cfg}.
+The parser is based on the \acrfull{cfg} of \gls{gamble} written in \acrfull{ebnf}, whose alphabet consists of tokens produced by the scanner.\todo{Er det vigtigt igen ? Måske ? - Søren}
+The parser reads the sequences of tokens created by the scanner and groups them into phrases according to the production rules of the \acrshort{cfg}.
 The parser verifies that the syntax is correct and upholds to the \acrshort{cfg}, and if a syntax error is found it provides a corresponding error message. \citep{Crafting_book}
 By using a parser generator like \acrshort{antlr} or SableCC, handling of syntactic errors and repairs can be done automatically.
 A parser can also be written manually but doing so can result in syntactic errors that can prove difficult to find without a tool.
 Writing a parser by hand can also take a lot of time, and it can be difficult to go back and change or add new productions to the syntax, which is something the project group will want to do due to the iterative development.
 There are many parser generators which can be used like: SableCC, JavaCC, JFlex and many others, but we have chosen to use \acrshort{antlr}.
 \acrshort{antlr} has been chosen due to their special use of the ALL(*) grammar, which poses many opportunities for the grammar, and also makes the \acrshort{cfg} simpler to write.
-\acrshort{antlr} generates a parser which produces a parse tree that contains information about how the parser have grouped the tokens into more abstract language definitions, such as expressions and statements.
+\acrshort{antlr} generates a parser which produces a parse tree that contains information about how the parser have grouped the tokens into more abstract language definitions, such as expressions and statements.\todo{Måske sætte en reference ind" More about Antlr in ref til impl om antlr ?" - Søren"}
 
 There are different kind of parsers, most common are bottom-up and top-down parsers.
-\acrshort{antlr} makes a top-down parser, more specific a recursive descent parser.
-A recursive descent parser is a subtype of top-down parser build from a set of mutually recursive procedures where each such procedure implements one of the productions of the grammar.
-The structure of the resulting program closely mirrors the grammar it recognizes. \citep{Recursive_programming}
+\acrshort{antlr} makes a top-down parser, more specifically a recursive descent parser.
+A recursive descent parser is a subtype of top-down parsers build from a set of mutually recursive procedures where each such procedure implements one of the productions of the grammar.
+The structure of the resulting program closely mirrors the grammar it recognises. \citep{Recursive_programming}
 Recursive-descent parsers are a collection of recursive methods, one per rule of the \acrshort{cfg}.
 Such a method for an assignment rule may look as shown in \myref{lst:rdpmethod}, where the rule is \texttt{assignment : ID = expr ;}.
 So the method expects an ID to be the first token from the tokenstream, then an assignment operator followed by an expression and a semicolon.
@@ -27,36 +27,3 @@ expr(); // match an expression by calling expr()
 match(';');
 }
 \end{lstlisting}
-
-%The second stage of the parser is the actual parser.
-%The parser is fed a stream of tokens to recognise a sentence structure and in turn outputs the structure to a parse tree.
-%The parse tree records how the parser recognises the structure of the input and its components.
-%The parse tree that \acrshort{antlr} provides contains information about how the parser have grouped the tokens into more abstract languange definitions such as expressions and statements.
-%Where previous versions of \acrshort{antlr} have also implemented the AST, it is not contained in \acrshort{antlr} V4 instead the parse tree provided by \acrshort{antlr} have been used to generate an AST this is discussed in \myref{sec:AST}.
-%This tree is a trimmed version of the parse tree, where the less informative data have been removed, this makes it easier to read, and thus easier to use throughout development of the rest of the compiler.
-
-%2nd stage is the actual parser, feeds of tokens to recognize sentence structure
-%Parse tree records how the parser recognized structure of input and its component phrases
-%Trees provide an easy to walk data structure that will be helpful for the rest of the compiler
-%2.2 Implementing Parser - Recursive descent
-%Recursive-descent parsers are really just a collection of recursive methods, one per rule.
-%Such a rule may look similar to this
-%// assign : ID ``='' expr ``;'' ;
-%void assign() { // method generated from rule assign
-%match(ID); // compare ID to current input symbol then consume
-%match('=');
-%expr(); // match an expression by calling expr()
-%match(';');
-%}
-%Descent refers to the fact we start from the root and go down to the leaves(tokens)
-%Reursive descent is just one form of top-down parsers.					NOTE topdown/bottom up parsing
-%The call graph traaced out by invoking methods, mirrors the interior parse tree nodes
-%To Build a parse tree manually one would insert ``add new subroot note' operations at the start of each rule, and a ``add new leaf node'' operation to match()
-%The assign method checks if all necessary tokens are present and in the right order. When the parser enters assign it doesnt have to choose between more than one alternative. An alternative is one of the choices on the right side of a rule def. A parsing method for such rule would be a switch which looks for what token is present.
-% This is called a parising decision or prediction by examining next token
-%This is where lookahead comes into play , the lookahead token is the next input token, this can be any token the parser "sniffs" before consuming
-%This is one of the places where \acrshort{antlr} is an especially handy tool to use, because \acrshort{antlr} allows for more lookahead than other parser generators.
-%Most parsers use a lookahead of one which LL(1) or LR(1), \acrshort{antlr} tones the lookahead up and down depending on what token stream it is trying to decode, as such the \acrshort{antlr} has a lookahead of LL(*)
-%\acrshort{antlr} Solves simple ambiguity simply by using the first mentioned rule.
-%AST only useful, Parse all artifacts(space, brackets and so on)
-
