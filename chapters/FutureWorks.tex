@@ -1,5 +1,5 @@
 \chapter{Future Works}\label{cha:future_works}
-While the language and compiler functionality met the requirements set up earlier in this paper, there still exist rooms for improvements which could benefit both \gls{gamble} and it's compiler.
+While the language and compiler functionality met the requirements set up earlier in this paper, there still exists room for improvements which could benefit both \gls{gamble} and its compiler.
 In this chapter some of the possible expansions, i.e. new features and optimisations, will be discussed.
 
 \section{Linear Algebra}\label{improve:LIAL}
@@ -20,7 +20,7 @@ While this should be sufficient for computations on big sets of data as the lang
 A possible expansion would be to optimise further to only utilise the \acrshort{gpu} when an increase in performance is to be expected from doing so.
 An analysis of the amount of computations required as well as the hardware available, would help towards gaining the best performance possible.
 Even further development should also look further than only performing matrix and vector operations on the \acrshort{gpu}.
-This was chosen because that all operations currently implemented towards doing matrix and vector operations are paralleliseable.
+This was chosen because all operations currently implemented towards matrix and vector operations are paralleliseable.
 If implementing new operations and functions one must consider whether these benefit from the use or \acrshort{gpu} or not.
 For further development of \gls{gamble} one should also consider using the \acrshort{gpu} for more than matrix and vector operations and hereby developing the language to do \gls{gpgpu}. 
 Rather than blindly disregarding loops one could have the compiler check whether or not the loop in question could be parallelised, and perhaps perform some of the optimisations mentioned in \myref{subsec:runtime} upon said loop.
@@ -69,4 +69,5 @@ A more complex mathematical library could allow more complex operations of the c
 Another way of expanding the language would be to utilise the similarity between matrices and graphics and therefore implement libraries to perform image processing of graphics.
 These libraries could therefore use similar ways of using the \acrshort{gpu} as matrices already do.
 
-\info[inline]{Måske skulle vi nævne map/reduce og pfor? -- TK}
+\info[inline]{Måske skulle vi nævne map/reduce og pfor? -- TK} 
+\info[inline]{Måske noget med at bootstrap'e compileren? jkjk - msm}
