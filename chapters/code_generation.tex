@@ -7,7 +7,7 @@ Lastly it will present how the runtime of the programs could be made more effici
 \input{chapters/sections/subsections/GPUCode.tex}
 \input{chapters/sections/subsections/Optimisation.tex}
 \section{Implementation}
-This section will show examples from the compiler code which generates the object code from the source code in \gls{gamble}.
+This section will show examples from the \gls{gamble} compiler's source code which generates the object code from a \gls{gamble} program's source code.
 This will show the implementation of selected design choices made in the previous chapters.
 First an example of how a \texttt{DeclarationNode} is translated into C code will be provided; afterwards the implementation of using the \acrshort{gpu} using OpenCL will be presented.
 The compiler starts the code generation by calling an instance of the class \texttt{CodeGenerator} and invoking the method \texttt{GenerateCodeAndWriteToFile}.
