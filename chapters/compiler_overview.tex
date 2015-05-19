@@ -1,5 +1,5 @@
 \chapter{Compiler Overview}\label{Chp:CompilerOverview}
-When creating a compiler there are two basic ways of compilers one can create, a multi-pass compiler or a single-pass compiler.
+When creating a compiler there are two basic ways of compilers one can create, a multi-pass compiler or a single-pass compiler.\todo{..ways of compilers..}
 Each have their advantages and disadvantages however the most significant difference is that in a single-pass compiler, as the name suggests, only one pass is done.
 This highly limits the information available to the compiler and this decreases the odds of creating efficient programs, which is not wished for in \gls{gamble}.
 As such this compiler will be a multi-pass compiler and can therefore be divided into phases.
@@ -15,7 +15,7 @@ Java also works across platforms, which is a useful feature.
 
 \begin{figure}[ht]
 \centering
-\includegraphics[width=0.5\textwidth]{figures/ClassDiagrams/CompilerDiagram.pdf}
+\includegraphics[width=0.35\textwidth]{figures/ClassDiagrams/CompilerDiagram.pdf}
 \caption{State diagram showing the phases of the compiler when it takes \gls{gamble} source code and compiles it into machine code.}\label{fig:phases}
 \end{figure}
 
@@ -40,7 +40,7 @@ This is an abstraction made by the project group to simplify the process of gene
 OpenCL C is low level compared to Java or C\#, and C has even been characterised as a portable assembly language, as many features of the language translates closely to assembly. \citep{CPort}
 
 \myref{fig:tombstone} shows a tombstone diagram of the translation of \gls{gamble} for this compiler.
-The compiler takes the \gls{gamble} source code as input and translates it into OpenCL C using a compiler written in Java, the OpenCL C code is then compiled using a C compiler written in C, and outputs machine code which can be run by the computer.
+The compiler takes the \gls{gamble} source code as input and translates it into OpenCL C using a compiler written in Java, the OpenCL C code is then compiled using a C compiler written in C, and outputs machine code which can be run by the computer.\todo{hvad med kernels som bliver jit compiled? MP}
 \begin{figure}[!ht]
 \centering
 \begin{tikzpicture}
