@@ -46,10 +46,10 @@ Source code for both programs along with the script used for testing, can be fou
 \label{sub:results}
 After running the test and visualising the execution time for the different matrix sizes, it is clear that the \acrshort{gpu} performs better than the \acrshort{cpu}.
 In the graph on \myref{fig:test_results}, we see that the line representing the \acrshort{gpu} is located well below the line representing the \acrshort{cpu}.   
-\begin{figure}[h!]
+\begin{figure}[h]
     \centering
     \includegraphics{figures/tests/graph.pdf}
-    \caption{Execution time of matrix multiplication, with sequential \acrshort{cpu} and heterogeneous \acrshort{gpu} approach}\label{fig:test_results}
+    \caption{Execution time of matrix multiplication, with sequential \acrshort{cpu} and heterogeneous \acrshort{gpu} approach. \todo[inline]{Hvis det kun er på en GPU så er det vel ikke heterogeneous? -- Troels}}\label{fig:test_results}
 \end{figure} 
 It should however be noted that in the beginning of the graph (the leftmost side), the two lines are very close to each other since time measurements are less precise at such low numbers, and the overhead of initialising and allocating memory for the matrices can well exceed the raw computation time of the multiplication. \todo{Hvis der læses fra harddisken er dette nok en stor faktor. -- Troels}
 Furthermore the line representing the \acrshort{cpu} is very jagged, which\todo{could -- troels} indicates that the aforementioned caching are influencing the execution time.
