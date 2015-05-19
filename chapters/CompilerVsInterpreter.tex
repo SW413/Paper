@@ -1,34 +1,34 @@
 \chapter{Language runtime}
 This chapter analyses whether the source code should be compiled or interpreted.
-Thereafter the target language is determined. 
+Thereafter the target language will be determined. 
 
 \section{Compiler or Interpreter}
-When designing a language an important decision is whether a program in the source code in the language should be compiled to become an executable or if it should be interpreted and run without compilation.
-This is a choice that needs to be settled before the design of the compiler or interpreter can begin.\todo{Not really though ? Man er ikke NØDT til det :P - Søren}
+When designing a language an important decision is whether a program in the source code of the language should be compiled to become an executable file or if it should be interpreted and run without compilation.
+This is a choice that should to be settled before the design of the compiler or interpreter begins as it influences the design.
 Both compilers and interpreters have advantages and disadvantages, which needs to be to be evaluated according to the goal of the language.
-The advantages and disadvantages expressed in \myref{tbl:compint} does not reflect every difference between a compiler, but rather those aspects deemed important in respect to \gls{gamble}.
+The advantages and disadvantages expressed in \myref{tbl:compint} does not reflect every difference between a compiler and interpreter, but rather those aspects deemed important in respect to \gls{gamble}.
 
 \input{figures/CompilerList.tex}
 
-The aspect of the two options presented in \myref{tbl:compint} is the main concerns in this project when deciding which method \gls{gamble} would benefit most form.
+The aspect of the two options presented in \myref{tbl:compint} is the main concerns in this project when deciding which method would benefit \gls{gamble} the most.
 
-As stated in \myref{sec:problem}, the goal of \gls{gamble} is to perform matrix operations on the \acrshort{gpu}\todo{synes ikke før og efter kommaet er sammenhængende MP}, the compiler model has an advantage over interpreters, because a compiled program runs faster than an interpreted. \todo{This is partly invalided by the fact that we use online compilation of kernels (JITing them) instead of pre-compiling (offline) them}
-This is especially important considering that \gls{gamble} will utilize the \acrshort{gpu}'s speed\todo{andet ord end speed? MP} on large matrices. 
-This speed increase is an effect of the compiler's architecture where it compiles the entire source code rather than interpreting  the source code. \todo{See above todo.}
-Another reason being that compiled programs are often compiled to a low level language which often have a more direct way of utilizing the hardware better than a virtual environment in an interpreter.
+As stated in \myref{sec:problem}, the goal of \gls{gamble} is to perform matrix operations on the \acrshort{gpu} to decrease the runtime of the program\todo{synes ikke før og efter kommaet er sammenhængende MP, Det burde passe bedre nu - Marc}, as mentioned the compiler model has an advantage over interpreters, because a compiled program often runs faster than an interpreted. \todo{This is partly invalided by the fact that we use online compilation of kernels (JITing them) instead of pre-compiling (offline) them}
+This is especially important considering that \gls{gamble} will utilise the \acrshort{gpu}'s superior computational power on large matrices. 
+The difference in a compiler's and interpreter's execution time is an effect of the compiler's architecture where it compiles the entire source code rather than interpreting the source code. \todo{See above todo.}
+Another reason being that compiled programs are often compiled to a low level language which often have a more direct way of utilising the hardware specifications better than a virtual environment in an interpreter.
 
 Regarding error reporting both models can be useful, there are strong cases for both the compiled and the interpreted model.
-A case for an interpreter and a design which catches most errors at runtime would be that, design would familiarise developers of \gls{gamble} with this work flow, which would make it easier to develop the language in a direction with full or partial dynamics types, since type errors for dynamics types has to be checked at runtime. \todo{Forstår virkelig ikke hvad det her prøver at fortælle mig - Søren}
-A wholly different case for the compiler choice would be that since the language is expecting to be utilised for large calculations with a long runtime.
-It would be laborious for the programmer if errors occur at runtime, since the program could have run calculations for a long period of time before the error occurred, thus it could invalidate the results of the calculation, and it would this way take longer to debug.
-A compiler with a good error checking system, which could catch most errors at compile time before execution of the program seems like a good solution.\citep{Sebesta, Crafting_book}
+A case for an interpreter, and a design which catches most errors at runtime, would be that the design would familiarise developers of \gls{gamble} with this work flow, which would make it easier to develop the language in a direction with full or partial dynamics types, since type errors for dynamics types has to be checked at runtime. \todo{Forstår virkelig ikke hvad det her prøver at fortælle mig - Søren, Det fordi det en gang mundlort - Marc}
+A case for choosing the compiler would be that since the language is expecting to be used for large calculations with a long runtime; it would be laborious for the programmer if errors occur at runtime; the program could have run calculations for a long period of time before any error occurred, thus it could invalidate the results of the calculation and it would this way take longer to debug.
+Even so, it would only catch that first error it encountered while many more errors may well exist.
+A compiler with a good error checking system, which could catch most errors at compile time before execution of the program, seems like a good solution.\citep{Sebesta, Crafting_book}
 
 Based on these considerations it has been chosen that a compiler would be the best choice for \gls{gamble} to achieve the desired goals.
 
 \section{Target language}\label{CUDAvsOpenCL}
 As it is chosen that \gls{gamble} should be compiled the next choice to consider is what the target language of the compiler should be.
 The target language is the language which the compiler will translate the source code into.
-Some mature languages such as C or C++ commonly translate into machine code, however to do this while accessing the \acrshort{gpu} suddenly becomes a much more complicated process; it is chosen to target a higher level language that uses a parallel computing platform developed for using the \acrshort{gpu}.\todo{sproget og gpu platformen er vel ikke det samme. MP}
+Some mature languages such as C or C++ commonly translate into machine code, however to do this while accessing the \acrshort{gpu} suddenly becomes a much more complicated process; it is chosen to target a higher level language that uses a parallel computing platform developed for using the \acrshort{gpu}.\todo{sproget og gpu platformen er vel ikke det samme. MP - Parallel computing platform er et fagterm som dækker CUDA og OpenCL, det bruges frem for framework eftersom Nvidia ikke selv kalder CUDA for et framwork, men både CUDA og OpenCL har benyttet førnævnte fagterm - Marc}
 
 When searching for a target language that has the opportunity of using the \acrshort{gpu}, looking at the existing solutions researched in \myref{sec:state_of_the_art} was an opportune place to start.
 The two options that were most prominent and also what most other solutions seemed to be based upon are CUDA by NVIDIA and OpenCL by Khronos.
@@ -49,7 +49,7 @@ While GPU Oclelot exists it is deemed OpenCL would be the broadest and most gene
 
 Since initial testing shows it can be difficult to manage hardware in OpenCL a library called SimpleOpenCL is used.
 SimpleOpenCL has function calls which find the fastest hardware on the computer.
-It searches amongst available \acrshort{gpu}s and \acrshort{cpu}s in the system for OpenCL compatible hardware and chooses the one with the most cores. \citep{simpeCL}
+It searches amongst available \acrshort{gpu}s and \acrshort{cpu}s in the system for OpenCL compatible hardware and chooses the one with the most cores. \citep{simpeCL}\todo{Undefined reference? -Marc}
 
 The main focus of the OpenCL code can therefore be on the kernels which is the functions that allows parallel computations on the then chosen hardware, and not on the overhead of setting the system up for \acrshort{gpu} usage.
 
