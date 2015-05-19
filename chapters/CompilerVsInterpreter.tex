@@ -21,7 +21,7 @@ Regarding error reporting both models can be useful, there are strong cases for 
 A case for an interpreter and a design which catches most errors at runtime would be that, design would familiarise developers of \gls{gamble} with this work flow, which would make it easier to develop the language in a direction with full or partial dynamics types, since type errors for dynamics types has to be checked at runtime. \todo{Forstår virkelig ikke hvad det her prøver at fortælle mig - Søren}
 A wholly different case for the compiler choice would be that since the language is expecting to be utilised for large calculations with a long runtime.
 It would be laborious for the programmer if errors occur at runtime, since the program could have run calculations for a long period of time before the error occurred, thus it could invalidate the results of the calculation, and it would this way take longer to debug.
-A compiler with a good error checking system, which could catch most errors at compile time before execution of the program seems like a good solution. \citep{Sebesta, Crafting_book}
+A compiler with a good error checking system, which could catch most errors at compile time before execution of the program seems like a good solution.\citep{Sebesta, Crafting_book}
 
 Based on these considerations it has been chosen that a compiler would be the best choice for \gls{gamble} to achieve the desired goals.
 
