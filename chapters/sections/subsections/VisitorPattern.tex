@@ -10,9 +10,9 @@ In the tree walk for the parse tree, the visitor should convert the parse tree i
 This entails that each different node in the parse tree must be visited to find the information needed to create the \acrshort{ast}.
 
 Through use of the visitor pattern the functionality is separated from the classes they are performed upon. 
-Instead the functionality is on a visitor class implementing the visitor interface, which means different visitors can be made, which all do different computations while traversing the tree.
+Instead the functionality is on a visitor class implementing the visitor interface, which means different visitors can be made, which all do different computations while traversing the tree.\todo{måske tasks i stedet for computations. MP}
 Each class in the tree have an \texttt{accept} method that allows them to call the visitor in question with itself as an argument.
-This allows the ability of adding new operations without changing the original data structure, and also without changing other visitors, which serves well when using a iterative development method.
+This allows the ability of adding new operations without changing the original data structure, and also without changing other visitors, which serves well when using a iterative development method.\todo{gører sidste del til selvstændig sætning? MP}
 Another benefit is that a single visitor object is used to visit all the classes in the tree.
 This visitor can therefore maintain a state between calls to individual data objects, which can be used to save information in an outer scope from the different visit calls.
 \myref{image:visitor} shows a UML diagram of the visitor pattern.
@@ -30,7 +30,7 @@ In the next section, the implementation of creating the \acrshort{ast} from the 
 \caption{An UML diagram for the implementation of the visitor pattern.}\label{image:visitor}
 \vspace{-15pt}
 \end{figure}
-
+\todo[inline]{har vi selv lavet figuren? MP}
 
 \subsection{Creating the \acrshort{ast}}\label{CreatingAst}
 
@@ -51,10 +51,10 @@ A declaration could be \texttt{int a = 5;}.
 \end{figure}
 
 The \texttt{Variable} class contains a lot of different information which is used depending on which class a given instance of \texttt{Variable} is connected to.
-If \texttt{Variable} is connected to a VariableExpressionNode, the only fields used on the variable class is ValueType and Id, while the booleans IsFunction and IsComplex are set to false.
+If \texttt{Variable} is connected to a \texttt{VariableExpressionNode}, the only fields used on the variable class is ValueType and Id, while the booleans IsFunction and IsComplex are set to false.
 In the example \texttt{int a = 5;} the tree structure looks like the AST on \myref{image:AST}.
 When the right hand side of an assignment or declaration is a function, an example being \texttt{int a = foo(5);} the fields used on \texttt{Variable} differs from the previous example and instead becomes Id, ValueType, arguments, and the boolean IsFunction is instead set to true.
-The printargument field is used when a functioncall to \texttt{Print();}is made. 
+The print argument field is used when a function call to \texttt{Print()} is made. 
 Entrance, Size and IsComplex are used when dealing with the complex data types, vectors and matrices.
 \texttt{TopNode} sets the structure of a \gls{gamble} program as described in \myref{subsec:Struc}.
 The full class diagram can be seen in \myref{ASTNodes}.
@@ -63,7 +63,7 @@ The classes have made it more intuitive to perform a traversal of the tree based
 E.g. the \texttt{ForLoopNode} has fields named \texttt{Body}, \texttt{Initialize}, \texttt{Update}, and \texttt{Conditional}, these names have meaning instead of just being children on the node which will be helpful when implementing the rest of the compiler.
 
 The syntax analysis phase returns the \acrshort{ast} so it can be used in the next phase. 
-The design of the phase and the call from main can be seen on \myref{fig:syntaxphase}.
+The design of the phase and the call from main can be seen on \myref{fig:syntaxphase}.\todo{call from main kunne thomas ikke lide. MP}
 As can be seen the \texttt{ASTGeneratorVisitor} makes use of the classes shown in \myref{ASTNodes}.
 
 \begin{figure}[ht]
