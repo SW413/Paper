@@ -1,7 +1,7 @@
 %\gls{gamble} is used to refer to our languange
 \section{Design Philosophy}\label{sec:phil}
 
-The focus for \gls{gamble} is to use the computational powers of the \acrshort{gpu} to handle such computations without it being inconvenient for the programmer.
+The focus for \gls{gamble} is to use the computational powers\todo{skal dette ikke være uden s? MP slet og ret gerne hvis korrekt} of the \acrshort{gpu} to handle such computations without it being inconvenient for the programmer.
 As described in \myref{sec:state_of_the_art} several libraries and languages allows the programmer to explicitly designate workloads to the \acrshort{gpu} however this often requires explicit memory handling as well.
 Keeping the rules and syntax of \gls{gamble} familiar to other languages makes it more accessible and reduces the time required for users to familiarize themselves with it.
 This is done by using a C-like syntax, while stripping \gls{gamble} of features we deem not necessary for a language which main focus lies in using the \acrshort{gpu} for  linear algebra calculations.
@@ -30,5 +30,5 @@ This makes \gls{gamble} simpler, and therefore both easier to read and write.
 As mentioned the main purpose of \gls{gamble} is to use the \acrshort{gpu} for computations, and is focused on doing computations, not developing new software.
 As such \gls{gamble} would most often be used where this niche is required.
 It may even be likely that it is not used when developing an algorithm to do computations, but first used once the algorithm is to be implemented during the algorithm design process, and can then be applied to bigger sets of data.\citep{AlgorithmDesign}
-This is because of the large overhead as explained in \myref{sec:comparch}, it will be faster to perform a test of an algorithm with smaller datasets in other languages, like C.
+This is because of the large overhead as explained in \myref{sec:comparch}, it will be faster to perform a test of an algorithm with smaller datasets in other languages, like C.\todo{Claimer vi at C er et sprog man hurtigt implemterer algoritmer i? passer dette? MP}
 Therefore to use the niche that \gls{gamble} proclaims, having the language be familiar makes it easier to use for its pure computational aspect, and improves on \gls{gamble}'s read- and writability.
