@@ -49,7 +49,7 @@ While GPU Oclelot exists it is deemed OpenCL would be the broadest and most gene
 
 Since initial testing shows it can be difficult to manage hardware in OpenCL a library called SimpleOpenCL is used.
 SimpleOpenCL has function calls which find the fastest hardware on the computer.
-It searches amongst available \acrshort{gpu}s and \acrshort{cpu}s in the system for OpenCL compatible hardware and chooses the one with the most cores. \citep{simpeCL}\todo{Undefined reference? -Marc}
+It searches amongst available \acrshort{gpu}s and \acrshort{cpu}s in the system for OpenCL compatible hardware and chooses the one with the most cores. \citep{simpleCL}
 
 The main focus of the OpenCL code can therefore be on the kernels which is the functions that allows parallel computations on the then chosen hardware, and not on the overhead of setting the system up for \acrshort{gpu} usage.
 
