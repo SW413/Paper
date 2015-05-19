@@ -7,7 +7,7 @@ In the contextual analysis there is also checked in which scopes the different v
 The design and implementation of the contextual analysis as well as how such errors are handled are described in this chapter.
 
 The contextual analysis phase has sub-phases for scope- and type-checking and error handling.
-An illustration of the design for this can be seen on \myref{fig:flowContextual}
+An illustration of the design for this can be seen on \myref{fig:flowContextual}, both sub-phases scopechecker and typechecker will have its own visitor class implemented.
 The diagram shows if variables out of scope or type mismatches results in errors will stop the compilation, if none of these exists it results in a decorated \acrshort{ast} which is then used in the next phase, Code generation.
 
 %\begin{figure}[ht]
