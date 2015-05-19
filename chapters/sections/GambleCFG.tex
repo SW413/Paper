@@ -1,9 +1,9 @@
 \section{Context free grammar in GAMBLE}
 \gls{gamble}'s grammar is written in \acrfull{ebnf}, and uses regular expressions to define terminals such as numbers and identifiers.
-In this section there will be a short traversal of a branch from the parse tree.
+In this section there will be a short traversal of a branch from the parse tree.\todo{Hvad ? hvad betyder det??? - Søren}
 The full \acrshort{cfg} of \gls{gamble} can be found in \myref{app:CFG} alongside the lexing rules.
 This section only presents a small selection of the \acrshort{cfg}.
-\gls{gamble}s \acrshort{cfg} is used in the compiler for parsing a program into a structure, which can be manipulated and analysed to produce the target code for the specific program.
+\gls{gamble}s \acrshort{cfg} is used in the compiler for parsing a program into a structure, which can be manipulated and analysed to produce the target code for the specific program.\todo{Er det vigtigt ? Kan vi ikke nøjes med at sige at grammatikken skal bruges til en parser for gamble ? Vi forklarede det jo i sidste afsnit ? - Søren}
 The production rules are used to check for any syntactical errors which might occur.
 
 A production rule from the \acrshort{cfg} of \gls{gamble} is the statement rule. 
@@ -15,7 +15,7 @@ statement
     : assignment ';'
     | declaration ';'
     | functioncall ';'
-    | controlblock
+    | controlblock 
     | loop
     ;
 \end{lstlisting}
@@ -29,14 +29,14 @@ declaration
     : datatype ID '=' expression                        #primitiveDecl
     | complexdatatype ID '=' expression                 #complexDecl
     ; ;
-\end{lstlisting}
+\end{lstlisting}\todo{Er denne rigtig i forhold til den nye grammatik der er blevet lavet igennem tiden ? Den opdaterede grammatik skal også sættes ind i appendix - Søren}
 
 Further expanding into the expression production rules, it can be seen that it has five different production rules.
 An expression has production rules expanding the expression into a construct containing more expressions.
 This is done because an expression can derive to a value, and several values are needed for multiple arithmetic operations.
 This construct also causes left-recursion, something often attempted to be avoided in \acrshort{cfg}.
-The parse generator \acrshort{antlr} can handle simple left-recursion as seen on \myref{lst:value} and as such it is acceptable in the \acrshort{cfg} for \gls{gamble}.
-It does so be internally rewriting it and as such removes the left-recursion.
+The parse generator \acrshort{antlr} can handle simple left-recursion as seen on \myref{lst:value} and as such it is acceptable in the \acrshort{cfg} for \gls{gamble}.\todo{Måske vi skal have et afsnit inden gamble CFG omkring parse generators eller noget ? :) Det skal bare nævnes et sted - Søren}
+It does so internally rewriting it and as such removes the left-recursion.
 \begin{lstlisting}[caption={\acrshort{cfg} Expression},frame=tlrb,label={lst:expression},numbers=none]
 expression
     : expression ( '*' | '/' | '%' ) expression     #mulExpr
@@ -60,6 +60,6 @@ value
     | collectionEntrance                     #valCollectionEntrance
     | BOOLVAL                                #valBool
     ;
-\end{lstlisting}
+\end{lstlisting}\todo{Er de rent faktisk terminals ? Er en terminal ikke noget som ikke har en productionrule ? Det har de vel allesammen her ?}
 
 
