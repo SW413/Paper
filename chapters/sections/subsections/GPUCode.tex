@@ -1,9 +1,9 @@
 \subsection*{GPU Usage}\label{GPUCode}
-Since \gls{gamble} distances its programmers from directly controlling which computations are performed on the \acrshort{gpu}, determing what code to perform on the \acrshort{gpu} becomes a problem for the compiler to solve.\todo{task, lyder bedre eller hvad? MP.}
+Since \gls{gamble} distances its programmers from directly controlling which computations are performed on the \acrshort{gpu}, determing what code to perform on the \acrshort{gpu} becomes a problem for the compiler to solve.\todo{task, lyder bedre eller hvad? MP. - tasks synes jeg ikke rigtigt passer en når det er hvilke kodesegmenter, måske operations hvis det skal ændres? - Marc}
 To make this decision the compiler must know what kind of code performs faster on a \acrshort{gpu} than a \acrshort{cpu}.
 
-From \myref{sec:comparch} it is clear that to make sense in moving any computation to the \acrshort{gpu} it must be of significant size to make up for the overhead of moving data, and be executable in parallel.
-If a computation is reliant on the outcome of other computations, the Fibonacci function as an example, moving it to the \acrshort{gpu} would be a significant decrease in performance compared to on a \acrshort{cpu}.
+From \myref{sec:comparch} it is clear that for it to make sense to move any computation to the \acrshort{gpu} it must be of significant size to make up for the overhead of moving data, and be executable in parallel.
+If a computation is reliant on the outcome of other computations, the Fibonacci function as an example, moving it to the \acrshort{gpu} would be a significant decrease in performance compared to a \acrshort{cpu}.
 
 Any code written in a recursive format will not be run on the \acrshort{gpu}. 
 Furthermore due to the overhead in data transfer, only computations requiring a significant amount of operations to be performed should be executed on the \acrshort{gpu} as \myref{image:benchmark} shows.
@@ -16,5 +16,6 @@ An example could be matrix multiplication.
 Now it is entirely possible to make a matrix multiplication of a $2\times2$ matrix, which would be so small that the overhead of data transfer is more expensive than simply computing on the \acrshort{cpu}.
 However to simplify the code generation it has been chosen that all matrix or vector calculations, are to be done on the \acrshort{gpu}.
 This is not always the best choice, as \myref{sec:comparch} clearly shows, but it requires less analysis of the code given, furthermore as mentioned in \myref{sec:phil} \gls{gamble} uses the \acrshort{gpu} to gain computational power for performing already developed algorithms on data sets big enough to see an improvement in execution time.
-\todo[inline]{Måske nævne vi hellere vil flytte små matricer på gpu, end at beholde store på cpuen? MP - God ide, den tid det tager at flytte en lille matrix til GPU er heller ikke så stor som det man spare på at flytte store matricer til gpu'en. - Søren}
+Also even if smaller matrices are being computed, the increase in runtime is significantly less than the decrease for just a single bigger matrix operation, as can be seen on \myref{fig:test_results}.
+\todo[inline]{Måske nævne vi hellere vil flytte små matricer på gpu, end at beholde store på cpuen? MP - God ide, den tid det tager at flytte en lille matrix til GPU er heller ikke så stor som det man spare på at flytte store matricer til gpu'en. - Søren - Som ovenstående? - Marc}
 
