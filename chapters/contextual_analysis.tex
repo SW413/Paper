@@ -8,7 +8,7 @@ The design and implementation of the contextual analysis as well as how such err
 
 The contextual analysis phase has sub-phases for scope- and type-checking and error reporting.
 An illustration of the design for this can be seen on \myref{fig:flowContextual}, both sub-phases scope-checker and type-checker will have its own visitor class implemented.
-The diagram shows that if variables are out of scope or type mismatches it results in errors will stop the compilation, if no errors occur it results in a decorated \acrshort{ast} which is then used in the next phase of the compiler, code generation.
+The diagram shows that if variables are out of scope or type mismatches, it results in errors which will stop the compilation, if no errors occur it results in a decorated \acrshort{ast} which is then used in the next phase of the compiler, code generation.
 
 %\begin{figure}[ht]
 %  \centering
@@ -29,7 +29,7 @@ The validity of such reference is specific to the rules of the language, this se
 
 \section{Type Checking}
 Another important part of the contextual analysis phase for the compiler is the type checking, which enforces the type system of \gls{gamble}.
-This section will cover the design and implementation of the compiler's type checking.
+This section will cover the design and implementation of the type checking in the compiler.
 \input{chapters/sections/subsections/TypeCheck.tex}
 
 \section{Error Handling}
