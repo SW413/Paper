@@ -1,7 +1,7 @@
 
 \section{Implementation}\label{sec:ANTLR}
 The syntax analysis is implemented through the tool \acrfull{antlr}, this tool provides some advantages over other available tools.
-\acrshort{antlr} is based upon a parser technique called LL(*).
+\acrshort{antlr} is based upon a parser technique called LL(*).\todo{vi har allerede nævnt antlr en del før her. MP}
 LL(*) uses an algorithm to have a varying lookahead when needed.
 The LL(*) parsers, which is a parser that can uphold an LL(*) grammar, allows a bigger class of \acrshort{cfg}s than other parsers like LL(k).
 In the most recent version of \acrshort{antlr} as time of this publication, \acrshort{antlr} 4, the underlying algorithm have been extended to a parser technique called Adaptive LL(*) (ALL(*)).
@@ -14,8 +14,9 @@ This allows for more opportunities in the \acrshort{cfg} and while most grammars
 The idea with the ALL(*) algorithm is that the grammar is analysed  at parse-time, and requires no static analysis of the grammar. 
 This means that the undecidability of static LL(*) grammar analysis is avoided and instead it is possible to make correct parsers for any non-left-recursive \acrshort{cfg}.
 This allows \acrshort{antlr} access to input sequences while reading through the grammar, meaning not all possible inputs must be considered.
-Due to this dynamic analysis \acrshort{antlr} 4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
+Due to this dynamic analysis \acrshort{antlr}4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
 As mentioned this allows \acrshort{antlr} to take care of left-recursion if such is present in the grammar by rewriting it, as such would be the case in \myref{lst:amb}.
+\todo[inline]{Et lidt uklart afnsit, virker til en del ting bliver fortalt flere gange på forskellige måder. MP}
 
 \begin{lstlisting}[caption=An ambiguous rule for expr,frame=tlrb,label={lst:amb}]
 expr : expr '*' expr 	// match expressions with * operator
