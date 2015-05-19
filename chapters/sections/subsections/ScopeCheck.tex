@@ -27,6 +27,7 @@ int b = 0;
 b = foo();       /* Redeclaration error and undeclared error */ 
 /* [...] */
 \end{lstlisting}
+\todo{Evt lav en UML diagram der viser de klasser der bruges til at lave symbol tabellet, det gør i hvert fald det nemmere at forstå implementation. Men et diagram hører til i design afsnittet.}
 
 \subsection*{Implementation}
 \info[inline]{Todo: Listing or/eller figur i denne del.}
@@ -36,18 +37,19 @@ Every scope contains a hashed map with \texttt{Symbol}s as values and strings as
 Furthermore all scopes contain information about the particular scope such as enclosing scope and a unique id. 
 The key in the hashed maps represents the name of the symbol, and must be unique to the scope and not found in an enclosing scope, as this could cause an ambiguity to arise.
 This ambiguity is not allowed in \gls{gamble} and therefore throws a redeclaration error.
+\todo{Meget forvirrende at holde styr på uden en figur tbh. - Søren}
 
 To determine whether or not a declaration is a redeclaration, the compiler looks up the name of the variable in the \texttt{symbolMap} of the current scope.
-If no entry is found, the search continues in the \texttt{symbolMap} of the enclosing scope and so on recursively.
-The same lookup process is executed when a variable is used e.g in a expression or assignment.
+If no entry is found, the search continues in the \texttt{symbolMap} of the enclosing scope and so on recursively.\todo{Må man ikke redeclare et variable i et indre scope ??, så hvis jeg bruger tmp ude i global scope, så må jeg ikke bruge den inde i en funktion ?? - Søren}
+The same lookup process is executed when a variable is used e.g in an expression or assignment.
 Hereby all enclosing scopes are checked for the declaration of the variable; making redeclaration of variables in scope, and usage of undeclared variables impossible in \gls{gamble}, as defined in \myref{cha:language_design}.
 A \texttt{symbol} is an encapsulation of a variable and relevant peripheral data.
-The peripheral data consists of a boolean, used for checking is a declared variable is used, and an integer with the line number if the declaration of the variable.
-The boolean describing if a declared variable is used, is set to true, if the previously described lookup process for a variable in use, finds a declared variable from the unique id (the name if the variable).
+The peripheral data consists of a boolean, used for checking if a declared variable is used, and an integer with the line number if the declaration of the variable.
+The boolean describing if a declared variable is used, is set to true, if the previously described lookup process for a variable in use, finds a declared variable from the unique id (the name of the variable).
 This boolean also makes it possible for the \gls{gamble} compiler to find unused variables and then prompt the user with a relevant warning.
 
 In order for all of the above to be implemented an instance of the \texttt{SymbolTable} class is passed via the constructor, to a visitor which traverses the \acrshort{ast}.
-This visitor, the \texttt{SymbolTableFillVisitor} then fill the referenced \texttt{symbolTable} with scopes and their symbols.
+This visitor, the \texttt{SymbolTableFillVisitor} then fills the referenced \texttt{symbolTable} with scopes and their symbols.\todo{Hedder den stadig SymbolTableFillVisitor?}
 Every time the visitor meets the start of a new scope e.g. the block of statements within a loop construct.
 A new instance of the \texttt{Scope} class is pushed to the \texttt{scopeStack}, hereby making it possible to fill the relevant scope when the block of statements is visited.
-At the end of a scope the top element on the \texttt{scopeStack} is popped off, and as a consequence of this the top of the \texttt{scopeStack} is back to the enclosing scope.
+At the end of a scope the top element on the \texttt{scopeStack} is popped, and as a consequence of this the top of the \texttt{scopeStack} is back to the enclosing scope.
