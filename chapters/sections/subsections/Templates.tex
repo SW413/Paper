@@ -1,7 +1,7 @@
 \subsubsection*{Using SimpleOpenCl}\todo{Vi har nævnt dette i vsInterpreter, skal vi beholde dette da den jo også viser implementation her? Så er det måske fint at den lige nævner hvad det er igen ?? - Synes ikke det gør noget den er her, det jo bare en kort opsummering - Marc}
 SimpleOpenCL is a library for C which simplifies the process of setting up and launching a kernel for OpenCL.
-The kernels remain the same, but finding the hardware for executing the kernels and also allocating memory for the hardware is simplified.
-The codegeneraterVisitor starts at the root of the AST and here the code on \myref{lst:OpenCLSetup} is run.
+The kernels remain the same, but finding the hardware for executing the kernels and allocating memory for the hardware is simplified.
+The \texttt{CodeGeneraterVisitor} starts at the root of the \acrshort{ast} and here the code on \myref{lst:OpenCLSetup} is run.
 
 \begin{lstlisting}[caption=Call to setup SimpleOpenCL in the compiler,numbers=none,frame=tlrb,label={lst:OpenCLSetup}]
 outputCode.append(filesNstuff.
