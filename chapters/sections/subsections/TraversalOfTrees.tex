@@ -1,5 +1,5 @@
 \subsubsection*{Traversal of Trees}
-In the previous section an \acrshort{ast} which contains information from the source code was presented, and to get the information from the trees, a tree traversal is needed.
+In the previous section an \acrshort{ast} which contains information from the source code was presented; to get the information from the trees, a tree traversal is needed.
 For this task different approaches can be taken, one way is to implement a design pattern called the visitor pattern.
 Alternatively one can implement the composite pattern or choose to implement no pattern at all, but simply create a case analysis for each object.
 The use of a design pattern is not a requirement for the creation of a compiler.
@@ -11,5 +11,5 @@ In OOP, patterns are often described from a UML diagrams, showing the class and 
 The two aforementioned patterns are classified under two different branches of patterns.
 The composite pattern is a structural pattern where the visitor pattern is a behavioural one.
 A structural pattern provides a way of defining the relations between objects, the composite pattern is used to create a hierarchical recursive tree structure of related objects that may be accessed in a standardised manner.
-A behavioural pattern is instead used to define how the objects communicate, the visitor pattern is used to separate a set of structured classes from any functionality that should be performed upon them.\todo{Skal der en kilde på det her ? I think yes - Søren}
+A behavioural pattern is instead used to define how the objects communicate, the visitor pattern is used to separate a set of structured classes from any functionality that should be performed upon them.\citep{GOF}
 For the compiler the visitor pattern have been implemented for the traversal of trees as such the pattern is described further in the following section. 
