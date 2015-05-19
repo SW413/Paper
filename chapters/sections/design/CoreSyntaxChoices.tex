@@ -1,6 +1,6 @@
 \section{Core syntax choices}
 The source code must be encoded in UTF-8, but only the ASCII alphabet and numbers are allowed for identifiers and values, this is to simplify the parsing. \todo{Really?? - Søren, and how does that simplify parsing - Marc?}
-The language is case sensitive, because the most used languages seen on TIOBEs index\citep{TIOBE} are also case sensitive.
+The language is case sensitive, because the most used languages seen on TIOBEs index are also case sensitive.\citep{TIOBE}
 When a language is case sensitive it is possible for the programmer to name different parts of the code like he pleases, resulting in higher readability. \todo{Måske noget med at kunne bruge standarder indenfor programmering med lokale variabler er med små bogstaver osv?}
 Some languages, such as Python, uses whitespace and indentation to indicate scope, in \gls{gamble} scope is indicated by curly brackets like many existing languages\texttt{\{\}}.  
 
@@ -10,7 +10,7 @@ If a language were not to have the possibility to write comments, then the sourc
 Furthermore source code without comments might be difficult to return to after some time away from it, since the programmer would have to reread the entire code, instead of a few good comments.\citep{Commenting}
 Therefore both single line and multi line comments can be used in \gls{gamble}. 
 ``//'' is used for single line comments, meaning that everything after the ``//'' until the next newline is ignored by the compiler, also known as C++ style comments. 
-``/* */'' is used for multi line comments, meaning that everything between ``/*'' and ``*/'' is ignored by the compiler, also known as C style comments. \todo{Har vi en kilde på disse comment style navne? -Marc}
+``/* */'' is used for multi line comments, meaning that everything between ``/*'' and ``*/'' is ignored by the compiler, also known as C style comments.\citep{C_comment,Cplus_comment}
 
 \subsection*{End of statement terminator}
 When choosing an end of statement terminator there are two common choices.
@@ -40,11 +40,11 @@ A variable is in scope from its declaration until the end of the block it is dec
 An inner block, such as a control flow structure, see \myref{subsec:control-flow} for more, has access to the variables from the outer scope. 
 It is also not allowed to redeclare a variable which is already declared in the current scope or any enclosing scopes. 
 Additionally any function is in scope of any other function including itself, this also allows recursion. 
-- This is static scoping without information hiding. 
+This is static scoping without information hiding. 
 
 \subsection*{Structure}\label{subsec:Struc}
 The structure of the source code of a \gls{gamble} program is shown in \myref{lst:Structure}.
-To increase readability the source codehave is split up in segments.
+To increase readability the source code is split up in segments.
 A single segment contains only a small part of source code.
 The inclusion of other files are, like in many other languages, written in the top segment, this is to make it easy to get an overview of any and all included libraries. 
 All function declarations are written in the next segment followed by the main statements which is the last segment.
