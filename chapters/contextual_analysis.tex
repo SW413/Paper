@@ -1,6 +1,7 @@
 %Subphases
 \chapter{Contextual Analysis}
-Once the source code has passed through the syntax analysis, and thereby is validated in regard to the \acrshort{cfg}, it must be checked for contextual errors.\todo{Nu er der 2 gange rød tråd, skal vi slette det i det forhenværende eller er det fint at beholde begge? - Søren Det ser fint ud for mig _MP}
+Once the source code has passed through the syntax analysis, and thereby is validated in regard to the \acrshort{cfg}, it must be checked for contextual errors.\todo{Nu er der 2 gange rød tråd, skal vi slette det i det forhenværende eller er det fint at beholde begge? - Søren Det ser fint ud for mig -- MP}
+
 In the contextual analysis phase semantic errors are the ones being checked for, this includes type errors such as type mismatch, e.g. adding a boolean to a float, which may well be using the correct grammar, but is not a valid arithmetic expression.
 In the contextual analysis there is also checked in which scopes the different variables is available and if there is errors of this type.
 The design and implementation of the contextual analysis as well as how such errors are handled are described in this chapter.
@@ -27,6 +28,8 @@ The validity of such reference is specific to the rules of the language, this se
 \input{chapters/sections/subsections/ScopeCheck.tex}
 
 \section{Type Checking}
+The second important part of the contextual analysis phase for the compiler is the type checking, which enforces the type system of \gls{gamble}.
+This section will cover the design and implementation of the compiler's type checking.
 \input{chapters/sections/subsections/TypeCheck.tex}
 
 \section{Error Handling}
