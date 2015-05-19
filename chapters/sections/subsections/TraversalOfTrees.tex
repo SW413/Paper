@@ -1,16 +1,15 @@
 \subsubsection*{Traversal of Trees}
-In the previous section an \acrshort{ast} which contains information from the source code was presented, and to get the information from the tree, it is possible to do what is known as a tree traversal.
-A traversal for the parse tree is also needed.
+In the previous section an \acrshort{ast} which contains information from the source code was presented, and to get the information from the trees, a tree traversal is needed.
 For this task different approaches can be taken, one way is to implement a design pattern called the visitor pattern.
 Alternatively one can implement the composite pattern or choose to implement no pattern at all, but simply create a case analysis for each object.
 The use of a design pattern is not a requirement for the creation of a compiler.
 
-Design patterns provide a general reusable solution for a software problems, each pattern providing its own benefits.
+Design patterns provide a general reusable solution for a software problem, each pattern providing its own benefits.
 Using a pattern is not just copy and pasting other's code, but it simply states how to solve the problem at hand using different software structures.
-In OOP, patterns are often described from a UML diagram, showing the class and interface structure, and which methods these classes must implement. 
+In OOP, patterns are often described from a UML diagrams, showing the class and interface structure, and which methods these classes must implement. 
 
 The two aforementioned patterns are classified under two different branches of patterns.
 The composite pattern is a structural pattern where the visitor pattern is a behavioural one.
 A structural pattern provides a way of defining the relations between objects, the composite pattern is used to create a hierarchical recursive tree structure of related objects that may be accessed in a standardised manner.
-A behavioural pattern is instead used to define how the objects communicate, the visitor pattern is used to separate a set of structured classes from any functionality that should be performed upon them.
+A behavioural pattern is instead used to define how the objects communicate, the visitor pattern is used to separate a set of structured classes from any functionality that should be performed upon them.\todo{Skal der en kilde på det her ? I think yes - Søren}
 For the compiler the visitor pattern have been implemented for the traversal of trees as such the pattern is described further in the following section. 
