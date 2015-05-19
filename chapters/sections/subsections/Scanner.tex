@@ -1,15 +1,15 @@
 \subsection*{Scanner}
 The first stage of syntax analysis is the lexical analysis, which is often done in a scanner also sometimes referred to as a lexer.
-The primary function of a scanner is to transform a sequence of characters into a sequence of tokens.
-The purpose of these sequences of tokens is to transform the raw source code into tokens which can be interpreted meaningfully in the coming phases of the compiler, this is done in the next subphase, the parser.
+The primary function of a lexer is to transform a sequence of characters into a sequence of tokens.
+The purpose of this sequence of tokens is to transform the raw source code into tokens which can be interpreted in the coming phases of the compiler, this is done in the next subphase, the parser.
   
 The token creation is done by scanning every non-whitespace character, and grouping the characters into these tokens.
-The scanner makes sure that the source code adheres to the grammar rules provided by the \acrshort{cfg}.
-An example of this, would be that you could use the notation .1 or 0.1 for a decimal number, both being turned into identical tokens by the scanner.
+The lexer makes sure that the source code adheres to the grammar rules provided by the \acrshort{cfg}.
+An example of this, would be that you could use the notation .1 or 0.1 for a decimal number, both being turned into identical tokens by the lexer.
 
 Some examples of our lexical rules for \gls{gamble} can be seen on \myref{lst:token}.
-The definition of an integer number on line 3 states that an integer is either a zero or an optional negative sign followed by a single digit from one to nine followed by zero or more numbers from zero to nine.
-It is necessary to clearly define tokens for the lexer to read in order to read the source code correctly. \citep{Crafting_book}
+The definition of an integer on line 3 states that an integer is either a zero or an optional negative sign followed by a single digit from one to nine followed by zero or more numbers from zero to nine.
+It is necessary to clearly and unambiguously define tokens for the lexer to read in order to read the source code correctly. \citep{Crafting_book}
 
 \begin{lstlisting}[caption=Example of our lexer rules for \gls{gamble},frame=tlrb,label={lst:token}]
 // Integers
@@ -32,4 +32,3 @@ LINE_COMMENT
     :   '//' ~[\r\n]* -> skip
     ;
 \end{lstlisting} 
-\todo[inline]{Vi burde holde os til et begreb, lexer eller scanner. MP}
