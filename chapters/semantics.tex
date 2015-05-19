@@ -1,11 +1,11 @@
-\chapter{Semantics}\todo{Der skal eventuelt skrives noget omkring hvad det semantic der er sat ind repræsentere og hvordan det foregår? - Marc}
+\chapter{Semantics}\todo{Der skal eventuelt skrives noget omkring hvad det semantic der er sat ind repræsentere og hvordan det foregår? - Marc - Enig, der bør nok være lidt teori egentlig, der viser en dummy rule eller noget - Søren}
 In this section some of the semantics for \gls{gamble} will be shown and explained.
 Operational semantics are provided to formalise information about the mathematical operations behind the language.
 There is two ways of showing operational semantics natural semantics and structural operational semantics.
 Natural semantics often called big-step semantics and structural operational semantics often referred to as small-step semantics both shows the mathematical rules of a language. 
 In this chapter big-step semantics are shown which, as implied by it's name, describe execution of operations through overall results.
 
-The semantics are organised as follow:
+The names of some production rules of \gls{gamble} are changed to simplify some of the rules as follows:
 
 \begin{align*}
 	\textbf{a} \in  &Arithmetic\quad expression\\
@@ -31,7 +31,7 @@ Some of the operational semantics which are covered in this chapter are variable
 \subsection*{Declaring Variables}
 Variables declarations are also statements according to \gls{gamble}'s grammar.
 Declarations have an effect on the variable environment which is why it has it's own section.
-A variable declaration modifies the store and the variable environment, the new location in the store will be initialised to contain the values of the new variables and the new variable will exist in the variable environment.
+A variable declaration modifies the store and the variable environment, the new location in the store will be initialised to contain the values of the new variables, and the new variable will exist in the variable environment.
 
 \todo{der mangler da vidst et komma heri}
 [${VariableDeclaration}_{BSS}$]
@@ -46,7 +46,7 @@ A variable declaration modifies the store and the variable environment, the new 
 
 \section*{Statements}
 The effect of a statement is that the store may change, since a statement may modify the values of variables involved through assignments.
-A statement should not modify the variable environment.\todo{why? - Marc}
+A statement should not modify the variable environment.\todo{why? - Marc - Tilføj: "because it creates no new instances of variables" - Søren}
 We define a big-step semantic for statements, except for procedure calls.
 
 [${Assignment}_{BSS}$]
