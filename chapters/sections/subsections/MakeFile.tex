@@ -1,16 +1,16 @@
 \subsubsection*{From OpenCL to execution}\label{ssub:makefile}
 After the \gls{gamble} compiler have compiled the source code; the compiler outputs OpenCL C code as its object code.
 The OpenCL C code must be compiled by a C-compiler such as the GCC (GNU Compiler Collection) compiler to produce code the \acrshort{cpu} and \acrshort{gpu} can execute.
-During the compilation the OpenCL C headers must be accessable, to provide the functions and types used. 
-Aditionally the \gls{gamble} standard libary, containing functions such as \texttt{matrixToFile} and \texttt{fileToMatrix} must also be included and compiled. 
-This produces an executable file for the platform targetted by the compiler, this will most often be the platform running, such as x86--64 on Linux.
-The same executeable file is not usable for another platform, e.g. ARM, nor on another operating system, e.g. Windows or OS X.\todo{Skal vi ændre dette til OS X only med gamble?}
+During the compilation the OpenCL C headers must be accessible, to provide the functions and types used. 
+Additionally the \gls{gamble} standard library, containing functions such as \texttt{matrixToFile} and \texttt{fileToMatrix} must also be included and compiled. 
+This produces an executable file for the platform targeted by the compiler, this will most often be the platform running, such as x86--64 on Linux.
+The same executable file is not usable for another platform, e.g. ARM, nor on another operating system, e.g. Windows or OS X.\todo{Skal vi ændre dette til OS X only med gamble?}
 To maintain portability a ``MakeFile'' is used; a MakeFile is a file in the syntax which the GNU make utility can execute. 
 The make utiliry is a set of rules which ensures that the correct compiler, path, headers, etc. are used during compilation on one of multiple platforms. 
-This means that after running the \gls{gamble} compiler, on a configured computer, e.g. has OpenCL C headers, libary, a compiler etc., the make command can be used to build a binary file to be executed.
+This means that after running the \gls{gamble} compiler, on a configured computer, e.g. has OpenCL C headers, library, a compiler etc., the make command can be used to build a binary file to be executed.
 
 The kernel can either be compiled at compile-time or \acrshort{jit} compiled at runtime.
-The JIT compilation, called online compilation under OpenCL, allows the system to adapt with platform specific optimisations for the running platform.
+The \acrshort{jit} compilation, called online compilation under OpenCL, allows the system to adapt with platform specific optimisations for the running platform.
 If the kernel is compiled at compile-time, called offline compilation under OpenCL, then it might support fewer devices, or will take a long time and increase the size of the executable as it has to contain versions for each hardware for which support is requested. \citep{openclbookjit}
 For \gls{gamble} the online compilation is chosen for its simplicity as it lets the driver of the running system compile the kernel. 
 
