@@ -5,7 +5,7 @@ The syntax analysis is implemented through the tool \acrfull{antlr}, this tool p
 LL(*) uses an algorithm to have a varying lookahead when needed.
 The LL(*) parsers, which is a parser that can uphold an LL(*) grammar, allows a bigger class of \acrshort{cfg}s than other parsers like LL(k).
 In the most recent version of \acrshort{antlr} as time of this publication, \acrshort{antlr} 4, the underlying algorithm have been extended to a parser technique called Adaptive LL(*) (ALL(*)).
-An important feature of ALL(*) is it moves grammar analysis to parse time and thereby let the algorithm accept any non-left-recursive productions.
+An important feature of ALL(*) is it moves grammar analysis to parse time and thereby lets the algorithm accept any non-left-recursive productions.
 On top of that \acrshort{antlr} allows simple left recursions by rewriting them before parse time.
 
 The \acrshort{antlr} approach accepts a broader class of grammars than most other parsing methods, one way this is done is to rule out ambiguity by using a rule of precedence.
@@ -19,17 +19,18 @@ As mentioned this allows \acrshort{antlr} to take care of left-recursion if such
 \todo[inline]{Et lidt uklart afnsit, virker til en del ting bliver fortalt flere gange på forskellige måder. MP}
 
 \begin{lstlisting}[caption=An ambiguous rule for expr,frame=tlrb,label={lst:amb}]
-expr : expr '*' expr 	// match expressions with * operator
-     | expr '+' expr 	// match expressions with + operator
+expr : expr '*' expr 	#MulExpression // match expressions with * operator
+     | expr '+' expr 	#AddExpression// match expressions with + operator
      | INT 		// matches simple integer
      ;
-\end{lstlisting}
+\end{lstlisting}\todo{Hvorfor er denne ambiguous ? Den bruger left recursion, men den er da ikke ambigous er den ? - Søren}
 
 %While it may not be obvious from \myref{lst:amb} but this CFG also implements \acrshort{antlr}s way of representing operator precedence by simply obeying the first alternative in the rule set, as such the multiplication operator (``*'') will have the higher precedence. - Dette står allerede tidligere
 The ALL(*) algorithm also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process.
 The scanner provided by \acrshort{antlr} groups related tokens into token types such as INT, ID and FLOAT.
 In \acrshort{antlr} a token contains at least two pieces of information, the token type and the matched text for the token.
 \acrshort{antlr} also implements rule element labels in its \acrfull{cfg} which means one can apply label rules to a construct in a grammar, this allows for conditional steps in the grammar based on the source code being parsed.
+The labels on \myref{lst:amb} are \texttt{\#MulExpression} and \texttt{\#AddExpression}.
 Furthermore \acrshort{antlr} can set up an interface and base implementation of the visitor pattern for the parse tree on a given grammar by running \acrshort{antlr} with the \texttt{--visitor} flag.\citep{ALLSTAR, LLSTAR, antlr4_Book}
 
 
