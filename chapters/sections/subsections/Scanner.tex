@@ -1,5 +1,5 @@
 \subsection*{Scanner}
-The first stage of syntax analysis is the lexical analysis, which is often done in something called a scanner but can also be called the lexer.
+The first stage of syntax analysis is the lexical analysis, which is often done in something called a scanner but can also be called the lexer.\todo{..done in a scanner, allo sometimes referred to as a lexer. MP}
 The primary function of a scanner is to transform a sequence of characters into a sequence of tokens.
 The purpose of these tokens is to transform the raw source code into some tokens which can be meaningful interpreted in the coming phases of the compiler.
   
@@ -32,3 +32,4 @@ LINE_COMMENT
     :   '//' ~[\r\n]* -> skip
     ;
 \end{lstlisting} 
+\todo[inline]{Vi burde holde os til et begreb, lexer eller scanner. MP}
