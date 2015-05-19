@@ -4,7 +4,7 @@ Before the invention of the computer, mathematical computations were done by han
 In modern times computers have become the primary tool for doing extensive computations, and their \acrfullpl{cpu}s are what the majority of programming languages apply to perform calculations.
 The \acrshort{cpu} architecture is designed to efficiently handle sequential instructions. 
 Modern compilers, such as the Intel C++ compiler, can even exploit the \acrshortpl{cpu}'s  advanced instructions, such as \acrfull{simd} to speed up certain workloads. \citep{INTEL_SIMD}
-As applications and computations grow larger and more complex, programmers and mathematicians find themselves in need of more and more computational power. \citep[pp. 4]{OpenCL_AMD}
+As applications and computations grow larger and more complex, programmers and mathematicians find themselves in need of more and more computational power. \citep[pp. 4]{OpenCL_AMD}\todo{hvad betyder en sådan henvisning? MP}
 At the moment this demand is met with faster multi-cored \acrshortpl{cpu} however Moore's law, which predicts an exponential growth in transistor count and in integrated circuit thus resulting in faster computations on said \acrshortpl{cpu}, might come to an end.
 A former engineer from Intel foresees this stagnation of Moore's Law as soon as 2020 or 2022; hence alternatives to using the \acrshort{cpu} architecture needs to be explored.\citep{Moore2013}
 
@@ -14,14 +14,14 @@ Because of this specialisation, the \acrshort{gpu} can handle data parallel work
 Mathematicians and programmers alike can utilise this advantage and hereby complete computational intensive computations on big sets of data in parallel with better performance than on a \acrshort{cpu}, assuming these computations can be executed in parallel.
 The concept of executing computations on the \acrshort{gpu} not related to graphics, is commonly know as \acrfull{gpgpu}.
 
-In recent years this concept has increased in popularity amongst a wide range of different subjects, which requires some form of computation.
+In recent years this concept has increased in popularity amongst a wide range of different subjects, which requires some form of computation.\todo{Computing requiring some form of computing? MP}
 Dr. Ian Lane at Carnegie Mellon University have used this to his advantage, in his research on speech and language processing, significantly increasing the performance at which his system, Hydra, can transcript speech. \citep{NvidiaSpotlightIan}
 The power provided by the \acrshort{gpu}, is also used in fields where simulations and predictions are the primary focus. 
 Bill Putman, a NASA research meteorologist in Global Modelling and Assimilation Office, and his team restructured one of their modelling tools to take advantage of the \acrshortpl{gpu} performance. \citep{NvidiaSpotlightNasa}
 Many other areas of research could benefit from the use of \acrshort{gpgpu}.
 
 This relatively newfound interest of using the \acrshort{gpu}, is a result of it becoming increasingly difficult to improve upon the \acrshort{cpu}. \todo{Wat? Skal der stå at "There has been relatively?" - Søren}
-For the past few years, the average Intel \acrshort{cpu} has not increased significantly in regards to clock speed, most are about 3.7GHz.
+For the past few years, the average Intel \acrshort{cpu} has not increased significantly in regards to clock speed, most are about 3.7GHz.\todo{that's a bold statement MP}
 Even the highest clock speeds, seem to not be improving beyond 9GHz however these clock-speeds produce so much heat, that they require liquid nitrogen for cooling.
 Aside from the prediction that Moore's Law will end, another observation of processor development is also no longer available, the Dennard scaling.
 This states that the power density required to run a transistor of a given size will stay constant; thus scaling down the power used, as the transistor fell in size, e.g. scaling down the transistor's linear size by 2, would scale down its power by 4 essentially halving both voltage and current.\citep{DennardScaling}
@@ -38,6 +38,7 @@ The following questions come to mind when thinking of how to use the \acrshort{g
 
 The following sections will go into further detail regarding both the hard- and software used to achieve the performance the \acrshort{gpu} offers.
 Furthermore it will be described how one can utilise the \acrshort{gpu} for its increased computing power, and the different opportunities for doing so. 
+\todo[inline]{Vi nævner på intet tidspunkt sprog, er dette med vilje? MP}
 
 \newpage
 % chapter introduction (end)
