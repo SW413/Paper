@@ -1,11 +1,11 @@
 \subsubsection*{Implementation of Creating the \acrshort{ast}}
 
-The class \texttt{VisitorAST} creates the \acrshort{ast} from the parse tree, it traverses the tree using the visitor pattern and on every node sets a field of a class in the \acrshort{ast}. 
+The class \texttt{VisitorAST} creates the \acrshort{ast} from the parse tree, it traverses the parse tree using the visitor pattern and on every node sets a field of a class in the \acrshort{ast}. 
 Afterwards the node is placed on the tree as a leaf or a field on the node which made the \texttt{visit()} call.
 
-One of these visit methods can be seen on \myref{lst:VisitorASTCode}.
+One of these visit methods is shown in \myref{lst:VisitorASTCode}.
 
-\begin{lstlisting}[caption=The visit method for WhileLoopNode,frame=tlrb,label={lst:VisitorASTCode}]
+\begin{lstlisting}[caption=The visit method for WhileLoopNode.,frame=tlrb,label={lst:VisitorASTCode}]
 public BaseASTNode visitWhileLoop(ourLangParser.WhileLoopContext ctx) {
     WhileLoopNode whileLoopNode = new WhileLoopNode(parentStack.peek());
     whileLoopNode.setCondNode(
@@ -17,18 +17,18 @@ public BaseASTNode visitWhileLoop(ourLangParser.WhileLoopContext ctx) {
     return whileLoopNode;
 }
 \end{lstlisting}
-A stack called the parentstack is used to keep track of the caller to \texttt{visit()}, in order to keep track of the parents and the children of the tree.
+A stack called the \texttt{parentStack} is used to keep track of the caller to \texttt{visit()}, in order to keep track of the parents and the children of the tree.
 On lines three and four on \myref{lst:VisitorASTCode} a call to visit the \texttt{conditionalexpression} of the whileloop is made, which returns an instance of the class \texttt{ConditionalExpressionNode}.
-Afterwards, to set the body of the \texttt{WhileLoopNode}, all the children of the nodes are visited, but first the \texttt{WhileLoopNode} is pushed to the parentstack.
+Afterwards, to set the body of the \texttt{WhileLoopNode}, all the children of the nodes are visited, but first the \texttt{WhileLoopNode} is pushed to the \texttt{parentStack}.
 This makes it possible to check which node is the parent of the children being created during the calls to visit.
 
-\acrshort{antlr} uses the implementation where each node has a number of children, and therefore the \texttt{WhileLoopContext} has its children visited rather than specific fields.
-While implementing the Visitor pattern for the \acrshort{ast} an interface was made, which contains a visit method for every single class of the \acrshort{ast}.
-A baseclass that implements this interface which implements a visit method for all the nodes of the \acrshort{ast} such that the correct fields of the nodes are visited in the intended order.
-This means that any visitor class only has to override the visit methods which are of interest for the specific visitor, and the ones not overridden will use the baseclass' implementation which simply visits its fields.
+\acrshort{antlr} uses an implementation where each node has a number of children, and therefore the \texttt{WhileLoopContext} has its children visited rather than specific fields.
+To implrement the Visitor pattern for the \acrshort{ast} an interface was made, which contains a visit method for every single class of the \acrshort{ast}.
+A base class that implements this interface which implements a visit method for all the nodes of the \acrshort{ast} such that the correct fields of the nodes are visited in the intended order.
+This means that any visitor class only has to override the visit methods which are of interest for the specific visitor, and the ones not overridden will use the base class' implementation which simply visits its fields.
 A UML diagram for the implementations of the visitor pattern in the compiler and can be seen on \myref{image:Visitors}.
 The figure shows how every visitor class inherits from the \texttt{BaseASTVisitor} class.\todo{Overvejer lidt om denne figur skal væk da det jo er design og egentlig bare viser det som figuren i design viser? - Søren}
-Now that the Syntax analysis phase is done it is time for the contextual analysis phase which the next chapter will cover.
+Now that the Syntax analysis phase is done it is time for the contextual analysis phase which the next chapter will cover. \todo{Denne sætning virker lidt ``out of place'' imo. -- Troels}
 
 \begin{figure}[!ht]
 \centering

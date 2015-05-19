@@ -2,13 +2,13 @@
 \chapter{Contextual Analysis}
 Once the source code has passed through the syntax analysis, and thereby is validated in regard to the \acrshort{cfg}, it must be checked for contextual errors.\todo{Nu er der 2 gange rød tråd, skal vi slette det i det forhenværende eller er det fint at beholde begge? - Søren Det ser fint ud for mig -- MP - det virker fint som en indledning til afsnittet - Marc}
 
-In the contextual analysis phase semantic errors are the ones being checked for, this includes type errors such as type mismatch, e.g. adding a boolean to a float, which may well be using the correct grammar, but is not a valid arithmetic expression.
-In the contextual analysis it is also checked in which scopes the different variables are available and if there are errors of this type.
+In the contextual analysis phase semantic errors are the ones being checked for\todo{En sætning som denne indeholder imo alt for mange fyldord, kunne have været: ``The contexual analysis checks for semantic errors'' -- Troels}, this includes type errors such as type mismatch, e.g. adding a boolean to a float, which may well be adhering to the grammar, but is not a valid arithmetic expression in \gls{gamble}.
+Scope checking is also done in the contextual analysis. 
 The design and implementation of the contextual analysis as well as how such errors are handled are described in this chapter.
 
-The contextual analysis phase has sub-phases for scope- and type-checking and error handling.
-An illustration of the design for this can be seen on \myref{fig:flowContextual}, both sub-phases scopechecker and typechecker will have its own visitor class implemented.
-The diagram shows that if variables are out of scope or type mismatches it results in errors will stop the compilation, if no errors occur it results in a decorated \acrshort{ast} which is then used in the next phase, Code generation.
+The contextual analysis phase has sub-phases for scope- and type-checking and error reporting.
+An illustration of the design for this can be seen on \myref{fig:flowContextual}, both sub-phases scope-checker and type-checker will have its own visitor class implemented.
+The diagram shows that if variables are out of scope or type mismatches it results in errors will stop the compilation, if no errors occur it results in a decorated \acrshort{ast} which is then used in the next phase of the compiler, code generation.
 
 %\begin{figure}[ht]
 %  \centering
