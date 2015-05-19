@@ -8,11 +8,11 @@ The error message should indicate which identifier is not in scope, and the line
 
 To check this all references to identifiers must be checked to see if they match an identifier in the symbol table of the current scope, and recursively the scope which encloses it. 
 Furthermore it is important that any usage of an identifier only exists after its declaration.
-In the compiler for this project, the symbol table is filled while the compiler is also performing the scope checking.
+In the compiler for \gls{gamble}, the symbol table is filled while the compiler is also performing the scope checking.
 This is because it reduces the amount of traversals through the tree, and scope checking and filling the symbol table is also similar in concept, e.g. a declaration creates an entry in the symbol table, while expressions simply make lookups in this table.
 
-The scope checker produces two errors: redeclaration errors and undeclared errors defined in \myref{subsec:Scope}.
-A redeclaration error is produced when an attempt to declare a variable while it is already declarared in scope is made.
+The scope checker produces two errors: redeclaration errors and undeclared errors defined in \myref{subsec:Scope}.\todo{reference nødvendig igen? also: can produce. MP}
+A redeclaration error is produced when an attempt to declare a variable while it is already declared in scope is made.\todo{klumset formulering. MP}
 An undeclared error is produced when an attempt to use a variable which is not declared in the current scope or any enclosing scopes is made. 
 Examples are shown in \myref{lst:scopeErrors}.
 
