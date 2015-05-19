@@ -1,14 +1,14 @@
 \chapter{Compiler Overview}\label{Chp:CompilerOverview}
 Most compilers are either a multi-pass or a single-pass compiler. 
-Each have their advantages and disadvantages however the most significant difference is that in a single-pass compiler, as the name suggests, only one does one pass of the source code. \todo{or other representations of the source code, such as pt or ast? -- Troels}
+Each have their advantages and disadvantages, however the most significant difference is that in a single-pass compiler, as the name suggests only one does one pass of the source code. \todo{or other representations of the source code, such as pt or ast? -- Troels}
 This highly limits the information available to the compiler and this decreases the odds of creating efficient programs, which is not wished for in \gls{gamble}. \todo{Informationen er vel den samme, men der er mindre mulighed for advancerede checks og/eller optimeringer? -- Troels}
 As such the \gls{gamble} compiler will be a multi-pass compiler and can therefore be divided into phases.
 In this chapter the different phases of the compiler and their goals and tasks will be presented to give an overview for the chapters to come.
 
-The compiler for \gls{gamble} is separated into three phases: syntax analysis, contextual analysis and code generation.
+The compiler for \gls{gamble} is separated into three phases: Syntax analysis, contextual analysis and code generation.
 \myref{fig:phases} shows a state diagram of the phases of the compiler.
 Syntax analysis and contextual analysis transforms the source code into an intermediate representation, and verifies the source code according to the syntax specified in the \acrshort{cfg} and also for type as well as scope and type checking.
-Java 1.8 is chosen as the language the compiler will be written in, which is the language used in the languages and compiler course.
+Java 1.8 is chosen as the language the compiler will be written in, which is the language used in the languages and compiler course aswell.
 When making a compiler an object-oriented language simplifies many tasks because of encapsulation, polymorphism and inheritance. 
 The paradigm allows for many structural options, and reuse of code when inheriting, which would be difficult using another paradigm like imperative or functional programming.
 Java also works across platforms, which is a useful feature.
@@ -19,8 +19,8 @@ Java also works across platforms, which is a useful feature.
 \caption{State diagram showing the phases of the compiler when it takes \gls{gamble} source code and compiles it into machine code.}\label{fig:phases}
 \end{figure}
 
-In the syntax analysis phase the input source code is parsed and separated into tokens according to the \acrshort{cfg}.
-This is done by the scanner, the parser structures these tokens into a tree structure, which can be traversed in the path the source code is written.
+In the syntax analysis phase the input source code is parsed and separated into tokens according to the \acrshort{cfg}, this is done by the scanner. 
+The parser structures these tokens into a tree structure, which can be traversed in the path the source code is written.
 When the source code has been parsed the tree is then simplified to remove unnecessary information such that a tree with less nodes can be traversed.
 If a syntactical error is found in this phase the compiler stops and reports errors in the console.
 
@@ -35,7 +35,7 @@ In the code generation phase the output code is generated from all the informati
 
 The target language of this compiler is OpenCL C.
 To compile OpenCL C code additional software for the GPU is required, depending on the machine the path to this software may be required when compiling, as such one cannot simply run this on all machines.
-By compiling the OpenCL C code, it is translated into machine code and linked with libaries, which the computer then understands.\todo{Skal vi skrive et afsnit efter code gen som hedder noget med:How to run a \gls{gamble} program? - Søren Dette kunne være under makefile tingene? -- Troels}
+By compiling the OpenCL C code, it is translated into machine code and linked with libraries, which the computer then understands.\todo{Skal vi skrive et afsnit efter code gen som hedder noget med:How to run a \gls{gamble} program? - Søren Dette kunne være under makefile tingene? -- Troels}
 This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using its specific instruction set, not only gives problems targeting more types of GPUs but is also too demanding for the project group to understand let alone use in just one semester.
 OpenCL C is low level compared to Java or C\#, and C has even been characterised as a portable assembly language, as many features of the language translates closely to assembly. \citep{CPort}\todo{Hvilket er relevant fordi? - Marc .. Det er et valg vi har truffet og diskutere senere. -- Troels}
 
@@ -62,7 +62,7 @@ The compiler takes the \gls{gamble} source code as input and translates it into 
 
 
 The overall structure of the compiler is also implemented using these phases as seen on \myref{fig:compilerOverview} where the \texttt{main} method of the \texttt{Main} class calls the different phases.
-This separation helps give an overview when working with the compiler, all the phases are distinctly separated, this seperation is helpful when making changes as a change in one phase will not conflict with other phases it also helps locate where in the compiler changes are required.
+This separation helps give an overview when working with the compiler, all the phases are distinctly separated, this separation is helpful when making changes as a change in one phase will not conflict with other phases it also helps locate where in the compiler changes are required.
 
 \begin{figure}[!ht]
 	\begin{sideways}
