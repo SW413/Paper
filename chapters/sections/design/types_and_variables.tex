@@ -9,11 +9,11 @@ A second reason being that the size of every variable in \gls{gamble} is unchang
 Any vector and matrix will be allocated on the heap by the compiler. \todo{Compiler igen. - Søren}
 
 \subsection*{Integers and floating points}
-An \texttt{integer} in \gls{gamble} is either a positive or negative integer, represented by the two's complement method. 
+An \texttt{integer}\todo{texttt{int} eller integer som plantxt MP} in \gls{gamble} is either a positive or negative integer, represented by the two's complement method. 
 Meaning that it ranges from $-(2^{n-1}) $ to $2^{n-1} - 1 $, where n is the number of bits used.
 A floating point number is an approximation to a real number. 
 It is separated in 3 parts, the sign bit, the mantissa and the exponent. 
-Floats in \gls{gamble} are in base 2, the value of a float is calculated by $ {(-1)}^{sign bit} \cdot mantissa \cdot 2^{exponent} $. 
+Floats in \gls{gamble} are in base 2, the value of a float is calculated by $ {(-1)}^{sign bit} \cdot mantissa \cdot 2^{exponent} $. \todo{alt dette er vel kun på grund af vi codegen'er til c? MP}
 Integers and floating point numbers default to 32 bits with the keywords \texttt{int} and \texttt{float}. 
 It is possible to declare 16 and 64 bit integers and floating point numbers by postfixing their size to their respective keywords, e.g. \texttt{float64} or \texttt{int16}. \todo{Skal det med i semantikken at man kan skrive 16 og 64 ? Det skal det vel ? - Søren}
 It is useful to be able to specify the size of an integer or a floating point number, as data transfer can cause a lot of overhead particularly when transferring data to and from the \acrshort{gpu}. 
@@ -54,7 +54,7 @@ Available operators for simple data types in the language can be found on \myref
 Some operators will work with vectors and matrices.
 Since the elements in vectors and matrices are one of the simple types of \gls{gamble}, the operands on both sides of an infix operator must adhere to the rules of type compatibility.
 The list of possible operands on these complex data types can be seen on \myref{tbl:matOps}.
-It is not shown in the table but the $+$ and $-$ operations in \myref{tbl:matOps} requires the matrices and vectors to have the same dimensions.
+It is not shown in the table but the $+$ and $-$ operations in \myref{tbl:matOps} requires the matrices and vectors to have the same dimensions.\todo{Enten vis det i table't eller blot nævn det i brødtxt MP}
 The $*$ operation requires one matrix to have the same row size as the other matrix' column size. Ex. a matrix [j,k] and a matrix [k,h] can be multiplied because they have the same size k.
 This will result in a [j,h] sized matrix.
 The use of operators between matrix and vector instances is influenced by matlab which uses the same concept with great success.
