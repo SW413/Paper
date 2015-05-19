@@ -21,23 +21,27 @@ importing
     ; 
 
 controlblock
-    : IF '(' conditionalExpression ')' ifBlock=block (ELSE IF '(' conditionalExpression ')' elseIfBlock=block)* (ELSE elseBlock=block)?
+    : IF '(' conditionalExpression ')' block (ELSE IF '(' conditionalExpression ')' block)* (ELSE block)?
     ;
 
 loop
-    : WHILE '(' (conditionalExpression | BOOLVAL) ')' whileBlock=block      #whileLoop
-    | FOR '(' (declaration | assignment) ';' conditionalExpression ';' expression ')' forBlock=block     #forLoop
+    : WHILE '(' conditionalExpression ')' block
+    | FOR '(' (declaration | assignment) ';' conditionalExpression ';' expression ')' block
     ;
 
 block
     : '{' statement* '}'
     ;
-    
-conditionalExpression
-    : conditionalExpression ('&&' | '||') conditionalExpression  #multiCondExpr
-    | expression conditionalOperator expression                  #singleCondExpr
-    ;
-
+                                                                       
+conditionalExpression                                                  
+    : conditionalExpression '&&' conditionalExpression                 
+    | conditionalExpression '||' conditionalExpression                 
+    | expression conditionalOperator expression                        
+    | conditionalExpression  ( '==' | '!=' ) conditionalExpression     
+    | '(' conditionalExpression ')'                                    
+    | BOOLVAL                                                          
+    ;                                                                  
+                                                                       
 functiondeclaration
     : functiondatatype ID '(' parameterlist ')' functionbody
     ; 
@@ -57,73 +61,76 @@ parameterlist
     ;
 
 parameter
-    : (datatype | complexdatatype ) ID
-    ;
-
-functioncall
-    : ID '(' argumentlist ')'          #customFunc
-    | PRINT '(' argumentlist ')'       #printFunc
-    ;
+    : (valueType | complexdatatype ) ID
+    ;                                      
+                                           
+functioncall                               
+    : ID '(' argumentlist ')'              
+    | PRINT '(' argumentlist ')'           
+    | COMPLEXTOFILE '(' argumentlist ')'   
+    | FILETOCOMPLEX  '(' argumentlist ')'  
+    ;                                      
 
 argumentlist
-    : expression ( ',' expression ) *
-    | STRING
+    : (expression | STRING) ( ',' (expression | STRING) ) *
     | 
     ;
 
-expression
-    : expression ( '*' | '/' | '%' ) expression     #mulExpr
-    | expression ( '+' | '-' ) expression           #addExpr
-    | '(' expression ')'                            #parenExpr
-    | value                                         #valueExpr
-    | ID postUnaryOperator                          #postIDExpr
-    ;
-
+expression                                            
+    : expression '^' expression                       
+    | expression ( '*' | '/' | '%' | '#' ) expression 
+    | expression ( '+' | '-' ) expression             
+    | '(' expression ')'                              
+    | value                                           
+    | ID postUnaryOperator                            
+    ;                                                 
+                                                      
 assignment
     : valassignment
 	| collectionassignment
     ;
 
-valassignment
-	: ID assignmentOperator ( expression | BOOLVAL ) #stdAssignment
-    | ID postUnaryOperator                           #postUnaryAssignment
-	;
-
-collectionassignment
-	: ID '=' expression                                 #entireCollectionAssignment
-	| collectionEntrance assignmentOperator expression  #collectionEntranceAssignment
-	;
+valassignment                                       
+	: ID assignmentOperator ( expression | BOOLVAL )
+    | ID postUnaryOperator                          
+	;                                               
+                                                       
+collectionassignment                                   
+	: ID '=' expression                                
+	| collectionEntrance assignmentOperator expression 
+	;                                                  
 	
-declaration
-    : datatype ID '=' expression                        #primitiveDecl
-    | complexdatatype ID '=' expression                 #complexDecl
-    ; 
+declaration                                           
+    : valueType ID '=' expression                     
+    | complexdatatype ID '=' expression               
+    | complexdatatype '[' entranceCoordinate ']' ID   
+    ;                                                 
     
-datatype
-    : INT                               #integer
-    | FLOAT                             #floatingpoint
-    | BOOL                              #boolean
-    ;
-
+valueType                          
+    : INT                          
+    | FLOAT                        
+    | BOOL                         
+    ;                              
+                                   
 complexdatatype
-    : collectiontype '<' datatype '>'
+    : collectiontype '<' valueType '>'
     ;
 
 functiondatatype
-    : datatype
+    : valueType
     | complexdatatype
     | VOID
     ;
 
-value
-    : ID                                     #valID
-    | constant                               #valConstant
-    | '[' valueList ( ';' valueList )* ']'   #valList
-    | functioncall                           #valFuncCall
-    | collectionEntrance                     #valCollectionEntrance
-    | BOOLVAL                                #valBool
-    ;
-
+value                                      
+    : ID                                   
+    | constant                             
+    | '[' valueList ( ';' valueList )* ']' 
+    | functioncall                         
+    | collectionEntrance                   
+    | BOOLVAL                              
+    ;                                      
+                                           
 collectionEntrance
     : ID '[' entranceCoordinate ']'
     ;
@@ -146,8 +153,7 @@ collectiontype
     ;
 
 postUnaryOperator 
-    : '++' | '--'
-    ;
+    : '++' | '--' | '^T' ;
 
 assignmentOperator
     : '=' | '+=' | '-=' | '*=' | '/=' ;
@@ -167,7 +173,8 @@ IF: 'if' ;
 ELSE: 'else' ;
 
 WHILE: 'while' ;
-FOR: 'for' ;
+FOR: 'for' ;   
+PFOR: 'pfor' ;
 
 MATRIX: 'matrix' ;
 VECTOR: 'vector' ;
@@ -177,7 +184,7 @@ INT: 'int' | 'int16' | 'int32' | 'int64' ;
 INTNUM: '0' | SIGN? [1-9][0-9]* ;
 
 FLOAT: 'float' | 'float16' | 'float32' | 'float64' ;  
-FLOATNUM: '0.0' | SIGN? ([1-9][0-9]* | '0') '.' [0-9]* [1-9] ;
+FLOATNUM: SIGN? ([1-9][0-9]* | '0') '.' ([0-9]* [1-9] | '0') ;
 
 BOOL: 'bool' ;
 BOOLVAL: 'true' | 'false' ;
@@ -188,11 +195,13 @@ STRING: '"' .*? '"' ;
 
 SIGN: '-' ;   
 
-PRINT: 'print' ; 
+PRINT: 'print' ;
+COMPLEXTOFILE: 'matrixToFile' ;
+FILETOCOMPLEX: 'fileToMatrix' ;
 
 ID: [a-zA-Z_][a-zA-Z0-9_]* ;    
 
-LIBRARY: [a-zA-Z0-9_\/]+('.')?[a-zA-Z0-9_]*;
+LIBRARY: [a-zA-Z0-9_\/'.']+;
 
 //Whitespace and comments
 
@@ -207,5 +216,5 @@ COMMENT
 LINE_COMMENT
     :   '//' ~[\r\n]* -> skip
     ;
-
+                                                
 \end{lstlisting}
