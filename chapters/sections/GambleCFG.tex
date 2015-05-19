@@ -36,7 +36,7 @@ An expression has production rules expanding the expression into a construct con
 This is done because an expression can derive to a value, and several values are needed for multiple arithmetic operations.
 This construct also causes left-recursion, something often attempted to be avoided in \acrshort{cfg}.
 The parse generator \acrshort{antlr} can handle simple left-recursion as seen on \myref{lst:value} and as such it is acceptable in the \acrshort{cfg} for \gls{gamble}.\todo{Måske vi skal have et afsnit inden gamble CFG omkring parse generators eller noget ? :) Det skal bare nævnes et sted - Søren}
-It does so internally rewriting it and as such removes the left-recursion.
+It does so internally rewriting it and as such removes the left-recursion.\todo{Står det ikke lidt kluntet? - Corlin}
 \begin{lstlisting}[caption={\acrshort{cfg} for Expressions in \gls{gamble}},frame=tlrb,label={lst:expression},numbers=none]
 expression
     : expression ( '*' | '/' | '%' ) expression     #mulExpr

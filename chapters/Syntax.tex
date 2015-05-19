@@ -23,7 +23,7 @@ It is possible to generate a parse tree for a string which follows the grammar.\
 If there exists two or more parse trees for any given string then the grammar is ambiguous. 
 Having an ambiguous grammar can be a problem when parsing because the one cannot always decide which grammar rule it should apply. \todo{``the one'' hvad? -- Troels | måske bare one ?? - msm}
 
-\subsection{The dangling else problem} \todo{Er der nytte af dette afsnit? -- Troels}
+\subsection{The dangling else problem} \todo{Er der nytte af dette afsnit? -- Troels ... Vi viser vi ved der skal tages højre for det - Corlin}
 This section shows an example of how to solve the problem of ambiguity for grammars. 
 Some tools for generating parsers from grammars, can solve these problems themselves.
 One of these tools, \acrshort{antlr}, will be discussed later in \myref{sec:ANTLR}.\todo{Er det vigtigt at nævne Antlr her ? - Søren Nej MP}
@@ -85,11 +85,11 @@ LL(*) is also a grammar class, which can dynamically change the number of tokens
 An LL parser is called an LL(*) parser if it is not limited to finite \emph{k} tokens of lookahead, but can make parsing decisions by recognising whether the following tokens belong to a regular language.
 Combining this with the fact that any LL grammar is a subset of an LR grammar and the different cases of lookahead constructs a diagram. 
 This Venn diagram is shown in \myref{fig:hierarchyofgrammars}, LL(*) can express the same grammars as LL(k).
-This figure also contains the Simple LR (SLR) which is broader definition of grammar than an LR(0) grammar, but less so than an LR(1), and the LALR(1) which covers more grammars than Simple LR and less than LR(1). \todo{Det her giver mening, men har 0 relevans og lyder rigtig dårligt :P, måske bare stoppe efter " LL(*) can express the same grammars as LL(k)." - Søren | måske skal det flyttes til figur tekst, så vi ikke præsenterer en figur med uforklarede forkortelser - msm}
+This figure also contains the Simple LR (SLR) which is broader definition of grammar than an LR(0) grammar, but less so than an LR(1), and the LALR(1) which covers more grammars than Simple LR and less than LR(1). \todo{Det her giver mening, men har 0 relevans og lyder rigtig dårligt :P, måske bare stoppe efter " LL(*) can express the same grammars as LL(k)." - Søren | måske skal det flyttes til figur tekst, så vi ikke præsenterer en figur med uforklarede forkortelser - msm | Enig med Sass - Corlin}
 \begin{figure}[!ht]
 \centering
  \includegraphics[width=0.5\textwidth]{figures/classesofgrammars.png} % trim=4.85cm 15cm 0.85cm 1cm
-\caption[A Venn diagram showing the similarities between the different subclasses of CFGs]{A Venn diagram showing the similarities between the different subclasses of CFGs. Where LL(*) is marked with in light blue. \citep{Lecture5}}
+\caption[A Venn diagram showing the similarities between the different subclasses of CFGs]{A Venn diagram showing the similarities between the different subclasses of CFGs. Where LL(*) is marked with light blue. \citep{Lecture5}}
 \label{fig:hierarchyofgrammars}
 \vspace{-15pt}
 \end{figure}
