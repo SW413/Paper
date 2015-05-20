@@ -57,7 +57,7 @@ sclManageArgsLaunchKernel(hardware, software, global_size, local_size, "%R %a",
 
 \texttt{global\_size} is set to be the size of the matrix, and a kernel is then launched for every index in the matrix.
 This is decided by setting the indices in \texttt{global\_size}.
-If the size of a matrix was 4, a kernel would be launched with 1, 2, 3 and 4 as the indices. \todo{Er de ikke nul indekserede? -- Troels}
+If the size of a matrix was 4\todo{betyder dette en 2x2 matrice eller en 4x4 matrice? - Corlin}, a kernel would be launched with 1, 2, 3 and 4 as the indices. \todo{Er de ikke nul indekserede? -- Troels}
 The implementation of multiplying a matrix with a scalar is actually made where the matrix is interpreted as a single vector where each row comes after the other.
 If the matrix form is needed the rows of the matrix would be places in \texttt{global\_size[0]} and the columns in \texttt{global\_size[1]}.
 If the example of a size 4 matrix is still used, the following sets of kernels would be sent:
