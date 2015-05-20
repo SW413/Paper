@@ -1,22 +1,22 @@
 \chapter{Conclusion} % (fold)
 \label{cha:conclusion}
-\todo{der står ikke rigtig noget om at vi har opfyldt de krav vi satte, vi kunne godt refere tilbage til dette, ligesåvel som at benytte os a problemformuleringen hernede - Marc}
-\todo[inline]{Man kunne evt. snakke om readablitiy, writeablility og reliablity her? -- Troels}
-\todo[inline]{Måske man skulle lave nogle underoverskrifter her for at undgå at det bliver rodet. Evt. en som hedder sproget og en som hedder compileren. -- Troels}
-
 For this project the goal was to create a language and a corresponding compiler which could perform numerical computations on the \acrshort{gpu}.
 During the project different aspects of the process of creating a language and a compiler has been presented; different ways of handling these aspects have been discussed as well as the implementation of these.
 The language \gls{gamble} was designed to make it easier for programmers and mathematicians alike to perform matrix and vector computations that used the power of the \acrshort{gpu} without the programmer needing to specify so in the source code.
 Using the operators, defined in \myref{subsec:operators}, along with matrices or vectors \gls{gamble} will compile to OpenCL C code, which runs the computations on the \acrshort{gpu}.
 As a result of running computations on the \acrshort{gpu} an increase in runtime efficiency can be obtained; an increase in runtime efficiency will only exist if the computations are of a significant size; \myref{cha:test_of_language} shows what data size is required for \gls{gamble} to provide an increase in runtime efficiency by using the \acrshort{gpu} rather than the sequential execution on the \acrshort{cpu}.
 
-\myref{cha:language_critera} mentions the criteria that the project group set for \gls{gamble} and what became its compiler; based on the the test of \gls{gamble} it was concluded that \gls{gamble} can run faster than the sequential C code, atleast for the operations \gls{gamble} perform on the \acrshort{gpu}.
+\myref{cha:language_criteria} mentions the criteria that the project group set for \gls{gamble} and what became its compiler; based on the test of \gls{gamble} it was concluded that \gls{gamble} can run faster than the sequential C code, at least for the operations \gls{gamble} performs on the \acrshort{gpu}.
 The way \gls{gamble} is designed, this happens seamlessly to the programmer which was also a criterion for the language.
+When the \acrshort{gpu} usage happens seamlessly it increases both the read- and writability of the language, because of the removal of all the boiler-plate code needed for executing on the \acrshort{gpu}.
+Another criterion was to implement an error reporting system which would give descriptive error messages to ease the debugging of programs compiled by the compiler.
+This is done by making a number of standard error classes for scope and type checking, and creating instances of these when encountering a corresponding error in the \acrshort{ast} in the contextual analysis phase, and continuing the scope and type checking until completion.
+When the phase is complete the compiler will have a list of all the errors encountered and can print these in the console with the type of error and also the line number where the error occurs.
+Another result of the contextual analysis phase is that it makes sure that programs written in \gls{gamble} and compiled by the \gls{gamble} compiler will run reliably according to the scope and type rules of \gls{gamble}.
 
-When the \acrshort{gpu} usage happlens am eslly
-
-For developing the compiler the parser generator \acrshort{antlr}4 was used, which made a parser from the grammar specified by the project group.
-This parser gives a parse tree as output; The parse tree is translated into an \acrshort{ast} by the compiler.
+For creating the parser for the compiler, the parser generator \acrshort{antlr}4 was used.
+\acrshort{antlr}4 made a parser from the \acrshort{cfg} specified by the project group.
+This parser generates a parse tree; the parse tree is translated into an \acrshort{ast} by the compiler.
 The \acrshort{ast} removes redundant information from the parse tree thus simplifying its traversal.
 The \acrshort{ast} allowed for easier access to the nodes than the parse tree, while grouping information and using less nodes for information compared to the parse tree.
 Scope and type checking are essential parts of the compiler and identifies errors in the source code before runtime.
@@ -24,16 +24,3 @@ Scope and type checking are essential parts of the compiler and identifies error
 The project showed that there are many aspects in creating a language and a compiler.
 The use of the \acrshort{gpu} is worthwhile when the size of the computations become sufficiently large, and creators of new languages or compilers should think of including ways of using this resource for such purposes.
 Furthermore it became evident that attempting a general solution for all \acrshort{gpu} platforms is not the best approach, it would be better to spend the proper amount of time developing for each individual platform, if that time is available.
-
-
-\begin{itemize}
-	\item Can perform calculating matrix and vector calculations on the GPU, without the programmer specifying so.
-	\item Can implicitly calculate matrix operations on the \acrshort{gpu} faster than regular C being run on the \acrshort{cpu}, when sufficient large matrices are provided.\todo{Regular C, kunne implicit henvise til at vi ved vi codegen'er til C. MP}
-	\item Express a high level of read- and writability, by adhering to the concept of simplicity and having a familiar syntax design.
-	\item Provides reliability, with type and scope checking.
-	\item Gives descriptive and fulfilling error messages, for easier debugging, resulting in better writability.\todo{How does one check fullfilling-ness?}
-\end{itemize}
-      %cock
-
-How does one design a programming language, with a corresponding compiler, which compiles
-source code to execute on the GPU at runtime for certain linear algebra calculations, such as matrix operations?
