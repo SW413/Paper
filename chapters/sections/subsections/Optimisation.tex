@@ -6,7 +6,7 @@ Runtime efficiency entails considerations of memory allocation, pipelining, para
 To do an efficient and complete analysis of how to increase runtime efficiency, information of the situation in a given program is required.
 This is where \gls{gamble} is at a disadvantage. 
 \gls{gamble} distances its programmers from controlling where the code is performed and instead does so seamlessly.
-Information about how e.g. a for-loop could be transformed into a kernel does not exist in \gls{gamble} which makes it difficult to do this.\todo{er ikke helt med her? MP - Vi ved ikke om et for-loop er paralleliser bart eller ej ud fra informationen i AST'et - Marc ... Her kunne en pfor-løkke være brugbar. -- Troels}
+Information about how e.g.\todo{e.g. or e.i.? - Corlin} a for-loop could be transformed into a kernel does not exist in \gls{gamble} which makes it difficult to do this.\todo{er ikke helt med her? MP - Vi ved ikke om et for-loop er paralleliser bart eller ej ud fra informationen i AST'et - Marc ... Her kunne en pfor-løkke være brugbar. -- Troels}
 The seamless use of the \acrshort{gpu} means that certain information is nonexistent and therefore all computations may not be candidates for improving its runtime efficiency, this is one of the trade-offs \gls{gamble} makes, meaning that simplicity of the language is valued over performance.\todo{Det her står imod principperne og er en farlig og dum sætning tbh. - Søren - Imod hvilke principper? - Marc}
 If \gls{gamble} were to require more information, e.g. whether or not something is paralleliseable or ask the programmer to determine what type of \acrshort{gpu} memory should be used for each variable, the simplicity and seamless use of the \acrshort{gpu} would be lost.\todo{Tilføj evt:" and another language like Theano or directly programming OpenCL C might be a better choice." - Søren nb. theano er ikke et sprog -- Troels}
 
@@ -45,7 +45,7 @@ The value of any increases in runtime efficiency is situational, i.e. changing t
 OpenCL can use \acrshort{jit} to generate binary code to the appropriate device it is working with at runtime.
 This allows OpenCL to increases in runtime efficiency for the \acrshort{gpu} used, however this is also a constant overhead for each execution of the program. 
 OpenCL can also compile the kernels before runtime, this is known as an offline compilation as opposed to the \acrshort{jit} compilation known as online compilation. 
-The CUDA compiler \texttt{nvcc} is a two step process, which first generates \acrshort{ptx} bytecode and then either \acrshort{jit} compile on runtime or compiles a so called ``fat binary''at compile time, which contains multiple programs for different \acrshort{gpu}s. \citep{nvidia_cude_fat_bin}
+The CUDA compiler \texttt{nvcc} is a two step process, which first generates \acrshort{ptx} bytecode and then either \acrshort{jit} compile on runtime or compiles a so called ``fat binary''at compile time, which contains multiple programs for different \acrshort{gpu}s. \citep{nvidia_cude_fat_bin}\todo{Giver den her sætning noget? - Corlin}
 
 %Optimising C code(CPU)
 As \gls{gamble} does not exclusively perform its operations on the \acrshort{gpu} the code run on the \acrshort{cpu} must also be considered as a point in which runtime efficiency can be increased.
