@@ -20,7 +20,7 @@ Whether this problem also exists using CUDA is unknown, as the project group has
 Another thing realised by the project group while learning about OpenCL was that help and web resources for OpenCL was represented by a small margin of what was available for CUDA.
 As a result this led to many trial and error tests to figure out the workings of OpenCL and debugging of encountered errors, where as if CUDA had been the parallel computing platform used, it may have been easier to acquire help through web resources.
 
-In \myref{image:OpenCLOptCompare} a significant performance difference between the native implementations of CUDA and OpenCL is shown.
+In \myref{image:OpenCLOptCompare} a significant performance difference between the native implementations of CUDA and OpenCL is shown.\todo{Passer ikke helt med den figur der bliver vist, jeg ser i vært faldt ikke noget explicit OpenCL og Cuda sammenligning - Corlin.}
 While OpenCL and CUDA can reach a somewhat similar performance, the naive implementation in OpenCL with no attempt to increase runtime efficiency is about seven times slower than the naive implementation in CUDA due to the CUDA compiler altering the \acrshort{ptx} code to increase runtime efficiency.
 As a result, to gain performance with the limited experience with \acrshort{gpu} computing in the project group, CUDA would have been the better choice, even if the same performance is obtainable in OpenCL.\todo{'would have' er meget overbevist, måske 'seems' eller ligende. MP - Troede vi var i enighed om at det ville have været bedre? diskussionen må jo gerne være farvet af egen mening, faktisk så kræver den det så synes would have er bedre - Marc}
 
