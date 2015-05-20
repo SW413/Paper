@@ -1,11 +1,11 @@
 \section{Implementation}
 This section will show examples from the \gls{gamble} compiler's source code which generates the object code from a \gls{gamble} program's source code.
-This will show the implementation of selected design choices made in the previous chapters.
+The examples present the implementation of selected design choices made in the previous chapters.
 First an example of how a \texttt{DeclarationNode} is translated into C code will be provided; afterwards the implementation of using the \acrshort{gpu} using OpenCL C will be presented.
 The compiler starts the code generation by calling an instance of the class \texttt{CodeGenerator} and invoking the method \texttt{GenerateCodeAndWriteToFile}.
-This method then makes the \acrshort{ast} accept a CodeGeneratorVisitor and writes its output to a file; while also exporting the object code to a certain directory along with other files needed; the OpenCL kernels used in the program.
+This method then makes the \acrshort{ast} accept a CodeGeneratorVisitor and writes its output to a file; while also exporting the object code to a certain directory along with other files needed; the OpenCL kernels used in the program.\todo{Hvilket directory ? - Søren}
 The \texttt{outputCode} is a string which starts as an empty string; every visitor then either appends or returns substrings to be appended.
-These substrings add appropriate information to the \texttt{outputCode} string as the traversal is ongoing.
+These substrings add appropriate information to the \texttt{outputCode} string as the tree is traversed.
 
 \begin{figure}
 \centering
@@ -15,8 +15,8 @@ These substrings add appropriate information to the \texttt{outputCode} string a
 
 \myref{fig:ASTAlone} shows a \texttt{DeclarationNode} for the expression \texttt{int a = 5;}. 
 In the code generator this node will be transformed into the declaration written in C. 
-The syntax for this is actually the same in C as it is in \gls{gamble}. 
-The node has been through the previous phases, type and scope check, and is therefore ready to be computed. \todo{Computed or compiled? -- Troels}
+The syntax for this is the same in C as it is in \gls{gamble}. 
+The node has been through the previous phases, syntax and contextual analysis, where it was checked for type and scope errors, and is therefore ready to be computed. \todo{Computed or compiled? -- Troels}
 The code executed when the visitor accepts a \texttt{DeclarationNode} can be seen on \myref{lst:DeclarationNodeCodeGen}.
 \begin{lstlisting}[float, floatplacement=H!, caption=The visit method for visiting a DeclarationNode in the code generator. ,frame=tlrb,label={lst:DeclarationNodeCodeGen}]
 @Override
