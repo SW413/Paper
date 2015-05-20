@@ -18,7 +18,7 @@ This is possible because the specific calculations are not affected by the other
 Unlike the cores in the \acrshort{cpu}; the cores in the \acrshort{gpu} are not designed to perform sequential serial processing, instead its cores are designed to handle multiple tasks at once. 
 As such running sequential code on the \acrshort{cpu} will run faster, whereas more compute-intensive functions may be better suited for the \acrshort{gpu}, given the computations can be parallelised. \citep{NvidiaGPGPU}
 The aforementioned example with pixels can be viewed as a matrix being divided into blocks, so the same method of parallelised workflow can be applied.
-For linear algebra, there are especially many operations on matrices where the problem can be split to independent subproblems.
+For linear algebra, there are especially many operations on matrices where the problem can be split to independent subproblems, which makes linear algebra a good target for parallelising computations.
 
 \begin{figure}[h!]
 \centering

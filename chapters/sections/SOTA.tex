@@ -16,7 +16,7 @@ As an example we will look at C, Java and R, and some of their \acrshort{gpu} Li
 
 Jcuda is a library for Java which support the use of CUDA, it has a lot of boilerplate, and low/medium abstraction level. \citep{Java_library}
 Jcuda requires many imports and the user needs to allocate a memory block for each element which causes the boilerplate code and the level of abstraction given. \citep{Java_malloc}
-C has libraries such as CUDA C, OpenCL C and others.
+C has libraries implementing CUDA and OpenCL, called CUDA C and OpenCL C correspondingly.
 These C libraries have the same design as with the Java library as one needs to allocate memory for almost everything, and there is a lot of redundancy which creates a lot of boilerplate. 
 The abstraction level is therefore deemed low as one must keep in mind what is where and what can be done with each specific element. \citep{C_CUDA} 
 There are also different libraries for the R language, one of which is called rpud.
