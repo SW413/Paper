@@ -33,7 +33,7 @@ For the remaining part of this section the fastest device is a \acrshort{gpu}.
 \texttt{global\_size} and \texttt{local\_size} are there to determine the amount of memory needed both globally and locally on the \acrshort{gpu}.\todo{Disse er hardcoded til et index på  2 i listingen, eventuel forklar hvorfor? - Marc De bliver sat senere til den specifike brug, bare for at instantiere dem. -- Troels}
 These arrays are then filled out with different numbers corresponding to the columns and rows of the matrices or vectors being calculated upon.
 This way of appending templates to the outputCode string is used in different places in the code generation when handling the complex datatypes matrices and vectors.
-In fact whenever one of the following operators \texttt{+, -, *, \#, \^{} } are used with matrices or vectors a template is being appended to the outputCode. \todo{Ikke alle disse er i tabellen i language design? -- Troels #DetErDeNu! :D - Søren}
+In fact whenever one of the following operators \texttt{+, -, *, \#, \^{} } are used with matrices or vectors a template is being appended to the outputCode. \todo{Ikke alle disse er i tabellen i language design? -- Troels \#DetErDeNu! :D - Søren}
 See \myref{tbl:matOps} for a description of what each operator will produce in \gls{gamble}.
 
 When the right side of an assignment or declaration consists of an expression using operators and matrices or vectors, the visitor checks which operator is used and then inputs a template for launching the kernel depending on the operator.
