@@ -3,7 +3,7 @@ Since \gls{gamble} distances its programmers from directly controlling which com
 To make this decision the compiler must know what kind of code performs faster on a \acrshort{gpu} than a \acrshort{cpu}.
 
 From \myref{sec:comparch} it is clear that for it to make sense to move any computation to the \acrshort{gpu} it must be of significant size to make up for the overhead of moving data, and be executable in parallel.
-If a computation is reliant on the outcome of other computations, the Fibonacci function as an example, moving it to the \acrshort{gpu} would be a significant decrease in performance compared to a \acrshort{cpu}.
+If a computation is reliant on the outcome of other computations, the Fibonacci function as an example, moving it to the \acrshort{gpu} would be a significant decrease in performance compared to a \acrshort{cpu}.\todo{Evt + ´´Sine Fibonacci's algorithm can not be executed in parallel´´ - Corlin }
 
 Any code written in a recursive format will not be run on the \acrshort{gpu}. 
 Furthermore due to the overhead in data transfer, only computations requiring a significant amount of operations to be performed should be executed on the \acrshort{gpu} as \myref{image:benchmark} shows.
