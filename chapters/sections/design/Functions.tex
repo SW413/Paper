@@ -16,7 +16,7 @@ This is both useful for output and debugging the source code.
 Other functions provided by \gls{gamble} are created out of convenience.
 In object-oriented languages subscripting is common and allows for a wide range of useful features, e.g. \texttt{.GetLength} on arrays in C\#.
 Similar to this \gls{gamble} provides the functions \texttt{rows} and \texttt{cols} for matrices and vectors which returns their amount of rows or columns.
-If called on a vector one can use either rows or columns, it will give the same result.\todo{dette passe måske slet ikke - msm}
+If called on a vector one can use either \texttt{rows} or \texttt{cols}, where \texttt{cols} will return one and \texttt{rows} will return the number of rows in the vector.
 This can be used in loops to make them iterate over matrices of varying sizes.
 
 In order to allow users of \gls{gamble} to use data dynamically and save the result, there exists the functions \texttt{matrixToFile} and \texttt{fileToMatrix}. 
