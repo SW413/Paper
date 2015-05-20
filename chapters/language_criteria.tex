@@ -1,6 +1,8 @@
 %\gls{gamble} is used to refer to our languange   
 \chapter{Language Criteria} % (fold)
 \label{cha:language_criteria}
+The language created for this project will be called \gls{gamble}.
+\gls{gamble} stands for Gpu Accelerated Math Based Language.
 When evaluating programming languages one must first agree on the goals of the characteristics of a given language.
 In Robert W. Sebesta's book some criteria which can be evaluated from are written, these criteria will be used to design the language and to state which criteria are important to the language. \citep{Sebesta}
 The criteria can be seen on \myref{tbl:concepts}.
@@ -25,34 +27,31 @@ First a brief description of the criteria will be given, followed by how importa
 	\caption{Language evaluation criteria and the characteristics that affect them.}\label{tbl:concepts}
 \end{table}
 
-It is important for the language to be easy for programmers and mathematicians alike to write and read programs in.\todo{Denne sætning lyder lidt underlig - Corlin}
+It is important that the language is easy for programmers and mathematicians alike to write and read programs in.
 The focus should be on calculating the problem at hand, without having to conform to low level language specifications such as controlling memory etc.
 The language must adhere to the concept of simplicity, which means that the number of basic constructs is kept low. 
 This results in high levels of both readability and writability as can be seen on \myref{tbl:concepts}.
-The language supports abstraction over the programmer's hardware, by not having to specify where the computations must be run, or having to allocate memory. \todo{Dette er for GAMBLE, måske man skulle skrive det eksplicit. | enig med anon - msm}
+The language should support abstraction of the programmer's hardware, by not having to specify where the computations must be run, or having to allocate memory, in and effort to increase the read and writability. 
 
-To get an idea of what each criterion expressed, we will in the following text describe our thoughts and goals in respect to several of the concepts in \myref{tbl:concepts} deemed important to \gls{gamble}.\todo{This is the first mention of GAMBLE and there is no explanation of what it means | Who are you stranger? but agree - msm}
+To get an idea of what each criterion expressed, we will in the following text describe our thoughts and goals in respect to several of the concepts in \myref{tbl:concepts} deemed important to \gls{gamble}.
 Simplicity is important in the language of \gls{gamble}.
 It is so because of the goals stated in \myref{sec:problem} and based on the other languages examined in \myref{sec:state_of_the_art}, simplicity is important when designing a language where the focus lies in writing code fast and easy, which can take advantage of the \acrshort{gpu}.
-It is so because this goal does not require a large language. \todo{What ? - Søren +1 MP}
-Syntax design is also deemed an important criterion, because the language should be familiar and easy to learn for both experienced but especially newer programmers.\todo{Hvorfor newer? Det kommer lidt ud af det blå - Søren | måske bare ``programmers in general'' - msm}
-Data types is another important criterion for \gls{gamble}, as stated in \myref{sec:problem} the language should be able to handle a matrix data structure and furthermore is as stated in \myref{sec:problem} able to utilise the \acrshort{gpu} without the programmer specifically stating so, in that respect a high level of abstraction is important aswell. 
+Syntax design is also deemed an important criterion, because the language should be familiar and easy to learn for both experienced but especially programmers in general.
+Data types is another important criterion for \gls{gamble}, as stated in \myref{sec:problem} the language should be able to handle a matrix data structure and furthermore is as stated in \myref{sec:problem} able to utilise the \acrshort{gpu} without the programmer specifically stating so, in that respect a high level of abstraction is important as well. 
 
-Based on the earlier discussions, exception handling is seen as a way of making the language more complex, therefore a goal in \gls{gamble} is to catch errors like type mismatchs on compile time and also out-of-bounds memory access on run-time, which strongly eliminates the need for exception handling.\todo{which earlier discussions? kan ikke finde den i rapporten. MP ... Måske menes der det ang. high abstraction? -- TK}
-
+Exception handling is seen as a way of making the language more complex, therefore a goal in \gls{gamble} is to catch errors like type mismatches on compile time and also out-of-bounds memory access on run-time, which strongly eliminates the need for exception handling.
 
 \section{Success criteria}\label{sec:OurCriterias}
-We deem the language and compiler to be a good solution for our problem statement if it upholds to the following criteria:\todo{Igen compiler? - Søren}
+We deem the language and the translator made for the project to be a good solution for our problem statement if it upholds to the following criteria:
 
 \begin{itemize}
 	\item Can perform calculating matrix and vector calculations on the GPU, without the programmer specifying so.
-	\item Can implicitly calculate matrix operations on the \acrshort{gpu} faster than regular C being run on the \acrshort{cpu}, when sufficient large matrices are provided.\todo{Regular C, kunne implicit henvise til at vi ved vi codegen'er til C. MP}
+	\item Can implicitly calculate matrix operations on the \acrshort{gpu} faster than C being run on the \acrshort{cpu}, when sufficiently large matrices are provided.
 	\item Express a high level of read- and writability, by adhering to the concept of simplicity and having a familiar syntax design.
 	\item Provides reliability, with type and scope checking.
-	\item Gives descriptive and fulfilling error messages, for easier debugging, resulting in better writability.\todo{How does one check fullfilling-ness?}
+	\item Gives descriptive error messages, for easier debugging, resulting in better writability.
 \end{itemize}
 
 A more precise description of the design principles of \gls{gamble} abiding to Sebesta's criteria will be presented and argued for in the following chapter.
 % chapter language_criteria (end)
 
-\todo[inline]{Dette afsnit ville være et fint sted at skrive vi vælger navnet GAMBLE til vore sprog (Eller et alternativ). - Corlin}
