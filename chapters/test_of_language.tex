@@ -1,11 +1,11 @@
 \chapter{Test of Language} % (fold)
 \label{cha:test_of_language}
-In order to evaluate upon the capabilities of \gls{gamble} a test is performed. 
-As performance of mathematical operations is in focus, the project group has chosen to only test the language by comparing the execution time of using the \acrshort{gpu} with the execution time of using the \acrshort{cpu} sequentially.
+In order to evaluate the capabilities of \gls{gamble} a test is performed. 
+As performance of mathematical operations is in focus, the project group has chosen to only test the language by comparing the execution time of using the \acrshort{gpu} with the execution time of using the \acrshort{cpu} sequentially. \todo{Vi har ingen test af korekthed? -- Troels}
 
 Previously C code for the \acrshort{cpu} has been compared to CUDA C code, both code examples written by the project group, running on the \acrshort{gpu}, see \myref{sub:gpubenchmark}.\todo{er handwritten ikke et fjollet udtryk? MP - Jo, meget, det jo nærmest en gem - Marc}
 The results of this test can within reason be expected to have a similar output, meaning that at low data sizes the \acrshort{cpu} is faster than the \acrshort{gpu}, however as the size of the data gets bigger the \acrshort{gpu} is faster.
-The reason for the \acrshort{gpu} being slow for low data sizes is that memory needs to be allocated on the \acrshort{gpu}, the input data must be copied to the \acrshort{gpu}, the calculation must be done, and then the data can be copied back to main memory. \todo{Er det nødvendigt at forklarer dette igen? MP - er enig, vi har efterhånden skrevet dette i hvert kapitel - Marc}
+The reason for the \acrshort{gpu} being slow for low data sizes is that memory needs to be allocated on the \acrshort{gpu}, the input data must be copied to the \acrshort{gpu}, the calculation must be done, and then the data can be copied back to main memory. \todo{Er det nødvendigt at forklarer dette igen? MP - er enig, vi har efterhånden skrevet dette i hvert kapitel - Marc, og ved vi at det er den eneste cost grund? -- Troels}
 Once in main memory the data can be further processed e.g. written to a file. 
 This means that a relatively high amount of time will not be used for calculations, but for moving data back and forth from main memory to the memory of the \acrshort{gpu}.
 The hypothesis from the previous test in \myref{sub:gpubenchmark} was that a more computation heavy test would be faster on the \acrshort{gpu} starting on smaller sizes, so the intersection of the two lines would be for a smaller value on the x-axis. 
@@ -46,15 +46,15 @@ Source code for both programs along with the script used for testing, can be fou
 \label{sub:results}
 After running the test and visualising the execution time for the different matrix sizes, it is clear that the \acrshort{gpu} performs better than the \acrshort{cpu}.
 In the graph on \myref{fig:test_results}, we see that the line representing the \acrshort{gpu} is located well below the line representing the \acrshort{cpu}.   
-\begin{figure}[h!]
+\begin{figure}[h]
     \centering
     \includegraphics{figures/tests/graph.pdf}
-    \caption{Execution time of matrix multiplication, with sequential \acrshort{cpu} and heterogeneous \acrshort{gpu} approach}\label{fig:test_results}
+    \caption{Execution time of matrix multiplication, with sequential \acrshort{cpu} and heterogeneous \acrshort{gpu} approach. \todo[inline]{Hvis det kun er på en GPU så er det vel ikke heterogeneous? -- Troels}}\label{fig:test_results}
 \end{figure} 
-It should however be noted that in the beginning of the graph (the leftmost side), the two lines are very close to each other since time measurements are less precise at such low numbers, and the overhead of initialising and allocating memory for the matrices can well exceed the raw computation time of the multiplication.
-Furthermore the line representing the \acrshort{cpu} is very jagged, which indicates that the aforementioned caching are influencing the execution time.
+It should however be noted that in the beginning of the graph (the leftmost side), the two lines are very close to each other since time measurements are less precise at such low numbers, and the overhead of initialising and allocating memory for the matrices can well exceed the raw computation time of the multiplication. \todo{Hvis der læses fra harddisken er dette nok en stor faktor. -- Troels}
+Furthermore the line representing the \acrshort{cpu} is very jagged, which\todo{could -- troels} indicates that the aforementioned caching are influencing the execution time.
 Be that as is may, the \acrshort{gpu} is always faster in execution time at performing matrix multiplication compared to the \acrshort{cpu} especially when the number of entries in the result matrix exceeds $5*10^6$.
-If doing other operations like adding or multiplying a scalar, the results might have been different and looked more like the results from \myref{sub:gpubenchmark}.
+If doing other operations like adding or multiplying a scalar, the results might have been different and looked more like the results from \myref{sub:gpubenchmark}. \todo{Måske noget om at jo flere beregninger der er relativt til andet så vil gamble og gpuen være bedre. -- Troels}
 
 % subsection results (end)
 % section the_test (end)

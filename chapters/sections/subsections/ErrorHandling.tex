@@ -1,10 +1,10 @@
 This section describes how the compiler handles errors, and how error handling is implemented.
-Error handling is referred to as detection and solving of programming errors.
+Error handling is referred to as detection and solving of programming errors. \todo{Hvad menes der med ``solving''? -- Troels}
 Both errors at compile time and at run time will be handled.
 \subsection*{Design}\label{subsec:DesignErrorHandling}
-The source code given to the \gls{gamble} compiler may contain errors and warnings, these errors are found and uncovered in various stages of the compiler.   
+The source code given to the \gls{gamble} compiler may contain errors, these errors are found and uncovered in various stages of the compiler.   
 In the syntax analysis, all syntax errors are found, and the compilation is stopped if errors are found as it would not be advised to further compile source code which contains fundamental syntax errors.
-However it should be noted that the entire syntax analysis is completed before stopping the compiler, hence all syntax errors are collected and reported to the user.\todo{Et andet sted står der at hvis en fejl mødes bliver det abrupted det skal lige rettes så det passer med det her tror jeg :)(det er vist mig der skrev det bliver stoppet, jeg huskede forkert, I R SOWIE) - Søren - Det andet sted står det vidst i forhold til runtime errors hvis jeg husker korrekt? - Marc}
+However it should be noted that the entire syntax analysis is completed before stopping the compiler, hence all syntax errors are collected and reported to the user.\todo{Et andet sted står der at hvis en fejl mødes bliver det abrupted det skal lige rettes så det passer med det her tror jeg :)(det er vist mig der skrev det bliver stoppet, jeg huskede forkert, I R SOWIE) - Søren - Det andet sted står det vidst i forhold til runtime errors hvis jeg husker korrekt? - Marc Jeg tror at jeg har indsat en todo der hvor en skrev at det blev stoppet lige når en fejl blev fundet i forhold til syntax -- Troels}
 This makes the process of resolving syntax errors less tedious for the programmer, than if the compiler would stop every time a single error was detected. 
 A core element of error handling is scope and type related errors, these are found in the previously explained subphases of the contextual analysis: Scope- and typechecking.
 As with the syntax analysis, the compiler collects all errors before stopping the compilation of the source code. 
@@ -19,15 +19,15 @@ The following errors and warnings are reported by the \gls{gamble} compiler:
 	\item[Undeclared error]\hfill\\ 
 	Attempted use of an undefined variable or function.
 	\item[Unused variable warning]\hfill\\ 
-	A warning signalling that a variable or function is declared but never used.
+	A warning signaling that a variable or function is declared but never used.
 \end{description} 
 The errors in the compiler should give useful information about where the error is located in the source code and what variable(s) or function(s) were used incorrectly.
-This includes line numbers which then have to be carried over from the parse tree to the \acrshort{ast}.\todo{carried over er vidst ikke helt rigtig terminologi, menes her at informationen skal hentes fra parse tree fordi den ikke er gemt i ast? - Marc}
+This includes line numbers which then have to be carried over from the parse tree to the \acrshort{ast}.\todo{carried over er vidst ikke helt rigtig terminologi, menes her at informationen skal hentes fra parse tree fordi den ikke er gemt i ast? - Marc. Nej, det betyder at infomationen skal være med i astet da det bliver oprettet første gang. alternativ formulering ``the line numbers in the source code must therefore be preserved though the parse tree to the \acrshort{ast} ...'' -- Troels}
 
 \subsection*{Implementation}\label{subsec:ImplementationErrorHandling}
-In the \gls{gamble} compiler the error handling is implemented by having a class \texttt{LanguageError} of which each specific error type inherits from.
+In the \gls{gamble} compiler the error handling is implemented by having a class \texttt{LanguageError} which each specific error type inherits from.
 The \texttt{LanguageError} superclass has information about the type of error, an enumeration which is either \texttt{Error} or \texttt{Warning}. 
-This is because a program which has warnings but no errors, should still compile, however any program with errors should not. 
+This is because a program which has warnings but no errors, should still compile, however any program with one or more errors should not. 
 Compared to printing an error once discovered and stopping compilation, this model allows the compiler to go through the entire \acrshort{ast} and discover every error as described above. 
 It also unifies how errors are printed and shown to the user.
 There is also an integer indicating which line the error is contained on.
@@ -35,8 +35,8 @@ This enhances the error reporting process, making it easier for users to debug.
 As an example the class for \texttt{UnDeclaredError} is shown in \myref{lst:undeclarederrorclass}.
 Firstly there are variables which contain information needed to report the error to the programmer. 
 Then there is a constructor which simply assigns all values given to it to the new object's fields.
-Lastly there is the \texttt{toString} method which is overridden from the implementation in the \texttt{LanguageError} class. 
-An example of an \texttt{UnDeclaredError} is: \texttt{Error[line   42]-> Undeclared variable towel in scope Local}, if the variable's ID was \texttt{towel}. %Sneaky H2G2 reference 
+Lastly there is the \texttt{toString} method which overriddens the implementation in the \texttt{LanguageError} superclass. 
+An example of an \texttt{UnDeclaredError} when printed is: \texttt{Error[line   42]-> Undeclared variable towel in scope Local}, if the variable's ID was \texttt{towel}. %Sneaky H2G2 reference 
 
 \begin{lstlisting}[caption=The UnDeclaredError class in the \gls{gamble} compiler,numbers=none,frame=tlrb,label={lst:undeclarederrorclass}]
 public class UnDeclaredError extends LanguageError {

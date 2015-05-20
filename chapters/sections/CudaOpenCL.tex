@@ -3,20 +3,19 @@ In \myref{CUDAvsOpenCL} it was decided whether to use the parallel computing pla
 The choice fell on OpenCL due to its cross platform capabilities.
 In this section we will discuss how this choice affected the project, whether or not it was the best choice and the perks as well as the flaws encountered whilst using OpenCL.
 
-The significant factor that made the choice fall upon OpenCL was its cross platform abilities; once the OpenCL code generation started complications in its cross platform abilities was met.
+The significant factor that made the choice fall upon OpenCL was its cross platform abilities; once the OpenCL C code generation started complications in its cross platform abilities was met.
 While indeed OpenCL can run cross platform, this feature is not without its faults.
 This especially became evident as different \acrshort{gpu}s support different versions of OpenCL, thus having different features implemented.
-It became even more clear that while OpenCL is a standard for cross platform, it does not mean the same code will work across hardware, this was experienced by the project group when NVIDIAs hardware became troublesome and produced errors, for code which runs perfectly on AMD hardware.
+It became even more clear that while OpenCL is a standard for cross platform, it does not mean the same code will work across hardware, this was experienced by the project group when NVIDIAs hardware became troublesome and produced errors, for code which runs perfectly on AMD hardware, while running the same operating system, Ubuntu 14.04 LTS.
 Furthermore, as mentioned in \myref{subsec:runtime} different \acrshort{gpu}s also perform different on the same code, even if the \acrshort{gpu}s have near identical specifications.
 This as a result means that to achieve the utmost benefit from each individual platform, an implementation for each platform should be available; having to alter the implementation of kernels to each platform makes the cross platform feature less useful than initially thought.
 While the project group have not made any specifications towards a specific platform, if done so, it may be worthwhile to consider using CUDA for an NVIDIA implementation, and OpenCL for other \acrshort{gpu}s or processing units in general.
 
 %This may be the best place for this, but i do believe it necessary to be in the paper
 Another problem the project group encountered quite early was that Windows is not the most cooperative operating system when it comes to linking the required libraries for OpenCL to run.\todo{Can OS'es be cooperative? MP - De kan i hvert tilfælde lade være med at være anti co-op(jeg var måske lidt farvet da jeg oprindelig skrev det) - Marc)}
-Through Visual Studio the project group was able to run OpenCL C example programs, thus proving that the code worked on the Windows operating system, however doing so through a terminal and the GCC compiler proved to be quite difficult.
+Through Visual Studio the project group was able to run OpenCL C example programs, thus proving that the code worked on the Windows operating system, however doing so through a terminal and the GCC compiler proved to be quite difficult. \todo{``through visual studio'' betyder jo reelt bare med en anden compiler. -- Troels}
 In an attempt to solve this issue two things also became clear to the project group, just about all help available was aimed at OS X and Linux operating systems, as a result the project group proceeded development using these operating systems rather than Windows.
-Whether this problem also exists using CUDA is unknown, as the project group has not been using CUDA.
-%
+Whether this problem also exists using CUDA is unknown, as the project group has not been using CUDA. \todo{Vi har jo stadig lidt, under den første test, også under windows. -- Troels}
 
 Another thing realised by the project group while learning about OpenCL was that help and web resources for OpenCL was represented by a small margin of what was available for CUDA.
 As a result this led to many trial and error tests to figure out the workings of OpenCL and debugging of encountered errors, where as if CUDA had been the parallel computing platform used, it may have been easier to acquire help through web resources.

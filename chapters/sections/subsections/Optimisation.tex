@@ -6,9 +6,9 @@ Runtime efficiency entails considerations of memory allocation, pipelining, para
 To do an efficient and complete analysis of how to increase runtime efficiency, information of the situation in a given program is required.
 This is where \gls{gamble} is at a disadvantage. 
 \gls{gamble} distances its programmers from controlling where the code is performed and instead does so seamlessly.
-Information about how e.g. a for-loop could be transformed into a kernel does not exist in \gls{gamble} which makes it difficult to do this.\todo{er ikke helt med her? MP - Vi ved ikke om et for-loop er paralleliser bart eller ej ud fra informationen i AST'et - Marc}
+Information about how e.g. a for-loop could be transformed into a kernel does not exist in \gls{gamble} which makes it difficult to do this.\todo{er ikke helt med her? MP - Vi ved ikke om et for-loop er paralleliser bart eller ej ud fra informationen i AST'et - Marc ... Her kunne en pfor-løkke være brugbar. -- Troels}
 The seamless use of the \acrshort{gpu} means that certain information is nonexistent and therefore all computations may not be candidates for improving its runtime efficiency, this is one of the trade-offs \gls{gamble} makes, meaning that simplicity of the language is valued over performance.\todo{Det her står imod principperne og er en farlig og dum sætning tbh. - Søren - Imod hvilke principper? - Marc}
-If \gls{gamble} were to require more information, e.g. whether or not something is paralleliseable or ask the programmer to determine what type of \acrshort{gpu} memory should be used for each variable, the simplicity and seamless use of the \acrshort{gpu} would be lost.\todo{Tilføj evt:" and another language like Theano or directly programming OpenCL might be a better choice." - Søren}
+If \gls{gamble} were to require more information, e.g. whether or not something is paralleliseable or ask the programmer to determine what type of \acrshort{gpu} memory should be used for each variable, the simplicity and seamless use of the \acrshort{gpu} would be lost.\todo{Tilføj evt:" and another language like Theano or directly programming OpenCL C might be a better choice." - Søren nb. theano er ikke et sprog -- Troels}
 
 As previously mentioned due to the object code being OpenCL C certain considerations pertaining to instruction handling and register allocation etc. are not of interest for this compiler.
 This is handled by using another compiler to compile the OpenCL C code into machine code, see \myref{ssub:makefile}. 
@@ -34,7 +34,7 @@ This can provide a substantial (more than 3 times) faster runtime. \citep{ocl_le
 \begin{figure}[h]
 \centering	
  \includegraphics[width=1\textwidth]{figures/opencloptimisation.png} % trim=4.85cm 15cm 0.85cm 1cm
-\caption{Execution speed of a matrix multiplication with different increases in runtime efficiency done. \citep{CUDAOpenCLOptimisation}}\label{image:OpenCLOptCompare}
+\caption{Execution speed of a matrix multiplication with different increases in runtime efficiency done. \todo[inline]{Det ville være TRIVIELT at forklare hvad disse optimeringer er og hvorfor programmet er hurtere på grund af det. Skal vi det? -- Troels} \citep{CUDAOpenCLOptimisation}}\label{image:OpenCLOptCompare}
 \vspace{-15pt}
 \end{figure}
 \todo[inline]{dette er plagiat. Det skal tydeligt fremgå det ikke er vores billede. MP - Det fremgår da også rimelig tydeligt i det at der er en kilde på billedet? - Marc}
@@ -49,8 +49,8 @@ The CUDA compiler \texttt{nvcc} is a two step process, which first generates \ac
 
 %Optimising C code(CPU)
 As \gls{gamble} does not exclusively perform its operations on the \acrshort{gpu} the code run on the \acrshort{cpu} must also be considered as a point in which runtime efficiency can be increased.
-Some methods of increasing runtime efficiency on the \acrshort{cpu} are similar as mentioned earlier such as loop unrolling.\todo{Skal vi evt. forklare hvad det er ?? - Søren}
+Some methods of increasing runtime efficiency on the \acrshort{cpu} are similar as mentioned earlier such as loop unrolling.\todo{Skal vi evt. forklare hvad det er ?? - Søren Er enig, men måske er det for trivielt? At forklare det vil dog vise vores kendskab til det. -- Troels}
 Further methods pertain to the architectural differences between \acrshort{cpu}s and \acrshort{gpu}s, in particular cache- and pipeline-friendly code.
 Cache-friendly code means considering the principle of spatial locality i.e. memory regions closer to each other, are more likely to be accessed within a short time.
 To write pipeline-friendly code one must in particular consider branch prediction, however the best way is simply to avoid branching. \citep{CCodeOpt}
-While these methods may very well increase runtime efficiency, there is no reason to implement them as the GNU Compiler Collection already implements well developed methods of increasing runtime efficiency beyond our abilities.
+While these methods may very well increase runtime efficiency, there is no reason to implement them as the GNU Compiler Collection (GCC) already implements well developed methods of increasing runtime efficiency beyond our abilities.
