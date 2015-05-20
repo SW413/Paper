@@ -1,22 +1,23 @@
 \section{Existing solutions} % (fold)
-\todo[inline]{Her skal nævnes hvorfor vi vælger at kigge på andre sprog med adgang til GPU'en, hvorfor er det relevant, tilbagerefere eventuel i forhold til intro og førhenværende afsnit}
 \label{sec:state_of_the_art}
 In this section different approaches to \acrshort{gpgpu} using existing programming languages and libraries will be presented.
-Each language and library will be running with either the OpenCL or the CUDA framework.\todo{Vi ved ikke hvad Cuda eller openCL er på nuværende tidspunkt, vi kunne have det i det forhenværende afsnit som en introduktion til hvordan sprog kan skrive til gpu'en? - Søren}
+Generally there exists two ways of utilising the \acrshort{gpu} at a low level for \acrshort{gpgpu}, these are OpenCL by The Khronos Group and CUDA by NVIDIA.
+These two are in many ways similar but CUDA is only developed for NVIDIA \acrshortpl{gpu}, while OpenCL is supported by several processing units including but not limitied to \acrshortpl{cpu} and \acrshortpl{gpu}.
+Each language and library listed below use either one or both of these technologies.
 Every language and library described in this section can be found on \myref{tbl:sota} for an overview of their comparisons.
+For this analysis the level of abstraction of a language or library is based upon how much control the programmer of the code has of the computer's resources, i.e. if the programmer needs a line of code to allocate memory for each of the computations in the code, that results in low abstraction.
       
 \subsection{Libraries} 
 There exists libraries for programming languages in order to utilise the \acrshort{gpu} for computations by binding either to OpenCL or CUDA.
-Generally the libraries used for \acrshort{gpu} work often requires a lot of boilerplate and has what we deem to be a low level of abstraction.\todo{what we deem - er det okay? - Corlin}
-The level of abstraction is based on how much control the programmer of the code has of the computer's resources, i.e. if the programmer needs a line of code to allocate memory for each of the computations in the code, that results in low abstraction.
+Generally the libraries used for \acrshort{gpu} work often requires a lot of boilerplate and has a low level of abstraction.
 Boilerplate is the pieces of code which will have to be written with little to no alteration, in many different places of the code.
-An example could be when making a call to a \acrshort{gpu}, the boilerplate code might be the code which handles this communication.\todo{This communication, det kunne evt skrives andereles - Corlin}
+An example could be when making a call to a \acrshort{gpu}, the boilerplate code might be the code which handles this communication.
 As an example we will look at C, Java and R, and some of their \acrshort{gpu} Libraries.
 
 Jcuda is a library for Java which support the use of CUDA, it has a lot of boilerplate, and low/medium abstraction level. \citep{Java_library}
 Jcuda requires many imports and the user needs to allocate a memory block for each element which causes the boilerplate code and the level of abstraction given. \citep{Java_malloc}
 C has libraries such as CUDA C, OpenCL C and others.
-These C libraries have the same problem as with the Java library as one needs to allocate memory for almost everything, and there is a lot of redundancy which creates a lot of boilerplate. \todo{``Problem'' er dette altid reelt et problem? -- TK}
+These C libraries have the same design as with the Java library as one needs to allocate memory for almost everything, and there is a lot of redundancy which creates a lot of boilerplate. 
 The abstraction level is therefore deemed low as one must keep in mind what is where and what can be done with each specific element. \citep{C_CUDA} 
 There are also different libraries for the R language, one of which is called rpud.
 It provides many functions from the R language, which can be performed on the \acrshort{gpu}, and it is based on CUDA.
@@ -24,28 +25,25 @@ We deem that it has a high level of abstractions, since it is just function call
 
 \subsection{Theano (Python)}
 Theano is a Python library that allows one to define and evaluate mathematical expressions involving multi-dimensional arrays, while utilising the \acrshort{gpu}.
-The library has two ways of using the \acrshort{gpu}; one with CUDA as back-end, and the other that should support any OpenCL compatible device as well as NVIDIA cards.\todo{skal vi bruge ordet backend? måske bindings istedet MP}
+The library has two ways of using the \acrshort{gpu}; one using CUDA, and one using OpenCL.
 The OpenCL implementation does not support all the options available in the library due to an incomplete port of an old back-end.
-While Theano supports CUDA and OpenCL, there is quite a bit of boilerplate and one must write different code in order to use either.\todo{Skal man ikke altid det? - Corlin}
+While Theano supports CUDA and OpenCL, there is quite a bit of boilerplate and one must write different code in order to use either.
 
-The scoping rules for Python which Theano uses are quite special where the compiler looks for a variable in four different scopes.
-These scoping rules seems to be exclusive to the Python language. 
-This can cause some problems for new programmers of the language, because these scoping rules are special. \todo{Python bruges mange steder som en introduktion til programering så dette arguement sucks imo. -- TK}
-Theano does not require that the programmer allocates memory for arrays.
-We deem that Theano has a medium level of abstraction since one has to declare if the \acrshort{gpu} should be used and can only operate on single precision floats of 32 bits.\todo{I forhold til vores beskrivelse af abstractions niveau såvel som senere evaluering(matlab) så burde THeano være høj abstraction eftersom der er lav control}
+Theano does not require that the programmer explicitly allocates memory for arrays.
+Theano has a high level of abstraction since one has to declare if the \acrshort{gpu} should be used and can only operate on single precision floats of 32 bits.
 On the other hand Theano does increase its performance by replacing methods with a \acrshort{gpu} versions of the same methods to create transparency. \citep{Theano,Theano_GPU,bergstratheano, LEGB}
 
-\subsection{MATLAB}\todo{Der står her du skal mem handle i Matlab og alligevel er det højere abstraction end Theano?}
+\subsection{MATLAB}
 MATLAB is a high-level mathematical programming language with an interactive environment.
 MATLAB supports the use of parallel computations in the form of using either a \acrshort{gpu} or cloud computing.
 It natively supports the use of CUDA enabled NVIDIA \acrshortpl{gpu} for its parallel computations on \acrshortpl{gpu}, but OpenCL extensions do exist such that it becomes possible to use other devices.
-MATLAB uses static scoping. \todo{Okay? er dette vigtigt? -- TK}
-The user of MATLAB much declare when the \acrshort{gpu} must be used and also allocate memory for these tasks.
-Declaring the memory gives a lot of boilerplate since it needs to be done for each element that one wants to compute. \citep{MATLAB_backend,MATLAB_benchmark}
+The user of MATLAB must declare when the \acrshort{gpu} must be used and can also allocate memory for these tasks, or choose that MATLAB can do so automatically.
+Declaring the memory produces boilerplate since it needs to be done for each element that one wants to compute. \citep{MATLAB_backend,MATLAB_benchmark}
 
 Using the interactive environment provided by MATLAB there are built in tools for parallel computations on \acrshortpl{gpu}.
 These tools provide a higher level of abstraction such as parallel for-loops (parfor) and special array types for distributed processing.
 For \acrshort{gpu} computing MATLAB simplify parallel code development by abstracting away the complexity of managing computations and data. \citep{MATLAB_parallel}
+Depending on whether the programmer wants to fully utilise the \acrshort{gpu} or not the level of abstraction differs from low to high.
 
 \subsection{Julia}
 Julia is a high-level, high-performance dynamic programming language for technical computing.
@@ -62,15 +60,15 @@ Julia uses similar scoping rules as MATLAB. \citep{Julia_Git, Julia_scope,Julia}
 The different languages mentioned in this section all have some way of communicating with the \acrshort{gpu} using both CUDA and OpenCL, which can also be seen on \myref{tbl:sota}.
 They all require the user to specify when to use the \acrshort{gpu} instead of the \acrshort{cpu}, and the level of abstraction varies, where some require a lot of control of the programmer, and others require specific function calls to \acrshort{gpu} functions.
 
-This explicit processor targeting can be inconvenient and if used incorrectly be inefficient, and it takes away focus from the calculations done in the program.\todo{Er den formuelring ikke træls? MP}
+This explicit processor targeting can be inconvenient and if used incorrectly can be inefficient, and it requires that the programmer write more code than the calculations themselves.
 On the other hand, it gives the programmer more control of where the code is executed.
 This aspect requires a deeper knowledge of processor architecture, and we deem that greater abstraction is more important than the control of processor targeting.
 
-They are all usable for general purpose programming, except the libraries for R, which only provides the programmer with specific R functions to be computed on the \acrshort{gpu}. \todo{Er dette rigtigt? fx kunne nogle af dem ikke kun bruge GPUen til matricer? -- TK}
+They are all usable for performing calculations on the \acrshort{gpu}, except the libraries for R, which only provides the programmer with specific R functions to be computed on the \acrshort{gpu}. 
 For scientific computing, especially fields that use linear algebra, these are all viable options.
 
-The control of memory on the \acrshort{cpu} and the \acrshort{gpu} is different, so allocating memory is more difficult when you transfer the calculations to the \acrshort{gpu}. \todo{More boilerplate != more difficult -- TK}
+The control of memory on the \acrshort{cpu} and the \acrshort{gpu} is different, so allocating memory is more tedious when you transfer the calculations to the \acrshort{gpu}.
 Therefore languages that require the programmer to allocate memory themselves, takes away focus from the computations that need to be done.
-We deem that allocating memory for arrays and matrices is unnecessary.\todo{suddenly gamble happened MP} \todo{Denne giver ingen mening? Hvis man ikke allokerer hukommelse, hvor gemmer man så sit data :p -- TK}
+We deem that explicitly allocating memory is unnecessary, and can instead be done implicitly.
 
-The next section will discuss the research which has been done so far and will also construct a problem statement which the remaining portion of the paper will answer.\todo{what research? MP}
+The next section will discuss the analysis which has been done so far and will also construct a problem statement which the remaining portion of the paper will answer.
