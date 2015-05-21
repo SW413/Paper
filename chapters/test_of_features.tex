@@ -1,7 +1,7 @@
 \chapter{Test of Language Features}
 \label{cha:test_of_language_features}
 In this chapter \gls{gamble} and the compiler developed for it, will be tested.
-The focus of this test will be to test how the compiler reacts to invalid input, both syntactic and contextual.
+The focus of this test will be to test how the compiler reacts to valid and invalid input, both of which are syntactical correct.
 Also to test if simple operations act as intended and documented in \myref{cha:semantics}. 
 As written in our success criteria, \myref{sec:OurCriterias}, it is important to give descriptive error messages, and provide type and scope checking. 
 
@@ -15,6 +15,7 @@ Then the output from the compiler will be written below the code.
 \info[inline]{wanan do this? ANTLR errors only...}
 
 \section{Contextual Tests}
+To test if the contextual analysis of the compiler adheres to the rules set for \gls{gamble} in \myref{cha:language_design}.
 
 \subsection*{Scope Tests}
 The first set of tests is to see if the scope rules of \gls{gamble}, \myref{subsec:Scope}, is properly implemented. 
@@ -151,6 +152,8 @@ float64 d = c;
 
 int16 e = a; // Error! Loss of precision
 \end{lstlisting}
+
+\info[inline]{Måske der skulle være nogle tests med matricer? Måske evt. rigtig mange tests i appendix? -- Troels}
 
 \section{Conclusion}
 Based on these test it is not possibly to prove formal verification of the compiler or it's output in general as mentioned in the beginning of this chapter.
