@@ -1,4 +1,4 @@
-\chapter{Semantics}\todo{Der skal eventuelt skrives noget omkring hvad det semantic der er sat ind repræsentere og hvordan det foregår? - Marc - Enig, der bør nok være lidt teori egentlig, der viser en dummy rule eller noget - Søren}
+\chapter{Semantics}
 In this section some of the semantics for \gls{gamble} will be shown and explained.
 Operational semantics are provided to formalise information about the mathematical operations behind the language.
 There is two ways of showing operational semantics: Natural semantics and structural operational semantics.
@@ -15,7 +15,7 @@ The names of some production rules of \gls{gamble} are changed to simplify some 
 	\textbf{type} \in &int16 | int | int64 | float16 | float | float64 | bool\\
 	\textbf{S}	\in &Statement\\
 	\textbf{mtype} \in &int16 | int | int64 | float16 | float | float64\\
-	\textbf{Fd}		\in &Function Declaration
+	\textbf{Fd}		\in &Function\quad  declaration
 \end{align*}
 
 \textbf{v} is meant to store the result, this can be both a value, a vector or a matrix.
@@ -23,10 +23,10 @@ The big-step semantic operations for a matrix, also shows the semantics for a ve
 On the other hand, big-step semantic operations for a vector are not applicable to a matrix, since it requires the dimensions to fit those of a matrix with one column.
 
 The variable environment (${ e }_{ v }$) is a function that for each variable defines which storage location it is bound to. A variable environment corresponds to a table containing symbols which are in that environment.
-The store ($st$) is a function that for each storage location in the memory tells us which value is stored in the location. A store corresponds to a complete description of the contents of the memory. \citep{EnvSt_Semantics} \todo{Evt. nævn explicit at dette er environment store modellen? -- Troels}
+The store ($st$) is a function that for each storage location in the memory tells us which value is stored in the location. A store corresponds to a complete description of the contents of the memory, this is also known as the environment store model. \citep{EnvSt_Semantics}
 
 A few of the big-step semantics for \gls{gamble} is included in this chapter, while the rest of the semantics for \gls{gamble} can be found in \myref{app:semantics}.
-Some of the operational semantics which are covered in this chapter are variable declaration, assignment, matrix declaration, matrix multiplication and scalar product. \todo{Some of ? er der andre? While? -- Troels}
+The operational semantics which are covered in this chapter are variable declaration, assignment, while loops, matrix declaration, matrix multiplication and scalar product.
 
 \subsection*{Declaring Variables}
 Variable declarations are also statements according to \gls{gamble}'s grammar.
@@ -36,7 +36,7 @@ A variable declaration modifies the store and the variable environment, the new 
 \begin{minipage}{1.0\textwidth}
 [${VariableDeclaration}_{BSS}$]
 \begin{equation}
-	\frac { <S,{ e }_{ v }^{ `` },st[\iota \mapsto v]>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> }{ <type\quad x=a;S,{ e }_{ v }st>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> } 
+	\frac { <S,{ e }_{ v }^{ `` },st[\iota \mapsto v]>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> }{ <type\quad x=a;S,{ e }_{ v },st>{ \rightarrow  }_{ S }<{ e }_{ v }^{ ` },{ st }^{ ` }> } 
 \end{equation}
 \begin{align*}
 	where\quad &{ e }_{ v },st\vdash a{ \rightarrow  }_{ A }v \\
