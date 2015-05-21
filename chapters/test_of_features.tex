@@ -109,6 +109,49 @@ In \gls{gamble} there are 3 simple data types and 2 complex data types.
 Not every combination of these are valid for a given operator. 
 Additionally there are no implicit type conversion between \texttt{int}-types and \texttt{float}-types in \gls{gamble}.
 
+To test the type checker, several operation will be shown, and explained why they are valid or why they are not.
+
+In \myref{lst:type1} the addition operator is used to show that variables of the same type are valid, while adding different types are not. 
+The error: \texttt{Error[line    8]-> Type mismatch between a:int and c:float}, is output from the compiler, indicating there is a type error and its location. 
+\begin{lstlisting}[caption={Addition in \gls{gamble} to demonstrate the type checker.},label={lst:type1},frame=tb]
+
+int a = 3;
+int b = 7;
+
+float c = 1.2;
+float d = 2.7;
+
+print(a + b); // 10
+print(a + c); // Type error!
+print(c + d); // ~3.9 
+\end{lstlisting}
+
+It is also not allowed to convert between types, this is shown in \myref{lst:type2}.
+Here there are 2 errors: \texttt{Error[line    2]-> Type mismatch between c:float and a:int} and \texttt{Error[line    5]-> Type mismatch between b:int and d:float}.
+
+\begin{lstlisting}[caption={Examples of type incompatibilities \gls{gamble} to demonstrate the type checker.},label={lst:type2},frame=tb]
+int a = 1;
+float c = a; // Type error
+
+float d = 0.5;
+int b = d; // Type error
+\end{lstlisting}
+
+However in \gls{gamble} it is allowed to declared a value to a variable of the same type with higher precision e.g. assigning a int32 to a int64, as a higher precision variable can store the same values and more as the lesser.
+However it is in any case never allowed to the other way around, e.g. from int32 to int16. 
+In \myref{lst:type3} examples of these convertions are made and an error is also shown.  
+This is a type mismatch error: \texttt{Error[line    7]-> Type mismatch between e:int16 and a:int}.
+
+\begin{lstlisting}[caption={Examples of type conversions and an error in \gls{gamble} to demonstrate the type checker.},label={lst:type3},frame=tb]
+int a = 16;
+int64 b = a;
+
+float c = 1.23;
+float64 d = c;
+
+int16 e = a; // Error! Loss of precision
+\end{lstlisting}
+
 \section{Conclusion}
 Based on these test it is not possibly to prove formal verification of the compiler or it's output in general as mentioned in the beginning of this chapter.
 However the aforementioned tests cover a large feature set with some different inputs.
