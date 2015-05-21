@@ -2,7 +2,7 @@
 \myref{sec:OurCriterias} discusses which criteria \gls{gamble} should fulfill in order to be successful for this project.
 \myref{cha:test_of_language} shows that the \gls{gamble} code for matrix multiplications executed on the \acrshort{gpu} has a lower execution time, than performing the same calculation sequentially in C on the \acrshort{cpu}, for matrices of increasing size.
 This is done without any code explicitly stating that the computation should be run on the \acrshort{gpu}.
-If a computer has no \acrshort{gpu}, the OpenCL generated code may also run on any OpenCL capable hardware, such as Intel or AMD processors, and this is done without any change to the \gls{gamble} source code.
+If a computer has no \acrshort{gpu}, the \gls{opencl} generated code may also run on any \gls{opencl} capable hardware, such as Intel or AMD processors, and this is done without any change to the \gls{gamble} source code.
 The basic operations which are possible to perform on matrices and vectors in \gls{gamble} makes it possible to program more complex algorithms, and with the reduced runtime provided by the \acrshort{gpu}, we believe the execution time of these should be shorter than their sequential counterparts.
 An example of a more complex algorithm could be an algorithm for finding the singular value decomposition.
 A function for finding eigenvalues and transforming matrices into reduce row echelon form etc., would greatly improve on the capabilities of a \gls{gamble} program in a linear algebra environment, and it is also possible to construct these functions using the tools \gls{gamble} has available, however in its current version they would not be executed on the \acrshort{gpu}, as custom functions are not considered for  \acrshort{gpu} computation.

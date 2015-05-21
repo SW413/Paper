@@ -3,7 +3,7 @@
 A test is performed in order to evaluate the run-time efficiency of \gls{gamble}.
 As the runtime efficiency of performing mathematical operations is of importance, the project group has chosen to test the language by comparing the execution time of using the \acrshort{gpu} with the execution time of using the \acrshort{cpu} sequentially.
 
-Previously C code for the \acrshort{cpu} has been compared to CUDA C code, both code examples written by the project group, running on the \acrshort{gpu}, see \myref{sub:gpubenchmark}.
+Previously C code for the \acrshort{cpu} has been compared to \gls{cuda} C code, both code examples written by the project group, running on the \acrshort{gpu}, see \myref{sub:gpubenchmark}.
 The results of this test can within reason be expected to have a similar output, meaning that at low data sizes the \acrshort{cpu} is faster than the \acrshort{gpu}, however as the size of the data gets bigger the \acrshort{gpu} is faster.
 The reason for the \acrshort{gpu} being slow for low data sizes is that memory needs to be allocated on the \acrshort{gpu}, the input data must be copied to the \acrshort{gpu}, the calculation must be done, and then the data can be copied back to main memory.
 Once in main memory the data can be further processed e.g. written to a file.

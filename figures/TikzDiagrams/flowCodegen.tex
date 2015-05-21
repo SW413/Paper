@@ -20,7 +20,7 @@
 
         \node (dast) [lille] {Decorated Abstact Syntax Tree};
         \node (cgv) [lille, right=0.7cm of dast] {Code Generation Visitor};
-        \node (copy) [lille, right=0.7cm of cgv] {Output OpenCL C code};
+        \node (copy) [lille, right=0.7cm of cgv] {Output \gls{opencl} C code};
 
         \draw [arrow] (dast) -- (cgv);
         \draw [arrow] (cgv) -- (copy);

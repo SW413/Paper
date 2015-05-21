@@ -8,7 +8,7 @@ When the code generator is called, the \acrshort{ast} is used to accept a \textt
 \vspace{-15pt}
 \end{figure}
 
-The visitor builds a string of object code by traversing the nodes of the tree which will in the end be written to a  C file which utilise the OpenCL libraries by the \texttt{CodeGenerator} class.
+The visitor builds a string of object code by traversing the nodes of the tree which will in the end be written to a  C file which utilise the \gls{opencl} libraries by the \texttt{CodeGenerator} class.
 Some visit methods like a visit method for a \texttt{ConstantExpressionNode} returns a string while other methods instead directly appends to the string the visitor will return to the class \texttt{CodeGenerator}.
 This string is then used as an argument in other visit methods e.g. \texttt{AssignmentNode} which then produces a string which is a statement that can be executed in C.
 This string from \texttt{AssignmentNode} is one of the strings appended to the string containing the fully compiled program.

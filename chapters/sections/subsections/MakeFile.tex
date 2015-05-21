@@ -1,14 +1,14 @@
-\subsubsection*{From OpenCL to execution}\label{ssub:makefile}
-The OpenCL C code must be compiled by a C-compiler such as the GNU Compiler Collection (GCC) compiler to produce code the \acrshort{cpu} and \acrshort{gpu} can execute.
-During the compilation the OpenCL C headers must be accessible, to provide the functions and types used. 
-Additionally a standard library is made for the compiler in C, containing functions such as \texttt{matrixToFile} and \texttt{fileToMatrix} which must also be included in the compiled OpenCL C code.
+\subsubsection*{From \gls{opencl} to execution}\label{ssub:makefile}
+The \gls{opencl} C code must be compiled by a C-compiler such as the GNU Compiler Collection (GCC) compiler to produce code the \acrshort{cpu} and \acrshort{gpu} can execute.
+During the compilation the \gls{opencl} C headers must be accessible, to provide the functions and types used. 
+Additionally a standard library is made for the compiler in C, containing functions such as \texttt{matrixToFile} and \texttt{fileToMatrix} which must also be included in the compiled \gls{opencl} C code.
 This produces an executable file for the platform targeted by the compiler, this will most often be the platform running, such as x86--64 on Linux.
 The same executable file is not usable for another platform, e.g. ARM, nor on another operating system, e.g. Windows or OS X.
 To maintain portability a ``MakeFile'' is used; a MakeFile is a file in the syntax which the GNU make utility can execute. 
 This means that after running the \gls{gamble} compiler, on a configured computer, the make command can be used to build a binary file.
 
 The kernel can either be compiled at compile-time or \acrshort{jit} compiled at runtime.
-The \acrshort{jit} compilation, called online compilation under OpenCL, allows the system to adapt with platform specific performance improvements for the running platform.
-If the kernel is compiled at compile-time, called offline compilation under OpenCL, then it might support fewer devices, or will take a long time and increase the size of the executable as it has to contain versions for each hardware for which support is requested. \citep{openclbookjit}
+The \acrshort{jit} compilation, called online compilation under \gls{opencl}. allows the system to adapt with platform specific performance improvements for the running platform.
+If the kernel is compiled at compile-time, called offline compilation under \gls{opencl}. then it might support fewer devices, or will take a long time and increase the size of the executable as it has to contain versions for each hardware for which support is requested. \citep{openclbookjit}
 This is an example of a time-memory trade off. 
 For \gls{gamble} the online compilation is chosen for its simplicity as it lets the driver of the running system compile the kernel. 

@@ -31,7 +31,7 @@ A simple representational comparison of a \acrshortpl{cpu} --- and a \acrshortpl
 The \acrshort{gpu} consists of many but each less powerful cores where the \acrshort{cpu} consists of a few more powerful ones, the greater amount of cores allows for more computational power.
 But to be able to utilise this computation power a problem must able to be split up, so many or all the cores in the \acrshort{gpu} is used.
 As of Q1 2015 an example of a modern high performance desktop \acrshort{cpu} is the Intel Haswell Core i7 5960X which has 8 cores. \citep{puget}
-A contemporary high performance \acrshort{gpu} is the NVIDIA GTX 980 which has 2048 CUDA cores. \citep{techpowerup,gtx980}
+A contemporary high performance \acrshort{gpu} is the NVIDIA GTX 980 which has 2048 \gls{cuda} cores. \citep{techpowerup,gtx980}
 Due to their architectural differences the \acrshort{gpu} theoretically allows for about 12 times more floating point operations per second.\footnote{The Intel Haswell Core i7 5960X can do 384 GFLOPS while the  NVIDIA GTX 980 can do 4612 GFLOPS. Both are for single precision floats.}
 
 This makes the \acrshort{gpu} particularly useful for large and complex computations when it is possible to distribute the workload among the \acrshort{gpu}'s cores.
@@ -43,7 +43,7 @@ These problems perform different operations on all elements in a matrix.
 
 \subsection{\acrshort{gpu} and \acrshort{cpu} computations comparison}\label{sub:gpubenchmark}
 To compare the computational speed of a \acrshort{gpu} and a \acrshort{cpu} for operations on each element in a matrix we have written two programs.
-A program written in regular C targeting the \acrshort{cpu} and an equivalent program written using CUDA C targeting the \acrshort{gpu} for computations.
+A program written in regular C targeting the \acrshort{cpu} and an equivalent program written using \gls{cuda} C targeting the \acrshort{gpu} for computations.
 CUDA C is an implementation in C of NVIDIA's parallel programming and computing platform.
 Further explanation of this test and the full source code of both programs and the accompanying scripts can be found in \myref{app:gpuoverhead} and \myref{app:cd}.
 

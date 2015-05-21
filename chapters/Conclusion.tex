@@ -16,7 +16,7 @@ The problem statement stated for this project, \myref{sec:problem}, is as follow
 During the project different aspects of the process of creating a language and a compiler or interpreter have been presented; different ways of handling these aspects have been discussed as well as the implementation of these.
 The language \gls{gamble} was designed to make it easier for programmers and mathematicians alike to perform matrix and vector computations that used the power of the \acrshort{gpu} without the programmer needing to specify so in the source code.
 It was chosen that a compiler would be the best fit for translating the \gls{gamble} language.
-Using the operators, defined in \myref{subsec:operators}, along with matrices or vectors \gls{gamble} will compile to OpenCL C code, which runs the computations on the \acrshort{gpu}.
+Using the operators, defined in \myref{subsec:operators}, along with matrices or vectors \gls{gamble} will compile to \gls{opencl} C code, which runs the computations on the \acrshort{gpu}.
 As a result of running computations on the \acrshort{gpu} an increase in runtime efficiency can be obtained; an increase in runtime efficiency will only exist if the computations are of a significant size; \myref{cha:test_of_language} shows what data size is required for \gls{gamble} to provide an increase in runtime efficiency by using the \acrshort{gpu} rather than the sequential execution on the \acrshort{cpu}.
 
 \myref{cha:language_criteria} mentions the criteria that the project group set for \gls{gamble} and what became its compiler; based on the test of \gls{gamble} it was concluded that \gls{gamble} can run faster than the sequential C code, at least for the operations \gls{gamble} performs on the \acrshort{gpu}.
@@ -40,5 +40,5 @@ Furthermore it became evident that attempting a general solution for all \acrsho
 
 Based on the test of the language using the compiler and the fact that it upholds all the criteria stated by the project group, it is concluded that the solution is satisfactory.
 The usage of an iterative development method has proven to be a good choice for the project group as it allowed the group to change and add features as the project progressed and more knowledge was acquired.
-However the knowledge of OpenCL's limitations was acquired too late, and there was not enough time for the group to switch to CUDA before the project deadline.
-The choice of a modular compiler design would make the switch to CUDA C or any other target language simpler and easier.
+However the knowledge of \gls{opencl}.s limitations was acquired too late, and there was not enough time for the group to switch to \gls{cuda} before the project deadline.
+The choice of a modular compiler design would make the switch to \gls{cuda} C or any other target language simpler and easier.

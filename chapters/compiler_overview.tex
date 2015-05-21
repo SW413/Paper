@@ -32,14 +32,14 @@ If no errors are found it results in the tree now containing additional informat
 The last phase of the compiler is code generation.
 In the code generation phase the output code is generated from all the information gathered from the previous phases of the compiler.
 
-The target language of this compiler is OpenCL C.
-To compile OpenCL C code additional software for the GPU is required, depending on the machine the path to this software may be required when compiling, as such one cannot simply run this on all machines.
-By compiling the OpenCL C code, it is translated into machine code and linked with libraries, which the computer then understands.
+The target language of this compiler is \gls{opencl} C.
+To compile \gls{opencl} C code additional software for the GPU is required, depending on the machine the path to this software may be required when compiling, as such one cannot simply run this on all machines.
+By compiling the \gls{opencl} C code, it is translated into machine code and linked with libraries, which the computer then understands.
 This is an abstraction made by the project group to simplify the process of generating code, as targeting the \acrshort{gpu} using its specific instruction set, not only gives problems targeting more types of GPUs but is also too demanding for the project group to understand let alone use in just one semester.
-OpenCL C is low level compared to Java or C\#, and C has even been characterised as a portable assembly language, as many features of the language translates closely to assembly. \citep{CPort}
+\gls{opencl} C is low level compared to Java or C\#, and C has even been characterised as a portable assembly language, as many features of the language translates closely to assembly. \citep{CPort}
 
 \myref{fig:tombstone} shows a tombstone diagram of the translations of \gls{gamble} for this compiler.
-The compiler takes the \gls{gamble} source code as input and translates it into OpenCL C using a compiler written in Java, the OpenCL C code is then compiled using a C compiler written in C, and outputs machine code which can be run by the computer. 
+The compiler takes the \gls{gamble} source code as input and translates it into \gls{opencl} C using a compiler written in Java, the \gls{opencl} C code is then compiled using a C compiler written in C, and outputs machine code which can be run by the computer. 
 This diagram excludes the execution of kernels.
 \begin{figure}[!ht]
 \centering
@@ -47,8 +47,8 @@ This diagram excludes the execution of kernels.
 \matrix (m) [matrix of nodes,%nodes={minimum width=1em,minimum height=1.7em}
             ]
 {
- \gls{gamble}  & $\to$ &  OpenCL C  \\
-    &  Java    & OpenCL C & $\to$ & \hspace{1 em} M \hspace{2 em}  \\
+ \gls{gamble}  & $\to$ &  \gls{opencl} C  \\
+    &  Java    & \gls{opencl} C & $\to$ & \hspace{1 em} M \hspace{2 em}  \\
     &       &   & C  &         \\
     &       &               \\
   };

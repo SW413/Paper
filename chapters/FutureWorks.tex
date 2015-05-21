@@ -26,16 +26,16 @@ Rather than blindly disregarding loops one could have the compiler check whether
  
 \section{Kernel Memory Efficiency}
 %Kernal optimisation
-When creating kernels one must allocate memory within the memory hierarchy established in the OpenCL framework. 
+When creating kernels one must allocate memory within the memory hierarchy established in the \gls{opencl} framework. 
 In this compiler all memory is allocated in global memory as it significantly simplifies the knowledge of the \acrshort{gpu} hardware and its memory hierarchy required to write kernels.
 With a deeper understanding of how the different memory sections communicate, it is possible to increase performance by using the best suited part of the memory hierarchy. \citep{ocl_lecture3}
 
 \section{Platform Specifications}
 %Platform performance
-While OpenCL is not machine dependent, which machine one is working on does change what version of OpenCL is supported, as well as how different work sizes and data types are handled.
+While \gls{opencl} is not machine dependent, which machine one is working on does change what version of \gls{opencl} is supported, as well as how different work sizes and data types are handled.
 An example would be that while AMD \acrshort{gpu}s have hardware which better supports single precision calculations compared to NVIDIA \acrshort{gpu}s where they only have double precision. \citep{CUDAOpenCLOptimisation}
 Due to these discrepancies the same program and kernel may perform differently on \acrshort{gpu}s with the same specifications but from different vendors.
-As such, different implementations depending on manufacturer and OpenCL support may vary in performance depending on the specific hardware.
+As such, different implementations depending on manufacturer and \gls{opencl} support may vary in performance depending on the specific hardware.
 
 \section{Research Fields}
 %From LIAL to Scientific computing
