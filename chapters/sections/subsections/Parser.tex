@@ -1,19 +1,18 @@
 \subsection*{Parser}\label{subsec:parser}
-The parser is based on the \acrfull{cfg} of \gls{gamble} written in \acrfull{ebnf}, whose alphabet consists of tokens produced by the scanner.\todo{Er det vigtigt igen ? Måske ? - Søren}
-The parser reads the sequence of tokens created by the scanner and groups them into phrases according to the production rules of the \acrshort{cfg}.
+The parser is based on the \acrfull{cfg} of \gls{gamble} written in \acrfull{ebnf}, whose alphabet consists of tokens which the scanner finds in the source code.
+The sequence of tokens is read by the parser and grouped into phrases according to the production rules of the \acrshort{cfg}.
 The parser verifies that the syntax is correct and adheres to the \acrshort{cfg}, and if a syntax error is found it provides a corresponding error message. \citep{Crafting_book}
 By using a parser generator like \acrshort{antlr} or SableCC, handling of syntax errors and repairs can be done automatically.
 A parser can also be written manually but doing so risks errors in the parser which can prove difficult to find without a tool.
-Writing a parser by hand can also take a lot of time, and it can be difficult to go back and change or add new productions to the syntax, which is something the project group will want to do, due to the iterative development.\todo{``also take a lot of time'' Hvad tager da mere lang tid? - Corlin}
+Furthermore writing a parser by hand can take a lot of time, and it can be difficult to go back and change or add new productions to the syntax, which is something the project group will want to do, due to the iterative development.
 There are many parser generators which can be used like: SableCC, JavaCC, JFlex and many others, but we have chosen to use \acrshort{antlr}.
-\acrshort{antlr} has been chosen due to their special use of the ALL(*) grammar\todo{er dette ikke first mention? i såfald burde det jo skrives helt ud og eventuelt forklares - Marc}, which poses many opportunities for the grammar, and also makes the \acrshort{cfg} simpler to write.
-\acrshort{antlr} generates a parser which produces a parse tree that contains information about how the parser have grouped the tokens into more abstract language definitions, such as expressions and statements.\todo{Måske sætte en reference ind" More about Antlr in ref til impl om antlr ?" - Søren"} \todo{Vi bruger 2 linjer på at vælge en parser generator, andre bruger flere sider? skal vi have mere om pro-cons? -- Troels}
+\acrshort{antlr} has been chosen due to their special use of grammars with dynamic token lookahead, and will be further discussed in \myref{sec:ANTLR}, which poses many opportunities for the grammar, and also makes the \acrshort{cfg} simpler to write.
+\acrshort{antlr} generates a parser which produces a parse tree that contains information about how the parser have grouped the tokens into more abstract language definitions, such as expressions and statements. 
 
 There are different kind of parsers, most common are bottom-up and top-down parsers.
 \acrshort{antlr} makes a top-down parser, more specifically a recursive descent parser.
 A recursive descent parser is a subtype of top-down parsers build from a set of mutually recursive procedures where each such procedure implements one of the productions of the grammar.
 The structure of the resulting program closely mirrors the grammar it recognises. \citep{Recursive_programming}
-Recursive-descent parsers are a collection of recursive methods, one per rule of the \acrshort{cfg}. \todo{Dette er en gentagelse af linje 14? -- Troels}
 Such a method for an assignment rule may look as shown in \myref{lst:rdpmethod}, where the rule is \texttt{assignment : ID = expr ;}.
 So the method expects an ID to be the first token from the tokenstream, then an assignment operator followed by an expression and a semicolon.
 Here the expression is a rule itself, and is therefore called on the expected expression.

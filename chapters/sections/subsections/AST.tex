@@ -1,11 +1,11 @@
 \subsection*{Abstract Syntax Tree}\label{sec:AST}
 The parser creates a parse tree which contains a node for each production of \gls{gamble}'s grammar.
-This tree contains unnecessary information, which makes it difficult to traverse the tree and check for the semantics of \gls{gamble}.\todo{Hvad betyder det at ``check for the semantics'' - Corlin}
+This tree contains unnecessary information, which makes it difficult to traverse the tree and perform error checking.
 Therefore the tree will be transformed into what is known as an \acrfull{ast}.
-An \acrshort{ast} should be able to express the same source code as the parse tree.
+An \acrshort{ast} should be able to represent the same source code as the parse tree.
 
 \input{chapters/sections/subsections/PrettyPrint.tex}
-\todo[inline]{Dette prettyprinter er noget sjovt placeret. MP - Sýnes nu det er meget fint, vi nævner at man skal kunne lave en pretty printer lige inden, så bør vi vel også forklare hvad det er :) ? - Søren - Jeg har slettet at det er nævnt lige inden eftersom det der stod allerede står i PP afsnittet hvor det er indledt med en forklaring om det - Marc}
+
 A transformation from a parse tree to an \acrshort{ast}, on the declaration: \texttt{int a = 5;} using the grammar of \gls{gamble} can be seen on \myref{image:AST}
 
 \begin{figure}
@@ -15,7 +15,7 @@ A transformation from a parse tree to an \acrshort{ast}, on the declaration: \te
 \end{figure}
 
 The parse tree is generated using a parser produced by providing ANTLR with a grammar, which means that ANTLR decides which information is contained on the nodes of the tree.
-The nodes of the \acrshort{ast} can therefore be made to contain information for type and scope checking, which helps in the contextual analysis phase.\todo{det er lidt usammenhængende med det førnævnte, det er vel ikke som et resultat af at ANTLR laver parse træet, at AST'et KAN holde på type og scope check info? - Marc}
+The nodes of the \acrshort{ast} can be designed to contain information for type and scope checking, which helps in the contextual analysis phase.
 To make this transformation the following is needed: classes for all the nodes of the \acrshort{ast}, a way to traverse the parse tree while using the traversal to create instances of the \acrshort{ast} nodes and binding them together to create a structured \acrshort{ast}.
 
 

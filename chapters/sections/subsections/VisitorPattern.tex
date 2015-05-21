@@ -21,7 +21,7 @@ This diagram is from a C\# representation, and while the idea is the same the ex
 Take note of the classes ``ConcreteElement'' and ``ConcreteVisitor''.
 The ``ConcreteElement'' represents the different kinds of nodes in a given tree.
 The ``ConcreteVisitor'' represents the different kind of visitors implemented.
-A visitor will make sure that the children of the node are traversed in the correct manner, and will at the same time also do other computations, e.g. pretty printing or checking the source code for errors.\todo{Skal vi komme med andre eksempler her ? Såsom, type checking or code generating?}
+A visitor will make sure that the children of the node are traversed in the correct manner, and will at the same time also do other computations, e.g. checking for scope and type errors.
 A visitor must implement a method to visit every single ``ConcreteElement'' which exist in the tree.
 As seen on \myref{image:visitor} ``ConcreteVisitorA'' and ``ConcreteVisitorB'', both implements a visit method for the ``ConcreteElements'' A and B.
 In the next section, the implementation of creating the \acrshort{ast} from the parse tree using the visitor pattern will be presented.
@@ -32,16 +32,15 @@ In the next section, the implementation of creating the \acrshort{ast} from the 
 \caption{An UML diagram for the implementation of the visitor pattern.}\label{image:visitor}
 \vspace{-15pt}
 \end{figure}
-\todo[inline]{har vi selv lavet figuren? MP - Ja den har jeg lavet :) men der skal nok en kilde på så man kan se hvor vi har det fra, Marc found it. - Søren - men du har jo ændret den så ved ikke om kilden skal på? i så fald hedder kilden GOF - Marc}
 
-\subsection{Creating the \acrshort{ast}}\label{CreatingAst}\todo{This filopdeling ... vi har en subsection placeret under en subsubsection xD -- Troels}
+\subsection*{Creating the \acrshort{ast}}\label{CreatingAst}
 
 The goal for the \acrshort{ast} is to decrease the information in the tree.
-The hidden information is then contained in fields created for the respective classes.\todo{Kan ikke finde ud af om det er lidt for groft at sige hidden information? - Søren - synes jeg ikke det er, men alternativt kan man bruge Enclosed, Unexposed, Covered, Concealed, Underlying - Marc}
+The encapsulated information is then contained in fields created for the respective classes.
 Rather than having the information as fields one could also choose to have this information as children of the nodes.
 This would mean that to find the information one would have to run through the children of the nodes without knowing what children it has.
 The method chosen for this compiler has the information kept on the fields of a node rather than as children.
-The advantage being that the information is kept together without cluttering the tree and thus increasing the readability of the compiler.\todo{det er vel træet ikke compileren der er lettere at læse? - Marc}
+The advantage being that the information is kept together without cluttering the tree and thus increasing the readability of the compiler.
 All the nodes of the \acrshort{ast} have been designed with this in mind.
 For example on figure \myref{image:ASTDecl} a class structure can be seen, which consists of all the classes needed to express a declaration from the \acrshort{cfg} on the tree.
 A declaration could be \texttt{int a = 5;}.
@@ -63,10 +62,10 @@ The print argument field is used when a function call to \texttt{print()} is mad
 The full class diagram can be seen in \myref{ASTNodes}.
 
 The classes have made it more intuitive to perform a traversal of the tree based upon the names of the fields on the classes.
-E.g. the \texttt{ForLoopNode} has fields named \texttt{Body}, \texttt{Initialize}, \texttt{Update}, and \texttt{Conditional}, these names have meaning instead of just being children one through four of the node, which in turn increases the readability of the compiler.\todo{igen er det vel readability of each node, ikke compileren som helhed - Marc ... Men det er vel soruce code til compileren der indeholder Initialize ovs, hvilket gør den mere læsbar, således det ikke ikke bliver blandet sammen? - Corlin}
+E.g. the \texttt{ForLoopNode} has fields named \texttt{Body}, \texttt{Initialize}, \texttt{Update}, and \texttt{Conditional}, these names have meaning instead of just being children one through four of the node, which in turn increases the readability of the compiler.
 
 The syntax analysis phase returns the \acrshort{ast} so it can be used in the next phase, the contextual analysis. 
-The design of the phase\todo{pisse meget pronoun game, er det her syntax eller contextual phase der snakkes om? - Marc} and the call from main can be seen on \myref{fig:syntaxphase}.\todo{call from main kunne thomas ikke lide. MP - Tror det var fordi han ikke havde set figuren i compiler overview som viser alle kaldene fra main, og dermed var han forvirret over det ? Men ved det self ikke, synes bare ikke det gør noget når man også har set den figur. - Søren}
+The design of the syntax analysis phase and the call from main can be seen on \myref{fig:syntaxphase}.
 As can be seen the \texttt{GenerateASTVisitor} makes use of the classes shown in \myref{ASTNodes}.
 
 \begin{figure}[h]
@@ -74,4 +73,4 @@ As can be seen the \texttt{GenerateASTVisitor} makes use of the classes shown in
     \includegraphics[width=0.48\textwidth]{figures/ClassDiagrams/SyntaxAnalyser.pdf}
   \caption{The function calls and returns in the Syntax Analysis phase.}
   \label{fig:syntaxphase}
-\end{figure}\todo{Skal vi vise at generateParseTreeFromSourceCode kaldes af ASTFromSourceCode eller noget ? - Søren}
+\end{figure}
