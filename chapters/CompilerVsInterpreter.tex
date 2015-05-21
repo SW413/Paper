@@ -20,7 +20,7 @@ Another reason being that compiled programs are often compiled to a low level la
 Regarding error reporting both models can be useful, there are strong cases for both the compiled and the interpreted model.
 Interpreters limit the possibilities of target languages, especially when \gls{gamble} has to target the \acrshort{gpu}.
 If one were to distribute calculations in \gls{gamble} amongst multiple machines to increase run-time efficiency it is less tedious if the code is compiled, because only one machine is required to have the compiler.
-A case for choosing the compiler would be that since the language is expecting to be used for large calculations with a long runtime; and compiled code often executes faster.\todo{Kilde på compiled kode.}
+A case for choosing the compiler would be that since the language is expecting to be used for large calculations with a long runtime; and compiled code often executes faster.\citep{SonicSpeedCompiler}
 A compiler seems like the better choice, when \gls{gamble} aims to increase run-time efficiency.
 
 Based on these considerations it has been chosen that a compiler would be the best choice for \gls{gamble} to achieve the desired goals.
@@ -36,7 +36,7 @@ Therefore the target language should be able to at least use one of these platfo
 Hereafter follows a short comparison of the two options and lastly a choice to which solution deemed most advantageous for \gls{gamble}.
 
 It needs to be made clear, that to use either of these solutions the host computer needs an implementation of one of these platforms, in order to compile and run the code.
-Such implementations are found alongside the drivers of the \gls{gpus} manufacturers.
+Such implementations are found alongside the drivers of the \gls{gpu} manufacturers.
 Both CUDA and OpenCL have bindings for different existing programming languages like Java, C++ and C.
 C was chosen as it compiles to machine code, is also low level which means that there is a high level of control, and the project group are already familiar with it. 
 
