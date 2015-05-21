@@ -1,10 +1,10 @@
 \subsubsection*{From OpenCL to execution}\label{ssub:makefile}
-After the \gls{gamble} compiler have compiled the source code; the compiler outputs OpenCL C code as its object code.
+After the \gls{gamble} compiler have compiled the source code; the compiler outputs OpenCL C code as its object code.\todo{Er det ikke ligegyldigt efterhånden ? We know this - Søren}
 The OpenCL C code must be compiled by a C-compiler such as the GNU Compiler Collection (GCC) compiler to produce code the \acrshort{cpu} and \acrshort{gpu} can execute.
 During the compilation the OpenCL C headers must be accessible, to provide the functions and types used. 
-Additionally the \gls{gamble} standard library, containing functions such as \texttt{matrixToFile} and \texttt{fileToMatrix} must also be included and compiled. 
+Additionally the \gls{gamble} standard library, containing functions such as \texttt{matrixToFile} and \texttt{fileToMatrix} must also be included and compiled. \todo{Troede det var en del af grammatikken ?? No ? - Søren}
 This produces an executable file for the platform targeted by the compiler, this will most often be the platform running, such as x86--64 on Linux.
-The same executable file is not usable for another platform, e.g. ARM, nor on another operating system, e.g. Windows or OS X.\todo{Skal vi ændre dette til OS X only med gamble?}
+The same executable file is not usable for another platform, e.g. ARM, nor on another operating system, e.g. Windows or OS X.\todo{Skal vi ændre dette til OS X only med gamble? - Wath ? Og desuden så har vi ikke skrevet hverken i konklusionen eller noget at det kun virker på linux og osx har vi ?}
 To maintain portability a ``MakeFile'' is used; a MakeFile is a file in the syntax which the GNU make utility can execute. 
 The make utility is a set of rules which ensures that the correct compiler, path, headers, etc. are used during compilation on one of multiple platforms. 
 This means that after running the \gls{gamble} compiler, on a configured computer, e.g. has OpenCL C headers, library, a compiler etc., the make command can be used to build a binary file to be executed.

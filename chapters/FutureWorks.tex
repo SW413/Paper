@@ -1,29 +1,29 @@
 \chapter{Future Works}\label{cha:future_works}
 While the language and compiler functionality met the requirements set up earlier in this paper, there still exists room for improvements which could benefit both \gls{gamble} and its compiler.
-In this chapter some of the possible expansions, i.e. new features and optimisations, will be discussed.
+In this chapter some of the possible expansions, i.e. new features and faster runtime execution, will be discussed.
 
 \section{Linear Algebra}\label{improve:LIAL}
 %More operations
 %More algortihms
-During development of \gls{gamble} the focus have laid upon linear algebra.
+During development of \gls{gamble} the focus have been on matrix operations to be used in linear algebra.
 As such incorporating more operations such as finding the inverse matrix, would remove the necessity of the programmers themselves having to develop functions to do so.
 Moreover this would make it easier to implement algorithms which makes use of such operations.
 Further development could also include some common algorithms e.g. Gaussian elimination.
-As a result of how the \acrshort{gpu} is used in the current version of \gls{gamble}, the operations and functions created by the programmer, may very well use the \acrshort{gpu} but not as effectively as it could in all cases.
+As a result of how the \acrshort{gpu} is used in the current version of \gls{gamble}, the operations and functions created by the programmer, may very well use the \acrshort{gpu} but not as effectively as it could in all cases.\todo{er ikke helt med her - Søren}
 Therefore making these improvements to the core language, would not only increase the writability of \gls{gamble}, but also increase the overall performance on run-time.
 
 \section{Static analysis}
 %A more dynamic use of GPU through analysis
 %Use GPU for more than matrix and vector operations
-As aforementioned \gls{gamble} performs all operations between matrix and vector on the \acrshort{gpu}.
-While this should be sufficient for computations on big sets of data as the language has targeted, this is not the advantageous for smaller matrices as shown in \myref{cha:test_of_language}.
-A possible expansion would be to optimise further to only utilise the \acrshort{gpu} when an increase in performance is to be expected from doing so. \todo{Hvis størrelsen af en matrice kan være dynamisk, så kan STATISK analyse ikke hjælpe dig med at vælge imellem gpu og cpu? -- Troels}
+As aforementioned \gls{gamble} performs all operations using matrix and vectors on the \acrshort{gpu}.\todo{Men vi havde ikke divider hver index:P ? - Søren}
+While this should be sufficient for computations on big sets of data as the language has targeted, this is not advantageous for smaller matrices as shown in \myref{cha:test_of_language}.
+A possible expansion would be to increase runtime efficiency further to only utilise the \acrshort{gpu} when an increase in performance is to be expected from doing so. \todo{Hvis størrelsen af en matrice kan være dynamisk, så kan STATISK analyse ikke hjælpe dig med at vælge imellem gpu og cpu? -- Troels}
 An analysis of the amount of computations required as well as the hardware available, would help towards gaining the best performance possible.
-Even further development should also look further than only performing matrix and vector operations on the \acrshort{gpu}.
+Even further development should also make it so more than just performing matrix and vector operations on the \acrshort{gpu} is possible.
 This was chosen because all operations currently implemented towards matrix and vector operations are paralleliseable.
 If implementing new operations and functions one must consider whether these benefit from the use on the \acrshort{gpu} or not.
-For further development of \gls{gamble} one should also consider using the \acrshort{gpu} for more than matrix and vector operations and hereby developing the language to do \gls{gpgpu}. 
-Rather than blindly disregarding loops one could have the compiler check whether or not the loop in question could be parallelised, and perhaps perform some of the optimisations mentioned in \myref{subsec:runtime} upon said loop.
+For further development of \gls{gamble} one should also consider using the \acrshort{gpu} for more than matrix and vector operations and hereby developing the language to do \gls{gpgpu}. \todo{Står det ikke på linien lige overfor o.o ?}
+Rather than blindly disregarding loops one could have the compiler check whether or not the loop in question could be parallelised, and perhaps perform some of the increase its runtime efficiency as mentioned in \myref{subsec:runtime} upon said loop.
  
 \section{Kernel Memory Efficiency}
 %Kernal optimisation
@@ -36,15 +36,16 @@ With a deeper understanding of how the different memory sections communicate, it
 While OpenCL is not machine dependent, which machine one is working on does change what version of OpenCL is supported, as well as how different work sizes and data types are handled.
 An example would be that while AMD \acrshort{gpu}s have hardware to support both integer and float calculations, NVIDIA \acrshort{gpu}s only has for floats. \citep{CUDAOpenCLOptimisation} \todo[inline]{Er dette stadig korekt? Måske bare at de ikke er optimerede til det? Dette er godt nok CUDA docs men der står stadig integer operationer: \url{http://docs.nvidia.com/cuda/cuda-c-programming-guide/} del 5.4.1 -- Troels}
 Due to these discrepancies the same program and kernel may perform differently on \acrshort{gpu}s with the same specifications but from different vendors.
-As such, different implementations depending on manufacturer and OpenCL support may vary performance depending on the specific hardware.
+As such, different implementations depending on manufacturer and OpenCL support may vary in performance depending on the specific hardware.
 
 \section{Research Fields}
 %From LIAL to Scientific computing
 While making it possible to perform linear algebra operations have been the focus of this compiler, this is not the only field of computing that can benefit from the computational powers of the \acrshort{gpu}.
 Graph theory, molecular dynamics, computational chemistry and many other fields all include compute intensive simulations and number crunching, all of which use some form of linear algebra.
+\todo{ Er det så teksnisk set ikke også dækket af lineær algebra :P ? - Søren}
 Further developing the language to fit yet another field would significantly increase the use for such a language in the scientific community.
 As long as one can ensure that the computations required can in some form be parallelised such that the \acrshort{gpu} can be of use, this is a possible and large addition to the language.
-Alternatively one could be content with adding new data types and operations for other fields and implement the field specific methods as libraries.
+Alternatively one could be content with adding new data types and operations for other fields and implement the field specific methods as libraries.\todo{Data types ? really? - Søren}
 This would make the language usable by other fields, as the users would be able to implement the needed methods themselves.
 
 \section{Expanding \gls{gamble}'s Domains}
