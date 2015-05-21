@@ -1,10 +1,10 @@
 This section describes how the compiler handles errors, and how error handling is implemented.
-Error handling is referred to as detection and solving of programming errors. \todo{Hvad menes der med ``solving''? -- Troels}
+Error handling is referred to as detection and reporting of programming errors. 
 Both errors at compile time and at run time will be handled.
 \subsection*{Design}\label{subsec:DesignErrorHandling}
 The source code given to the \gls{gamble} compiler may contain errors, these errors are found and uncovered in various stages of the compiler.   
 In the syntax analysis, all syntax errors are found, and the compilation is stopped if errors are found as it would not be advised to further compile source code which contains fundamental syntax errors.
-However it should be noted that the entire syntax analysis is completed before stopping the compiler, hence all syntax errors are collected and reported to the user.\todo{Et andet sted står der at hvis en fejl mødes bliver det abrupted det skal lige rettes så det passer med det her tror jeg :)(det er vist mig der skrev det bliver stoppet, jeg huskede forkert, I R SOWIE) - Søren - Det andet sted står det vidst i forhold til runtime errors hvis jeg husker korrekt? - Marc Jeg tror at jeg har indsat en todo der hvor en skrev at det blev stoppet lige når en fejl blev fundet i forhold til syntax -- Troels}
+However it should be noted that the entire syntax analysis is completed before stopping the compiler, hence all syntax errors are collected and reported to the user.
 This makes the process of resolving syntax errors less tedious for the programmer, than if the compiler would stop every time a single error was detected. 
 A core element of error handling is scope and type related errors, these are found in the previously explained subphases of the contextual analysis: Scope- and typechecking.
 As with the syntax analysis, the compiler collects all errors before stopping the compilation of the source code. 
@@ -22,7 +22,7 @@ The following errors and warnings are reported by the \gls{gamble} compiler:
 	A warning signaling that a variable or function is declared but never used.
 \end{description} 
 The errors in the compiler should give useful information about where the error is located in the source code and what variable(s) or function(s) were used incorrectly.
-This includes line numbers which then have to be carried over from the parse tree to the \acrshort{ast}.\todo{carried over er vidst ikke helt rigtig terminologi, menes her at informationen skal hentes fra parse tree fordi den ikke er gemt i ast? - Marc. Nej, det betyder at infomationen skal være med i astet da det bliver oprettet første gang. alternativ formulering ``the line numbers in the source code must therefore be preserved though the parse tree to the \acrshort{ast} ...'' -- Troels}
+This includes line numbers which means that the creation of the \acrshort{ast} have to include the line numbers from the source code.
 
 \subsection*{Implementation}\label{subsec:ImplementationErrorHandling}
 In the \gls{gamble} compiler the error handling is implemented by having a class \texttt{LanguageError} which each specific error type inherits from.
@@ -75,4 +75,4 @@ public Void CheckIfUndeclared(Variable variable, StatementNode node) {
 
     return null;
 }
-\end{lstlisting}\todo{Stemmer det overens med den nye struktur der blev lavet hvor der kaldes en error class i main ?? - Søren}
+\end{lstlisting}

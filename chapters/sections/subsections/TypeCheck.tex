@@ -1,17 +1,17 @@
 \subsection*{Design}
 As \gls{gamble} is statically typed it is necessary to check if all references to identifiers and constant values fit into the context they exist in. 
 Implicit conversion between floating point and integer types are not a part of \gls{gamble}, and therefore an error must be issued everywhere they are used incorrectly. 
-It is however possible to implicitly convert between integer and floating point types internally e.g. from int16 to int64, as long as the destination variable is of a larger bit-width. \todo{Er dette imprementeret? -- Troels}
-This is also the case for complex datatypes, matrices and vectors, e.g. from \texttt{matrix<float>} to \texttt{matrix<float64>}. \todo{Har vi lavet code gen så man kan det egentlig ?? - Søren}
+It is however possible to implicitly convert between integer and floating point types internally e.g. from int16 to int64, as long as the destination variable is of a larger bit-width. 
+This is also the case for complex datatypes, matrices and vectors, e.g. from \texttt{matrix<float>} to \texttt{matrix<float64>}.
 
 The symbol table is used as a reference for which type the instance of a variable is, and therefore the type checking happens after the symbol table has been filled, which means after scope checking is complete. 
 Type checking is done in many parts of the code, one or more times for each line is common. 
-For very operator it must be checked whether its operands' types match. \todo{``very''-operator, that's a new one, what does it do ;) -- Troels}
+For every operator it must be checked whether its operands' types match. 
 Every function call must match the formal parameters of the function; the return values must also be type checked to see whether it matches the type of any expression or declaration it might be a part of.
 
 The errors produced by the type checker are: Argument errors and type mismatch errors.
 An argument error indicates that the number of arguments in the function declaration does not match the number of arguments provided in the function call.
-A type mismatch error is caused by a value or identifier not being compatible (type safe) with a function's parameter, an operator etc. \todo{Dette får det til at lyde som om det kun gælder for funktioner? - Søren .. Der står ``an operator''? -- Troels}
+A type mismatch error can for example be caused by a value or identifier not being compatible (type safe) with the parameters of a function or an operator.
 Examples are shown in \myref{lst:typeErrors}.
 
 \begin{lstlisting}[caption=Examples of type errors in \gls{gamble},numbers=none,frame=tlrb,label={lst:typeErrors}]
@@ -27,8 +27,7 @@ b = foo(1);         /* Argument error (Takes more or fewer arguments) */
 
 \subsection*{Implementation}
 The type checker is called right after the symbol table has been filled by the \texttt{SymbolTableFillVisitor}.
-Since \gls{gamble} is statically typed, the type checker is implemented under the contextual analysis phase of the compiler, in contrast to a dynamically typed language, such as Python or R, which implements the type checker at runtime. \todo{er dette nødvendigt. MP - og hvis det er så mangler der vidst en kilde - Marc}
-\gls{gamble} validates that the size of matrices and vectors match for specific \gls{gamble} operations as addition and multiplication etc. as well as if they are out of bounds. \todo{Boundstjek bliver indsat ved code gen, ikke her? -- Troels}
+The compiler validates that the size of matrices and vectors match for specific \gls{gamble} operations including but not limited to addition and multiplication.
 This is to make it easier for the programmers using \gls{gamble} even though it increases compile time. 
 Type checking is implemented in the compiler using a visitor. 
 The class \texttt{ASTTypeCheckVisitor} visits every relevant node in the \acrshort{ast} to check for type errors.
@@ -39,7 +38,7 @@ The visitor does this for multiple node classes of the \acrshort{ast} and the vi
 \texttt{TypeChecker} contains a method: \texttt{CombineValueTypes} which takes two values and checks if they are type compatible.
 \texttt{ASTTypeCheckVisitor} visits nodes which contains either one or more variables and enforces that these values are compatible.
 An example of this is seen in \myref{lst:typecheck1} where the method \texttt{VisitExpressionNode} is shown.
-The method visits an \texttt{ExpressionNode} and calls \texttt{CombineValueTypes} with the nodes' left and right values, if there are any available, otherwise it sends \texttt{null} as the input value. \todo{Marc her er din kommentar til koden vel også? :) -- Troels}
+The method visits an \texttt{ExpressionNode} and calls \texttt{CombineValueTypes} with the nodes' left and right values, if there are any available, otherwise it sends \texttt{null} as the input value. 
 If they are compatible \texttt{CombineValueTypes} returns the type of the expression.
 \texttt{VisitExpressionNode} returns a variable of the type returned which is located in: \texttt{ValueType} and also a string which is printed if the visit finds type errors.
 
@@ -57,5 +56,5 @@ public Variable VisitExpressionNode(ExpressionNode node) {
 }
 \end{lstlisting}
 
-After the type checker have checked every expression\todo{Det er vel ikke kun expressions som tjekkes? eller er alt et subset af expressions? -- Troels} in the source code, the compiler scans for unused variables and afterwards prints all these as warnings.
+After the type checker have checked every expression in the source code, the compiler scans for unused variables and afterwards prints all these as warnings.
 This is further expanded upon in the next section.
