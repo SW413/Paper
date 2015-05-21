@@ -17,7 +17,97 @@ Then the output from the compiler will be written below the code.
 \section{Contextual Tests}
 
 \subsection*{Scope Tests}
+The first set of tests is to see if the scope rules of \gls{gamble}, \myref{subsec:Scope}, is properly implemented. 
+
+In the examples given, an if statement which is always true is used to have an inner scope, in order to test the implementation of the scope rules across scopes. 
+
+In listing \myref{lst:scope1} a variable is declared in an inner scope, used there and used in an enclosing scope on line 6.
+However according to the scope rules of \gls{gamble} a variable is no longer in scope after the end if the block it is declared in. 
+Therefore this should result in a scope error. 
+When used as input in the \gls{gamble} compiler, \myref{lst:scope1} produces the following output: \texttt{Error[line    6]-> Undeclared variable a in scope Local}
+
+\begin{lstlisting}[caption={Example of a scope error in \gls{gamble}},label={lst:scope1},frame=tb]
+if(1 < 2) {
+    int a = 1;
+    print(a); // Prints ``1''
+}
+
+print(a); // Error!
+\end{lstlisting}
+
+Listing \myref{lst:scope2} is identical to \myref{lst:scope1}, with the exception of \texttt{int a = 2;} on line 5. 
+This makes the source code valid, as no scope rules are broken.
+It is important to note that the ``a'' on line 2, and the ``a'' on line 5 are independent of each other.  
+
+\begin{lstlisting}[caption={Example of a valid program in \gls{gamble}},label={lst:scope2},frame=tb]
+if(1 < 2) {
+    int a = 1;
+    print(a); // Prints ``1''
+}
+int a = 2;
+print(a); // Prints ``2''
+\end{lstlisting}
+
+Listing \myref{lst:scope3} shows a valid program in \gls{gamble}, here a variable is declared in the outer scope and used in an inner scope. 
+This is valid and the print on line 5 will print ``1''.
+
+\begin{lstlisting}[caption={Example of a valid program in \gls{gamble}},label={lst:scope3},frame=tb]
+int a = 0;
+if(1 < 2) {
+    a = 1;
+}
+print(a); // Prints ``1''
+\end{lstlisting}
+
+In \myref{lst:scope4} a variable is declared in the outer scope, and an attempt to declared a variable of the same name is done in the inner scope. 
+This is not valid according to the scope rules and will result in the error: \texttt{Error[line    3]-> Variable a:int in scope Conditional already declared as a:int in scope Local}.
+
+\begin{lstlisting}[caption={Example of a redeclaration error in \gls{gamble}},label={lst:scope4},frame=tb]
+int a = 0;
+if(1 < 2) {
+    int a = 1; // Error! Already declared.
+}
+print(a); 
+\end{lstlisting}
+
+Variables and functions are not allowed to have the same name.
+This is tested in \myref{lst:scope5} where a function with the name ``a'' is declared and a variable with the same name. 
+This results in a scope error: \texttt{Error[line    6]-> Variable a:int in scope Local already declared as a:int in scope Global}.
+
+\begin{lstlisting}[caption={Example of a redeclaration error in \gls{gamble}},label={lst:scope5},frame=tb]
+int a() {
+    return 0;
+}
+
+/* [...] */
+int a = 1;
+/* [...] */
+\end{lstlisting}
+
+Recursion is allowed in \gls{gamble}, this is tested by implementing a recursive function which calculated the n-th Fibonacci number.
+As shown in \myref{lst:fibR} the function ``fibR'' calles itself on line 8. 
+
+\begin{lstlisting}[caption={Recursive Fibonacci in \gls{gamble}},label={lst:fibR},frame=tb]
+int64 fibR(int64 n) {
+    int64 tmp = 0;
+    if (n == 0){
+        tmp = 0;
+    } else if( n == 1 ){
+        tmp = 1;
+    } else {
+        tmp = fibR(n - 1) + fibR(n - 2);
+    }
+
+    return tmp;
+}
+
+print(fibR(10)); // Prints ``55''
+\end{lstlisting}
+
 \subsection*{Type Tests}
+In \gls{gamble} there are 3 simple data types and 2 complex data types. 
+Not every combination of these are valid for a given operator. 
+Additionally there are no implicit type conversion between \texttt{int}-types and \texttt{float}-types in \gls{gamble}.
 
 \subsection*{Conclusion}
 Based on these test it is not possibly to prove the correntnees of the compiler or it's output in general.
