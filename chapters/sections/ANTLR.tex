@@ -1,8 +1,8 @@
 \section{Implementation}\label{sec:ANTLR}
 The syntax analysis is implemented through the tool \acrfull{antlr}, this tool provides some advantages over other available tools.
-\acrshort{antlr} is based upon a parser technique called LL(*).\todo{vi har allerede nævnt antlr en del før her. MP - Dog ikke i denne detalje, ville foreslå forklaringen kommer op til første sted hvor det er nævnt - Marc Tidligere stod antlr til at være ALL(*) -- Troels}
+\acrshort{antlr} is based upon a parser technique called LL(*).
 LL(*) uses an algorithm to have a varying lookahead when needed.
-The LL(*) parsers, which is a parser that upholds an LL(*) grammar, allows a bigger class of \acrshort{cfg}s than other parsers like LL(k). \todo{This is wrong?! Det er samme class af gramatiker, men kan performe bedre da ``k'' er dynamisk. -- Troels}
+The LL(*) parsers, which is a parser that upholds an LL(*) grammar, does not allow a bigger class of \acrshort{cfg}s than other parsers like LL(k), but can change the number of tokens needed as lookahead dynamically. 
 In the most recent version of \acrshort{antlr} as time of this publication, \acrshort{antlr}4, the underlying algorithm have been extended to a parser technique called Adaptive LL(*) (ALL(*)).
 An important feature of ALL(*) is it moves grammar analysis to parse time and thereby lets the algorithm accept any non-left-recursive productions.
 On top of that \acrshort{antlr} allows simple left recursions by rewriting them before parse time.
@@ -15,18 +15,16 @@ This means that the undecidability of static LL(*) grammar analysis is avoided a
 This allows \acrshort{antlr} access to input sequences while reading through the grammar, meaning not all possible inputs must be considered.
 Due to this dynamic analysis \acrshort{antlr}4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
 As mentioned this allows \acrshort{antlr} to take care of left-recursion if such is present in the grammar by rewriting it, as such would be the case in \myref{lst:amb}.
-\todo[inline]{Et lidt uklart afnsit, virker til en del ting bliver fortalt flere gange på forskellige måder. MP Enig, det hele virker meget redundant. -- Troels}
 
-\begin{lstlisting}[caption=An ambiguous rule for expr,frame=tlrb,label={lst:amb}]
+\begin{lstlisting}[caption=An ambiguous rule for expr, which ANTLR handles by applying the first rule of the production if possible,frame=tlrb,label={lst:amb}]
 expr : expr '*' expr 	#MulExpression // match expressions with * operator
      | expr '+' expr 	#AddExpression// match expressions with + operator
      | INT 		// matches simple integer
      ;
-\end{lstlisting}\todo{Hvorfor er denne ambiguous ? Den bruger left recursion, men den er da ikke ambigous er den ? - Søren - Fordi hvis ikke for precedence reglen som ANTLR bruger har 2+2*2 2 parse trees - Marc}
-
-%While it may not be obvious from \myref{lst:amb} but this CFG also implements \acrshort{antlr}s way of representing operator precedence by simply obeying the first alternative in the rule set, as such the multiplication operator (``*'') will have the higher precedence. - Dette står allerede tidligere
+\end{lstlisting}
+\myref{lst:amb} implements \acrshort{antlr}s way of representing operator precedence by simply obeying the first alternative in the rule set, as such the multiplication operator (``*'') will have the higher precedence.
 The ALL(*) algorithm also means that one can completely disregard lookahead and it will still be able to parse, although one should keep in mind that having more lookahead than necessary will slow down the process of parsing.
-The scanner provided by \acrshort{antlr} groups related tokens into token types such as INT, ID and FLOAT.\todo{Kommer de her tokens ikke lidt ud af ingenting? - Corlin}
+The scanner provided by \acrshort{antlr} groups related tokens into token types such as INT, ID and FLOAT.
 In \acrshort{antlr} a token contains at least two pieces of information, the token type and the matched text for the token.
 \acrshort{antlr} also implements rule element labels in its \acrfull{cfg} which means one can apply label rules to a construct in a grammar, this allows for conditional steps in the grammar based on the source code being parsed.
 The labels on \myref{lst:amb} are \texttt{\#MulExpression} and \texttt{\#AddExpression}.
