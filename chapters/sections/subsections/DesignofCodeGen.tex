@@ -8,23 +8,23 @@ When the code generator is called, the \acrshort{ast} is used to accept a \textt
 \vspace{-15pt}
 \end{figure}
 
-The visitor builds a string\todo{of object code -- Troels} by traversing the nodes of the tree which will in the end be put into a file by the \texttt{CodeGenerator} class.\todo{Hvad menes der med at det blive puttet i en fil? Det står måske lidt uklart. - Corlin}
+The visitor builds a string of object code by traversing the nodes of the tree which will in the end be written to a  C file which utilise the OpenCL libraries by the \texttt{CodeGenerator} class.
 Some visit methods like a visit method for a \texttt{ConstantExpressionNode} returns a string while other methods instead directly appends to the string the visitor will return to the class \texttt{CodeGenerator}.
-This string is then used as an argument in other visit methods e.g. \texttt{AssignmentNode} which then produces a string which is a statement that can be executed in C. \todo{C eller OpenCL C ? -- Troels}
+This string is then used as an argument in other visit methods e.g. \texttt{AssignmentNode} which then produces a string which is a statement that can be executed in C.
 This string from \texttt{AssignmentNode} is one of the strings appended to the string containing the fully compiled program.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 As a result the information bubbles upwards from the leafs of the tree to the statement-nodes.
 The information is put in the correct statement-nodes because the visitor pattern makes it possible to specify the route of traversal.
 The \texttt{CodeGeneratorVisitor} also contains other methods for producing certain C constructions using the similar \gls{gamble} constructions found in the \acrshort{ast}.
 These methods can also be seen on \myref{fig:CodeGeneratorVisitor}.
-Some of these methods also make runtime checks of matrices, as matrices needs to be of compatible sizes for some of the operations which can be performed on a matrix, furthermore an index check is implemented such that an out of bounds error will occur if one tries to access memory beyond the bounds of the matrix.
+Some of these methods also make runtime checks of matrices, as matrices need to be of compatible dimensions for some of the operations which can be performed on a matrix.
+Furthermore an index check is implemented such that an out of bounds error will occur if one tries to access memory beyond the bounds of the matrix.
 When multiplying two matrices the left matrix of the multiplication has to be a $ N \times M $ while the right one has to be a $ M \times P $ matrix.
 So the right matrix must have the same number of columns as the right matrix has rows.
-If performing a matrix index multiplication, where every index is multiplied with the corresponding index of the the other matrix, the matrices have to have the same number of rows and columns. \todo{De 3 linjer her virker lidt random. Det hele er bare en stor uorganiseret brødtekst. -- Troels}
+If performing a matrix index multiplication, where every index is multiplied with the corresponding index of the the other matrix, the matrices have to have the same number of rows and columns. 
 
-These checks will be inserted as a surrounding if statement around the matrix calculations, so they have to pass these checks before the calculation will be done, if it does not pass an error will be printed.\todo{Der kommer da en fejl right ? - Søren}
-The reason this is done at run-time instead of at compile-time is because the sizes of matrices can be dynamic, which results in making it impossible to check for this\todo{Fjern ``for this`` ? - Corlin} at compile-time.
+These checks will be inserted as a surrounding if statement around the matrix calculations, so they have to pass these checks before the calculation will be done, if it does not pass an error will be printed, and the \gls{gamble} program will terminate with exit code 1.
+The reason this is done at run-time instead of at compile-time is because the dimensions of matrices can be set at runtime, which results in making it impossible to check for at compile-time.
 
 When the string is complete it is written to a file called code.c, along with all the other files needed for running the code, e.g. the kernels used for performing computations on the \acrshort{gpu}.
 The code.c file is structured so that it is a valid C program.

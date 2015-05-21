@@ -2,9 +2,9 @@
 Code generation is the phase in which the object code is generated, the process and considerations this entails are covered in this chapter.
 Object code is the output of the compiler.
 Once the source code has passed through syntax analysis and contextual analysis without errors it has been validated and the compiler can proceed with generating the object code.
-In the case of this compiler the object code is OpenCL C, as a result one or more compilers beyond this one are required to eventually end up with machine code that can be executed.\todo{more compilers? - e.g. vi bruger vores egen og gcc - Marc}
-The object code is OpenCL C this means that tasks such as instruction selection and scheduling as well as register allocation will be handled by the compiler which will compile the OpenCL C code rather than \gls{gamble}.\todo{Håndterer compileren scheduling ????? - Søren - Instruction scheduling var en af de nævnte ting fra SPO kurset som man på lavniveau håndtere ja - Marc .. instruction scheduling er jo hvilken rækkefølge en given sekvens af instruktioner udføres i, ikke hvilken process har adgang til CPUen på et givent tidspunkt. -- Troels}
-Furthermore in the code generation phase optimisation of the object code also takes place, for \gls{gamble} this means to create object code which is quickly executed and utilises the \acrshort{gpu} for calculation that benefit from its use.\todo{er det ok at bruge optimisation her, vi code gen'er jo bare, det er jo ikke rigtig en optimering. ? :) - Søren - Men området er referet til som optimisation, det er også derfor der efter står hvad betydningen af optimisation er for gamble - Marc }
+In the case of this compiler the object code is OpenCL C, as a result one or multiple compilers beyond this one are required to eventually end up with machine code that can be executed.
+The object code is OpenCL C this means that tasks such as instruction selection and scheduling as well as register allocation will be handled by the compiler which will compile the OpenCL C code rather than \gls{gamble}.
+
 A state diagram showing the sub-phases of the code generation can be seen in \myref{fig:flowCodegen}.
 
 \input{figures/TikzDiagrams/flowCodegen.tex}
