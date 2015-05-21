@@ -11,8 +11,8 @@ Furthermore it is important that any usage of an identifier only exists after it
 In the compiler for \gls{gamble}, the symbol table is filled while the compiler is also performing the scope checking.
 This is because it reduces the amount of traversals through the tree, scope checking and filling the symbol table is also of similar concept, e.g. a declaration creates an entry in the symbol table, while expressions simply use lookups in this table.
 
-The scope checker can produce two types of errors: redeclaration errors and undeclared errors defined in \myref{subsec:Scope}.\todo{reference nødvendig igen? also: can produce. MP}
-A redeclaration error is produced when an attempt to declare a variable while it is already declared in scope is made.\todo{klumset formulering. MP.. Forslag:``A redeclaration error is an attempt to declare a variable with a name already in use.'' -- Troels}
+The scope checker can produce two types of errors: redeclaration errors and undeclared errors.
+A redeclaration error is produced when attempting to declare a variable, while one with the same name is already declared in scope.
 An undeclared error is produced when an attempt to use a variable which is not declared in the current scope or any enclosing scopes are made. 
 Examples are shown in \myref{lst:scopeErrors}.
 
@@ -27,7 +27,16 @@ int b = 0;
 b = foo();       /* Redeclaration error and undeclared error */ 
 /* [...] */
 \end{lstlisting}
-\todo[inline]{Evt lav en UML diagram der viser de klasser der bruges til at lave symbol tabellet, det gør i hvert fald det nemmere at forstå implementation. Men et diagram hører til i design afsnittet.}
+
+The design of the classes involved in the Scopechecking subphase can be seen on \myref{fig:scopeCheck}.
+
+\begin{figure}
+\centering
+\includegraphics[width=1\textwidth]{figures/ClassDiagrams/ScopeCheck.pdf}
+\caption{Class diagram showing the different classes involved in scope checking and their associations.}
+\label{fig:scopeCheck}
+\end{figure}
+
 
 \subsection*{Implementation}
 \info[inline]{Todo: Listing or/eller figur i denne del.}
@@ -49,7 +58,7 @@ The boolean describing if a declared variable is used, is set to true, if the pr
 This boolean also makes it possible for the \gls{gamble} compiler to find unused variables and then prompt the user with a relevant warning.
 
 In order for all of the above to be implemented an instance of the \texttt{SymbolTable} class is passed via the constructor, to a visitor which traverses the \acrshort{ast}.
-This visitor, the \texttt{SymbolTableFillVisitor} then fills the referenced \texttt{symbolTable} with scopes and their symbols.\todo{Hedder den stadig SymbolTableFillVisitor?}
+This visitor, the \texttt{ScopeCheckVisitor} then fills the referenced \texttt{symbolTable} with scopes and their symbols.
 Every time the visitor meets the start of a new scope e.g. the block of statements within a loop construct.
 A new instance of the \texttt{Scope} class is pushed to the \texttt{scopeStack}, hereby making it possible to fill the relevant scope when the block of statements is visited.
 At the end of a scope the top element on the \texttt{scopeStack} is popped, and as a consequence of this the top of the \texttt{scopeStack} is again the enclosing scope.

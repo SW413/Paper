@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="13.2">
+  <zoom_level>8</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>344</x>
+      <y>128</y>
+      <w>248</w>
+      <h>152</h>
+    </coordinates>
+    <panel_attributes>Scope
+--
+#symbolMap : LinkedHashMap&lt;String, Symbol&gt;
++scopeId : int
++type : ScopeType
++enclosingScope : Scope
+--
++void define(Variable variable)
++void define(Variable variable, int declLine)
++void define(Symbol, symbol)
++Symbol resolve(String name)
++String toString()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>128</y>
+      <w>256</w>
+      <h>184</h>
+    </coordinates>
+    <panel_attributes>SymbolTable
+--
+#scopeStack : Stack&lt;Scope&gt;
+#allScopes : ArrayList&lt;Scope&gt;
+#scopeId : int
+--
+#void init()
+-int nextScopeId()
++Scope pushScope(ScopeType type)
++void popScope()
++Scope currentScope()
++Scope getScope(int scopeId)
++String toString()
++ArrayList&lt;LanguageError&gt; getUnusedVariables()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>584</x>
+      <y>216</y>
+      <w>104</w>
+      <h>32</h>
+    </coordinates>
+    <panel_attributes>1..*                1</panel_attributes>
+    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>344</x>
+      <y>344</y>
+      <w>248</w>
+      <h>192</h>
+    </coordinates>
+    <panel_attributes>Symbol
+--
+#scope : Scope
+#variable : Variable
+#used : boolean
+#declLine : int
+--
++Symbol(Variable variable)
++String getName()
++ValueType getType()
++Variable getVariable()
++void setScope(Scope scope)
++void setUsed(boolean Used)
++void setDeclLine(int declLine)
++Scope getScope()
++int scopeId()
++String toString()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>672</x>
+      <y>376</y>
+      <w>256</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>ScopeCheckVisitor
+--
++Void visit(BaseASTNode node);
+..
++Void visit(ConstantExpressionNode node);
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>432</x>
+      <y>272</y>
+      <w>40</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>m1=0..*
+
+
+m2=1</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>816</x>
+      <y>304</y>
+      <w>24</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>m1=1 
+m2=1</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+</diagram>
