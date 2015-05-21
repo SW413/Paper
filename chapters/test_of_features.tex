@@ -5,8 +5,8 @@ The focus of this test will be to test how the compiler reacts to invalid input,
 Also to test if simple operations act as intended and documented in \myref{cha:semantics}. 
 As written in our success criteria, \myref{sec:OurCriterias}, it is important to give descriptive error messages, and provide type and scope checking. 
 
-The most optimal solution would be to verify the correctness of the compiler according to the language specification in the earlier chapters.
-But since formal verification of correctness is a very complex problem, tests is performed to indicate that features of the \gls{gamble} are correctly implemented instead. \citep{Verification} 
+A more formal solution would be to verify the correctness of the compiler according to the language specification in the earlier chapters.
+But since formal verification is a complex problem, tests is performed to indicate that features of the \gls{gamble} are correctly implemented instead. \citep{Verification} 
 
 These tests will be performed by using the source code listed in each example as an input for the compiler. 
 Then the output from the compiler will be written below the code. 
@@ -152,10 +152,10 @@ float64 d = c;
 int16 e = a; // Error! Loss of precision
 \end{lstlisting}
 
-\section{Conclusion}
+\section{Evaluation}
 Based on these test it is not possibly to prove formal verification of the compiler or it's output in general as mentioned in the beginning of this chapter.
-However the aforementioned tests cover a large feature set with some different inputs.
-Since all these test performed the expected output, this indicates that the implementation of the language is correct for either some or possibly all inputs in respect the the features tested in this chapter.
+However the aforementioned tests cover a large feature set with different inputs.
+Since all these test performed the expected output, this indicates that the implementation of the language is correct for at least some or possibly all inputs in respect the the features tested in this chapter.
 
 It would however be naïve to believe that every bug in the compiler were found and corrected during the development of the compiler.%I WANT IT WITH ï not I!! - MP%
 Therefore it is emphasized that the compiler is not expected to free of errors. %MED Z PÅ BRITISK%
