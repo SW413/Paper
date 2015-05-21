@@ -16,7 +16,7 @@ This allows \acrshort{antlr} access to input sequences while reading through the
 Due to this dynamic analysis \acrshort{antlr}4 is able to handle some ambiguous constructs and reduce-reduce conflicts.
 As mentioned this allows \acrshort{antlr} to take care of left-recursion if such is present in the grammar by rewriting it, as such would be the case in \myref{lst:amb}.
 
-\begin{lstlisting}[caption=An ambiguous rule for expr, which ANTLR handles by applying the first rule of the production if possible,frame=tlrb,label={lst:amb}]
+\begin{lstlisting}[caption={An ambiguous rule for expr which ANTLR handles by applying the first rule of the production if possible},frame=tlrb,label={lst:amb}]
 expr : expr '*' expr 	#MulExpression // match expressions with * operator
      | expr '+' expr 	#AddExpression// match expressions with + operator
      | INT 		// matches simple integer
