@@ -1,13 +1,13 @@
-\subsubsection*{Using SimpleOpenCl}\todo{Vi har nævnt dette i vsInterpreter, skal vi beholde dette da den jo også viser implementation her? Så er det måske fint at den lige nævner hvad det er igen ?? - Synes ikke det gør noget den er her, det jo bare en kort opsummering - Marc}
+\subsubsection*{Using SimpleOpenCl}
 SimpleOpenCL is a library for C which simplifies the process of setting up and launching a kernel for OpenCL.
 The kernels remain the same, but finding the hardware for executing the kernels and allocating memory for the hardware is simplified.
+
 The \texttt{CodeGeneraterVisitor} starts at the root of the \acrshort{ast} and here the code on \myref{lst:OpenCLSetup} is run.
 
-\begin{lstlisting}[caption=Call to setup SimpleOpenCL in the compiler,numbers=none,frame=tlrb,label={lst:OpenCLSetup}]
+\begin{lstlisting}[caption=Call to setup SimpleOpenCL in the compiler by appending it to a string builder,numbers=none,frame=tlrb,label={lst:OpenCLSetup}]
 outputCode.append(filesNstuff.
 	 ImportStringFromResource("codesnippets/simpleCLsetup.c") + "\n\n");
 \end{lstlisting}
-\todo[inline]{maybe refactor 'filesNstuff'? MP | NEVER!!! - msm}
 The file simpleCLsetup.c is appended to the code right as the main method of the output file is started.
 The file contains the code which can be seen on \myref{lst:OpenCLSetup2}.
 
@@ -30,10 +30,11 @@ The file contains the code which can be seen on \myref{lst:OpenCLSetup2}.
 This code creates the elements needed to launch a kernel.
 It finds the fastest hardware according to SimpleOpenCl's function calls, which means it finds the device with the most number of compute units, no matter the type of device, be it a \acrshort{cpu} or a \acrshort{gpu}.
 For the remaining part of this section the fastest device is a \acrshort{gpu}.
-\texttt{global\_size} and \texttt{local\_size} are there to determine the amount of memory needed both globally and locally on the \acrshort{gpu}.\todo{Disse er hardcoded til et index på  2 i listingen, eventuel forklar hvorfor? - Marc De bliver sat senere til den specifike brug, bare for at instantiere dem. -- Troels}
+\texttt{global\_size} and \texttt{local\_size} are there to determine the amount of memory needed both globally and locally on the \acrshort{gpu}.
+The size of these arrays are initialised to two, because the \gls{gamble} matrices are two-dimensional.
 These arrays are then filled out with different numbers corresponding to the columns and rows of the matrices or vectors being calculated upon.
 This way of appending templates to the outputCode string is used in different places in the code generation when handling the complex datatypes matrices and vectors.
-In fact whenever one of the following operators \texttt{+, -, *, \#, \^{} } are used with matrices or vectors a template is being appended to the outputCode. \todo{Ikke alle disse er i tabellen i language design? -- Troels \#DetErDeNu! :D - Søren}
+In fact whenever one of the following operators \texttt{+, -, *, \#, \^{} } are used with matrices or vectors a template is being appended to the outputCode. 
 See \myref{tbl:matOps} for a description of what each operator will produce in \gls{gamble}.
 
 When the right side of an assignment or declaration consists of an expression using operators and matrices or vectors, the visitor checks which operator is used and then inputs a template for launching the kernel depending on the operator.
@@ -50,16 +51,18 @@ global_size[1] = 1;
 local_size[1] = 1;
 software = sclGetCLSoftware("matrixMulScalar.cl", "matrixMulScalar", hardware);
 §MATRIXTYPE§ scl_scalar_mul§NUM§ = §MATRIX_B§;
+// %R means that what is being sent can be read from and written to
+// %a means that what is being sent is a non-pointer argument and is constant
 sclManageArgsLaunchKernel(hardware, software, global_size, local_size, "%R %a",
     §MATRIX_A§.dataSize, §MATRIX_A§.dataStart, sizeof(§MATRIXTYPE§), &scl_scalar_mul§NUM§);
 //END MATRIX SCALAR MULTIPLY
-\end{lstlisting}\todo[inline]{kunne det eventuel være smart at lave en liste over hvad de arguementer betyder? altså R, r, w, a osv. ? - Marc | Måske bare henvise til SimpleCL specifications - msm | En henvisning ville nok være rigelig tror jeg ? Hvad synes i ? - Søren}
+\end{lstlisting}
 
 \texttt{global\_size} is set to be the size of the matrix, and a kernel is then launched for every index in the matrix.
 This is decided by setting the indices in \texttt{global\_size}.
-If the size of a matrix was 4\todo{betyder dette en 2x2 matrice eller en 4x4 matrice? - Corlin}, a kernel would be launched with 1, 2, 3 and 4 as the indices. \todo{Er de ikke nul indekserede? -- Troels}
-The implementation of multiplying a matrix with a scalar is actually made where the matrix is interpreted as a single vector where each row comes after the other.
-If the matrix form is needed the rows of the matrix would be places in \texttt{global\_size[0]} and the columns in \texttt{global\_size[1]}.\todo{Er i tvivl om hvad der skal stå her ? Places in ? - Søren}
+If the squared matrix was 2x2, a kernel would be launched with 0, 1, 2 and 3 as the indices.
+The implementation of multiplying a matrix with a scalar is made where the matrix is interpreted as a single vector where each row comes after the other.
+If the matrix form is needed the rows of the matrix would be placed in \texttt{global\_size[0]} and the columns in \texttt{global\_size[1]}.
 If the example of a size 4 matrix is still used, the following sets of kernels would be sent:
 \begin{equation}
 \{0,0\}, \{0,1\}, \{1,0\}, \{1,1\}
