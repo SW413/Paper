@@ -39,17 +39,15 @@ The design of the classes involved in the Scopechecking subphase can be seen on 
 
 
 \subsection*{Implementation}
-\info[inline]{Todo: Listing or/eller figur i denne del.}
 In the \gls{gamble} compiler, the class \texttt{SymbolTable} represents a collection of scopes.
 The core constituent of this class is the ArrayList of the \texttt{Scope} class, called \texttt{allScopes}, meaning that every scope is stored in this ArrayList.
 Every scope contains a hashed map with \texttt{Symbol}s as values and strings as keys.
 Furthermore all scopes contain information about the particular scope such as enclosing scope and a unique id. 
 The key in the hashed maps represents the name of the symbol, and must be unique to the scope and not found in an enclosing scope, as this could cause an ambiguity to arise.
 This ambiguity is not allowed in \gls{gamble} and therefore throws a redeclaration error.
-\todo{Meget forvirrende at holde styr på uden en figur tbh. - Søren  .. En listing som viste klassen eller et diagram kunne være brugbart. -- Troels}
 
 To determine whether or not a declaration is a redeclaration, the compiler looks up the name of the variable in the \texttt{symbolMap} of the current scope.
-If no entry is found, the search continues in the \texttt{symbolMap} of the enclosing scope and so on recursively.\todo[inline]{Må man ikke redeclare et variable i et indre scope ??, så hvis jeg bruger tmp ude i global scope, så må jeg ikke bruge den inde i en funktion ?? - Søren - Ikke ifølge hvad der står her - Marc .. Du må gerne bruge det samme variabel navn i en funktion som i global scope, men du må ikke redeclare det i et indre, fx et loop. Derudover så vil scope checking forgå for hver funktion før global scopes body. (linje 11). Men en omformulering kunne nok godt være på plads. -- Troels )}
+If no entry is found, the search continues in the \texttt{symbolMap} of the enclosing scope and so on recursively.
 The same lookup process is executed when a variable is used e.g in an expression or assignment.
 Hereby all enclosing scopes are checked for the declaration of the variable; making redeclaration of variables in scope, and usage of undeclared variables impossible in \gls{gamble}, as defined in \myref{cha:language_design}.
 A \texttt{symbol} is an encapsulation of a variable and relevant peripheral data.
