@@ -1,30 +1,29 @@
-\chapter{Test of Language Features}
+\section{Test of Language Features}
 \label{cha:test_of_language_features}
-In this chapter \gls{gamble} and the compiler developed for it, will be tested.
 The focus of this test will be to test how the compiler reacts to valid and invalid input, both of which are syntactical correct.
-Also to test if simple operations act as intended and documented in \myref{cha:semantics}. 
-As written in our success criteria, \myref{sec:OurCriterias}, it is important to give descriptive error messages, and provide type and scope checking. 
+Also to test if simple operations act as intended and documented in \myref{cha:semantics}.
+As written in our success criteria, \myref{sec:OurCriterias}, it is important to give descriptive error messages, and provide type and scope checking.
 
 A more formal solution would be to verify the correctness of the compiler according to the language specification in the earlier chapters.
-But since formal verification is a complex problem, tests is performed to indicate that features of the \gls{gamble} are correctly implemented instead. \citep{Verification} 
+But since formal verification is a complex problem, tests is performed to indicate that features of the \gls{gamble} are correctly implemented instead. \citep{Verification}
 
-These tests will be performed by using the source code listed in each example as an input for the compiler. 
-Then the output from the compiler will be written below the code. 
+These tests will be performed by using the source code listed in each example as an input for the compiler.
+Then the output from the compiler will be written below the code.
 
-\section{Syntactic Tests}
+\subsection*{Syntactic Tests}
 \info[inline]{wanan do this? ANTLR errors only...}
 
-\section{Contextual Tests}
+\subsection*{Contextual Tests}
 To test if the contextual analysis of the compiler adheres to the rules set for \gls{gamble} in \myref{cha:language_design}.
 
-\subsection*{Scope Tests}
-The first set of tests is to see if the scope rules of \gls{gamble}, \myref{subsec:Scope}, is properly implemented. 
+\subsubsection*{Scope Tests}
+The first set of tests is to see if the scope rules of \gls{gamble}, \myref{subsec:Scope}, is properly implemented.
 
-In the examples given, an if statement which is always true is used to have an inner scope, in order to test the implementation of the scope rules across scopes. 
+In the examples given, an if statement which is always true is used to have an inner scope, in order to test the implementation of the scope rules across scopes.
 
 In listing \myref{lst:scope1} a variable is declared in an inner scope, used there and used in an enclosing scope on line 6.
-However according to the scope rules of \gls{gamble} a variable is no longer in scope after the end if the block it is declared in. 
-Therefore this should result in a scope error. 
+However according to the scope rules of \gls{gamble} a variable is no longer in scope after the end if the block it is declared in.
+Therefore this should result in a scope error.
 When used as input in the \gls{gamble} compiler, \myref{lst:scope1} produces the following output: \texttt{Error[line    6]-> Undeclared variable a in scope Local}
 
 \begin{lstlisting}[caption={Example of a scope error in \gls{gamble}},label={lst:scope1},frame=tb]
@@ -36,9 +35,9 @@ if(1 < 2) {
 print(a); // Error!
 \end{lstlisting}
 
-Listing \myref{lst:scope2} is identical to \myref{lst:scope1}, with the exception of \texttt{int a = 2;} on line 5. 
+Listing \myref{lst:scope2} is identical to \myref{lst:scope1}, with the exception of \texttt{int a = 2;} on line 5.
 This makes the source code valid, as no scope rules are broken.
-It is important to note that the ``a'' on line 2, and the ``a'' on line 5 are independent of each other.  
+It is important to note that the ``a'' on line 2, and the ``a'' on line 5 are independent of each other.
 
 \begin{lstlisting}[caption={Example of a valid program in \gls{gamble}},label={lst:scope2},frame=tb]
 if(1 < 2) {
@@ -49,7 +48,7 @@ int a = 2;
 print(a); // Prints ``2''
 \end{lstlisting}
 
-Listing \myref{lst:scope3} shows a valid program in \gls{gamble}, here a variable is declared in the outer scope and used in an inner scope. 
+Listing \myref{lst:scope3} shows a valid program in \gls{gamble}, here a variable is declared in the outer scope and used in an inner scope.
 This is valid and the print on line 5 will print ``1''.
 
 \begin{lstlisting}[caption={Example of a valid program in \gls{gamble}},label={lst:scope3},frame=tb]
@@ -60,7 +59,7 @@ if(1 < 2) {
 print(a); // Prints ``1''
 \end{lstlisting}
 
-In \myref{lst:scope4} a variable is declared in the outer scope, and an attempt to declared a variable of the same name is done in the inner scope. 
+In \myref{lst:scope4} a variable is declared in the outer scope, and an attempt to declared a variable of the same name is done in the inner scope.
 This is not valid according to the scope rules and will result in the error: \texttt{Error[line    3]-> Variable a:int in scope Conditional already declared as a:int in scope Local}.
 
 \begin{lstlisting}[caption={Example of a redeclaration error in \gls{gamble}},label={lst:scope4},frame=tb]
@@ -68,11 +67,11 @@ int a = 0;
 if(1 < 2) {
     int a = 1; // Error! Already declared.
 }
-print(a); 
+print(a);
 \end{lstlisting}
 
 Variables and functions are not allowed to have the same name.
-This is tested in \myref{lst:scope5} where a function with the name ``a'' is declared and a variable with the same name. 
+This is tested in \myref{lst:scope5} where a function with the name ``a'' is declared and a variable with the same name.
 This results in a scope error: \texttt{Error[line    6]-> Variable a:int in scope Local already declared as a:int in scope Global}.
 
 \begin{lstlisting}[caption={Example of a redeclaration error in \gls{gamble}},label={lst:scope5},frame=tb]
@@ -86,7 +85,7 @@ int a = 1;
 \end{lstlisting}
 
 Recursion is allowed in \gls{gamble}, this is tested by implementing a recursive function which calculated the n-th Fibonacci number.
-As shown in \myref{lst:fibR} the function ``fibR'' calles itself on line 8. 
+As shown in \myref{lst:fibR} the function ``fibR'' calles itself on line 8.
 
 \begin{lstlisting}[caption={Recursive Fibonacci in \gls{gamble}},label={lst:fibR},frame=tb]
 int64 fibR(int64 n) {
@@ -105,15 +104,15 @@ int64 fibR(int64 n) {
 print(fibR(10)); // Prints ``55''
 \end{lstlisting}
 
-\subsection*{Type Tests}
-In \gls{gamble} there are 3 simple data types and 2 complex data types. 
-Not every combination of these are valid for a given operator. 
+\subsubsection*{Type Tests}
+In \gls{gamble} there are 3 simple data types and 2 complex data types.
+Not every combination of these are valid for a given operator.
 Additionally there are no implicit type conversion between \texttt{int}-types and \texttt{float}-types in \gls{gamble}.
 
 To test the type checker, several operation will be shown, and explained why they are valid or why they are not.
 
-In \myref{lst:type1} the addition operator is used to show that variables of the same type are valid, while adding different types are not. 
-The error: \texttt{Error[line    8]-> Type mismatch between a:int and c:float}, is output from the compiler, indicating there is a type error and its location. 
+In \myref{lst:type1} the addition operator is used to show that variables of the same type are valid, while adding different types are not.
+The error: \texttt{Error[line    8]-> Type mismatch between a:int and c:float}, is output from the compiler, indicating there is a type error and its location.
 \begin{lstlisting}[caption={Addition in \gls{gamble} to demonstrate the type checker.},label={lst:type1},frame=tb]
 
 int a = 3;
@@ -124,7 +123,7 @@ float d = 2.7;
 
 print(a + b); // 10
 print(a + c); // Type error!
-print(c + d); // ~3.9 
+print(c + d); // ~3.9
 \end{lstlisting}
 
 It is also not allowed to convert between types, this is shown in \myref{lst:type2}.
@@ -139,8 +138,8 @@ int b = d; // Type error
 \end{lstlisting}
 
 However in \gls{gamble} it is allowed to declared a value to a variable of the same type with higher precision e.g. assigning a int32 to a int64, as a higher precision variable can store the same values and more as the lesser.
-However it is in any case never allowed to the other way around, e.g. from int32 to int16. 
-In \myref{lst:type3} examples of these convertions are made and an error is also shown.  
+However it is in any case never allowed to the other way around, e.g. from int32 to int16.
+In \myref{lst:type3} examples of these convertions are made and an error is also shown.
 This is a type mismatch error: \texttt{Error[line    7]-> Type mismatch between e:int16 and a:int}.
 
 \begin{lstlisting}[caption={Examples of type conversions and an error in \gls{gamble} to demonstrate the type checker.},label={lst:type3},frame=tb]
@@ -155,11 +154,11 @@ int16 e = a; // Error! Loss of precision
 
 \info[inline]{Måske der skulle være nogle tests med matricer? Måske evt. rigtig mange tests i appendix? -- Troels}
 
-\section{Evaluation}
+\subsection*{Evaluation}
 Based on these test it is not possibly to prove formal verification of the compiler or it's output in general as mentioned in the beginning of this chapter.
 However the aforementioned tests cover a large feature set with different inputs.
 Since all these test performed the expected output, this indicates that the implementation of the language is correct for at least some or possibly all inputs in respect the the features tested in this chapter.
 
 It would however be naïve to believe that every bug in the compiler were found and corrected during the development of the compiler.%I WANT IT WITH ï not I!! - MP%
 Therefore it is emphasized that the compiler is not expected to free of errors. %MED Z PÅ BRITISK%
-But alas the tests performed in the chapter did, as mentioned, perform exactly as expected.
+But alas the tests performed in the chapter did, as mentioned, perform exactly as expected. 
