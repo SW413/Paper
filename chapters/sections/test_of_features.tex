@@ -153,14 +153,23 @@ int16 e = a; // Error! Loss of precision
 In this section operators will be tested on \gls{gamble} operators for different datatypes.
 The output of the print function and hence the test is shown as comments in the listing, like this: \texttt{//Output here}.
 
-\subsubsection*{Operations on simple datatypes}
-In \myref{lst:SimpleOps1} different operations on the int \texttt{a} is performed. The expected output of this test is \texttt{3}.
+\subsubsection*{Operations on Simple Datatypes}
+In \myref{lst:SimpleOps1} different operations on the int \texttt{a} is performed.
+The expected output of this test is \texttt{2}.
 \begin{lstlisting}[caption={Example of a scope error in \gls{gamble}},label={lst:SimpleOps1},frame=tb]
 int a = 2;
-print((a+2*(2/4))%5); // 3
+print((a+2*(2/4))%5-1); // 2
 \end{lstlisting}
 
+\myref{lst:SimpleOps2} shows operations performed on an float in the language.
+The expected output of these operations is \texttt{2.7}.
+\begin{lstlisting}[caption={Example of a scope error in \gls{gamble}},label={lst:SimpleOps2},frame=tb]
+float a = 2.5;
+print((a+2.4-4)*3); // 2.7
+\end{lstlisting}
 
+\subsubssection*{Operations on Matrices and Vectors}
+test her
 
 \subsection*{Evaluation}
 Based on these test it is not possibly to prove formal verification of the compiler or it's output in general as mentioned in the beginning of this chapter.
