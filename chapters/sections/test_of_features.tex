@@ -149,7 +149,18 @@ float64 d = c;
 int16 e = a; // Error! Loss of precision
 \end{lstlisting}
 
-\info[inline]{Måske der skulle være nogle tests med matricer? Måske evt. rigtig mange tests i appendix? -- Troels}
+\subsection*{Mathematical Operations Tests}
+In this section operators will be tested on \gls{gamble} operators for different datatypes.
+The output of the print function and hence the test is shown as comments in the listing, like this: \texttt{//Output here}.
+
+\subsubsection*{Operations on simple datatypes}
+In \myref{lst:SimpleOps1} different operations on the int \texttt{a} is performed. The expected output of this test is \texttt{3}.
+\begin{lstlisting}[caption={Example of a scope error in \gls{gamble}},label={lst:SimpleOps1},frame=tb]
+int a = 2;
+print((a+2*(2/4))%5); // 3
+\end{lstlisting}
+
+
 
 \subsection*{Evaluation}
 Based on these test it is not possibly to prove formal verification of the compiler or it's output in general as mentioned in the beginning of this chapter.
