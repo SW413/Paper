@@ -36,6 +36,15 @@ This can provide a substantial (more than three times) faster runtime. \citep{oc
 \vspace{-15pt}
 \end{figure}
 As seen on \myref{image:OpenCLOptCompare} some possible methods of increasing runtime efficiency includes loop unrolling, common sub-expression elimination and loop-invariant code motion. 
+Loop unrolling is a technique that attempts to reduce, or if possible completely eliminate, instructions that control the loop.
+The goal is to remove the overhead in the loop thus resulting in less instructions having to be performed.
+An example would be by reducing the amount of iterations a for loop performs, by increasing the computations done in each iteration of the loop.
+Common subexpression elimination is also an attempt of reducing the instructions having to be executed.
+Rather than it being aimed at loops, it is something done generally for the program.
+It is done by saving a commonly computed expression as a value, and simply using that value rather than performing the computation every time.
+The lastly mentioned method is loop-invariant code motion.
+This method entails moving computations from inside of the loop, outside of the loop as long as that movement does not affect the semantics of the program.
+
 These are taken as specific examples in this comparison because these methods are performed in the \acrfull{ptx} code that \gls{cuda} compiles to.
 An \gls{opencl} C compiler will also increases the runtime efficiency of the source code if given the instruction to, however its impact depends on the \acrshort{gpu} and platform in use.
 The value of any increases in runtime efficiency is situational, i.e. changing the work-group size can yield improvements of up to 5 times. \citep{ocl_lecture3}
