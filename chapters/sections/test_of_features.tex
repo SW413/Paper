@@ -154,18 +154,13 @@ In this section operators will be tested on \gls{gamble} operators for different
 The output of the print function and hence the test is shown as comments in the listing, like this: \texttt{//Output here}.
 
 \subsubsection*{Operations on Simple Datatypes}
-In \myref{lst:SimpleOps1} different operations on the int \texttt{a} is performed.
-The expected output of this test is \texttt{2}.
+In \myref{lst:SimpleOps1} different operations on the int \texttt{a} and the float \texttt{b} is performed.
+The expected output on line 3 is \texttt{2} and on line 4 it is \texttt{2.7}.
 \begin{lstlisting}[caption={Example of a scope error in \gls{gamble}},label={lst:SimpleOps1},frame=tb]
 int a = 2;
+float b = 2.5;
 print((a+2*(2/4))%5-1); // 2
-\end{lstlisting}
-
-\myref{lst:SimpleOps2} shows operations performed on an float in the language.
-The expected output of these operations is \texttt{2.7}.
-\begin{lstlisting}[caption={Example of a scope error in \gls{gamble}},label={lst:SimpleOps2},frame=tb]
-float a = 2.5;
-print((a+2.4-4)*3); // 2.7
+print((b+2.4-4)*3); // 2.7
 \end{lstlisting}
 
 \subsubsection*{Operations on Matrices}
