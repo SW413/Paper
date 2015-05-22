@@ -18,14 +18,15 @@
         %\draw [arrow,dashed] (type) -- (error);
         %\draw [arrow,dashed] (symboltable) -- (error);
 
-        \node (dast) [lille] {Decorated Abstact Syntax Tree};
+        \node (dast) [lille] {Contextual Analysis Phase};
         \node (cgv) [lille, right=0.7cm of dast] {Code Generation Visitor};
         \node (copy) [lille, right=0.7cm of cgv] {Output \gls{opencl} C code};
-
+        \node (error) [invi, draw=none, minimum width=2cm, right=1cm of copy, label={[xshift=40pt, yshift=-17pt]Finished Compilation}] {};
+        
         \draw [arrow] (dast) -- (cgv);
         \draw [arrow] (cgv) -- (copy);
     \end{tikzpicture}
     \caption{State diagram showing the modules of the code generation. } 
     \label{fig:flowCodegen}
-\end{figure}\todo{Der skal et slut stadie på fra Output Code, hvad sker der så ? Slutter det hele bliver det compileret automatisk ? Der skal være en pil til something. Derudover er Code generation visitor vel ikke rigtig en fase som sådan, er det ikke bare code generation - Søren}
+\end{figure}
 \vspace{-20pt}
