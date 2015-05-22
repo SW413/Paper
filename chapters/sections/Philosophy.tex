@@ -15,8 +15,8 @@ Due to \gls{gamble} being focused on numerical computations, allowing the progra
 Therefore having the programmer control the runtime architecture seems an unnecessary distraction.
 \gls{gamble} takes care of designating the computations to the best suited processing unit, whether it be the \acrshort{gpu} or the \acrshort{cpu}, as such any inconvenience in that process is removed from the programmer whose focus can be solely on the mathematics.
 This abstraction therefore results in better writability.
-
-\info[inline]{Maybe we should add automatic memory management here, it is *HARD* in \gls{opencl}. \gls{cuda} etc. so it would make a nice point? -- Troels}
+\gls{gamble} should simplify many tasks of programming for the \gls{gpu} and this also includes memory management.
+Memory management often results in boilerplate and is a task which can be prone to result in errors, so therefore the translator for \gls{gamble} should assist the programmer in managing the memory, which should result in an increase in writability as well. 
 
 \textbf{Avoid implementing unnecessary data types and features}
 
