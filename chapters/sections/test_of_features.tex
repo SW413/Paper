@@ -5,7 +5,7 @@ Also to test if simple operations act as intended and documented in \myref{cha:s
 As written in our success criteria, \myref{sec:OurCriterias}, it is important to give descriptive error messages, and provide type and scope checking.
 
 A more formal solution would be to verify the correctness of the compiler according to the language specification in the earlier chapters.
-But since formal verification is a complex problem, tests is performed to indicate that features of the \gls{gamble} are correctly implemented instead. \citep{Verification}
+But since formal verification is a complex problem, tests is performed to indicate that features of \gls{gamble} are correctly implemented instead. \citep{Verification}
 
 These tests will be performed by using the source code listed in each example as an input for the compiler.
 Then the output from the compiler will be written below the code.
@@ -14,14 +14,14 @@ Then the output from the compiler will be written below the code.
 To test if the contextual analysis of the compiler adheres to the rules set for \gls{gamble} in \myref{cha:language_design}.
 
 \subsubsection*{Scope Tests}
-The first set of tests is to see if the scope rules of \gls{gamble}, \myref{subsec:Scope}, is properly implemented.
+The first set of tests is to see if the scope rules of \gls{gamble} is properly implemented.
 
 In the examples given, an if statement which is always true is used to have an inner scope, in order to test the implementation of the scope rules across scopes.
 
-In \myref{lst:scope1} a variable is declared in an inner scope, used there and used in an enclosing scope on line 6.
+In \myref{lst:scope1} a variable is declared in an inner scope, used there and also used in an enclosing scope on line 6.
 However according to the scope rules of \gls{gamble} a variable is no longer in scope after the end of the block it is declared in.
 Therefore this should result in a scope error.
-When used as input in the \gls{gamble} compiler, \myref{lst:scope1} produces the following output: \texttt{Error[line    6]-> Undeclared variable a in scope Local} \todo{Det eneste jeg synes er at vi har mange refs i alt det over}
+When used as input in the \gls{gamble} compiler, it produces the following output: \texttt{Error[line    6]-> Undeclared variable a in scope Local}.
 
 \begin{lstlisting}[caption={Example of a scope error in \gls{gamble}},label={lst:scope1},frame=tb]
 if(1 < 2) {
@@ -56,7 +56,7 @@ if(1 < 2) {
 print(a); // Prints ``1''
 \end{lstlisting}
 
-In \myref{lst:scope4} a variable is declared in the outer scope, and an attempt to declared a variable of the same name is done in the inner scope.
+In \myref{lst:scope4} a variable is declared in the outer scope, and an attempt to declare a variable of the same name is done in the inner scope.
 This is not valid according to the scope rules and will result in the error: \texttt{Error[line    3]-> Variable a:int in scope Conditional already declared as a:int in scope Local}.
 
 \begin{lstlisting}[caption={Example of a redeclaration error in \gls{gamble}},label={lst:scope4},frame=tb]
@@ -81,8 +81,8 @@ int a = 1;
 /* [...] */
 \end{lstlisting}
 
-Recursion is allowed in \gls{gamble}, this is tested by implementing a recursive function which calculated the n-th Fibonacci number.
-As shown in \myref{lst:fibR} the function ``fibR'' calles itself on line 8.
+Recursion is allowed in \gls{gamble}, this is tested by implementing a recursive function which calculates the n-th Fibonacci number.
+As shown in \myref{lst:fibR} the function ``fibR'' calls itself on line 8.
 
 \begin{lstlisting}[caption={Recursive Fibonacci in \gls{gamble}},label={lst:fibR},frame=tb]
 int64 fibR(int64 n) {
@@ -109,7 +109,7 @@ Additionally there are no implicit type conversion between \texttt{int}-types an
 To test the type checker, several operation will be shown, and explained why they are valid or why they are not.
 
 In \myref{lst:type1} the addition operator is used to show that variables of the same type are valid, while adding different types are not.
-The error: \texttt{Error[line    8]-> Type mismatch between a:int and c:float}, is output from the compiler, indicating there is a type error and its location.
+The error: \texttt{Error[line    8]-> Type mismatch between a:int and c:float}, is output from the compiler, indicating there is a type error and the location of the error.
 \begin{lstlisting}[caption={Addition in \gls{gamble} to demonstrate the type checker.},label={lst:type1},frame=tb]
 
 int a = 3;
@@ -124,7 +124,7 @@ print(c + d); // ~3.9
 \end{lstlisting}
 
 It is also not allowed to convert between types, this is shown in \myref{lst:type2}.
-Here there are 2 errors: \texttt{Error[line    2]-> Type mismatch between c:float and a:int} and \texttt{Error[line    5]-> Type mismatch between b:int and d:float}.
+This results in 2 errors: \texttt{Error[line    2]-> Type mismatch between c:float and a:int} and \texttt{Error[line    5]-> Type mismatch between b:int and d:float}.
 
 \begin{lstlisting}[caption={Examples of type incompatibilities \gls{gamble} to demonstrate the type checker.},label={lst:type2},frame=tb]
 int a = 1;
@@ -134,9 +134,9 @@ float d = 0.5;
 int b = d; // Type error
 \end{lstlisting}
 
-However in \gls{gamble} it is allowed to declared a value to a variable of the same type with higher precision e.g. assigning a int32 to a int64, as a higher precision variable can store the same values and more as the lesser.
-However it is in any case never allowed to the other way around, e.g. from int32 to int16.
-In \myref{lst:type3} examples of these convertions are made and an error is also shown.
+However in \gls{gamble} it is allowed to declare a value to a variable of the same type with higher precision e.g. assigning a int32 to a int64, as a higher precision variable can store the same values and more compared to the type with lesser precision.
+However it is in any case never allowed the other way around, e.g. from int32 to int16.
+In \myref{lst:type3} examples of these conversions are made and an error is also shown.
 This is a type mismatch error: \texttt{Error[line    7]-> Type mismatch between e:int16 and a:int}.
 
 \begin{lstlisting}[caption={Examples of type conversions and an error in \gls{gamble} to demonstrate the type checker.},label={lst:type3},frame=tb]
@@ -164,7 +164,7 @@ print((b+2.4-4)*3); // 2.7
 \end{lstlisting}
 
 \subsubsection*{Operations on Matrices}
-In \myref{lst:matrix1}, several operation have been performed on the matrices made, see \myref{subsec:operators} for all operators in \gls{gamble}. 
+In \myref{lst:matrix1}, several operation have been performed on two matrices \texttt{ma} and \texttt{mb}, see \myref{subsec:operators} for all operators in \gls{gamble}. 
 On line 4 is matrix multiplication.
 On line 5 is matrix addition.
 On line 6 is matrix subtraction.
@@ -184,9 +184,9 @@ print(ma^);     // [ 1,  3;  2,  4]
 
 
 \subsection*{Evaluation}
-Based on these test it is not possibly to prove formal verification of the compiler or it's output in general as mentioned in the beginning of this chapter.
+Based on these test it is not possible to prove formal verification of the compiler or its output in general as mentioned in the beginning of this chapter.
 However the aforementioned tests cover a large feature set with different inputs.
-Since all these test performed the expected output, this indicates that the implementation of the language is correct for at least some or possibly all inputs in respect the the features tested in this chapter.
+Since all these test results in the expected output, this indicates that the implementation of the language is correct for at least some or possibly all inputs in respect to the features tested in this chapter.
 
 It would however be naïve to believe that every bug in the compiler were found and corrected during the development of the compiler.%I WANT IT WITH ï not I!! - MP%
 Therefore it is emphasized that the compiler is not expected to be free of errors. %MED Z PÅ BRITISK%
