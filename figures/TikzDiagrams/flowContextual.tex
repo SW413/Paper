@@ -3,9 +3,9 @@
     \centering
     \begin{tikzpicture}[node distance = 3cm, auto]
         \node (invi1) [invi, draw=none] {};
-        \node (snyanal) [lille, below right=-2cm and -1.6cm of invi1, minimum width=15.5cm, minimum height=5cm, fill=blue!10, label={[xshift=-5.4cm, yshift=-1cm]Contextual Analysis}] {};
+        \node (snyanal) [lille, below right=-2cm and -1.6cm of invi1, minimum width=15.5cm, minimum height=5cm, label={[xshift=-5.4cm, yshift=-1cm]Contextual Analysis}] {};
         \node (ast) [lille, below right=-0.35cm and -1cm of invi1] {Abstract Syntax Tree};
-        \node (symboltable) [lille, minimum width=6.75cm, minimum height=2.4cm, right=2.8cm of invi1, fill=blue!20, label={[xshift=0cm, yshift=-1cm]Symbol Table}] {};
+        \node (symboltable) [lille, minimum width=6.75cm, minimum height=2.4cm, right=2.8cm of invi1, label={[xshift=0cm, yshift=-1cm]Symbol Table}] {};
         \node (scope) [lille, right=1.1cm of ast] {Scopechecker};
         \node (type) [lille, right=0.7cm of scope] {Typechecker};
         \node (dast) [lille, right=1.1cm of type, align=left] {Decorated\\ Abstact Syntax Tree};

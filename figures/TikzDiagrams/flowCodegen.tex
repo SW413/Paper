@@ -18,13 +18,17 @@
         %\draw [arrow,dashed] (type) -- (error);
         %\draw [arrow,dashed] (symboltable) -- (error);
 
-        \node (dast) [lille] {Contextual Analysis Phase};
-        \node (cgv) [lille, right=0.7cm of dast] {Code Generation Visitor};
+        \node (dast) [lille, align=left] {Contextual \\Analysis Phase};
+        \node (cgv) [lille, right=0.7cm of dast, align=left] {Code Generation \\Visitor};
         \node (copy) [lille, right=0.7cm of cgv] {Output \gls{opencl} C code};
         \node (error) [invi, draw=none, minimum width=2cm, right=1cm of copy, label={[xshift=40pt, yshift=-17pt]Finished Compilation}] {};
-        
+
+        \draw[black,fill=black, above=1cm of parser] (10.9,0) circle (1ex);
+        \draw[black, above=1cm of parser] (10.9,0) circle (1.3ex); 
+
         \draw [arrow] (dast) -- (cgv);
         \draw [arrow] (cgv) -- (copy);
+        \draw [arrow] (copy) -- (error);
     \end{tikzpicture}
     \caption{State diagram showing the modules of the code generation. } 
     \label{fig:flowCodegen}
