@@ -18,10 +18,10 @@ The first set of tests is to see if the scope rules of \gls{gamble}, \myref{subs
 
 In the examples given, an if statement which is always true is used to have an inner scope, in order to test the implementation of the scope rules across scopes.
 
-In listing \myref{lst:scope1} a variable is declared in an inner scope, used there and used in an enclosing scope on line 6.
-However according to the scope rules of \gls{gamble} a variable is no longer in scope after the end if the block it is declared in.
+In \myref{lst:scope1} a variable is declared in an inner scope, used there and used in an enclosing scope on line 6.
+However according to the scope rules of \gls{gamble} a variable is no longer in scope after the end of the block it is declared in.
 Therefore this should result in a scope error.
-When used as input in the \gls{gamble} compiler, \myref{lst:scope1} produces the following output: \texttt{Error[line    6]-> Undeclared variable a in scope Local}
+When used as input in the \gls{gamble} compiler, \myref{lst:scope1} produces the following output: \texttt{Error[line    6]-> Undeclared variable a in scope Local} \todo{Det eneste jeg synes er at vi har mange refs i alt det over}
 
 \begin{lstlisting}[caption={Example of a scope error in \gls{gamble}},label={lst:scope1},frame=tb]
 if(1 < 2) {
@@ -102,7 +102,7 @@ print(fibR(10)); // Prints ``55''
 \end{lstlisting}
 
 \subsubsection*{Type Tests}
-In \gls{gamble} there are 3 simple data types and 2 complex data types.
+In \gls{gamble} there are three simple data types and two complex data types.
 Not every combination of these are valid for a given operator.
 Additionally there are no implicit type conversion between \texttt{int}-types and \texttt{float}-types in \gls{gamble}.
 
@@ -189,5 +189,5 @@ However the aforementioned tests cover a large feature set with different inputs
 Since all these test performed the expected output, this indicates that the implementation of the language is correct for at least some or possibly all inputs in respect the the features tested in this chapter.
 
 It would however be naïve to believe that every bug in the compiler were found and corrected during the development of the compiler.%I WANT IT WITH ï not I!! - MP%
-Therefore it is emphasized that the compiler is not expected to free of errors. %MED Z PÅ BRITISK%
+Therefore it is emphasized that the compiler is not expected to be free of errors. %MED Z PÅ BRITISK%
 But alas the tests performed in the chapter did, as mentioned, perform exactly as expected. 
