@@ -1,0 +1,11 @@
+This paper presents the considerations and implementations done during the development of \gls{gamble}.
+\gls{gamble} is a math-oriented language specifically focusing upon utilising the \acrshort{gpu} for decreasing the runtime of matrix operations.
+
+During development the language have been defined, designed and implemented.
+The design and implementation involves developing a multi-pass compiler.
+The design as well as implementation process entails considering the structure of the compiler, as well as the considerations one must do for each process.
+The compiler consists of a scanner, parser, scope checker, type checker and a code generation process.
+
+To help the programmer using the compiler, an error handling system has been developed which provides both errors and warnings to the user.
+Furthermore a makefile is designed which uses the Gnu Compiler Collection compiler to compile the output of the \gls{gamble} compiler, which is written in OpenCL C.
+All of the \gls{gamble} compiler components are built in Java, this means that all development platforms supporting Java Virtual Machine can run the compiler.
