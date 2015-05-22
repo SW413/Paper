@@ -4,7 +4,7 @@
     \begin{tikzpicture}[node distance = 3cm, auto]
         \node (invi1) [invi, draw=none] {};
 
-        \node (snyanal) [lille, above right=0cm and -1.6cm of invi1, minimum width=15.2cm, minimum height=3cm, fill=blue!10, label={[xshift=-6cm, yshift=-1cm]Syntax Analysis}] {};
+        \node (snyanal) [lille, above right=0cm and -1.6cm of invi1, minimum width=15.2cm, minimum height=3cm, label={[xshift=-6cm, yshift=-1cm]Syntax Analysis}] {};
         \node (start) [lille, below=-1.8cm of invi1] {Source code};
         \node (scanner) [lille, right=0.7cm of start] {Scanner};
         \node (parser) [lille, right=0.7cm of scanner] {Parser};
@@ -12,7 +12,7 @@
         \node (ast) [lille, right=0.7cm of pt] {Abstract Syntax Tree};
         \node (error) [draw=none, above=22pt of parser, label={[xshift=0cm, yshift=6 pt]Error report}] {};
 
-        \node (contAnal) [lille, fill=blue!10, right=1.1cm of ast, align=left] {Contextual \\ Analysis};
+        \node (contAnal) [lille, right=1.1cm of ast, align=left] {Contextual \\ Analysis};
 
 
         \draw[black,fill=black, above=1cm of parser] (5.5,2.5) circle (1ex);
