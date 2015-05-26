@@ -83,7 +83,7 @@ int a = 1;
 
 Recursion is allowed in \gls{gamble}, this is tested by implementing a recursive function which calculates the n-th Fibonacci number.
 As shown in \myref{lst:fibR} the function ``fibR'' calls itself on line 8.
-
+\begin{figure}
 \begin{lstlisting}[caption={Recursive Fibonacci in \gls{gamble}},label={lst:fibR},frame=tb]
 int64 fibR(int64 n) {
     int64 tmp = 0;
@@ -100,6 +100,7 @@ int64 fibR(int64 n) {
 
 print(fibR(10)); // Prints ``55''
 \end{lstlisting}
+\end{figure}
 
 \subsubsection*{Type Tests}
 In \gls{gamble} there are three simple data types and two complex data types.

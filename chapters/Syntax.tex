@@ -36,18 +36,20 @@ Some tools for generating parsers from grammars, can solve these problems themse
 A common mistake leading to ambiguous grammar is the dangling else problem. \citep{danglingelse}
 In many programming languages it is possible to have an if statement and an else statement, and inside the body of these also having if- and else statements. 
 A \acrshort{cfg} describing it is shown in \myref{lst:danglingelseex1}.
-
+\begin{figure}
 \begin{lstlisting}[caption={An example of a \acrshort{cfg} describing an if statement. \citep{danglingelse}},frame=tlrb,label={lst:danglingelseex1},numbers=none]
 if statement :
     | if clause statement
     | if clause statement else statement
+    ;
 
 statement :
     | simple statement
     | if statement
     | loop statement
+    ;
 \end{lstlisting}
-
+\end{figure}
 Given an input where the statement of an if statement contains another if statement this grammar is ambiguous.  
 However it can be rewritten to allow if-else statements in a grammar, yet this will in almost all cases cause the size of the grammar to increase. 
 A solution to this problem is to observe that there exists two kinds of if statements, open and closed if statements.
@@ -60,14 +62,17 @@ A simple statement is also a closed statement and it is also any regular stateme
 statement :
     | open statement
     | closed statement
+    ;
 
 open statement :
     | if clause statement
     | if clause closed statement else open statement
+    ;
 
 closed statement :
     | simple statement
     | if clause closed statement else closed statement
+    ;
 \end{lstlisting}
 
 Another way to resolve this issue is to force statement bodies of if statements, when followed by an else statement, to be delimited by explicit blocks, such as \texttt{begin..end} used in Pascal or curly brackets (\texttt{\{\ldots\}}) used in C and derivatives. 

@@ -17,15 +17,15 @@ An undeclared error is produced when an attempt to use a variable which is not d
 Examples are shown in \myref{lst:scopeErrors}.
 
 \begin{lstlisting}[caption=Examples of scope errors in \gls{gamble}, numbers=none,frame=tlrb,label={lst:scopeErrors}]
-/* [...] */
+// [...]
 int a = 1;
-float a = 2.2;   /* Redeclaration error */
-int a = 2;       /* Redeclaration error */ 
+float a = 2.2;   // Redeclaration error
+int a = 2;       // Redeclaration error 
 
-b = 2;           /* Undeclared error */   
+b = 2;           // Undeclared error   
 int b = 0;
-b = foo();       /* Redeclaration error and undeclared error */ 
-/* [...] */
+b = foo();       // Redeclaration error and undeclared error 
+// [...]
 \end{lstlisting}
 
 The design of the classes involved in the Scopechecking subphase can be seen on \myref{fig:scopeCheck}.
@@ -36,7 +36,7 @@ The design of the classes involved in the Scopechecking subphase can be seen on 
 \caption{Class diagram showing the different classes involved in scope checking and their associations.}
 \label{fig:scopeCheck}
 \end{figure}
-
+\vspace{-15pt}
 
 \subsection*{Implementation}
 In the \gls{gamble} compiler, the class \texttt{SymbolTable} represents a collection of scopes.

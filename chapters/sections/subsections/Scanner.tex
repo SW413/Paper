@@ -10,7 +10,7 @@ An example of this, would be that you could use the notation .1 or 0.1 for a dec
 Some examples of our lexical rules for \gls{gamble} can be seen on \myref{lst:token}.
 The definition of an integer on line 3 states that an integer is either a zero or an optional negative sign followed by a single digit from one to nine followed by zero or more numbers from zero to nine.
 It is necessary to clearly and unambiguously define tokens for the lexer to read in order to read the source code correctly. \citep{Crafting_book}
-
+\begin{figure}
 \begin{lstlisting}[caption=Example of our lexer rules for \gls{gamble},frame=tlrb,label={lst:token}]
 // Integers
 INT: 'int' | 'int16' | 'int32' | 'int64' ; // Integers
@@ -32,3 +32,4 @@ LINE_COMMENT
     :   '//' ~[\r\n]* -> skip
     ;
 \end{lstlisting} 
+\end{figure}
