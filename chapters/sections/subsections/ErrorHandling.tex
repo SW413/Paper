@@ -67,7 +67,7 @@ If the variable or function invoked is not declared, an error is added to a glob
 public Void CheckIfUndeclared(Variable variable, StatementNode node) {
     Symbol tmpSymbol = symbolTable.currentScope().resolve(variable.getId());
     if (tmpSymbol != null) {
-        /* Sets appropriate information to the 'variable' variable */
+        // Sets appropriate information to the 'variable' variable
     } else {
         errors.add(new UnDeclaredError(variable, symbolTable.currentScope(), node.getLineNumber()));
         symbolTable.currentScope().define(variable);

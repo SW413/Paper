@@ -96,21 +96,21 @@ matrixToFile(res, "res.matrix");
 #define true 1
 #define false 0
 
-/*--= MAIN METHOD =--*/
+//--= MAIN METHOD =--
 int main(){
-/* Simple-OpenCL Hardware setup  */
-	sclHard* allHardware;
-	sclHard hardware;
-	sclSoft software;
-	int found = 0;
-	allHardware = sclGetAllHardware( &found );
-	hardware = sclGetFastestDevice(allHardware, found);
+    // Simple-OpenCL Hardware setup
+    sclHard* allHardware;
+    sclHard hardware;
+    sclSoft software;
+    int found = 0;
+    allHardware = sclGetAllHardware( &found );
+    hardware = sclGetFastestDevice(allHardware, found);
 
     size_t local_size[2] = {1, 1};
     size_t global_size[2] = {1, 1};
 
     printf("\n");
-/* END Hardware setup */
+    // END Hardware setup
 
 
     //MATRIX GENERATION FOR a {rows, cols, dataSize, dataStart}
@@ -133,8 +133,8 @@ int main(){
         local_size[1] = 1;
         software = sclGetCLSoftware("matrixMul.cl", "matrixMul", hardware);
         sclManageArgsLaunchKernel(hardware, software, global_size, local_size, "%r %r %R %a %a",
-        	a.dataSize, a.dataStart, b.dataSize, b.dataStart, res.dataSize, res.dataStart,
-        	sizeof(unsigned int), &a.cols, sizeof(unsigned int), &b.cols);
+            a.dataSize, a.dataStart, b.dataSize, b.dataStart, res.dataSize, res.dataStart,
+            sizeof(unsigned int), &a.cols, sizeof(unsigned int), &b.cols);
         global_size[0] = 1;
         global_size[1] = 1;
         //END OF MATRIX MULTIPLICATION

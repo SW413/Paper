@@ -12,7 +12,7 @@ The file simpleCLsetup.c is appended to the code right as the main method of the
 The file contains the code which can be seen on \myref{lst:OpenCLSetup2}.
 
 \begin{lstlisting}[caption=Simple\gls{opencl} setup in the compiler,numbers=none,frame=tlrb,label={lst:OpenCLSetup2}]
-/* Simple-\gls{opencl} Hardware setup  */
+// Simple-\gls{opencl} Hardware setup
 	sclHard* allHardware;
 	sclHard hardware;
 	sclSoft software;
@@ -24,7 +24,7 @@ The file contains the code which can be seen on \myref{lst:OpenCLSetup2}.
     size_t global_size[2] = {1, 1}; 
 
     printf("\n");
-/* END Hardware setup */
+// END Hardware setup
 \end{lstlisting}
 
 This code creates the elements needed to launch a kernel.

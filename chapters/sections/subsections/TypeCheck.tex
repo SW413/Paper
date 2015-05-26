@@ -15,14 +15,14 @@ A type mismatch error can for example be caused by a value or identifier not bei
 Examples are shown in \myref{lst:typeErrors}.
 
 \begin{lstlisting}[caption=Examples of type errors in \gls{gamble},numbers=none,frame=tlrb,label={lst:typeErrors}]
-/* [...] */
-int a = 1 + 2;      /* Valid */
-float b = 2.2 + 1;  /* Type mismatch error */
-float c = 2;        /* Type mismatch error */
+// [...]
+int a = 1 + 2;      // Valid
+float b = 2.2 + 1;  // Type mismatch error
+float c = 2;        // Type mismatch error
 
-a = 2.2;            /* Type mismatch error */
-b = foo(1);         /* Argument error (Takes more or fewer arguments) */ 
-/* [...] */
+a = 2.2;            // Type mismatch error
+b = foo(1);         // Argument error (Takes more or fewer arguments) 
+// [...]
 \end{lstlisting}
 
 \subsection*{Implementation}

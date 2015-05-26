@@ -14,7 +14,8 @@
 %
 %  You can find the GNU General Public License at <http://www.gnu.org/licenses/>.
 %
-\documentclass[11pt,twoside,a4paper,openright]{memoir}
+\documentclass[11pt,twoside,a4paper,openright,final]{memoir}
+\usepackage{etex}
 %%%%%%%%%%%%%%%%%%%%%%%%%%
 %% COMMAND DEACTIVATION %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -147,55 +148,80 @@
 %        extendedchars=true,
 %        language=[Sharp]C}
 
+
+
 \usepackage{color}
 \definecolor{bluekeywords}{rgb}{0.13,0.13,1}
 \definecolor{greencomments}{rgb}{0,0.5,0}
 \definecolor{redstrings}{rgb}{0.9,0,0}
 
+\definecolor{mygreen}{rgb}{0,0.6,0}
+\definecolor{mygray}{rgb}{0.5,0.5,0.5}
+\definecolor{mymauve}{rgb}{0.58,0,0.82}
+
 \usepackage{courier}
 
 \usepackage{listings}
 
-\lstdefinelanguage{JavaScript}{
-  keywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, if, in, while, do, else, case, break},
-  keywordstyle=\color{blue}\bfseries,
-  ndkeywords={class, export, boolean, throw, implements, import, this},
-  ndkeywordstyle=\color{darkgray}\bfseries,
-  identifierstyle=\color{black},
-  sensitive=false,
-  comment=[l]{//},
-  morecomment=[s]{/*}{*/},
-  commentstyle=\color{purple}\ttfamily,
-  stringstyle=\color{red}\ttfamily,
-  morestring=[b]',
-  morestring=[b]"
-}
 
-
-\lstset{language=[Sharp]C,
-  captionpos=b,            
-  columns=fixed,     
-  numbers=left,
-  numberstyle=\tiny,
-  showspaces=false,
-  showtabs=false,
-  breaklines=true,
-  inputencoding=utf8,
-  showstringspaces=false,
-  breakatwhitespace=true,
-  escapeinside={(*@}{@*)},
-  commentstyle=\color{greencomments},
-  keywordstyle=\color{bluekeywords},
-  stringstyle=\color{redstrings},
-  basicstyle=\ttfamily\small,
-  literate={ø}{{\o}}1
-  		   {æ}{{\ae}}1
-  		   {å}{{\aa}}1
-  		   {Ø}{{\O}}1
-  		   {Æ}{{\AE}}1
-  		   {Å}{{\AA}}1
+\lstset{ %
+  backgroundcolor=\color{white},   % choose the background color; you must add \usepackage{color} or \usepackage{xcolor}
+  basicstyle=\footnotesize,        % the size of the fonts that are used for the code
+  breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                 % sets automatic line breaking
+  captionpos=b,                    % sets the caption-position to bottom
+  commentstyle=\color{mygreen},    % comment style
+  deletekeywords={...},            % if you want to delete keywords from the given language
+  escapeinside={\%*}{*)},          % if you want to add LaTeX within your code
+  extendedchars=true,              % lets you use non-ASCII characters; for 8-bits encodings only, does not work with UTF-8
+  frame=single,                    % adds a frame around the code
+  keepspaces=true,                 % keeps spaces in text, useful for keeping indentation of code (possibly needs columns=flexible)
+  keywordstyle=\color{blue},       % keyword style
+  language=java,                 % the language of the code
+  otherkeywords={*,...,public, int16, int64, float64, float16, Void, Variable, Scope, String, foreach, ValueType},            % if you want to add more keywords to the set
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\tiny\color{mygray}, % the style that is used for the line-numbers
+  rulecolor=\color{black},         % if not set, the frame-color may be changed on line-breaks within not-black text (e.g. comments (green here))
+  showspaces=false,                % show spaces everywhere adding particular underscores; it overrides 'showstringspaces'
+  showstringspaces=false,          % underline spaces within strings only
+  showtabs=false,                  % show tabs within strings adding particular underscores
+  stepnumber=1,                    % the step between two line-numbers. If it's 1, each line will be numbered
+  stringstyle=\color{mymauve},     % string literal style
+  tabsize=2,                       % sets default tabsize to 2 spaces
+  title=\lstname,                   % show the filename of files included with \lstinputlisting; also try caption instead of title
+    literate={ø}{{\o}}1
+         {æ}{{\ae}}1
+         {å}{{\aa}}1
+         {Ø}{{\O}}1
+         {Æ}{{\AE}}1
+         {Å}{{\AA}}1
          {§}{{\S}}1
 }
+
+\lstdefinestyle{java}{
+  belowcaptionskip=1\baselineskip,
+  breakatwhitespace=false,        % sets if automatic breaks should only happen at whitespace
+  breaklines=true,                % sets automatic line breaking
+  xleftmargin=\parindent,
+  language=Java,
+  tabsize=4,
+  numbers=left,                    % where to put the line-numbers; possible values are (none, left, right)
+  numbersep=5pt,                   % how far the line-numbers are from the code
+  numberstyle=\Tiny\color{mygray}, % the style that is used for the line-numbers
+  showstringspaces=false,
+  basicstyle=\footnotesize\ttfamily,
+  keywordstyle=\bfseries\color[rgb]{.133,.545,.133},
+  commentstyle=\itshape\color{blue},
+  stringstyle=\color{mauve},
+  directivestyle=\bfseries\color{purple},
+  frame=single],
+  resetmargins=true,
+  morecomment=[s]{/*}{*/},
+  morekeywords={public, int16, int64, float64, float16, Void, Variable, Scope, String, foreach},
+  sensitive=true
+}
+
 
 \lstdefinestyle{make}{tabsize=4}
 
@@ -229,7 +255,7 @@
 %%% Todo Stuff %%%
 % Insert needed corrections with \fixme{..}, which will cause an error during compile, if any are present once 'draft'
 % is replaced with 'final'
-\usepackage[footnote,draft,english,silent,nomargin]{fixme}
+\usepackage[footnote,english,silent,nomargin]{fixme}
 \fxsetup{layout={footnote,marginclue,index},innerlayout={inline,index}}
 
 
@@ -326,7 +352,7 @@
 
 %%% Add hidelinks to remove boxes around links
 
-\usepackage[colorlinks,backref=page]{hyperref}
+\usepackage[colorlinks,backref=page,hidelinks]{hyperref}
 % General setup of hyperlinks package
 \hypersetup{
     breaklinks = true,
@@ -586,7 +612,7 @@
 \input{formal/glossaries.tex}
 
 \usepackage{xargs}                      % Use more than one optional parameter in a new commands
-\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny,disable]{todonotes}
 
 %\usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
 \newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}

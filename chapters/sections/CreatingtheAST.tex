@@ -5,7 +5,7 @@ Afterwards the node is placed on the tree as a leaf or a field on the node which
 
 One of these visit methods is shown in \myref{lst:VisitorASTCode}.
 
-\begin{lstlisting}[caption=The visit method for WhileLoopNode.,frame=tlrb,label={lst:VisitorASTCode}]
+\begin{lstlisting}[language=java,caption=The visit method for WhileLoopNode.,frame=tlrb,label={lst:VisitorASTCode}]
 public BaseASTNode visitWhileLoop(ourLangParser.WhileLoopContext ctx) {
     WhileLoopNode whileLoopNode = new WhileLoopNode(parentStack.peek());
     whileLoopNode.setCondNode(

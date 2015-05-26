@@ -32,7 +32,9 @@
 \pdfbookmark[0]{Contents}{label:contents}
 \pagestyle{empty} %enable headers and footers again
 \tableofcontents*
-\listoftodos
+\listoffigures
+%\lstlistoflistings
+
 \input{formal/preface.tex}
 \cleardoublepage
 %mainmatter
@@ -57,6 +59,11 @@
 \printglossaries
 \bibliography{bib/mybib}
 \label{bib:mybiblio}
+
+\clearpage
+
+%\lstlistoflistings
+
 
 \appendix
 \input{chapters/sections/appendices/gpuoverhead.tex} %label app:gpuoverhead
