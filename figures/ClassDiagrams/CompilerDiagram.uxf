@@ -20,7 +20,7 @@
       <w>160</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>GAMBLE Source code</panel_attributes>
+    <panel_attributes>GAMBL Source code</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
@@ -163,7 +163,7 @@
       <w>110</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>\gls{opencl} C Code</panel_attributes>
+    <panel_attributes>OpenCL C Code</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
